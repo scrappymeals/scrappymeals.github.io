@@ -15,7 +15,7 @@
     --panel:    #2d0a7a;
     --border:   #5a2fd4;
     --white:    #f0eeff;
-    --dim:      #a99dcc;
+    --dim:      #ccc3e8;
     --muted:    #4a2d8a;
     --accent:   #00f5d4;
     --accent2:  #ff2d9b;
@@ -29,7 +29,7 @@
   body {
     background: var(--black);
     color: var(--white);
-    font-family: 'DM Mono', monospace;
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     overflow-x: hidden;
     padding-top: 80px;
   }
@@ -87,7 +87,7 @@
   .hero-title .line-meals { display: block; color: var(--accent); }
   .hero-title .line-scrappy { display: block; color: var(--white); }
   .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; padding: 2.5rem 0 3rem; border-top: 1px solid var(--border); position: relative; z-index: 2; opacity: 0; animation: fadeUp 0.7s 0.6s ease forwards; }
-  .hero-desc { max-width: 400px; font-size: 0.7rem; line-height: 1.9; color: var(--dim); }
+  .hero-desc { max-width: 400px; font-size: 1rem; line-height: 1.9; color: var(--dim); font-weight: 700; }
   .hero-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 1rem; }
   .btn-primary { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--accent); color: var(--black); text-decoration: none; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2rem; transition: all 0.2s; white-space: nowrap; }
   .btn-primary:hover { background: var(--white); transform: translateX(4px); }
@@ -106,7 +106,7 @@
   .intro-heading { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(3rem, 5vw, 5rem); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.01em; }
   .intro-heading em { display: block; font-style: italic; color: var(--accent2); }
   .intro-right { display: flex; flex-direction: column; gap: 3rem; padding-top: 0.5rem; }
-  .intro-p { font-size: 0.72rem; line-height: 2; color: var(--dim); max-width: 560px; }
+  .intro-p { font-size: 1rem; line-height: 2; color: var(--dim); max-width: 560px; font-weight: 600; }
   .intro-p strong { color: var(--white); font-weight: 500; }
   .intro-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
   .istat { background: var(--panel); padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 0.4rem; transition: background 0.2s; }
@@ -142,9 +142,9 @@
   .tag-waste { color: var(--accent3); border-color: var(--accent3); }
   .tag-data  { color: var(--accent);  border-color: var(--accent); }
   .feat-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 4.5vw, 4.5rem); line-height: 0.9; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: -0.01em; }
-  .feat-desc { font-size: 0.7rem; line-height: 2; color: var(--dim); max-width: 380px; margin-bottom: 2.5rem; }
+  .feat-desc { font-size: 1rem; line-height: 2; color: var(--white); max-width: 380px; margin-bottom: 2.5rem; font-weight: 600; }
   .feat-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
-  .feat-bullets li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.65rem; color: var(--dim); line-height: 1.6; }
+  .feat-bullets li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; color: var(--white); line-height: 1.6; font-weight: 600; }
   .feat-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 0.05em; }
   .feat-bullets.pink li::before   { color: var(--accent2); }
   .feat-bullets.purple li::before { color: var(--accent3); }
@@ -165,7 +165,7 @@
   .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; line-height: 1; opacity: 0.08; position: absolute; top: 1.5rem; right: 1.5rem; }
   .step-icon { font-size: 1.5rem; line-height: 1; }
   .step-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.02em; }
-  .step-desc { font-size: 0.65rem; line-height: 1.9; color: var(--dim); }
+  .step-desc { font-size: 0.95rem; line-height: 1.9; color: var(--dim); font-weight: 600; }
   .step-accent { display: block; width: 24px; height: 2px; margin-top: auto; }
 
   .universe { padding: 8rem 3rem; background: var(--deep); border-bottom: 1px solid var(--border); }
@@ -183,7 +183,7 @@
 
   .char-type { font-size: 0.52rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dim); }
   .char-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 0.92; text-transform: uppercase; }
-  .char-desc { font-size: 0.65rem; line-height: 1.8; color: var(--dim); }
+  .char-desc { font-size: 0.95rem; line-height: 1.8; color: var(--dim); font-weight: 600; }
   .char-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
   .char-tag { font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.2rem 0.5rem; border: 1px solid var(--border); color: var(--dim); }
 
@@ -191,7 +191,7 @@
   .restaurant-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; align-items: center; margin-top: 4rem; }
   .restaurant-left h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(3rem, 5vw, 5rem); line-height: 0.9; text-transform: uppercase; margin-bottom: 1.5rem; }
   .restaurant-left h2 em { display: block; font-style: italic; color: var(--accent2); }
-  .restaurant-left p { font-size: 0.7rem; line-height: 2; color: var(--dim); max-width: 480px; margin-bottom: 2.5rem; }
+  .restaurant-left p { font-size: 1rem; line-height: 2; color: var(--dim); max-width: 480px; margin-bottom: 2.5rem; font-weight: 600; }
   .restaurant-right { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
   .benefit-row { background: var(--panel); padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; transition: background 0.2s; }
   .benefit-row:hover { background: var(--deep); }
@@ -202,7 +202,7 @@
   .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid var(--border); }
   .footer-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 0.05em; line-height: 1; margin-bottom: 1rem; }
   .footer-brand-sub { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-  .footer-tagline { font-size: 0.65rem; line-height: 1.9; color: var(--dim); max-width: 260px; }
+  .footer-tagline { font-size: 0.95rem; line-height: 1.9; color: var(--dim); max-width: 260px; font-weight: 600; }
   .footer-col h4 { font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dim); margin-bottom: 1.5rem; }
   .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
   .footer-col ul a { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.03em; color: rgba(237,234,226,0.35); text-decoration: none; transition: color 0.2s; }
@@ -363,7 +363,7 @@
 </div>
 
 <section class="universe" id="universe">
-  <p class="section-label reveal">The Scrappy Universe</p>
+  <p class="section-label reveal">The Metacheese</p>
   <div class="universe-grid">
 
     <!-- PROBOTS -->
@@ -562,7 +562,7 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Universe</h4>
+      <h4>The Metacheese</h4>
       <ul>
         <li><a href="#universe">Probots v. Digesticons</a></li>
         <li><a href="#universe">Scraps the Raccoon</a></li>
@@ -581,18 +581,19 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 Scrappy Meals XR <span class="dot">·</span> All Rights Reserved</p>
+    <p>© 2026 Scrappy Meals XR <span class="dot">·</span> All Rights Reserved</p>
     <p><a href="mailto:info@scrappymeals.com" style="color:var(--accent);text-decoration:none;letter-spacing:0.05em;">info@scrappymeals.com</a></p>
     <p>Built for the brave. Waste nothing.</p>
   </div>
 </footer>
 
-<audio id="bgAudio" loop preload="auto" muted>
-  <source src="MaskOff.mp4" type="audio/mp4">
+<audio id="bgAudio" loop preload="auto">
+  <source src="MaskOff.mp4" type="video/mp4">
+  <source src="MaskOff.mp4" type="audio/mpeg">
 </audio>
 
-<button id="muteBtn" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:998;background:rgba(10,10,15,0.85);border:1px solid #1c1d24;color:#00f5d4;font-size:1rem;width:42px;height:42px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);" title="Toggle music">
-  <span id="muteIcon">♪</span>
+<button id="muteBtn" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:998;background:var(--accent2);border:none;color:#fff;font-family:-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.6rem 1rem;border-radius:2rem;cursor:pointer;display:flex;align-items:center;gap:0.5rem;box-shadow:0 4px 20px rgba(255,45,155,0.4);transition:all 0.2s;" title="Toggle music">
+  <span id="muteIcon">♪</span><span id="muteLabel">Play Music</span>
 </button>
 
 <script>
@@ -623,26 +624,47 @@
   const audio = document.getElementById('bgAudio');
   const muteBtn = document.getElementById('muteBtn');
   const muteIcon = document.getElementById('muteIcon');
+  const muteLabel = document.getElementById('muteLabel');
   let audioStarted = false;
 
   function startAudio() {
     if (audioStarted) return;
-    audioStarted = true;
-    audio.muted = false;
     audio.volume = 0.4;
-    audio.play().then(() => { muteIcon.textContent = '♫'; }).catch(() => { muteBtn.style.borderColor = '#ff6b35'; audioStarted = false; });
+    audio.play().then(() => {
+      audioStarted = true;
+      muteIcon.textContent = '♫';
+      muteLabel.textContent = 'Mute';
+      muteBtn.style.background = 'rgba(10,10,15,0.85)';
+      muteBtn.style.boxShadow = 'none';
+      muteBtn.style.border = '1px solid #2a2540';
+    }).catch(() => {
+      // autoplay blocked, button stays visible for manual trigger
+    });
     window.removeEventListener('scroll', startAudio);
     window.removeEventListener('touchstart', startAudio);
+    window.removeEventListener('click', startAudio);
   }
 
   window.addEventListener('scroll', startAudio, { passive: true });
   window.addEventListener('touchstart', startAudio, { passive: true });
+  window.addEventListener('click', startAudio, { once: true });
 
   muteBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (!audioStarted) { startAudio(); return; }
-    if (audio.muted || audio.paused) { audio.muted = false; audio.play(); muteIcon.textContent = '♫'; }
-    else { audio.muted = true; muteIcon.textContent = '♪'; }
+    if (!audioStarted) {
+      startAudio();
+      return;
+    }
+    if (audio.paused || audio.muted) {
+      audio.muted = false;
+      audio.play();
+      muteIcon.textContent = '♫';
+      muteLabel.textContent = 'Mute';
+    } else {
+      audio.muted = true;
+      muteIcon.textContent = '♪';
+      muteLabel.textContent = 'Play Music';
+    }
   });
 </script>
 </body>
