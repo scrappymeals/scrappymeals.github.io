@@ -10,26 +10,186 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black:    #060608;
-    --deep:     #0a0b0f;
-    --panel:    #0e0f14;
-    --border:   #1c1d24;
-    --white:    #edeae2;
-    --dim:      #4a4b55;
-    --muted:    #2a2b35;
-    --accent:   #00e5a0;   /* electric mint — XR/tech energy */
-    --accent2:  #ff6b35;   /* burnt orange — food warmth */
-    --accent3:  #7b6cff;   /* violet — immersive/virtual */
-    --accent4:  #ffe044;   /* yellow — gamified/playful */
+    --black:    #3a0ca3;       /* vivid deep purple */
+    --deep:     #320a8d;
+    --panel:    #2d0a7a;
+    --border:   #5a2fd4;
+    --white:    #f0eeff;
+    --dim:      #a99dcc;
+    --muted:    #4a2d8a;
+    --accent:   #00f5d4;       /* neon teal */
+    --accent2:  #ff2d9b;       /* neon pink */
+    --accent3:  #bf5fff;       /* purple-light */
+    --accent4:  #ffe044;       /* yellow */
   }
 
   html { scroll-behavior: smooth; }
+
+  /* ── FRIDGIE TRIGGER HEADER ── */
+  .fridgie-trigger {
+    display: block;
+    width: 100%;
+    background: #f5c842;
+    color: #1a1200;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    transition: background 0.2s;
+    border: none;
+    text-align: left;
+    border-bottom: 2px solid rgba(26,18,0,0.15);
+    /* Safari iOS safe area */
+    padding-top: calc(0.75rem + env(safe-area-inset-top));
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  .fridgie-trigger:hover { background: #ffd84a; }
+
+  .fridgie-trigger-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 0.6rem;
+  }
+
+  .fridgie-icon {
+    height: 52px;
+    width: 52px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    display: block;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+    transition: transform 0.15s ease;
+  }
+  .fridgie-trigger:hover .fridgie-icon { transform: scale(1.05) rotate(-3deg); }
+
+  .fridgie-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    flex: 1;
+    text-align: center;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .fridgie-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1rem, 2.5vw, 2.2rem);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: #1a1200;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .fridgie-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(26,18,0,0.55);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .fridgie-btn-img {
+    height: 48px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    filter: drop-shadow(0 3px 8px rgba(0,0,0,0.3));
+    image-rendering: pixelated;
+  }
+  .fridgie-trigger:hover .fridgie-btn-img {
+    transform: scale(1.05) translateY(-2px);
+  }
+
+  /* Mobile — Safari + Chrome */
+  @media (max-width: 768px) {
+    .fridgie-trigger {
+      padding: 0.5rem 0.75rem;
+      padding-top: calc(0.5rem + env(safe-area-inset-top));
+    }
+    .fridgie-trigger-inner { gap: 0.4rem; }
+    .fridgie-icon { height: 36px; width: 36px; border-radius: 7px; }
+    .fridgie-btn-img { height: 30px; }
+    .fridgie-headline { font-size: clamp(0.75rem, 3.5vw, 1.1rem); }
+    .fridgie-sub { font-size: 0.5rem; }
+  }
 
   body {
     background: var(--black);
     color: var(--white);
     font-family: 'DM Mono', monospace;
     overflow-x: hidden;
+  }
+
+  /* ── MERCH BANNER ── */
+  .merch-banner {
+    display: block;
+    width: 100%;
+    background: var(--accent2);
+    text-decoration: none;
+    padding: 1.2rem 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.2s;
+  }
+  .merch-banner:hover { background: #ff52b0; }
+  .merch-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .merch-banner-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.2);
+    color: var(--white);
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap;
+  }
+  .merch-banner-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    text-transform: uppercase;
+    color: var(--white);
+    letter-spacing: 0.02em;
+    flex: 1;
+  }
+  .merch-banner-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    transition: border-color 0.2s;
+  }
+  .merch-banner:hover .merch-banner-cta { border-color: white; }
+  @media (max-width: 768px) {
+    .merch-banner { padding: 1rem 1.5rem; }
+    .merch-banner-label { display: none; }
+    .merch-banner-text { font-size: 0.95rem; }
   }
 
   /* GRAIN */
@@ -53,73 +213,14 @@
       0deg,
       transparent,
       transparent 2px,
-      rgba(0,229,160,0.012) 2px,
-      rgba(0,229,160,0.012) 4px
+      rgba(0,245,212,0.008) 2px,
+      rgba(0,245,212,0.008) 4px
     );
     pointer-events: none;
     z-index: 9998;
   }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 200;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.4rem 3rem;
-    background: rgba(6,6,8,0.7);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    text-decoration: none;
-  }
-  .nav-logo-main {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.08em;
-    color: var(--white);
-  }
-  .nav-logo-tag {
-    font-size: 0.55rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 0.2rem 0.4rem;
-    line-height: 1;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-  .nav-links a {
-    color: var(--dim);
-    text-decoration: none;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--white); }
-
-  .nav-cta {
-    background: var(--accent);
-    color: var(--black) !important;
-    padding: 0.5rem 1.2rem !important;
-    font-weight: 500 !important;
-    opacity: 1 !important;
-    transition: background 0.2s !important;
-  }
-  .nav-cta:hover { background: var(--white) !important; color: var(--black) !important; }
+  body { padding-top: 0; margin-top: 0; }
 
   /* ── HERO ── */
   .hero {
@@ -129,6 +230,7 @@
     padding: 0 3rem;
     position: relative;
     overflow: hidden;
+    scroll-margin-top: 0;
   }
 
   /* XR grid background */
@@ -147,9 +249,9 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 50% 60% at 50% 40%, rgba(0,229,160,0.07) 0%, transparent 65%),
-      radial-gradient(ellipse 30% 40% at 80% 70%, rgba(123,108,255,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 30% 40% at 20% 80%, rgba(255,107,53,0.05) 0%, transparent 60%);
+      radial-gradient(ellipse 50% 60% at 50% 40%, rgba(0,245,212,0.07) 0%, transparent 65%),
+      radial-gradient(ellipse 30% 40% at 80% 70%, rgba(255,45,155,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 40% at 20% 80%, rgba(191,95,255,0.05) 0%, transparent 60%);
   }
 
   .hero-content {
@@ -157,7 +259,7 @@
     flex-direction: column;
     justify-content: flex-end;
     padding-bottom: 5rem;
-    padding-top: 10rem;
+    padding-top: 3rem;
     position: relative;
     z-index: 2;
   }
@@ -197,15 +299,14 @@
 
   .hero-title .line-xr {
     display: block;
-    color: var(--accent);
+    color: var(--accent2);
     font-style: italic;
   }
 
   .hero-title .line-meals {
     display: block;
-    color: var(--white);
-    -webkit-text-stroke: 1px rgba(237,234,226,0.3);
-    color: transparent;
+    color: var(--accent);
+    -webkit-text-stroke: 0;
   }
 
   .hero-title .line-scrappy {
@@ -274,7 +375,7 @@
 
   /* TICKER */
   .ticker {
-    background: var(--accent);
+    background: var(--accent2);
     overflow: hidden;
     white-space: nowrap;
     padding: 0.55rem 0;
@@ -285,7 +386,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 0.85rem;
     letter-spacing: 0.12em;
-    color: var(--black);
+    color: var(--white);
   }
 
   /* ── SECTIONS SHARED ── */
@@ -370,7 +471,9 @@
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
+    transition: background 0.2s;
   }
+  a.istat:hover { background: var(--muted); cursor: pointer; }
 
   .istat-val {
     font-family: 'Bebas Neue', sans-serif;
@@ -407,43 +510,43 @@
 
   /* Atmospheric glows per feature */
   .feat-ar .feature-visual {
-    background: linear-gradient(160deg, #080c0a 0%, #060809 100%);
+    background: linear-gradient(160deg, #0a0d12 0%, #080b10 100%);
   }
   .feat-ar .feature-visual::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(0,229,160,0.1) 0%, transparent 70%);
+    background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(0,245,212,0.1) 0%, transparent 70%);
   }
 
   .feat-gamify .feature-visual {
-    background: linear-gradient(160deg, #09080e 0%, #07060c 100%);
+    background: linear-gradient(160deg, #0d0a14 0%, #0b0812 100%);
   }
   .feat-gamify .feature-visual::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(123,108,255,0.12) 0%, transparent 70%);
+    background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(255,45,155,0.1) 0%, transparent 70%);
   }
 
   .feat-waste .feature-visual {
-    background: linear-gradient(160deg, #0c0a07 0%, #0a0807 100%);
+    background: linear-gradient(160deg, #0d0a14 0%, #0a0814 100%);
   }
   .feat-waste .feature-visual::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(255,107,53,0.1) 0%, transparent 70%);
+    background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(191,95,255,0.1) 0%, transparent 70%);
   }
 
   .feat-data .feature-visual {
-    background: linear-gradient(160deg, #0c0b07 0%, #0a0906 100%);
+    background: linear-gradient(160deg, #0c0b10 0%, #0a0a0e 100%);
   }
   .feat-data .feature-visual::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(255,224,68,0.08) 0%, transparent 70%);
+    background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(0,245,212,0.08) 0%, transparent 70%);
   }
 
   /* Big watermark letter */
@@ -543,9 +646,9 @@
   }
 
   .tag-ar    { color: var(--accent);  border-color: var(--accent); }
-  .tag-xr    { color: var(--accent3); border-color: var(--accent3); }
-  .tag-waste { color: var(--accent2); border-color: var(--accent2); }
-  .tag-data  { color: var(--accent4); border-color: var(--accent4); }
+  .tag-xr    { color: var(--accent2); border-color: var(--accent2); }
+  .tag-waste { color: var(--accent3); border-color: var(--accent3); }
+  .tag-data  { color: var(--accent);  border-color: var(--accent); }
 
   .feat-title {
     font-family: 'Barlow Condensed', sans-serif;
@@ -589,9 +692,12 @@
     margin-top: 0.05em;
   }
 
-  .feat-bullets.xr li::before  { color: var(--accent3); }
-  .feat-bullets.waste li::before { color: var(--accent2); }
-  .feat-bullets.data li::before  { color: var(--accent4); }
+  .feat-bullets.xr li::before    { color: var(--accent2); }
+  .feat-bullets.waste li::before  { color: var(--accent3); }
+  .feat-bullets.data li::before   { color: var(--accent); }
+  .feat-bullets.pink li::before   { color: var(--accent2); }
+  .feat-bullets.purple li::before { color: var(--accent3); }
+  .feat-bullets.teal2 li::before  { color: var(--accent); }
 
   .feat-link {
     display: inline-flex;
@@ -979,20 +1085,17 @@
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <span class="nav-logo-main">Scrappy Meals</span>
-    <span class="nav-logo-tag">XR</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#ar-menus">AR Menus</a></li>
-    <li><a href="#gamify">Gamify</a></li>
-    <li><a href="#waste">Zero Waste</a></li>
-    <li><a href="#universe">Universe</a></li>
-    <li><a href="#restaurants" class="nav-cta">For Restaurants</a></li>
-  </ul>
-</nav>
+<!-- FRIDGIE TRIGGER HEADER -->
+<a href="https://FridgieSmalls.app" target="_blank" rel="noopener" class="fridgie-trigger" id="fridgeTrigger">
+  <div class="fridgie-trigger-inner">
+    <img src="fridgieSmallsIconLogo.png" alt="FridgieSmalls" class="fridgie-icon">
+    <div class="fridgie-text">
+      <span class="fridgie-headline" id="fridgeHeadline">What if tonight's dinner cost you nothing?</span>
+      <span class="fridgie-sub" id="fridgeSub">Click for Fridgie. Use what you have.</span>
+    </div>
+    <img src="fridgieButton.png" alt="FridgieSmalls.app" class="fridgie-btn-img">
+  </div>
+</a>
 
 <!-- HERO -->
 <section class="hero">
@@ -1011,8 +1114,8 @@
   <div class="hero-bottom">
     <p class="hero-desc">Revolutionizing cooking and dining through immersive 3D experiences. Reduce food waste. Boost restaurant sales. Engage every customer — in AR, in VR, in your world.</p>
     <div class="hero-actions">
-      <a href="#ar-menus" class="btn-primary">Explore the Platform</a>
-      <a href="#restaurants" class="btn-ghost">For Restaurants →</a>
+      <a href="https://FridgieSmalls.app" target="_blank" class="btn-primary">Explore the Platform</a>
+      <a href="https://instagram.com/scrappymeals" target="_blank" class="btn-ghost">For Restaurants →</a>
     </div>
   </div>
 </section>
@@ -1039,18 +1142,18 @@
         Scan a QR code. See your meal in 3D. Understand every ingredient. Discover what to cook with what you already have. Our platform sits at the intersection of <strong>augmented reality, artificial intelligence, and the universal human need to eat well.</strong>
       </p>
       <div class="intro-stats reveal">
-        <div class="istat">
+        <a href="https://sketchfab.com/fridgiesmalls/collections/fridgie-smalls-featured-recipes-5245a42aa0464ee2a83af3fd96f1b82d" target="_blank" class="istat" style="text-decoration:none;">
           <span class="istat-val">3D</span>
           <span class="istat-label">Interactive<br>Menus</span>
-        </div>
-        <div class="istat">
+        </a>
+        <a href="https://FridgieSmalls.app" target="_blank" class="istat" style="text-decoration:none;">
           <span class="istat-val" style="color:var(--accent2)">AI</span>
           <span class="istat-label">Recipe<br>Engine</span>
-        </div>
-        <div class="istat">
+        </a>
+        <a href="https://metacheese.scrappymeals.com" target="_blank" class="istat" style="text-decoration:none;">
           <span class="istat-val" style="color:var(--accent3)">XR</span>
           <span class="istat-label">AR + VR<br>Experiences</span>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -1078,7 +1181,7 @@
       <li>Animated dish reveals with ingredient breakdowns</li>
       <li>Supports allergen flags, nutritional data, and pairing suggestions</li>
     </ul>
-    <a href="#" class="feat-link">See It In Action</a>
+    <a href="https://sketchfab.com/models/22afe6c4c1084746bae8998b07e9a39f/embed?autostart=1&preload=1&ui_hint=2" target="_blank" class="feat-link">See It In Action</a>
   </div>
 </section>
 
@@ -1098,13 +1201,13 @@
     <span class="feat-tag tag-xr">Gamification · Brand Storytelling</span>
     <h2 class="feat-title">Gamified<br>Dining &<br>Storytelling</h2>
     <p class="feat-desc">Turn every meal into an adventure. Our gamified XR layer wraps your brand in narrative — loyalty rewards, hidden AR unlocks, character-driven storytelling that keeps customers coming back.</p>
-    <ul class="feat-bullets xr">
+    <ul class="feat-bullets pink">
       <li>Brand characters embedded in the dining experience</li>
       <li>Loyalty points and rewards tied to XR interactions</li>
       <li>Hidden AR easter eggs that drive social sharing</li>
       <li>Custom brand universes — think Probots, Scraps, Pasta Zombies</li>
     </ul>
-    <a href="#" class="feat-link">Build Your Universe</a>
+    <a href="https://metacheese.scrappymeals.com" target="_blank" class="feat-link">Build Your Universe</a>
   </div>
 </section>
 
@@ -1113,93 +1216,6 @@
   <blockquote class="reveal">"The best meal is the one <strong>you didn't waste.</strong> The best experience is the one <strong>you never forget."</strong></blockquote>
   <p class="quote-source reveal">— Scrappy Meals XR</p>
 </div>
-
-<!-- FEATURE 3: WASTE REDUCTION -->
-<section class="feature feat-waste" id="waste">
-  <div class="feature-visual">
-    <div class="feature-watermark">ZERO</div>
-    <div class="clip-drop">
-      <div class="play-btn">
-        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-      </div>
-      <span class="clip-label">Waste Reduction Feature · Drop Clip Here</span>
-    </div>
-  </div>
-  <div class="feature-info reveal">
-    <span class="feat-num">03</span>
-    <span class="feat-tag tag-waste">Zero Waste · AI Engine</span>
-    <h2 class="feat-title">Reduce<br>Food Waste.<br>Radically.</h2>
-    <p class="feat-desc">Our AI engine analyzes what's in your kitchen or restaurant inventory and generates real recipes from what you already have. Less waste. Lower costs. Better margins. Better planet.</p>
-    <ul class="feat-bullets waste">
-      <li>Scan your fridge or inventory — get instant recipes</li>
-      <li>AI-optimized menus built around your existing stock</li>
-      <li>Waste tracking and reduction reporting for restaurants</li>
-      <li>Consumer-facing tools for home cooks cutting grocery waste</li>
-    </ul>
-    <a href="#" class="feat-link">Fight Waste with Us</a>
-  </div>
-</section>
-
-<!-- FEATURE 4: DATA -->
-<section class="feature feat-data flip" id="data">
-  <div class="feature-visual">
-    <div class="feature-watermark">DATA</div>
-    <div class="clip-drop">
-      <div class="play-btn">
-        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-      </div>
-      <span class="clip-label">Analytics Dashboard · Drop Clip Here</span>
-    </div>
-  </div>
-  <div class="feature-info reveal">
-    <span class="feat-num">04</span>
-    <span class="feat-tag tag-data">Analytics · Operations</span>
-    <h2 class="feat-title">Data That<br>Actually<br>Feeds You</h2>
-    <p class="feat-desc">Every XR interaction generates insight. Which dishes get explored. Which get ordered. Where customers drop off. We turn dining behavior into operational intelligence that grows your business.</p>
-    <ul class="feat-bullets data">
-      <li>Real-time dish popularity and engagement heatmaps</li>
-      <li>Order conversion rates per 3D menu item</li>
-      <li>Waste reduction metrics and cost savings reports</li>
-      <li>Customer behavior analytics across the XR experience</li>
-    </ul>
-    <a href="#" class="feat-link">See the Dashboard</a>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how">
-  <p class="section-label reveal">How It Works</p>
-  <div class="how-grid">
-    <div class="how-step reveal">
-      <span class="step-num">01</span>
-      <div class="step-icon">📱</div>
-      <div class="step-title">Scan the QR</div>
-      <p class="step-desc">Customers scan a QR code on any phone or tablet. No app download. No friction. Instant access.</p>
-      <span class="step-accent" style="background:var(--accent)"></span>
-    </div>
-    <div class="how-step reveal">
-      <span class="step-num">02</span>
-      <div class="step-icon">🍽️</div>
-      <div class="step-title">Explore in 3D</div>
-      <p class="step-desc">The full menu appears in stunning 3D AR. Rotate dishes. See ingredients. Watch the story unfold.</p>
-      <span class="step-accent" style="background:var(--accent3)"></span>
-    </div>
-    <div class="how-step reveal">
-      <span class="step-num">03</span>
-      <div class="step-icon">🎮</div>
-      <div class="step-title">Play & Unlock</div>
-      <p class="step-desc">Hidden rewards, brand characters, loyalty points. The gamified layer keeps guests engaged and coming back.</p>
-      <span class="step-accent" style="background:var(--accent4)"></span>
-    </div>
-    <div class="how-step reveal">
-      <span class="step-num">04</span>
-      <div class="step-icon">📊</div>
-      <div class="step-title">Grow Smarter</div>
-      <p class="step-desc">Analytics feed back into operations. Optimize your menu, reduce waste, and increase revenue — automatically.</p>
-      <span class="step-accent" style="background:var(--accent2)"></span>
-    </div>
-  </div>
-</section>
 
 <!-- UNIVERSE / CHARACTERS -->
 <section class="universe" id="universe">
@@ -1241,6 +1257,102 @@
   </div>
 </section>
 
+<!-- MERCH BANNER -->
+<a href="https://scrappymeals.printful.me/" target="_blank" class="merch-banner">
+  <div class="merch-banner-inner">
+    <span class="merch-banner-label">New Drop</span>
+    <span class="merch-banner-text">Shop the Scrappy Meals Universe — Tees, Prints & Collectibles</span>
+    <span class="merch-banner-cta">Shop Merch →</span>
+  </div>
+</a>
+
+<!-- FEATURE 3: WASTE REDUCTION -->
+<section class="feature feat-waste" id="waste">
+  <div class="feature-visual">
+    <div class="feature-watermark">ZERO</div>
+    <div class="clip-drop">
+      <div class="play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+      <span class="clip-label">Waste Reduction Feature · Drop Clip Here</span>
+    </div>
+  </div>
+  <div class="feature-info reveal">
+    <span class="feat-num">03</span>
+    <span class="feat-tag tag-waste">Zero Waste · AI Engine</span>
+    <h2 class="feat-title">Reduce<br>Food Waste.<br>Radically.</h2>
+    <p class="feat-desc">Our AI engine analyzes what's in your kitchen or restaurant inventory and generates real recipes from what you already have. Less waste. Lower costs. Better margins. Better planet.</p>
+    <ul class="feat-bullets purple">
+      <li>Scan your fridge or inventory — get instant recipes</li>
+      <li>AI-optimized menus built around your existing stock</li>
+      <li>Waste tracking and reduction reporting for restaurants</li>
+      <li>Consumer-facing tools for home cooks cutting grocery waste</li>
+    </ul>
+    <a href="#" class="feat-link">Fight Waste with Us</a>
+  </div>
+</section>
+
+<!-- FEATURE 4: DATA -->
+<section class="feature feat-data flip" id="data">
+  <div class="feature-visual">
+    <div class="feature-watermark">DATA</div>
+    <div class="clip-drop">
+      <div class="play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+      <span class="clip-label">Analytics Dashboard · Drop Clip Here</span>
+    </div>
+  </div>
+  <div class="feature-info reveal">
+    <span class="feat-num">04</span>
+    <span class="feat-tag tag-data">Analytics · Operations</span>
+    <h2 class="feat-title">Data That<br>Actually<br>Feeds You</h2>
+    <p class="feat-desc">Every XR interaction generates insight. Which dishes get explored. Which get ordered. Where customers drop off. We turn dining behavior into operational intelligence that grows your business.</p>
+    <ul class="feat-bullets teal2">
+      <li>Real-time dish popularity and engagement heatmaps</li>
+      <li>Order conversion rates per 3D menu item</li>
+      <li>Waste reduction metrics and cost savings reports</li>
+      <li>Customer behavior analytics across the XR experience</li>
+    </ul>
+    <a href="#" class="feat-link">See the Dashboard</a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <p class="section-label reveal">How It Works</p>
+  <div class="how-grid">
+    <div class="how-step reveal">
+      <span class="step-num">01</span>
+      <div class="step-icon">📱</div>
+      <div class="step-title">Scan the QR</div>
+      <p class="step-desc">Customers scan a QR code on any phone or tablet. No app download. No friction. Instant access.</p>
+      <span class="step-accent" style="background:var(--accent)"></span>
+    </div>
+    <div class="how-step reveal">
+      <span class="step-num">02</span>
+      <div class="step-icon">🍽️</div>
+      <div class="step-title">Explore in 3D</div>
+      <p class="step-desc">The full menu appears in stunning 3D AR. Rotate dishes. See ingredients. Watch the story unfold.</p>
+      <span class="step-accent" style="background:var(--accent2)"></span>
+    </div>
+    <div class="how-step reveal">
+      <span class="step-num">03</span>
+      <div class="step-icon">🎮</div>
+      <div class="step-title">Play & Unlock</div>
+      <p class="step-desc">Hidden rewards, brand characters, loyalty points. The gamified layer keeps guests engaged and coming back.</p>
+      <span class="step-accent" style="background:var(--accent3)"></span>
+    </div>
+    <div class="how-step reveal">
+      <span class="step-num">04</span>
+      <div class="step-icon">📊</div>
+      <div class="step-title">Grow Smarter</div>
+      <p class="step-desc">Analytics feed back into operations. Optimize your menu, reduce waste, and increase revenue — automatically.</p>
+      <span class="step-accent" style="background:var(--accent2)"></span>
+    </div>
+  </div>
+</section>
+
 <!-- FOR RESTAURANTS -->
 <section class="for-restaurants" id="restaurants">
   <div class="restaurant-grid">
@@ -1257,15 +1369,15 @@
       </div>
       <div class="benefit-row">
         <span class="benefit-text">Reduce Food Waste</span>
-        <span class="benefit-val" style="color:var(--accent3)">↓ 40%</span>
+        <span class="benefit-val" style="color:var(--accent2)">↓ 40%</span>
       </div>
       <div class="benefit-row">
         <span class="benefit-text">Customer Engagement</span>
-        <span class="benefit-val" style="color:var(--accent4)">3× More</span>
+        <span class="benefit-val" style="color:var(--accent3)">3× More</span>
       </div>
       <div class="benefit-row">
         <span class="benefit-text">Setup Time</span>
-        <span class="benefit-val" style="color:var(--accent2)">24hr</span>
+        <span class="benefit-val" style="color:var(--accent4)">24hr</span>
       </div>
       <div class="benefit-row">
         <span class="benefit-text">App Download Required</span>
@@ -1299,27 +1411,47 @@
         <li><a href="#universe">Probots v. Digesticons</a></li>
         <li><a href="#universe">Scraps the Raccoon</a></li>
         <li><a href="#universe">The Pasta Zombies</a></li>
-        <li><a href="#">Merch</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
+        <li><a href="https://scrappymeals.printful.me/" target="_blank">Merch</a></li>
       <ul>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">TikTok</a></li>
-        <li><a href="#">YouTube</a></li>
-        <li><a href="#">Press Kit</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="https://instagram.com/scrappymeals" target="_blank">Instagram · @scrappymeals</a></li>
+        <li><a href="https://instagram.com/fridgiesmalls" target="_blank">Instagram · @fridgiesmalls</a></li>
+        <li><a href="https://youtube.com/@FridgieSmalls" target="_blank">YouTube · @FridgieSmalls</a></li>
+        <li><a href="mailto:info@scrappymeals.com">info@scrappymeals.com</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <p>© 2025 Scrappy Meals XR <span class="dot">·</span> All Rights Reserved</p>
+    <p><a href="mailto:info@scrappymeals.com" style="color:var(--accent);text-decoration:none;letter-spacing:0.05em;">info@scrappymeals.com</a></p>
     <p>Built for the brave. Waste nothing.</p>
   </div>
 </footer>
 
+<audio id="bgAudio" loop preload="auto" muted>
+  <source src="MaskOff.mp4" type="audio/mp4">
+</audio>
+
+<button id="muteBtn" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:998;background:rgba(10,10,15,0.85);border:1px solid #1c1d24;color:#00f5d4;font-size:1rem;width:42px;height:42px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);" title="Toggle music">
+  <span id="muteIcon">♪</span>
+</button>
+
 <script>
+  // Time-aware headline
+  (function() {
+    const h = new Date().getHours();
+    let headline, sub;
+    if      (h < 3)  { headline = "What if your late night snack was already in your fridge?"; }
+    else if (h < 6)  { headline = "Up early? What if breakfast made itself?"; }
+    else if (h < 10) { headline = "What if this morning's breakfast cost you nothing?"; }
+    else if (h < 12) { headline = "What if brunch was hiding in your fridge right now?"; }
+    else if (h < 14) { headline = "What if today's lunch cost you nothing?"; }
+    else if (h < 17) { headline = "What if the perfect afternoon bite was already home?"; }
+    else             { headline = "What if tonight's dinner cost you nothing?"; }
+    sub = "Click for Fridgie. Use what you have.";
+    document.getElementById('fridgeHeadline').textContent = headline;
+    document.getElementById('fridgeSub').textContent = sub;
+  })();
+
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -1330,6 +1462,51 @@
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Dynamic padding for fixed bar
+  function setBodyOffset() {
+    const bar = document.getElementById('fridgeTrigger');
+    if (bar) document.body.style.paddingTop = bar.offsetHeight + 'px';
+  }
+  setBodyOffset();
+  window.addEventListener('resize', setBodyOffset);
+
+  // Audio
+  const audio = document.getElementById('bgAudio');
+  const muteBtn = document.getElementById('muteBtn');
+  const muteIcon = document.getElementById('muteIcon');
+  let audioStarted = false;
+
+  function startAudio() {
+    if (audioStarted) return;
+    audioStarted = true;
+    audio.muted = false;
+    audio.volume = 0.4;
+    audio.play().then(() => {
+      muteIcon.textContent = '♫';
+    }).catch(() => {
+      muteBtn.style.borderColor = '#ff6b35';
+      audioStarted = false;
+    });
+    window.removeEventListener('scroll', startAudio);
+    window.removeEventListener('touchstart', startAudio);
+  }
+
+  window.addEventListener('scroll', startAudio, { passive: true });
+  window.addEventListener('touchstart', startAudio, { passive: true });
+
+  muteBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!audioStarted) { startAudio(); return; }
+    if (audio.muted || audio.paused) {
+      audio.muted = false;
+      audio.play();
+      muteIcon.textContent = '♫';
+    } else {
+      audio.muted = true;
+      muteIcon.textContent = '♪';
+    }
+  });
 </script>
 </body>
 </html>
