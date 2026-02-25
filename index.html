@@ -25,6 +25,16 @@
 
   html { scroll-behavior: smooth; }
 
+  /* ── FIXED BODY OFFSET — no JS needed ── */
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+    padding-top: 80px;
+  }
+  @media (max-width: 768px) { body { padding-top: 58px; } }
+
   .fridgie-trigger {
     display: block; width: 100%; background: #f5c842; color: #1a1200;
     text-decoration: none; padding: 0.75rem 1.5rem; cursor: pointer;
@@ -53,8 +63,6 @@
     .fridgie-sub { font-size: 0.5rem; }
   }
 
-  body { background: var(--black); color: var(--white); font-family: 'DM Mono', monospace; overflow-x: hidden; }
-
   .merch-banner { display: block; width: 100%; background: var(--accent2); text-decoration: none; padding: 1.2rem 3rem; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); transition: background 0.2s; }
   .merch-banner:hover { background: #ff52b0; }
   .merch-banner-inner { display: flex; align-items: center; gap: 1.5rem; max-width: 1400px; margin: 0 auto; }
@@ -66,7 +74,6 @@
 
   body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); background-size: 256px; pointer-events: none; z-index: 9999; mix-blend-mode: overlay; }
   body::before { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,245,212,0.008) 2px, rgba(0,245,212,0.008) 4px); pointer-events: none; z-index: 9998; }
-  body { padding-top: 0; margin-top: 0; }
 
   .hero { min-height: 100vh; display: grid; grid-template-rows: 1fr auto; padding: 0 3rem; position: relative; overflow: hidden; scroll-margin-top: 0; }
   .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%); opacity: 0.4; }
@@ -77,7 +84,7 @@
   .hero-eyebrow span { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); }
   .hero-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(5rem, 13vw, 13rem); line-height: 0.87; text-transform: uppercase; letter-spacing: -0.02em; opacity: 0; animation: fadeUp 0.7s 0.35s ease forwards; }
   .hero-title .line-xr { display: block; color: var(--accent2); font-style: italic; }
-  .hero-title .line-meals { display: block; color: var(--accent); -webkit-text-stroke: 0; }
+  .hero-title .line-meals { display: block; color: var(--accent); }
   .hero-title .line-scrappy { display: block; color: var(--white); }
   .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; padding: 2.5rem 0 3rem; border-top: 1px solid var(--border); position: relative; z-index: 2; opacity: 0; animation: fadeUp 0.7s 0.6s ease forwards; }
   .hero-desc { max-width: 400px; font-size: 0.7rem; line-height: 1.9; color: var(--dim); }
@@ -139,9 +146,6 @@
   .feat-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
   .feat-bullets li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.65rem; color: var(--dim); line-height: 1.6; }
   .feat-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 0.05em; }
-  .feat-bullets.xr li::before    { color: var(--accent2); }
-  .feat-bullets.waste li::before  { color: var(--accent3); }
-  .feat-bullets.data li::before   { color: var(--accent); }
   .feat-bullets.pink li::before   { color: var(--accent2); }
   .feat-bullets.purple li::before { color: var(--accent3); }
   .feat-bullets.teal2 li::before  { color: var(--accent); }
@@ -164,7 +168,6 @@
   .step-desc { font-size: 0.65rem; line-height: 1.9; color: var(--dim); }
   .step-accent { display: block; width: 24px; height: 2px; margin-top: auto; }
 
-  /* ── UNIVERSE ── */
   .universe { padding: 8rem 3rem; background: var(--deep); border-bottom: 1px solid var(--border); }
   .universe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 4rem; }
 
@@ -172,16 +175,11 @@
   .char-card:hover { background: var(--panel); }
   .char-card::before { content: attr(data-char); position: absolute; bottom: -1rem; right: -0.5rem; font-family: 'Bebas Neue', sans-serif; font-size: 7rem; line-height: 1; opacity: 0.04; pointer-events: none; }
 
-  /* ── TOB IMAGE on Probots card ── */
   .char-card-img { width: 100%; height: 220px; overflow: hidden; flex-shrink: 0; }
   .char-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.4s ease; }
   .char-card:hover .char-card-img img { transform: scale(1.04); }
 
-  /* Body area with padding (replaces the original padding on .char-card) */
   .char-card-body { padding: 2.5rem 2.5rem 3.5rem; display: flex; flex-direction: column; gap: 1rem; }
-
-  /* Cards without image keep padding directly on .char-card */
-  .char-card.no-img { padding: 3.5rem 2.5rem; gap: 1rem; }
 
   .char-type { font-size: 0.52rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dim); }
   .char-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 0.92; text-transform: uppercase; }
@@ -219,8 +217,6 @@
   .reveal.visible { opacity: 1; transform: none; }
 
   @media (max-width: 960px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
     .hero { padding: 0 1.5rem; }
     .hero-title { font-size: clamp(4rem, 16vw, 9rem); }
     .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
@@ -315,13 +311,13 @@
   </div>
 </section>
 
+<!-- FEATURE 1: AR MENUS — BuckysBurger.mp4 video -->
 <section class="feature feat-ar" id="ar-menus">
   <div class="feature-visual">
     <div class="feature-watermark">AR</div>
-    <div class="clip-drop">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      <span class="clip-label">AR Menu Demo · Drop Your Clip Here</span>
-    </div>
+    <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;">
+      <source src="BuckysBurger.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="feature-info reveal">
     <span class="feat-num">01</span>
@@ -366,15 +362,14 @@
   <p class="quote-source reveal">— Scrappy Meals XR</p>
 </div>
 
-<!-- UNIVERSE / CHARACTERS -->
 <section class="universe" id="universe">
   <p class="section-label reveal">The Scrappy Universe</p>
   <div class="universe-grid">
 
-    <!-- PROBOTS — proVdigiBanner.png image at top -->
+    <!-- PROBOTS -->
     <div class="char-card reveal" data-char="PROBOTS">
       <div class="char-card-img">
-        <img src="proVdigiBanner.png" alt="TOB — The Probots v. Digesticons">
+        <img src="proVdigiBanner.png" alt="The Probots v. Digesticons">
       </div>
       <div class="char-card-body">
         <span class="char-type">Comic · Animation · Merch</span>
@@ -389,29 +384,39 @@
       </div>
     </div>
 
-    <!-- SCRAPS — no image -->
-    <div class="char-card no-img reveal" data-char="SCRAPS">
-      <span class="char-type">Character · Series · Mascot</span>
-      <h3 class="char-name" style="color:var(--accent2)">Scraps<br>The Raccoon</h3>
-      <p class="char-desc">He's lived behind the dumpster of the world's greatest restaurant for fifteen years. He's eaten things you wouldn't believe. He has opinions about everything — and a show to prove it. Scraps wastes nothing.</p>
-      <div class="char-tags">
-        <span class="char-tag">Brand Mascot</span>
-        <span class="char-tag">Animated Series</span>
-        <span class="char-tag">AR Overlay</span>
-        <span class="char-tag">Merch</span>
+    <!-- SCRAPS -->
+    <div class="char-card reveal" data-char="SCRAPS">
+      <div class="char-card-img">
+        <img src="scrapsBanner.png" alt="Scraps the Raccoon">
+      </div>
+      <div class="char-card-body">
+        <span class="char-type">Character · Series · Mascot</span>
+        <h3 class="char-name" style="color:var(--accent2)">Scraps<br>The Raccoon</h3>
+        <p class="char-desc">He's lived behind the dumpster of the world's greatest restaurant for fifteen years. He's eaten things you wouldn't believe. He has opinions about everything — and a show to prove it. Scraps wastes nothing.</p>
+        <div class="char-tags">
+          <span class="char-tag">Brand Mascot</span>
+          <span class="char-tag">Animated Series</span>
+          <span class="char-tag">AR Overlay</span>
+          <span class="char-tag">Merch</span>
+        </div>
       </div>
     </div>
 
-    <!-- PASTA ZOMBIES — no image -->
-    <div class="char-card no-img reveal" data-char="ZOMBIE">
-      <span class="char-type">Horror-Comedy · Series</span>
-      <h3 class="char-name" style="color:var(--accent)">The Pasta<br>Zombies</h3>
-      <p class="char-desc">What happens when leftover pasta sits in the back of the fridge too long? It comes back. It always comes back. Part horror, part comedy, entirely a cautionary tale about the cost of food waste.</p>
-      <div class="char-tags">
-        <span class="char-tag">Horror-Comedy</span>
-        <span class="char-tag">Animated Shorts</span>
-        <span class="char-tag">AR Easter Egg</span>
-        <span class="char-tag">Merch</span>
+    <!-- PASTA ZOMBIES -->
+    <div class="char-card reveal" data-char="ZOMBIE">
+      <div class="char-card-img">
+        <img src="pastaZombiesBanner.png" alt="The Pasta Zombies">
+      </div>
+      <div class="char-card-body">
+        <span class="char-type">Horror-Comedy · Series</span>
+        <h3 class="char-name" style="color:var(--accent)">The Pasta<br>Zombies</h3>
+        <p class="char-desc">What happens when leftover pasta sits in the back of the fridge too long? It comes back. It always comes back. Part horror, part comedy, entirely a cautionary tale about the cost of food waste.</p>
+        <div class="char-tags">
+          <span class="char-tag">Horror-Comedy</span>
+          <span class="char-tag">Animated Shorts</span>
+          <span class="char-tag">AR Easter Egg</span>
+          <span class="char-tag">Merch</span>
+        </div>
       </div>
     </div>
 
@@ -445,7 +450,7 @@
       <li>Waste tracking and reduction reporting for restaurants</li>
       <li>Consumer-facing tools for home cooks cutting grocery waste</li>
     </ul>
-    <a href="#" class="feat-link">Fight Waste with Us</a>
+    <a href="https://FridgieSmalls.app" target="_blank" class="feat-link">Fight Waste with Us</a>
   </div>
 </section>
 
@@ -512,7 +517,7 @@
       <p class="section-label">For Restaurants</p>
       <h2>More Sales.<br>Less Waste.<br><em>Better Stories.</em></h2>
       <p>Scrappy Meals XR is built for restaurants that want to lead. Our platform plugs into your existing operations, turns your menu into an immersive experience, and gives you the data to run smarter — all through a simple QR code on your table.</p>
-      <a href="#" class="btn-primary">Book a Demo</a>
+      <a href="https://instagram.com/scrappymeals" target="_blank" class="btn-primary">Book a Demo</a>
     </div>
     <div class="restaurant-right reveal">
       <div class="benefit-row">
@@ -594,13 +599,13 @@
   (function() {
     const h = new Date().getHours();
     let headline;
-    if      (h < 3)  { headline = "What if your late night snack was already in your fridge?"; }
-    else if (h < 6)  { headline = "Up early? What if breakfast made itself?"; }
-    else if (h < 10) { headline = "What if this morning's breakfast cost you nothing?"; }
-    else if (h < 12) { headline = "What if brunch was hiding in your fridge right now?"; }
-    else if (h < 14) { headline = "What if today's lunch cost you nothing?"; }
-    else if (h < 17) { headline = "What if the perfect afternoon bite was already home?"; }
-    else             { headline = "What if tonight's dinner cost you nothing?"; }
+    if      (h < 3)  headline = "What if your late night snack was already in your fridge?";
+    else if (h < 6)  headline = "Up early? What if breakfast made itself?";
+    else if (h < 10) headline = "What if this morning's breakfast cost you nothing?";
+    else if (h < 12) headline = "What if brunch was hiding in your fridge right now?";
+    else if (h < 14) headline = "What if today's lunch cost you nothing?";
+    else if (h < 17) headline = "What if the perfect afternoon bite was already home?";
+    else             headline = "What if tonight's dinner cost you nothing?";
     document.getElementById('fridgeHeadline').textContent = headline;
     document.getElementById('fridgeSub').textContent = "Click for Fridgie. Use what you have.";
   })();
@@ -614,13 +619,6 @@
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  function setBodyOffset() {
-    const bar = document.getElementById('fridgeTrigger');
-    if (bar) document.body.style.paddingTop = bar.offsetHeight + 'px';
-  }
-  setBodyOffset();
-  window.addEventListener('resize', setBodyOffset);
 
   const audio = document.getElementById('bgAudio');
   const muteBtn = document.getElementById('muteBtn');
