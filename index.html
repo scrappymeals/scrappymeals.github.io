@@ -74,7 +74,6 @@
   body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); background-size: 256px; pointer-events: none; z-index: 9999; mix-blend-mode: overlay; }
   body::before { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,245,212,0.008) 2px, rgba(0,245,212,0.008) 4px); pointer-events: none; z-index: 9998; }
 
-  /* ── HERO — desktop keeps min-height:100vh, mobile collapses to content ── */
   .hero { min-height: 100vh; display: grid; grid-template-rows: 1fr auto; padding: 0 3rem; position: relative; overflow: hidden; }
   .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%); opacity: 0.4; }
   .hero-glow { position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 50% 40%, rgba(0,245,212,0.07) 0%, transparent 65%), radial-gradient(ellipse 30% 40% at 80% 70%, rgba(255,45,155,0.06) 0%, transparent 60%), radial-gradient(ellipse 30% 40% at 20% 80%, rgba(191,95,255,0.05) 0%, transparent 60%); }
@@ -94,7 +93,6 @@
   .btn-ghost { display: inline-flex; align-items: center; gap: 0.75rem; border: 1px solid var(--border); color: var(--dim); text-decoration: none; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2rem; transition: all 0.2s; white-space: nowrap; }
   .btn-ghost:hover { border-color: var(--white); color: var(--white); }
 
-  /* Mobile hero fix — remove the 100vh min-height so content sits right below the bar */
   @media (max-width: 768px) {
     .hero { min-height: unset; padding: 0 1.5rem; }
     .hero-content { padding-top: 2.5rem; padding-bottom: 2rem; justify-content: flex-start; }
@@ -135,12 +133,6 @@
   .feat-data .feature-visual { background: linear-gradient(160deg, #0c0b10 0%, #0a0a0e 100%); }
   .feat-data .feature-visual::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(0,245,212,0.08) 0%, transparent 70%); }
   .feature-watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(8rem, 15vw, 18rem); opacity: 0.04; letter-spacing: -0.05em; line-height: 1; text-align: center; z-index: 1; }
-  .clip-drop { position: absolute; inset: 1.5rem; border: 1px solid rgba(255,255,255,0.05); z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; transition: border-color 0.3s; cursor: pointer; }
-  .clip-drop:hover { border-color: rgba(255,255,255,0.12); }
-  .clip-drop .play-btn { width: 56px; height: 56px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
-  .clip-drop:hover .play-btn { border-color: rgba(255,255,255,0.35); }
-  .clip-drop .play-btn svg { width: 18px; height: 18px; fill: rgba(255,255,255,0.35); margin-left: 3px; }
-  .clip-drop .clip-label { font-size: 0.52rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.15); text-align: center; }
   .feature-info { padding: 5rem 4.5rem; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--border); }
   .feature.flip .feature-info { border-left: none; border-right: 1px solid var(--border); }
   .feat-num { font-family: 'Bebas Neue', sans-serif; font-size: 6rem; line-height: 1; opacity: 0.04; margin-bottom: -1.5rem; }
@@ -316,6 +308,7 @@
   </div>
 </section>
 
+<!-- FEATURE 01: AR MENUS -->
 <section class="feature feat-ar" id="ar-menus">
   <div class="feature-visual">
     <div class="feature-watermark">AR</div>
@@ -338,13 +331,13 @@
   </div>
 </section>
 
+<!-- FEATURE 02: GAMIFICATION -->
 <section class="feature feat-gamify flip" id="gamify">
   <div class="feature-visual">
     <div class="feature-watermark">XR</div>
-    <div class="clip-drop">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      <span class="clip-label">Gamification Demo · Drop Your Clip Here</span>
-    </div>
+    <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;">
+      <source src="buckysBurgerPoppaAngelo.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="feature-info reveal">
     <span class="feat-num">02</span>
@@ -422,13 +415,13 @@
   </div>
 </a>
 
+<!-- FEATURE 03: ZERO WASTE -->
 <section class="feature feat-waste" id="waste">
   <div class="feature-visual">
     <div class="feature-watermark">ZERO</div>
-    <div class="clip-drop">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      <span class="clip-label">Waste Reduction Feature · Drop Clip Here</span>
-    </div>
+    <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;">
+      <source src="sibChoppedCheese.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="feature-info reveal">
     <span class="feat-num">03</span>
@@ -445,13 +438,11 @@
   </div>
 </section>
 
+<!-- FEATURE 04: DATA -->
 <section class="feature feat-data flip" id="data">
   <div class="feature-visual">
     <div class="feature-watermark">DATA</div>
-    <div class="clip-drop">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      <span class="clip-label">Analytics Dashboard · Drop Clip Here</span>
-    </div>
+    <img src="dataSheet.png" alt="Analytics Dashboard" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;">
   </div>
   <div class="feature-info reveal">
     <span class="feat-num">04</span>
