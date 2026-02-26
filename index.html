@@ -120,14 +120,32 @@
   .istat-val { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; line-height: 1; color: var(--accent); }
   .istat-label { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); line-height: 1.5; }
 
+  /* ── FEATURE SECTIONS ── */
   .feature { display: grid; grid-template-columns: 1fr 1fr; min-height: 85vh; border-bottom: 1px solid var(--border); }
   .feature.flip { direction: rtl; }
   .feature.flip > * { direction: ltr; }
-  .feature-visual { position: relative; overflow: hidden; min-height: 500px; background: var(--panel); }
-  .feat-ar .feature-visual { background: linear-gradient(160deg, #0a0d12 0%, #080b10 100%); }
-  .feat-gamify .feature-visual { background: linear-gradient(160deg, #0d0a14 0%, #0b0812 100%); }
-  .feat-waste .feature-visual { background: linear-gradient(160deg, #0d0a14 0%, #0a0814 100%); }
-  .feat-data .feature-visual { background: linear-gradient(160deg, #0c0b10 0%, #0a0a0e 100%); }
+
+  /* The visual panel — always position:relative so the video can fill it absolutely */
+  .feature-visual {
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+    background: var(--black);
+  }
+
+  /* ── THE VIDEO FIX: identical treatment for all 4 feature videos ── */
+  .feature-visual video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    z-index: 2;
+  }
+
   .feature-watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(8rem, 15vw, 18rem); opacity: 0.04; letter-spacing: -0.05em; line-height: 1; text-align: center; z-index: 1; }
   .feature-info { padding: 5rem 4.5rem; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--border); }
   .feature.flip .feature-info { border-left: none; border-right: 1px solid var(--border); }
@@ -219,7 +237,8 @@
     .intro-stats { grid-template-columns: 1fr 1fr; }
     .feature { grid-template-columns: 1fr; }
     .feature.flip { direction: ltr; }
-    .feature-visual { min-height: 320px; }
+    /* On mobile the visual stacks on top — give it a fixed height so video fills it */
+    .feature-visual { min-height: 56vw; height: 56vw; max-height: 420px; }
     .feature-info { padding: 3rem 1.5rem; border-left: none !important; border-right: none !important; border-top: 1px solid var(--border); }
     .how { padding: 5rem 1.5rem; }
     .how-grid { grid-template-columns: 1fr 1fr; }
@@ -308,7 +327,7 @@
 <section class="feature feat-ar" id="ar-menus">
   <div class="feature-visual">
     <div class="feature-watermark">AR</div>
-    <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;">
+    <video autoplay muted loop playsinline>
       <source src="BuckysBurger.mp4" type="video/mp4">
     </video>
   </div>
@@ -331,7 +350,7 @@
 <section class="feature feat-gamify flip" id="gamify">
   <div class="feature-visual">
     <div class="feature-watermark">XR</div>
-    <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;">
+    <video autoplay muted loop playsinline>
       <source src="buckysBurgerPoppaAngelo.mp4" type="video/mp4">
     </video>
   </div>
@@ -415,7 +434,7 @@
 <section class="feature feat-waste" id="waste">
   <div class="feature-visual">
     <div class="feature-watermark">ZERO</div>
-    <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;">
+    <video autoplay muted loop playsinline>
       <source src="sibChoppedCheese.mp4" type="video/mp4">
     </video>
   </div>
@@ -438,7 +457,7 @@
 <section class="feature feat-data flip" id="data">
   <div class="feature-visual">
     <div class="feature-watermark">DATA</div>
-    <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;">
+    <video autoplay muted loop playsinline>
       <source src="alexPeruDish001.mp4" type="video/mp4">
     </video>
   </div>
@@ -551,15 +570,6 @@
     <p>Built for the brave. Waste nothing.</p>
   </div>
 </footer>
-
-<!-- MUSIC DISABLED
-<audio id="bgAudio" loop preload="auto">
-  <source src="MaskOff.mp3" type="audio/mpeg">
-</audio>
-<button id="muteBtn" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:998;background:var(--accent2);border:none;color:#fff;font-family:-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.6rem 1rem;border-radius:2rem;cursor:pointer;display:flex;align-items:center;gap:0.5rem;box-shadow:0 4px 20px rgba(255,45,155,0.4);transition:all 0.2s;" title="Toggle music">
-  <span id="muteIcon">♪</span><span id="muteLabel">Play Music</span>
-</button>
--->
 
 <script>
   (function() {
