@@ -129,7 +129,19 @@
   .feat-waste .feature-visual { background: var(--black); }
   .feat-data .feature-visual { background: var(--black); }
   .feature-watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(8rem, 15vw, 18rem); opacity: 0.04; letter-spacing: -0.05em; line-height: 1; text-align: center; z-index: 1; }
-  .feature-visual video { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; z-index: 2; direction: ltr; }
+  .feature-visual video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    z-index: 2;
+  }
   .feature-info { padding: 5rem 4.5rem; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--border); }
   .feature.flip .feature-info { border-left: none; border-right: 1px solid var(--border); }
   .feat-num { font-family: 'Bebas Neue', sans-serif; font-size: 6rem; line-height: 1; opacity: 0.04; margin-bottom: -1.5rem; }
