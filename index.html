@@ -208,6 +208,8 @@
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.75s ease, transform 0.75s ease; }
   .reveal.visible { opacity: 1; transform: none; }
+  .feature-info.reveal { opacity: 0; }
+  .feature-info.reveal.visible { opacity: 1; transform: none; }
 
   @media (max-width: 960px) {
     .hero { padding: 0 1.5rem; min-height: unset; }
@@ -568,4 +570,15 @@
     document.getElementById('fridgeSub').textContent = "Click for Fridgie. Use what you have.";
   })();
 
-  c
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 90);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
