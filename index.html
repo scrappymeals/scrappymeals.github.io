@@ -124,10 +124,10 @@
   .feature.flip { direction: rtl; }
   .feature.flip > * { direction: ltr; }
   .feature-visual { position: relative; overflow: hidden; min-height: 500px; background: var(--panel); }
-  .feat-ar .feature-visual { background: linear-gradient(160deg, #0a0d12 0%, #080b10 100%); }
-  .feat-gamify .feature-visual { background: linear-gradient(160deg, #0d0a14 0%, #0b0812 100%); }
-  .feat-waste .feature-visual { background: linear-gradient(160deg, #0d0a14 0%, #0a0814 100%); }
-  .feat-data .feature-visual { background: linear-gradient(160deg, #0c0b10 0%, #0a0a0e 100%); }
+  .feat-ar .feature-visual { background: var(--black); }
+  .feat-gamify .feature-visual { background: var(--black); }
+  .feat-waste .feature-visual { background: var(--black); }
+  .feat-data .feature-visual { background: var(--black); }
   .feature-watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(8rem, 15vw, 18rem); opacity: 0.04; letter-spacing: -0.05em; line-height: 1; text-align: center; z-index: 1; }
   .feature-visual video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; z-index: 2; }
   .feature-info { padding: 5rem 4.5rem; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--border); }
@@ -542,18 +542,18 @@
         <li><a href="https://instagram.com/scrappymeals" target="_blank">Instagram · @scrappymeals</a></li>
         <li><a href="https://instagram.com/fridgiesmalls" target="_blank">Instagram · @fridgiesmalls</a></li>
         <li><a href="https://youtube.com/@FridgieSmalls" target="_blank">YouTube · @FridgieSmalls</a></li>
-        <li><a href="mailto:info@scrappymeals.com">info@scrappymeals.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#ef86818980af9c8c9d8e9f9f96828a8e839cc18c8082"><span class="__cf_email__" data-cfemail="0a63646c654a7969786b7a7a73676f6b667924696567">[email&#160;protected]</span></a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 Scrappy Meals XR <span class="dot">·</span> All Rights Reserved</p>
-    <p><a href="mailto:info@scrappymeals.com" style="color:var(--accent);text-decoration:none;letter-spacing:0.05em;">info@scrappymeals.com</a></p>
+    <p><a href="/cdn-cgi/l/email-protection#c4adaaa2ab84b7a7b6a5b4b4bda9a1a5a8b7eaa7aba9" style="color:var(--accent);text-decoration:none;letter-spacing:0.05em;"><span class="__cf_email__" data-cfemail="fd94939b92bd8e9e8f9c8d8d8490989c918ed39e9290">[email&#160;protected]</span></a></p>
     <p>Built for the brave. Waste nothing.</p>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   (function() {
     const h = new Date().getHours();
     let headline;
@@ -568,15 +568,4 @@
     document.getElementById('fridgeSub').textContent = "Click for Fridgie. Use what you have.";
   })();
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 90);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+  c
