@@ -441,12 +441,12 @@ function makeSlides(sz, back) {
           i<arr.length-1&&h("div",{className:"flow-arrow",key:"a"+i,style:{fontSize:cs}},"→")
         ]).flat().filter(Boolean)
       ),
-      h("div",{className:"spacer"}),
-      h("img",{src:"fridgieDodgersSmall.png",alt:"Fridgie",style:{
-        width:"100%",maxHeight:sz*0.22,objectFit:"contain",
-        alignSelf:"center",marginBottom:sz*0.02,marginTop:sz*0.02,
-        filter:"drop-shadow(0 2px 12px rgba(0,0,0,0.35))",
-        opacity:0.97,
+     h("div", { className: "spacer", style: { flex: 0.3 } }),
+h("img", { src: "fridgieDodgersSmall.png", alt: "Fridgie", style: {
+  width: "100%", maxHeight: sz * 0.22, objectFit: "contain",
+  alignSelf: "center", marginBottom: sz * 0.06, marginTop: sz * 0.005,
+  filter: "drop-shadow(0 2px 12px rgba(0,0,0,0.35))",
+  opacity: 0.97,
       }}),
       go_btn(go,"See the Demo →")
     ),
