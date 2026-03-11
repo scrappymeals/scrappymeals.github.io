@@ -85,8 +85,8 @@
     }
 
     .step-label {
-      font-size: 10px; font-weight: 700;
-      color: rgba(255,255,255,0.45);
+      font-size: 10px; font-weight: 800;
+      color: rgba(255,255,255,0.6);
       letter-spacing: 0.14em; text-transform: uppercase;
       margin-bottom: 10px; flex-shrink: 0;
     }
@@ -97,7 +97,8 @@
     }
     .headline em { font-style: normal; color: #a78bfa; }
     .body-text {
-      color: rgba(255,255,255,0.75); line-height: 1.6;
+      color: rgba(255,255,255,0.88); line-height: 1.55;
+      font-weight: 700;
       margin-bottom: 14px; flex-shrink: 0;
     }
     .tag {
@@ -139,7 +140,7 @@
       flex-shrink: 0;
     }
     .card-title { font-weight: 700; color: #fff; margin-bottom: 2px; }
-    .card-sub   { color: rgba(255,255,255,0.6); line-height: 1.4; }
+    .card-sub   { color: rgba(255,255,255,0.75); font-weight: 700; line-height: 1.4; }
 
     .product-card {
       background: #fff; border-radius: 16px; padding: 14px;
@@ -202,7 +203,7 @@
     .recipe-label { font-weight: 700; color: #a78bfa; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
     .recipe-row {
       display: flex; align-items: center; gap: 8px;
-      color: rgba(255,255,255,0.85); padding: 4px 0;
+      color: rgba(255,255,255,0.95); font-weight: 700; padding: 4px 0;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .recipe-row:last-child { border-bottom: none; }
@@ -214,8 +215,8 @@
 
     .bullet { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; flex-shrink: 0; }
     .bullet-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
-    .bullet-title { font-weight: 700; color: #fff; margin-bottom: 1px; }
-    .bullet-body  { color: rgba(255,255,255,0.6); line-height: 1.4; }
+    .bullet-title { font-weight: 800; color: #fff; margin-bottom: 1px; }
+    .bullet-body  { color: rgba(255,255,255,0.90); font-weight: 700; line-height: 1.4; }
 
     .flow { display: flex; align-items: center; justify-content: center; gap: 4px; margin: 10px 0; flex-shrink: 0; }
     .flow-step { background: rgba(255,255,255,0.12); border-radius: 8px; padding: 8px 6px; text-align: center; font-weight: 700; color: #fff; flex: 1; }
@@ -303,25 +304,25 @@ function BuildVisual({sz}) {
     h("div",{className:"emoji-row",style:{gap:sz*0.025}},
       ...["🍝","🍅","🥛","🫒","🧄"].map((e,i)=>h("span",{key:i,style:{fontSize:sz*0.07}},e))
     ),
-    h("div",{style:{fontSize:sz*0.032,color:"rgba(255,255,255,0.6)",fontWeight:600}},"Building your recipe…")
+    h("div",{style:{fontSize:sz*0.037,color:"rgba(255,255,255,0.75)",fontWeight:700}},"Building your recipe…")
   );
 }
 
 function makeSlides(sz, back) {
-  const hs = sz * 0.075;  // headline font
-  const bs = sz * 0.038;  // body font
-  const ls = sz * 0.026;  // small label
-  const cs = sz * 0.042;  // card title
-  const ss = sz * 0.032;  // card sub
+  const hs = sz * 0.086;  // headline font
+  const bs = sz * 0.056;  // body font
+  const ls = sz * 0.040;  // small label
+  const cs = sz * 0.060;  // card title
+  const ss = sz * 0.050;  // card sub
 
   const go_btn = (go, label="Continue →") =>
-    h("button",{className:"btn-continue",onClick:go,style:{fontSize:sz*0.042}},label);
+    h("button",{className:"btn-continue",onClick:go,style:{fontSize:sz*0.054}},label);
 
   const back_btn = () =>
     h("button",{onClick:back,style:{
       position:"absolute",top:sz*0.04,left:"50%",transform:"translateX(-50%)",
       background:"transparent",border:"none",
-      color:"rgba(255,255,255,0.45)",fontWeight:400,fontSize:sz*0.038,
+      color:"rgba(255,255,255,0.6)",fontWeight:600,fontSize:sz*0.038,
       cursor:"pointer",zIndex:20,lineHeight:1,padding:`${sz*0.01}px`,
     }},"‹");
 
@@ -406,7 +407,7 @@ function makeSlides(sz, back) {
       h("div",{className:"product-card"},
         h("div",{style:{fontSize:sz*0.1}},"🍝"),
         h("div",null,
-          h("div",{className:"product-brand",style:{fontSize:ls*0.85}},"PASTOSA · BROOKLYN SINCE 1966"),
+          h("div",{className:"product-brand",style:{fontSize:ls}},"PASTOSA · BROOKLYN SINCE 1966"),
           h("div",{className:"product-name",style:{fontSize:cs}},"Large Round Cheese Ravioli"),
           h("div",{className:"product-price",style:{fontSize:hs*0.7}},"$11.45"),
           h("div",{className:"product-note",style:{fontSize:ss}},"12 count · 15oz · Made fresh daily")
@@ -418,7 +419,7 @@ function makeSlides(sz, back) {
           h("div",null,h("div",{className:"card-title",style:{fontSize:cs}},"Repeat purchase loop"),h("div",{className:"card-sub",style:{fontSize:ss}},"Every future cook = a new Foodtown buy button."))
         )
       ),
-      h("button",{style:{width:"100%",padding:"14px",borderRadius:14,border:"none",background:"#EF4444",color:"#fff",fontWeight:800,fontSize:sz*0.045,cursor:"pointer",fontFamily:"'DM Sans',sans-serif",boxShadow:"0 5px 20px rgba(239,68,68,0.4)",marginBottom:10,flexShrink:0}},"🛒 Add to Cart"),
+      h("button",{style:{width:"100%",padding:"14px",borderRadius:14,border:"none",background:"#EF4444",color:"#fff",fontWeight:800,fontSize:sz*0.054,cursor:"pointer",fontFamily:"'DM Sans',sans-serif",boxShadow:"0 5px 20px rgba(239,68,68,0.4)",marginBottom:10,flexShrink:0}},"🛒 Add to Cart"),
       go_btn(go)
     ),
 
@@ -441,12 +442,12 @@ function makeSlides(sz, back) {
           i<arr.length-1&&h("div",{className:"flow-arrow",key:"a"+i,style:{fontSize:cs}},"→")
         ]).flat().filter(Boolean)
       ),
-     h("div", { className: "spacer", style: { flex: 0.3 } }),
-h("img", { src: "fridgieDodgersSmall.png", alt: "Fridgie", style: {
-  width: "100%", maxHeight: sz * 0.22, objectFit: "contain",
-  alignSelf: "center", marginBottom: sz * 0.06, marginTop: sz * 0.005,
-  filter: "drop-shadow(0 2px 12px rgba(0,0,0,0.35))",
-  opacity: 0.97,
+      h("div",{className:"spacer"}),
+      h("img",{src:"fridgieDodgersSmall.png",alt:"Fridgie",style:{
+        width:"100%",maxHeight:sz*0.22,objectFit:"contain",
+        alignSelf:"center",marginBottom:sz*0.02,marginTop:sz*0.02,
+        filter:"drop-shadow(0 2px 12px rgba(0,0,0,0.35))",
+        opacity:0.97,
       }}),
       go_btn(go,"See the Demo →")
     ),
@@ -459,10 +460,10 @@ h("img", { src: "fridgieDodgersSmall.png", alt: "Fridgie", style: {
       h("p",{className:"body-text",style:{fontSize:bs}},"FridgieSmalls turns a shelf scan into a recipe with a Foodtown buy button — embedded forever."),
       h("div",{style:{flex:1,display:"flex",alignItems:"center",justifyContent:"center",minHeight:0,position:"relative"}},
         h("div",{style:{position:"absolute",width:"80%",height:"80%",borderRadius:"50%",background:"radial-gradient(circle, rgba(167,139,250,0.45) 0%, transparent 70%)",pointerEvents:"none"}}),
-        h("img",{src:"jimmyJamPastosa.png",alt:"Jimmy Jam Pastosa",style:{width:"99%",maxHeight:"100%",objectFit:"contain",position:"relative",zIndex:1,filter:"drop-shadow(0 10px 28px rgba(0,0,0,0.6))"}})
+        h("img",{src:"jimmyJamPastosa.png",alt:"Jimmy Jam Pastosa",style:{width:"109%",maxHeight:"100%",objectFit:"contain",position:"relative",zIndex:1,filter:"drop-shadow(0 10px 28px rgba(0,0,0,0.6))"}})
       ),
-      h("a",{href:"https://fridgiesmalls.app/?campaign=pastosa-raviolis",target:"_blank",rel:"noopener noreferrer",className:"btn-launch",style:{fontSize:sz*0.038}},"🚀 Pastosa × Fridgie Smalls Activation"),
-      h("button",{className:"btn-replay",onClick:go,style:{fontSize:sz*0.038}},"↩ Replay Demo")
+      h("a",{href:"https://fridgiesmalls.app/?campaign=pastosa-raviolis",target:"_blank",rel:"noopener noreferrer",className:"btn-launch",style:{fontSize:sz*0.050}},"🚀 Pastosa × Fridgie Smalls Activation"),
+      h("button",{className:"btn-replay",onClick:go,style:{fontSize:sz*0.050}},"↩ Replay Demo")
     ),
   ];
 }
