@@ -1,0 +1,1809 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Damon Versaggi | Buttermilk Creator Director Packet | Uber US</title>
+  <meta name="description" content="Damon Versaggi - interactive candidate packet for Buttermilk Creator Director, Uber US: creator standards, talent negotiations, content quality, creator operations, team training, and commercial creator frameworks." />
+  <meta name="keywords" content="Buttermilk, Creator Director, Uber US, Creator Services, creator marketing, influencer marketing, talent negotiations, agent relationships, creator strategy, content quality, commercial frameworks, team training, creator operations, Damon Versaggi" />
+  <meta name="author" content="Damon Versaggi" />
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    /* ── Design tokens ───────────────────────────────────────────── */
+    :root {
+      --red:      #f2b705;
+      --red-dim:  #bf8d00;
+      --ink:      #111111;
+      --charcoal: #1a1a1a;
+      --mid:      #2e2e2e;
+      --muted:    #5a5a5a;
+      --line:     #d4d4d4;
+      --soft:     #f5f5f5;
+      --paper:    #ffffff;
+      --note:     #fff8df;
+      --grid:     rgba(242,183,5,0.055);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #e8e8e8;
+      color: var(--ink);
+      font-family: "Georgia", "Times New Roman", serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration-color: var(--red); text-underline-offset: 3px; }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    .hero-contact a, .sig a { overflow-wrap: anywhere; }
+    b, strong { font-weight: 700; }
+
+    /* ── ATS-visible off-screen text block ───────────────────────── */
+    .ats-block {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      font-size: 10px;
+      color: transparent;
+    }
+
+    /* ── Scroll progress ─────────────────────────────────────────── */
+    .scroll-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), #ffd34f);
+      transform: scaleX(0);
+      transform-origin: left center;
+      z-index: 1000;
+      pointer-events: none;
+      box-shadow: 0 0 14px rgba(242,183,5,0.36);
+      transition: transform 80ms linear;
+    }
+
+    /* ── Top bar ─────────────────────────────────────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      transition: box-shadow 200ms ease, border-bottom-color 200ms ease;
+    }
+
+    .topbar.scrolled {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+      border-bottom-color: rgba(242,183,5,0.26);
+    }
+
+    .topbar-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 11px;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .brand-mark-icon {
+      width: 22px;
+      height: 22px;
+      background: var(--red);
+      clip-path: polygon(50% 0%, 100% 100%, 72% 100%, 50% 46%, 28% 100%, 0% 100%);
+      flex-shrink: 0;
+    }
+
+    .menu-toggle {
+      display: none;
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:focus-visible {
+      transform: translateY(-1px);
+      border-color: var(--red);
+      background: #fff9e8;
+      outline: none;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .nav a {
+      text-decoration: none;
+      padding: 4px 1px;
+      border-bottom: 2px solid transparent;
+      transition: color 160ms, border-color 160ms, transform 160ms;
+      position: relative;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--ink);
+      border-bottom-color: var(--red);
+      transform: translateY(-1px);
+    }
+
+    /* ── Page shell ──────────────────────────────────────────────── */
+    .shell {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
+    }
+
+    .print-note {
+      text-align: right;
+      font-size: 11px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      margin-bottom: 12px;
+    }
+
+    .packet {
+      background: var(--paper);
+      border: 1px solid #d0d0d0;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.13);
+    }
+
+    /* ── Section pages ───────────────────────────────────────────── */
+    .pg {
+      position: relative;
+      padding: 56px 68px 68px;
+      border-bottom: 1px solid #e4e4e4;
+    }
+
+    .pg:last-child { border-bottom: none; }
+
+    /* Grid background pattern on dark sections */
+    .pg.dark {
+      background: var(--charcoal);
+      color: #f0f0f0;
+    }
+
+    .pg.dark .muted { color: #909090; }
+
+    .pg.blueprint {
+      background: var(--charcoal);
+      color: #f0f0f0;
+      background-image:
+        linear-gradient(rgba(242,183,5,0.075) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(242,183,5,0.075) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .pg.soft {
+      background: #f9f9f9;
+    }
+
+    /* ── Page footers ────────────────────────────────────────────── */
+    .pg-foot {
+      position: absolute;
+      left: 68px; right: 68px; bottom: 20px;
+      text-align: center;
+      font-size: 10px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .pg.dark .pg-foot { color: #555; }
+
+    /* Safe area padding for notched phones */
+    .topbar-inner {
+      padding-left: max(20px, env(safe-area-inset-left, 20px));
+      padding-right: max(20px, env(safe-area-inset-right, 20px));
+    }
+
+    /* ── Typography ──────────────────────────────────────────────── */
+    h1.hero-name {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      line-height: 0.95;
+      color: var(--ink);
+    }
+
+    .hero-role {
+      font-family: Arial, sans-serif;
+      font-size: clamp(12px, 1.4vw, 15px);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: 10px;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .hero-contact {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .hero-statement {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-left: 3px solid var(--red);
+      background: var(--note);
+      font-size: 15px;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .hero-adobe-fit {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px solid #e0e0e0;
+      background: var(--soft);
+      font-size: 14px;
+      line-height: 1.5;
+      font-family: Arial, sans-serif;
+    }
+
+    .section-label {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    h2.sec {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--red);
+      padding-bottom: 8px;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    .pg.dark h2.sec,
+    .pg.blueprint h2.sec {
+      color: #f0f0f0;
+      border-bottom-color: var(--red);
+    }
+
+    h3.sub {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin: 18px 0 4px;
+    }
+
+    .pg.dark h3.sub { color: #ffd34f; }
+
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      font-family: Arial, sans-serif;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 6px 0 14px;
+    }
+
+    li {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 5px;
+      font-family: Arial, sans-serif;
+    }
+
+    .date-line {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      margin-bottom: 7px;
+    }
+
+    /* ── Action chips ────────────────────────────────────────────── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 180ms, border-color 180ms, box-shadow 180ms, background 180ms;
+    }
+
+    .chip:hover,
+    .chip:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--red);
+      box-shadow: 0 4px 16px rgba(242,183,5,0.22);
+      background: #fff9e8;
+    }
+
+    .chip.primary {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    .chip.primary:hover {
+      background: var(--red-dim);
+      border-color: var(--red-dim);
+    }
+
+    .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .chip.primary .chip-dot { background: rgba(255,255,255,0.6); }
+
+    /* ── Role match table ────────────────────────────────────────── */
+    .match-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      margin-top: 14px;
+    }
+
+    .match-table th {
+      background: var(--charcoal);
+      color: #fff;
+      padding: 12px 14px;
+      text-align: left;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      font-size: 12px;
+    }
+
+    .match-table th:first-child { width: 38%; }
+
+    .match-table td {
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .match-table td:first-child {
+      background: var(--soft);
+      font-weight: 700;
+      font-family: "Arial Bold", Arial, sans-serif;
+    }
+
+    .match-table tr {
+      transition: background 140ms;
+    }
+
+    .match-table tbody tr:hover td {
+      background: #fff7dc;
+    }
+
+    .match-table tbody tr:hover td:first-child {
+      background: #fff0bd;
+    }
+
+    .match-check {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      text-align: center;
+      line-height: 14px;
+      font-size: 9px;
+      font-weight: 900;
+      margin-right: 6px;
+      flex-shrink: 0;
+      vertical-align: middle;
+    }
+
+    /* ── Why cards ───────────────────────────────────────────────── */
+    .cards-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .card {
+      border: 1px solid #2e2e2e;
+      padding: 22px 20px;
+      background: rgba(255,255,255,0.04);
+      transition: transform 200ms, border-color 200ms, box-shadow 200ms;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--red);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--red);
+      box-shadow: 0 12px 40px rgba(242,183,5,0.22);
+    }
+
+    .card-num {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--red);
+      opacity: 0.35;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .card h3 {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #e8e8e8;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #a8a8a8;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ── Experience cards (light) ────────────────────────────────── */
+    .exp-card {
+      border: 1px solid var(--line);
+      padding: 22px 22px;
+      margin-bottom: 18px;
+      background: var(--paper);
+      transition: transform 200ms, box-shadow 200ms, border-color 200ms;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exp-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 200ms;
+    }
+
+    .exp-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border-color: #bbb;
+    }
+
+    .exp-card:hover::before {
+      opacity: 1;
+    }
+
+    .exp-org {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .exp-title {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    /* ── Delivery pipeline ───────────────────────────────────────── */
+    .pipeline-wrap {
+      margin-top: 24px;
+      overflow-x: auto;
+    }
+
+    .pipeline {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      min-width: 700px;
+    }
+
+    .pipe-stage {
+      flex: 1;
+      position: relative;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid #2a2a2a;
+      padding: 20px 14px 18px;
+      transition: background 200ms, border-color 200ms;
+      cursor: default;
+    }
+
+    .pipe-stage:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -13px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: 11px solid transparent;
+      border-bottom: 11px solid transparent;
+      border-left: 13px solid #2a2a2a;
+      z-index: 2;
+      transition: border-left-color 200ms;
+    }
+
+    .pipe-stage:hover {
+      background: rgba(242,183,5,0.10);
+      border-color: var(--red);
+    }
+
+    .pipe-stage:hover::after {
+      border-left-color: var(--red);
+    }
+
+    .pipe-num {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--red);
+      opacity: 0.4;
+      line-height: 1;
+    }
+
+    .pipe-name {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #e0e0e0;
+      margin: 6px 0 8px;
+    }
+
+    .pipe-desc {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    /* ── 30-60-90 section ────────────────────────────────────────── */
+    .plan-phases {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .phase {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      padding: 20px 18px;
+      transition: transform 200ms, box-shadow 200ms;
+    }
+
+    .phase:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+    }
+
+    .phase-badge {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+    }
+
+    .phase h3 {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    /* ── Proof grid ──────────────────────────────────────────────── */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .proof-card {
+      border: 1px solid var(--line);
+      padding: 20px 18px;
+      text-decoration: none;
+      color: var(--ink);
+      background: var(--paper);
+      display: block;
+      transition: transform 200ms, border-color 200ms, box-shadow 200ms;
+      position: relative;
+    }
+
+    .proof-card::before {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 220ms ease;
+    }
+
+    .proof-card:hover {
+      transform: translateY(-3px);
+      border-color: #bbb;
+      box-shadow: 0 10px 36px rgba(0,0,0,0.1);
+    }
+
+    .proof-card:hover::before { transform: scaleX(1); }
+
+    .proof-tag {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+
+    .proof-card h3 {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .proof-card p {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .proof-arrow {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      color: var(--red);
+      margin-top: 10px;
+      display: block;
+      font-weight: 700;
+    }
+
+    /* ── Cover letter ────────────────────────────────────────────── */
+    .letter p {
+      font-size: 15px;
+      line-height: 1.65;
+      margin-bottom: 14px;
+      font-family: Georgia, serif;
+    }
+
+    .letter .sig {
+      margin-top: 22px;
+      font-family: Georgia, serif;
+      font-size: 15px;
+    }
+
+    /* ── What Buttermilk gets ─────────────────────────────────────────── */
+    .gets-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .gets-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      padding: 12px 14px;
+      border: 1px solid #2e2e2e;
+      background: rgba(255,255,255,0.03);
+      transition: border-color 180ms, background 180ms;
+    }
+
+    .gets-list li:hover {
+      border-color: var(--red);
+      background: rgba(242,183,5,0.075);
+    }
+
+    .gets-icon {
+      width: 18px;
+      height: 18px;
+      background: var(--red);
+      clip-path: polygon(50% 0%, 100% 100%, 72% 100%, 50% 46%, 28% 100%, 0% 100%);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Fade-in on scroll ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 560ms ease, transform 560ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Hero animation ──────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-animate-1 { animation: fadeUp 600ms ease forwards; }
+    .hero-animate-2 { animation: fadeUp 600ms 100ms ease forwards; opacity: 0; }
+    .hero-animate-3 { animation: fadeUp 600ms 180ms ease forwards; opacity: 0; }
+    .hero-animate-4 { animation: fadeUp 600ms 280ms ease forwards; opacity: 0; }
+    .hero-animate-5 { animation: fadeUp 600ms 380ms ease forwards; opacity: 0; }
+
+    /* ── Red accent divider ──────────────────────────────────────── */
+    .red-rule {
+      border: none;
+      border-top: 2px solid var(--red);
+      margin: 20px 0;
+      opacity: 0.4;
+    }
+
+    /* ── Small label/badge ───────────────────────────────────────── */
+    .badge {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+
+    /* ── Print ───────────────────────────────────────────────────── */
+    @media print {
+      body { background: #fff; }
+      .topbar, .scroll-progress, .print-note { display: none !important; }
+      .shell { padding: 0; max-width: 100%; }
+      .packet { box-shadow: none; border: none; }
+      .pg { padding: 32px 48px; min-height: 0 !important; }
+      .pipeline { min-width: 0; }
+      .cards-2 { grid-template-columns: 1fr 1fr; }
+      .plan-phases { grid-template-columns: 1fr 1fr 1fr; }
+      .proof-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .gets-list { grid-template-columns: 1fr 1fr; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      a { text-decoration: none; }
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 860px) {
+      body { background: #fff; }
+      .shell { padding: 0; }
+      .packet { border-left: 0; border-right: 0; box-shadow: none; }
+      .topbar-inner {
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 10px 14px;
+        gap: 10px;
+      }
+      .brand-mark { max-width: calc(100% - 92px); white-space: normal; line-height: 1.2; }
+      .menu-toggle { display: inline-flex; align-items: center; margin-left: auto; min-height: 44px; }
+      .nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 0 4px;
+        border-top: 1px solid rgba(0,0,0,0.08);
+        max-height: 66vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .nav.open { display: flex; }
+      .nav a {
+        display: block;
+        padding: 12px 2px;
+        min-height: 44px;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        transform: none !important;
+        display: flex;
+        align-items: center;
+      }
+      .nav a.active { color: var(--red); border-bottom-color: rgba(250,15,0,0.28); }
+      .pg { padding: 36px 22px 52px; }
+      .pg-foot { position: static; margin-top: 30px; left: auto; right: auto; }
+      .cards-2 { grid-template-columns: 1fr; }
+      .plan-phases { grid-template-columns: 1fr; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .gets-list { grid-template-columns: 1fr; }
+      .hero-contact { line-height: 1.55; word-break: break-word; overflow-wrap: anywhere; }
+      .chips { gap: 10px; }
+      .chip { min-height: 44px; }
+      /* Hero role separators: let them wrap naturally */
+      .hero-role { word-break: break-word; }
+    }
+
+    @media (max-width: 700px) {
+      .match-table,
+      .match-table thead,
+      .match-table tbody,
+      .match-table tr,
+      .match-table th,
+      .match-table td {
+        display: block;
+        width: 100%;
+      }
+      .match-table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+      }
+      .match-table tr {
+        border: 1px solid var(--line);
+        margin-bottom: 12px;
+        background: #fff;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      }
+      .match-table td {
+        border: 0;
+        border-bottom: 1px solid rgba(0,0,0,0.07);
+        padding: 12px 14px;
+      }
+      .match-table td:last-child { border-bottom: 0; }
+      .match-table td:first-child { background: #fff8df; }
+      .match-table td::before {
+        display: block;
+        font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+        color: var(--red);
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .match-table td:nth-child(1)::before { content: "Adobe Need"; }
+      .match-table td:nth-child(2)::before { content: "Damon Evidence"; }
+
+      .pipeline-wrap { overflow-x: visible; }
+      .pipeline {
+        min-width: 0;
+        flex-direction: column;
+        gap: 0;
+      }
+      .pipe-stage {
+        padding: 18px 16px;
+      }
+      /* Vertical connector arrow between pipeline stages on mobile */
+      .pipe-stage:not(:last-child)::after {
+        left: 50%;
+        right: auto;
+        top: auto;
+        bottom: -14px;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 14px solid #2a2a2a;
+        border-bottom: none;
+        background: none;
+        z-index: 2;
+      }
+      .pipe-stage:hover::after {
+        border-top-color: var(--red);
+      }
+      /* Add spacing below each stage to accommodate the arrow */
+      .pipe-stage:not(:last-child) {
+        margin-bottom: 14px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .pg { padding: 28px 16px 44px; }
+      h1.hero-name { font-size: clamp(28px, 11vw, 44px); letter-spacing: 0.06em; }
+      .hero-role { font-size: 11px; line-height: 1.65; }
+      .hero-statement { padding: 14px 15px; font-size: 14px; }
+      .hero-adobe-fit { font-size: 13px; }
+      .chips { flex-direction: column; gap: 8px; }
+      .chip { width: 100%; justify-content: center; min-height: 48px; font-size: 11px; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .exp-card, .phase, .proof-card, .card { padding: 18px 14px; }
+      .gets-list li { padding: 12px; }
+      /* Tighter table cell padding */
+      .match-table td { padding: 10px 12px; }
+      /* Prevent long words overflowing */
+      p, li, td { word-break: break-word; overflow-wrap: break-word; }
+      /* Letter section readability */
+      .letter p { font-size: 14px; }
+      /* Section headings slightly smaller */
+      h2.sec { font-size: 18px; }
+    }
+
+    /* Extra small phones */
+    @media (max-width: 380px) {
+      .pg { padding: 24px 14px 40px; }
+      .topbar-inner { padding: 8px 12px; }
+      .brand-mark { font-size: 10px; }
+      h1.hero-name { font-size: clamp(26px, 12vw, 40px); }
+      .chip { padding: 10px 12px; }
+    }
+
+    /* ── Respect reduced motion ──────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  
+
+    /* ── Buttermilk-specific interactive components ─────────────── */
+    .role-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .role-pill {
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 14px 13px;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .role-pill:hover {
+      transform: translateY(-2px);
+      border-color: var(--red);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+    }
+
+    .role-pill b {
+      display: block;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .role-pill span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 18px 0 6px;
+    }
+
+    .signal-card {
+      border: 1px solid #2e2e2e;
+      background: rgba(255,255,255,0.04);
+      padding: 16px 16px;
+      min-height: 120px;
+      transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+    }
+
+    .signal-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--red);
+      background: rgba(242,183,5,0.08);
+    }
+
+    .signal-kicker {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+
+    .signal-card h3 {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #f5f5f5;
+      margin-bottom: 8px;
+    }
+
+    .signal-card p {
+      color: #a8a8a8;
+      font-size: 12px;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .tabs {
+      margin-top: 18px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      padding: 9px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-weight: 900;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .tab-btn:hover,
+    .tab-btn.active {
+      transform: translateY(-1px);
+      border-color: var(--red);
+      background: var(--note);
+    }
+
+    .tab-panel {
+      display: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 18px;
+    }
+
+    .tab-panel.active { display: block; }
+
+    .tab-panel h3 {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .micro-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .micro {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      padding: 14px 12px;
+      font-family: Arial, sans-serif;
+    }
+
+    .micro b {
+      display: block;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .micro span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .risk-note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--red);
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .brand-mark-icon {
+      border-radius: 6px;
+      clip-path: none;
+      background: linear-gradient(135deg, var(--red), #ffe17a);
+    }
+
+    @media (max-width: 860px) {
+      .role-strip, .signal-row, .micro-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .role-strip, .signal-row, .micro-grid { grid-template-columns: 1fr; }
+      .tab-btn { width: 100%; min-height: 44px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="ats-block" aria-hidden="true" role="presentation">
+  Damon Versaggi
+  Buttermilk Creator Director Uber US Candidate Packet
+  New York / New Jersey Area | damon@scrappymeals.com | linkedin.com/in/damonversaggi | scrappymeals.com/damo | fridgiesmalls.app
+
+  TARGET ROLE
+  Creator Director, Creator Services, Buttermilk, Uber US, New York, Hybrid, Full-time. Senior leadership role responsible for end-to-end creator and content excellence across the Uber US account. Role owns quality and consistency of creator output, negotiation strategy and commercial frameworks, talent and agent relationship development, and team training across creator lifecycle communications, negotiations, contracting, delivery, payment, and post-campaign relationship management.
+
+  KEYWORDS
+  Creator Services, Creator Director, Uber US, creator output quality, content quality benchmarks, creator selection standards, talent negotiations, agent relationships, rate benchmarking, commercial value-add structuring, contracting risk mitigation, escalation handling, reputation management, preferred talent partnerships, ambassador retainers, annualised agreements, platform strategy, TikTok, Instagram, YouTube, campaign velocity, creator timelines, content approvals, reshoots, performance insight, creator performance data, cultural relevance, commercial rigor, strategic leadership, cross-functional execution, Client Services, Strategy, Campaigns, Legal, Finance, team training, manager development, operational excellence.
+
+  DAMON FIT SUMMARY
+  Creative systems and commercial storytelling leader with 20+ years across real-time 3D, live production, branded content systems, creative operations, founder-led product development, AI-enabled workflows, sponsor concepts, high-pressure stakeholder environments, and cross-functional team leadership. Built Scrappy Meals XR, Fridgie Smalls, The Metacheese, and partner-facing 3D food experiences connecting creators, content, product, restaurants, culture, commerce, and audience behavior. Experienced in translating client objectives into execution systems, quality standards, production workflows, pitch narratives, commercial framing, and stakeholder-ready materials.
+</div>
+
+<div class="scroll-progress" id="progress" role="progressbar" aria-label="Reading progress"></div>
+
+<nav class="topbar" id="topbar" aria-label="Page navigation">
+  <div class="topbar-inner">
+    <a class="brand-mark" href="#hero">
+      <span class="brand-mark-icon"></span>
+      Damon Versaggi
+    </a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
+    <div class="nav" id="site-nav" role="list">
+      <a href="#hero" role="listitem">Overview</a>
+      <a href="#match" role="listitem">Role Fit</a>
+      <a href="#authority" role="listitem">Authority</a>
+      <a href="#experience" role="listitem">Experience</a>
+      <a href="#model" role="listitem">Creator Model</a>
+      <a href="#playbooks" role="listitem">Playbooks</a>
+      <a href="#plan" role="listitem">30-60-90</a>
+      <a href="#proof" role="listitem">Proof</a>
+      <a href="#letter" role="listitem">Narrative</a>
+      <a href="#gets" role="listitem">What They Get</a>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+  <div class="print-note">
+    <button class="chip" onclick="window.print()" aria-label="Save or print this packet">&#x2399; Save / Print PDF</button>
+  </div>
+
+  <main class="packet" role="main">
+
+    <section class="pg" id="hero" aria-labelledby="name-heading">
+      <div class="section-label hero-animate-1">Buttermilk · Creator Director · Uber US · Creator Services</div>
+
+      <h1 class="hero-name hero-animate-1" id="name-heading">Damon<br>Versaggi</h1>
+
+      <p class="hero-role hero-animate-2">
+        Senior Creative Systems Leader &nbsp;·&nbsp; Creator Operations &nbsp;·&nbsp; Commercial Storytelling &nbsp;·&nbsp; Talent Partnership Frameworks
+      </p>
+
+      <p class="hero-contact hero-animate-3">
+        New York / New Jersey Area &nbsp;·&nbsp;
+        <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a> &nbsp;·&nbsp;
+        <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a>
+      </p>
+
+      <blockquote class="hero-statement hero-animate-4">
+        Candidate packet for Buttermilk’s Creator Director, Uber US role: built around creator standards, negotiation discipline, cultural output, team capability, commercial rigor, and the operating systems needed to make creator work scale.
+      </blockquote>
+
+      <div class="hero-adobe-fit hero-animate-4">
+        <strong>Positioning:</strong> Damon is not being framed as a traditional influencer coordinator. This role is explicitly senior leadership. The strongest fit is his ability to set creative standards, build production systems, translate brand goals into clear execution frameworks, manage high-pressure stakeholders, and turn messy creative ecosystems into repeatable operating models.
+      </div>
+
+      <div class="role-strip hero-animate-5" aria-label="Buttermilk role fit highlights">
+        <div class="role-pill"><b>Creator Quality</b><span>Standards, feedback loops, platform expectations, audit discipline, and consistent output.</span></div>
+        <div class="role-pill"><b>Commercial Rigor</b><span>Rate logic, value framing, negotiation guardrails, margin sensitivity, and long-term deal structures.</span></div>
+        <div class="role-pill"><b>Talent Systems</b><span>Relationship frameworks for creators, agents, partners, and high-visibility stakeholders.</span></div>
+        <div class="role-pill"><b>Team Training</b><span>Playbooks, templates, handoffs, capability building, and manager confidence across the full lifecycle.</span></div>
+      </div>
+
+      <div class="chips hero-animate-5">
+        <button class="chip primary" id="email-btn" onclick="copyEmail()" aria-label="Copy email address">
+          <span class="chip-dot"></span> Email Damon
+        </button>
+        <a class="chip" href="https://scrappymeals.com/damo" target="_blank" rel="noopener">
+          <span class="chip-dot"></span> Damon Work
+        </a>
+        <a class="chip" href="https://fridgiesmalls.app" target="_blank" rel="noopener">
+          <span class="chip-dot"></span> Fridgie Smalls
+        </a>
+        <a class="chip" href="https://scrappymeals.com" target="_blank" rel="noopener">
+          <span class="chip-dot"></span> Scrappy Meals
+        </a>
+        <a class="chip" href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">
+          <span class="chip-dot"></span> LinkedIn
+        </a>
+      </div>
+
+      <div class="pg-foot">Damon Versaggi · Buttermilk Creator Director Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg soft reveal" id="match" aria-labelledby="match-heading">
+      <div class="section-label">Section 01</div>
+      <h2 class="sec" id="match-heading">Role Fit Snapshot</h2>
+      <p>This packet maps Damon directly to the role’s actual center of gravity: creator quality ownership, negotiation strategy, team training, partner relationships, client leadership, operational excellence, and performance-informed creator systems.</p>
+
+      <table class="match-table" role="table" aria-label="Buttermilk role fit between job need and Damon evidence">
+        <thead>
+          <tr>
+            <th scope="col">Buttermilk Need</th>
+            <th scope="col">Damon Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Creator and content quality gatekeeper</td>
+            <td>20+ years building creative output inside high-pressure systems where quality, timing, brand alignment, and technical feasibility had to survive real production conditions. Damon can define standards, review output, and create feedback loops instead of relying on vibes dressed as strategy.</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Negotiation and commercial frameworks</td>
+            <td>Founder and sales leadership experience across Scrappy Meals XR, partner concepts, sponsor framing, 3D menu packages, and eFundex commercial workflows. Strong fit for structuring value, protecting margin, clarifying terms, and turning one-off deals into repeatable models.</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Talent and partner relationship development</td>
+            <td>Built relationships across restaurants, media teams, technical partners, developers, interns, educators, brand collaborators, and creative operators. The Buttermilk need is relationship trust plus commercial discipline. Damon’s background is built on exactly that cross-functional bridge.</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Team training across the creator lifecycle</td>
+            <td>Trained and supported artists, operators, interns, stakeholders, and client teams across complex creative technology systems. Strong fit for creator sourcing standards, communication templates, negotiation playbooks, contract handoffs, escalation handling, and quality reviews.</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Client-facing senior leadership</td>
+            <td>Has operated with executive, client, production, engineering, sales, and creative stakeholders across media, broadcast, startups, and branded product ecosystems. This matters for Uber US because the role requires authority in rooms where the answer cannot be “let me ask the deck.”</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Operational excellence and process innovation</td>
+            <td>Comfortable turning ambiguity into workflows, standards, documentation, production paths, QA loops, stakeholder narratives, and repeatable playbooks. This maps cleanly to Buttermilk’s need for scalable creator management systems.</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Data-informed creator strategy</td>
+            <td>Built product and partner concepts around user behavior, engagement, analytics points, content performance, and sponsor value. Damon can translate performance signal into selection criteria, content benchmarks, and future creator strategy.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="risk-note"><strong>Honest positioning note:</strong> Damon should not pretend he came up through a narrow influencer agency ladder. The sharper pitch is that Buttermilk needs a senior creator standards operator for a major account, and Damon brings the rare mix of creative judgment, commercial framing, technical systems thinking, client leadership, and production discipline to build that machine.</div>
+
+      <div class="pg-foot">Damon Versaggi · Buttermilk Creator Director Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg dark reveal" id="authority" aria-labelledby="authority-heading">
+      <div class="section-label" style="color:#ffd34f;">Section 02</div>
+      <h2 class="sec" id="authority-heading">Why Damon for Creator Authority</h2>
+
+      <div class="cards-2">
+        <div class="card">
+          <div class="card-num">01</div>
+          <h3>Standards Before Taste</h3>
+          <p>Damon can separate “I like it” from “this meets the standard.” For Uber US, that means creator selection criteria, platform-specific quality benchmarks, review logic, and consistent feedback loops.</p>
+        </div>
+        <div class="card">
+          <div class="card-num">02</div>
+          <h3>Commercial Storytelling</h3>
+          <p>He understands that a creator partnership is not just content. It is fee logic, usage, exclusivity, value-adds, timeline risk, brand fit, audience relevance, and future leverage.</p>
+        </div>
+        <div class="card">
+          <div class="card-num">03</div>
+          <h3>System Builder</h3>
+          <p>His strength is building the operating layer: templates, handoffs, communication standards, QA gates, training structures, and decision frameworks that keep teams from inventing the wheel every Tuesday.</p>
+        </div>
+        <div class="card">
+          <div class="card-num">04</div>
+          <h3>High-Pressure Client Fluency</h3>
+          <p>Broadcast, live production, enterprise tools, founder pitches, product demos, and stakeholder-heavy environments trained him to stay clear when quality, timing, money, and reputation collide.</p>
+        </div>
+      </div>
+
+      <div class="signal-row" aria-label="Senior leadership signals">
+        <div class="signal-card"><div class="signal-kicker">Signal 01</div><h3>Creative Judgment</h3><p>Understands how to protect brand output while still moving fast enough for cultural moments.</p></div>
+        <div class="signal-card"><div class="signal-kicker">Signal 02</div><h3>Process Discipline</h3><p>Builds playbooks and decision rules so teams do not rely on memory, chaos, or one heroic producer.</p></div>
+        <div class="signal-card"><div class="signal-kicker">Signal 03</div><h3>Business Translation</h3><p>Connects creative decisions to commercial value, client trust, and long-term partnership leverage.</p></div>
+      </div>
+
+      <div class="pg-foot" style="color:#444;">Damon Versaggi · Buttermilk Creator Director Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg reveal" id="experience" aria-labelledby="exp-heading">
+      <div class="section-label">Section 03</div>
+      <h2 class="sec" id="exp-heading">Selected Experience</h2>
+
+      <article class="exp-card" aria-label="Scrappy Meals XR experience">
+        <div class="exp-org">Scrappy Meals XR / Fridgie Smalls / The Metacheese · Brooklyn, NY</div>
+        <div class="exp-title">Founder / Creative Product &amp; Partnership Systems Lead</div>
+        <div class="date-line">2016 - Present</div>
+        <ul>
+          <li>Built a founder-led food-tech and creator-facing ecosystem connecting AI recipe generation, 3D food storytelling, restaurant partnerships, branded experiences, sponsor concepts, and audience engagement.</li>
+          <li>Created Fridgie Smalls as a live AI-powered product experience that turns user ingredient input into structured recipes, food content, shareable product behavior, and partner-ready storytelling.</li>
+          <li>Developed 3D menu and featured recipe concepts for restaurants and food brands, connecting content quality, scanning workflows, QR activation, audience behavior, and potential commerce paths.</li>
+          <li>Managed developers, technical partners, interns, collaborators, and restaurant stakeholders through ambiguous product, content, creative, and business requirements.</li>
+          <li>Built pitch systems, brand narratives, character/IP concepts, educational programs, and product demos designed to make food culture interactive, useful, and commercially legible.</li>
+        </ul>
+      </article>
+
+      <article class="exp-card" aria-label="eFundex experience">
+        <div class="exp-org">eFundex · Remote</div>
+        <div class="exp-title">Vice President of Sales &amp; Technology / Commercial Workflow Systems</div>
+        <div class="date-line">2024 - Present</div>
+        <ul>
+          <li>Designed outreach systems, pitch narratives, lead workflows, follow-up cadence, and operational structure for a high-trust commercial environment.</li>
+          <li>Built messaging frameworks and process documentation that connect sales objectives, client need, risk awareness, and deal movement.</li>
+          <li>Strengthened commercial discipline around value framing, qualification, stakeholder communication, and repeatable execution.</li>
+        </ul>
+      </article>
+
+      <article class="exp-card" aria-label="Broadcast systems experience">
+        <div class="exp-org">Vizrt / SNY / Comcast SportsNet / Tribune Media / WGN / Dick Clark Productions / Independent Clients · NYC / Global</div>
+        <div class="exp-title">Real-Time 3D, Broadcast &amp; Creative Systems Leadership</div>
+        <div class="date-line">2004 - Present</div>
+        <ul>
+          <li>Delivered real-time 3D graphics systems, live production workflows, enterprise broadcast tools, sponsor-sensitive storytelling, and technical implementation across major media environments.</li>
+          <li>At Vizrt, worked across creative, demos, training, support, sales enablement, client implementation, and product workflow input, connecting multiple departments through a custom hybrid role.</li>
+          <li>At SNY and Comcast SportsNet, helped develop and redesign real-time graphics ecosystems that balanced visual quality, production constraints, sponsorship needs, technical reliability, and live delivery.</li>
+          <li>At Tribune Media and WGN, operated across creative, production, news, online, sales, and promotion, translating needs across departments and turning fragmented requirements into workable systems.</li>
+          <li>Supported major clients and events including ESPN, ABC, MLB Digital, CNN, Fox News, Bloomberg, CBS, MSNBC, BBC, YES Network, Turner Sports, Amazon Prime Sports, Verizon FiOS, Cablevision, New Year's Rockin' Eve, and election control-room cycles.</li>
+        </ul>
+      </article>
+
+      <div class="pg-foot">Damon Versaggi · Buttermilk Creator Director Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg blueprint reveal" id="model" aria-labelledby="model-heading">
+      <div class="section-label" style="color:#ffd34f;">Section 04</div>
+      <h2 class="sec" id="model-heading">Uber US Creator Operating Model</h2>
+      <p style="color:#aaa;font-family:Arial,sans-serif;font-size:14px;margin-bottom:20px;">A practical model for running creator work as a senior standard, not a pile of campaign tasks wearing a nice hat.</p>
+
+      <div class="pipeline-wrap" role="list" aria-label="Six-stage creator operating model">
+        <div class="pipeline">
+          <div class="pipe-stage" role="listitem" tabindex="0"><div class="pipe-num">01</div><div class="pipe-name">Define</div><p class="pipe-desc">Set the creator brief: Uber objective, audience, cultural tension, platform behavior, content standard, business metric, and approval path.</p></div>
+          <div class="pipe-stage" role="listitem" tabindex="0"><div class="pipe-num">02</div><div class="pipe-name">Source</div><p class="pipe-desc">Build creator pools using relevance, audience quality, brand safety, platform fit, category authority, content craft, and commercial logic.</p></div>
+          <div class="pipe-stage" role="listitem" tabindex="0"><div class="pipe-num">03</div><div class="pipe-name">Negotiate</div><p class="pipe-desc">Use rate guidance, deliverable scope, usage, exclusivity, value-adds, timelines, risk, and long-term leverage to structure better deals.</p></div>
+          <div class="pipe-stage" role="listitem" tabindex="0"><div class="pipe-num">04</div><div class="pipe-name">Contract</div><p class="pipe-desc">Standardize briefing, handoff, legal intake, talent agreement guardrails, risk notes, and escalation paths across creator partners.</p></div>
+          <div class="pipe-stage" role="listitem" tabindex="0"><div class="pipe-num">05</div><div class="pipe-name">Deliver</div><p class="pipe-desc">Manage creator timelines, content reviews, revisions, reshoots, approvals, handoffs, payments, and client communication with precision.</p></div>
+          <div class="pipe-stage" role="listitem" tabindex="0"><div class="pipe-num">06</div><div class="pipe-name">Learn</div><p class="pipe-desc">Turn campaign performance, content quality, stakeholder feedback, and negotiation outcomes into better future selection and playbooks.</p></div>
+        </div>
+      </div>
+
+      <div class="pg-foot" style="color:#444;">Damon Versaggi · Buttermilk Creator Director Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg soft reveal" id="playbooks" aria-labelledby="playbook-heading">
+      <div class="section-label">Section 05</div>
+      <h2 class="sec" id="playbook-heading">Creator Playbooks Damon Would Build</h2>
+      <p>These are the operating assets that make the role concrete. Buttermilk is asking for senior creator authority, not motivational posters about collaboration. The useful output is a better machine.</p>
+
+      <div class="tabs" data-tabs>
+        <div class="tab-buttons" role="tablist" aria-label="Creator playbook tabs">
+          <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab="quality">Quality</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="negotiation">Negotiation</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="training">Training</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="client">Client</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="data">Data</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-quality" role="tabpanel">
+          <h3>Creator Quality System</h3>
+          <p>Define platform-specific standards for TikTok, Instagram, YouTube, and ambassador content. Build scoring criteria across hook strength, creator fit, authenticity, craft, audience relevance, brand alignment, compliance, and campaign role.</p>
+          <div class="micro-grid"><div class="micro"><b>Output</b><span>Content benchmark rubric</span></div><div class="micro"><b>Cadence</b><span>Monthly creator audits</span></div><div class="micro"><b>Signal</b><span>Quality plus performance</span></div><div class="micro"><b>Result</b><span>Cleaner creator decisions</span></div></div>
+        </div>
+
+        <div class="tab-panel" id="tab-negotiation" role="tabpanel">
+          <h3>Negotiation Guardrails</h3>
+          <p>Create rate guidance by creator tier, platform, deliverable type, usage, exclusivity, category conflict, timeline pressure, and value-add potential. Make negotiations structured enough for managers to lead confidently without turning every deal into a senior fire drill.</p>
+          <div class="micro-grid"><div class="micro"><b>Output</b><span>Rate and scope matrix</span></div><div class="micro"><b>Cadence</b><span>Quarterly benchmark review</span></div><div class="micro"><b>Signal</b><span>Margin and value-adds</span></div><div class="micro"><b>Result</b><span>Better deal leverage</span></div></div>
+        </div>
+
+        <div class="tab-panel" id="tab-training" role="tabpanel">
+          <h3>Creator Lifecycle Training</h3>
+          <p>Train the team on sourcing, vetting, outreach, professional creator communications, agent negotiations, contract briefing, timeline management, escalation handling, post-campaign relationship management, and documentation hygiene.</p>
+          <div class="micro-grid"><div class="micro"><b>Output</b><span>Training modules</span></div><div class="micro"><b>Cadence</b><span>Weekly enablement blocks</span></div><div class="micro"><b>Signal</b><span>Manager independence</span></div><div class="micro"><b>Result</b><span>Higher team confidence</span></div></div>
+        </div>
+
+        <div class="tab-panel" id="tab-client" role="tabpanel">
+          <h3>Uber Stakeholder Clarity</h3>
+          <p>Translate Uber goals into creator strategy that balances cultural relevance with commercial outcomes. Build clear recommendation formats for talent selection, fees, exclusivity, timing, performance expectations, and escalation points.</p>
+          <div class="micro-grid"><div class="micro"><b>Output</b><span>Decision-ready recommendations</span></div><div class="micro"><b>Cadence</b><span>Status and planning rhythm</span></div><div class="micro"><b>Signal</b><span>Stakeholder trust</span></div><div class="micro"><b>Result</b><span>Strategic partner posture</span></div></div>
+        </div>
+
+        <div class="tab-panel" id="tab-data" role="tabpanel">
+          <h3>Performance Feedback Loop</h3>
+          <p>Evaluate creator partnerships on both performance and brand impact: reach, engagement, content quality, audience relevance, conversion proxy, approval friction, negotiation outcome, and rebooking potential.</p>
+          <div class="micro-grid"><div class="micro"><b>Output</b><span>Creator scorecard</span></div><div class="micro"><b>Cadence</b><span>Post-campaign review</span></div><div class="micro"><b>Signal</b><span>Selection intelligence</span></div><div class="micro"><b>Result</b><span>Sharper future buys</span></div></div>
+        </div>
+      </div>
+
+      <div class="pg-foot">Damon Versaggi · Buttermilk Creator Director Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg soft reveal" id="plan" aria-labelledby="plan-heading">
+      <div class="section-label">Section 06</div>
+      <h2 class="sec" id="plan-heading">30 · 60 · 90 Day Plan</h2>
+      <p>A direct plan for entering the Uber US account with humility, speed, standards, and enough structure to avoid the usual agency fog machine.</p>
+
+      <div class="plan-phases">
+        <div class="phase">
+          <div class="phase-badge">Days 1 - 30</div>
+          <h3>Audit the Creator Machine</h3>
+          <ul>
+            <li>Review current Uber US creator programs, talent pools, contracts, rates, briefs, approvals, delays, escalations, and post-campaign reports.</li>
+            <li>Interview Creator Services, Strategy, Campaigns, Client Services, Legal, Finance, and key Uber stakeholders to map friction.</li>
+            <li>Identify gaps in creator selection, content quality benchmarks, negotiation consistency, handoffs, and documentation.</li>
+            <li>Produce an initial standards memo: what is working, what is risky, what is inconsistent, and what needs an operating framework.</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-badge">Days 31 - 60</div>
+          <h3>Build the Standards Layer</h3>
+          <ul>
+            <li>Create creator selection criteria, content quality rubrics, rate guidance, negotiation guardrails, and escalation triggers.</li>
+            <li>Standardize outreach templates, briefing handoffs, contract intake notes, approval paths, and post-campaign creator evaluations.</li>
+            <li>Run training sessions for mid-level managers on creator communication, agent negotiation, timeline risk, and commercial value framing.</li>
+            <li>Start a preferred creator and agent relationship map for priority categories, cultural voices, and future Uber moments.</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-badge">Days 61 - 90</div>
+          <h3>Scale Better Decisions</h3>
+          <ul>
+            <li>Implement a creator scorecard that combines cultural fit, content quality, performance, negotiation outcome, timeline reliability, and rebooking value.</li>
+            <li>Package an Uber US creator operating playbook for sourcing, negotiating, contracting, delivery, approvals, payment, and post-campaign relationship management.</li>
+            <li>Identify opportunities for ambassador retainers, annualized creator structures, priority access partnerships, and hybrid media models.</li>
+            <li>Present leadership with a sharper creator model: reduced escalations, stronger commercial efficiency, better quality control, and clearer team confidence.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pg-foot">Damon Versaggi · Buttermilk Creator Director Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg reveal" id="proof" aria-labelledby="proof-heading">
+      <div class="section-label">Section 07</div>
+      <h2 class="sec" id="proof-heading">Selected Project Proof</h2>
+
+      <div class="proof-grid">
+        <a class="proof-card" href="https://fridgiesmalls.app" target="_blank" rel="noopener" aria-label="Fridgie Smalls project">
+          <div class="proof-tag">AI · Food Culture · Product · Creator Logic</div>
+          <h3>Fridgie Smalls</h3>
+          <p>AI-native product experience connecting user behavior, food culture, structured content output, branded storytelling, sponsor pathways, and product UX.</p>
+          <span class="proof-arrow">Visit ↗</span>
+        </a>
+
+        <a class="proof-card" href="https://scrappymeals.com/damo" target="_blank" rel="noopener" aria-label="Damon work packet">
+          <div class="proof-tag">Creative Systems · Leadership</div>
+          <h3>Damon Work</h3>
+          <p>Creative systems, real-time 3D, branded storytelling, live production, product strategy, and cross-functional delivery proof across 20+ years.</p>
+          <span class="proof-arrow">Visit ↗</span>
+        </a>
+
+        <a class="proof-card" href="https://scrappymeals.com" target="_blank" rel="noopener" aria-label="Scrappy Meals ecosystem">
+          <div class="proof-tag">Founder · Culture · Partnerships</div>
+          <h3>Scrappy Meals XR</h3>
+          <p>Founder-led ecosystem connecting sustainability, food culture, interactive media, creator-style storytelling, restaurants, and commercial partner concepts.</p>
+          <span class="proof-arrow">Visit ↗</span>
+        </a>
+
+        <div class="proof-card" style="cursor:default;" aria-label="3D menu and featured recipe proof">
+          <div class="proof-tag">3D Menus · Sponsored Content</div>
+          <h3>Featured Recipes</h3>
+          <p>Built restaurant-facing 3D food concepts that connect content quality, brand storytelling, QR activation, audience interaction, and commerce-ready paths.</p>
+        </div>
+
+        <div class="proof-card" style="cursor:default;" aria-label="Broadcast systems proof">
+          <div class="proof-tag">Broadcast · Enterprise · Live</div>
+          <h3>Real-Time Systems</h3>
+          <p>Two decades inside live, brand-sensitive production environments where creative output, technical reliability, timing, and stakeholder trust all matter.</p>
+        </div>
+
+        <div class="proof-card" style="cursor:default;" aria-label="Training and systems proof">
+          <div class="proof-tag">Training · Playbooks · Process</div>
+          <h3>Team Enablement</h3>
+          <p>Experience training and supporting operators, artists, interns, clients, and technical teams across complex creative systems and delivery workflows.</p>
+        </div>
+      </div>
+
+      <div class="pg-foot">Damon Versaggi · Buttermilk Creator Director Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg soft reveal" id="letter" aria-labelledby="letter-heading">
+      <div class="section-label">Section 08</div>
+      <h2 class="sec" id="letter-heading">Buttermilk Narrative</h2>
+
+      <div class="letter" role="article" aria-label="Buttermilk narrative">
+        <p>To the Buttermilk team,</p>
+
+        <p>The Creator Director, Uber US role stands out because it is not written as a day-to-day campaign execution position. It is written as a standards role. The person in this seat needs to raise creator quality, improve negotiation outcomes, strengthen talent relationships, train the team, and build a more scalable creator operating model for one of Buttermilk’s most important accounts.</p>
+
+        <p>That is the part of the role that maps to my background. I have spent my career building creative systems where the output has to be good, the workflow has to hold, the client has to trust the recommendation, and the team needs enough structure to make better decisions without constant escalation.</p>
+
+        <p>My path is not the narrow agency influencer ladder. It is broader: real-time 3D, live production, branded storytelling, founder-led product development, AI-enabled content systems, restaurant and partner concepts, sales workflows, creative team training, and cross-functional execution. That breadth is useful here because creator work is no longer just booking talent. It is content quality, commercial structure, cultural timing, platform logic, legal/finance coordination, stakeholder trust, and performance learning.</p>
+
+        <p>For Uber US, I would focus on making the creator function sharper and easier to trust: clearer selection standards, stronger negotiation guardrails, better briefing and handoff systems, more confident managers, cleaner agent conversations, and a tighter feedback loop between content performance, brand impact, and future creator decisions.</p>
+
+        <p>I am interested in Buttermilk because the agency appears to understand that creator work needs both cultural sharpness and commercial discipline. The next level is making that repeatable without flattening the creative spark that makes creator partnerships valuable in the first place.</p>
+
+        <div class="sig">
+          Damon Versaggi<br>
+          <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> &nbsp;·&nbsp;
+          <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a> &nbsp;·&nbsp;
+          <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a>
+        </div>
+      </div>
+
+      <div class="pg-foot">Damon Versaggi · Buttermilk Creator Director Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg dark reveal" id="gets" aria-labelledby="gets-heading">
+      <div class="section-label" style="color:#ffd34f;">Section 09</div>
+      <h2 class="sec" id="gets-heading">What Buttermilk Gets</h2>
+      <p style="color:#aaa;font-family:Arial,sans-serif;font-size:14px;margin-bottom:18px;">A senior operator who can protect creator quality, build commercial logic, train the team, and make the Uber US creator model easier to scale, defend, and improve.</p>
+
+      <ul class="gets-list" aria-label="Summary of Damon's capabilities for Buttermilk">
+        <li><span class="gets-icon" aria-hidden="true"></span>A standards-first creative leader who can define what great creator output means before the team spends money finding out the hard way.</li>
+        <li><span class="gets-icon" aria-hidden="true"></span>A commercial storyteller who can connect creator fees, usage, exclusivity, timeline pressure, value-adds, margin, and long-term leverage.</li>
+        <li><span class="gets-icon" aria-hidden="true"></span>A systems builder who turns repeated creator friction into playbooks, templates, scorecards, handoffs, training modules, and decision rules.</li>
+        <li><span class="gets-icon" aria-hidden="true"></span>A client-facing operator with experience in high-pressure environments where quality, timing, stakeholders, and reputation all matter.</li>
+        <li><span class="gets-icon" aria-hidden="true"></span>A founder’s instinct for making abstract ideas operational: define the offer, build the system, test the signal, improve the execution.</li>
+        <li><span class="gets-icon" aria-hidden="true"></span>A bridge between Strategy, Campaigns, Client Services, Legal, Finance, creative teams, talent partners, and senior stakeholders.</li>
+        <li><span class="gets-icon" aria-hidden="true"></span>A practical content strategist who understands platform behavior, cultural relevance, audience trust, and brand safety without reducing creators to spreadsheets.</li>
+        <li><span class="gets-icon" aria-hidden="true"></span>A manager-builder who can train mid-level leads to negotiate, brief, escalate, document, and manage creator relationships with more confidence.</li>
+        <li><span class="gets-icon" aria-hidden="true"></span>A candidate who can frame Buttermilk as a strategic creator economy partner for Uber, not simply a tactical execution vendor.</li>
+        <li><span class="gets-icon" aria-hidden="true"></span>A clear-eyed senior voice for improving creator quality, commercial efficiency, stakeholder trust, and long-term partnership value.</li>
+      </ul>
+
+      <div class="pg-foot" style="color:#444;">Damon Versaggi · Buttermilk Creator Director Packet · damon@scrappymeals.com</div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var prog = document.getElementById('progress');
+  var topbar = document.getElementById('topbar');
+
+  function onScroll() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docH = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var pct = docH > 0 ? scrollTop / docH : 0;
+    prog.style.transform = 'scaleX(' + pct + ')';
+    if (scrollTop > 40) { topbar.classList.add('scrolled'); } else { topbar.classList.remove('scrolled'); }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  var navLinks = document.querySelectorAll('.nav a');
+  var nav = document.getElementById('site-nav');
+  var menuToggle = document.getElementById('menu-toggle');
+  var sections = [];
+
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? 'Close' : 'Menu';
+    });
+
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (window.matchMedia('(max-width: 860px)').matches) {
+          nav.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.textContent = 'Menu';
+        }
+      });
+    });
+  }
+
+  navLinks.forEach(function (a) {
+    var id = a.getAttribute('href').replace('#', '');
+    var el = document.getElementById(id);
+    if (el) sections.push({ id: id, el: el, a: a });
+  });
+
+  function updateNav() {
+    var scrollMid = window.scrollY + window.innerHeight * 0.35;
+    var active = null;
+    sections.forEach(function (s) { if (s.el.offsetTop <= scrollMid) active = s; });
+    navLinks.forEach(function (a) { a.classList.remove('active'); });
+    if (active) active.a.classList.add('active');
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.07 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  window.copyEmail = function () {
+    var email = 'damon@scrappymeals.com';
+    var btn = document.getElementById('email-btn');
+    function done() {
+      btn.textContent = 'Copied!';
+      setTimeout(function () { btn.innerHTML = '<span class="chip-dot"></span> Email Damon'; }, 2200);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(done);
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = email;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+  };
+
+  document.querySelectorAll('.pipe-stage').forEach(function (el) {
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        el.style.background = 'rgba(242,183,5,0.14)';
+        setTimeout(function () { el.style.background = ''; }, 400);
+      }
+    });
+  });
+
+  document.querySelectorAll('[data-tabs]').forEach(function (wrap) {
+    var buttons = wrap.querySelectorAll('.tab-btn');
+    var panels = wrap.querySelectorAll('.tab-panel');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var key = btn.getAttribute('data-tab');
+        buttons.forEach(function (b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+        panels.forEach(function (p) { p.classList.remove('active'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        var panel = wrap.querySelector('#tab-' + key);
+        if (panel) panel.classList.add('active');
+      });
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
