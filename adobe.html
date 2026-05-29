@@ -1,0 +1,1633 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Damon Versaggi | Adobe Creative Technology Packet | AI + 3D + Product Storytelling</title>
+  <meta name="description" content="Damon Versaggi — Adobe-focused interactive packet for creative technology, AI product workflows, real-time 3D systems, brand/product storytelling, and enterprise creative systems leadership." />
+  <meta name="keywords" content="Adobe, Creative Technology, AI Product Workflows, Real-Time 3D, WebXR, OpenAI API, Sketchfab, React, Vite, Firefly, GenStudio, Creative Cloud, Substance 3D, Product Storytelling, Brand Systems, Enterprise Creative Systems, Damon Versaggi" />
+  <meta name="author" content="Damon Versaggi" />
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    /* ── Design tokens ───────────────────────────────────────────── */
+    :root {
+      --red:      #fa0f00;
+      --red-dim:  #c00b00;
+      --ink:      #111111;
+      --charcoal: #1a1a1a;
+      --mid:      #2e2e2e;
+      --muted:    #5a5a5a;
+      --line:     #d4d4d4;
+      --soft:     #f5f5f5;
+      --paper:    #ffffff;
+      --note:     #fff4f3;
+      --grid:     rgba(250,15,0,0.04);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #e8e8e8;
+      color: var(--ink);
+      font-family: "Georgia", "Times New Roman", serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration-color: var(--red); text-underline-offset: 3px; }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    .hero-contact a, .sig a { overflow-wrap: anywhere; }
+    b, strong { font-weight: 700; }
+
+    /* ── ATS-visible off-screen text block ───────────────────────── */
+    .ats-block {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      font-size: 10px;
+      color: transparent;
+    }
+
+    /* ── Scroll progress ─────────────────────────────────────────── */
+    .scroll-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), #ff6058);
+      transform: scaleX(0);
+      transform-origin: left center;
+      z-index: 1000;
+      pointer-events: none;
+      box-shadow: 0 0 14px rgba(250,15,0,0.3);
+      transition: transform 80ms linear;
+    }
+
+    /* ── Top bar ─────────────────────────────────────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      transition: box-shadow 200ms ease, border-bottom-color 200ms ease;
+    }
+
+    .topbar.scrolled {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+      border-bottom-color: rgba(250,15,0,0.2);
+    }
+
+    .topbar-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 11px;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .brand-mark-icon {
+      width: 22px;
+      height: 22px;
+      background: var(--red);
+      clip-path: polygon(50% 0%, 100% 100%, 72% 100%, 50% 46%, 28% 100%, 0% 100%);
+      flex-shrink: 0;
+    }
+
+    .menu-toggle {
+      display: none;
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:focus-visible {
+      transform: translateY(-1px);
+      border-color: var(--red);
+      background: #fff8f7;
+      outline: none;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .nav a {
+      text-decoration: none;
+      padding: 4px 1px;
+      border-bottom: 2px solid transparent;
+      transition: color 160ms, border-color 160ms, transform 160ms;
+      position: relative;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--ink);
+      border-bottom-color: var(--red);
+      transform: translateY(-1px);
+    }
+
+    /* ── Page shell ──────────────────────────────────────────────── */
+    .shell {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 28px 18px 80px;
+    }
+
+    .print-note {
+      text-align: right;
+      font-size: 11px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      margin-bottom: 12px;
+    }
+
+    .packet {
+      background: var(--paper);
+      border: 1px solid #d0d0d0;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.13);
+    }
+
+    /* ── Section pages ───────────────────────────────────────────── */
+    .pg {
+      position: relative;
+      padding: 56px 68px 68px;
+      border-bottom: 1px solid #e4e4e4;
+    }
+
+    .pg:last-child { border-bottom: none; }
+
+    /* Grid background pattern on dark sections */
+    .pg.dark {
+      background: var(--charcoal);
+      color: #f0f0f0;
+    }
+
+    .pg.dark .muted { color: #909090; }
+
+    .pg.blueprint {
+      background: var(--charcoal);
+      color: #f0f0f0;
+      background-image:
+        linear-gradient(rgba(250,15,0,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(250,15,0,0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .pg.soft {
+      background: #f9f9f9;
+    }
+
+    /* ── Page footers ────────────────────────────────────────────── */
+    .pg-foot {
+      position: absolute;
+      left: 68px; right: 68px; bottom: 20px;
+      text-align: center;
+      font-size: 10px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .pg.dark .pg-foot { color: #555; }
+
+    /* Safe area padding for notched phones */
+    .topbar-inner {
+      padding-left: max(20px, env(safe-area-inset-left, 20px));
+      padding-right: max(20px, env(safe-area-inset-right, 20px));
+    }
+
+    /* ── Typography ──────────────────────────────────────────────── */
+    h1.hero-name {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      line-height: 0.95;
+      color: var(--ink);
+    }
+
+    .hero-role {
+      font-family: Arial, sans-serif;
+      font-size: clamp(12px, 1.4vw, 15px);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: 10px;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .hero-contact {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .hero-statement {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-left: 3px solid var(--red);
+      background: var(--note);
+      font-size: 15px;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .hero-adobe-fit {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px solid #e0e0e0;
+      background: var(--soft);
+      font-size: 14px;
+      line-height: 1.5;
+      font-family: Arial, sans-serif;
+    }
+
+    .section-label {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    h2.sec {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--red);
+      padding-bottom: 8px;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    .pg.dark h2.sec,
+    .pg.blueprint h2.sec {
+      color: #f0f0f0;
+      border-bottom-color: var(--red);
+    }
+
+    h3.sub {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin: 18px 0 4px;
+    }
+
+    .pg.dark h3.sub { color: #ff6058; }
+
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      font-family: Arial, sans-serif;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 6px 0 14px;
+    }
+
+    li {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 5px;
+      font-family: Arial, sans-serif;
+    }
+
+    .date-line {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      margin-bottom: 7px;
+    }
+
+    /* ── Action chips ────────────────────────────────────────────── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 180ms, border-color 180ms, box-shadow 180ms, background 180ms;
+    }
+
+    .chip:hover,
+    .chip:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--red);
+      box-shadow: 0 4px 16px rgba(250,15,0,0.15);
+      background: #fff8f7;
+    }
+
+    .chip.primary {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    .chip.primary:hover {
+      background: var(--red-dim);
+      border-color: var(--red-dim);
+    }
+
+    .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .chip.primary .chip-dot { background: rgba(255,255,255,0.6); }
+
+    /* ── Role match table ────────────────────────────────────────── */
+    .match-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      margin-top: 14px;
+    }
+
+    .match-table th {
+      background: var(--charcoal);
+      color: #fff;
+      padding: 12px 14px;
+      text-align: left;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      font-size: 12px;
+    }
+
+    .match-table th:first-child { width: 38%; }
+
+    .match-table td {
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .match-table td:first-child {
+      background: var(--soft);
+      font-weight: 700;
+      font-family: "Arial Bold", Arial, sans-serif;
+    }
+
+    .match-table tr {
+      transition: background 140ms;
+    }
+
+    .match-table tbody tr:hover td {
+      background: #fff5f4;
+    }
+
+    .match-table tbody tr:hover td:first-child {
+      background: #ffe8e6;
+    }
+
+    .match-check {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      text-align: center;
+      line-height: 14px;
+      font-size: 9px;
+      font-weight: 900;
+      margin-right: 6px;
+      flex-shrink: 0;
+      vertical-align: middle;
+    }
+
+    /* ── Why cards ───────────────────────────────────────────────── */
+    .cards-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .card {
+      border: 1px solid #2e2e2e;
+      padding: 22px 20px;
+      background: rgba(255,255,255,0.04);
+      transition: transform 200ms, border-color 200ms, box-shadow 200ms;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--red);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--red);
+      box-shadow: 0 12px 40px rgba(250,15,0,0.15);
+    }
+
+    .card-num {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--red);
+      opacity: 0.35;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .card h3 {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #e8e8e8;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #a8a8a8;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ── Experience cards (light) ────────────────────────────────── */
+    .exp-card {
+      border: 1px solid var(--line);
+      padding: 22px 22px;
+      margin-bottom: 18px;
+      background: var(--paper);
+      transition: transform 200ms, box-shadow 200ms, border-color 200ms;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exp-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 200ms;
+    }
+
+    .exp-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border-color: #bbb;
+    }
+
+    .exp-card:hover::before {
+      opacity: 1;
+    }
+
+    .exp-org {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .exp-title {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    /* ── Delivery pipeline ───────────────────────────────────────── */
+    .pipeline-wrap {
+      margin-top: 24px;
+      overflow-x: auto;
+    }
+
+    .pipeline {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      min-width: 700px;
+    }
+
+    .pipe-stage {
+      flex: 1;
+      position: relative;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid #2a2a2a;
+      padding: 20px 14px 18px;
+      transition: background 200ms, border-color 200ms;
+      cursor: default;
+    }
+
+    .pipe-stage:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -13px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: 11px solid transparent;
+      border-bottom: 11px solid transparent;
+      border-left: 13px solid #2a2a2a;
+      z-index: 2;
+      transition: border-left-color 200ms;
+    }
+
+    .pipe-stage:hover {
+      background: rgba(250,15,0,0.07);
+      border-color: var(--red);
+    }
+
+    .pipe-stage:hover::after {
+      border-left-color: var(--red);
+    }
+
+    .pipe-num {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--red);
+      opacity: 0.4;
+      line-height: 1;
+    }
+
+    .pipe-name {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #e0e0e0;
+      margin: 6px 0 8px;
+    }
+
+    .pipe-desc {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    /* ── 30-60-90 section ────────────────────────────────────────── */
+    .plan-phases {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .phase {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      padding: 20px 18px;
+      transition: transform 200ms, box-shadow 200ms;
+    }
+
+    .phase:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+    }
+
+    .phase-badge {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+    }
+
+    .phase h3 {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    /* ── Proof grid ──────────────────────────────────────────────── */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .proof-card {
+      border: 1px solid var(--line);
+      padding: 20px 18px;
+      text-decoration: none;
+      color: var(--ink);
+      background: var(--paper);
+      display: block;
+      transition: transform 200ms, border-color 200ms, box-shadow 200ms;
+      position: relative;
+    }
+
+    .proof-card::before {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 220ms ease;
+    }
+
+    .proof-card:hover {
+      transform: translateY(-3px);
+      border-color: #bbb;
+      box-shadow: 0 10px 36px rgba(0,0,0,0.1);
+    }
+
+    .proof-card:hover::before { transform: scaleX(1); }
+
+    .proof-tag {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+
+    .proof-card h3 {
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .proof-card p {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .proof-arrow {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      color: var(--red);
+      margin-top: 10px;
+      display: block;
+      font-weight: 700;
+    }
+
+    /* ── Cover letter ────────────────────────────────────────────── */
+    .letter p {
+      font-size: 15px;
+      line-height: 1.65;
+      margin-bottom: 14px;
+      font-family: Georgia, serif;
+    }
+
+    .letter .sig {
+      margin-top: 22px;
+      font-family: Georgia, serif;
+      font-size: 15px;
+    }
+
+    /* ── What Adobe gets ─────────────────────────────────────────── */
+    .gets-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .gets-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      padding: 12px 14px;
+      border: 1px solid #2e2e2e;
+      background: rgba(255,255,255,0.03);
+      transition: border-color 180ms, background 180ms;
+    }
+
+    .gets-list li:hover {
+      border-color: var(--red);
+      background: rgba(250,15,0,0.05);
+    }
+
+    .gets-icon {
+      width: 18px;
+      height: 18px;
+      background: var(--red);
+      clip-path: polygon(50% 0%, 100% 100%, 72% 100%, 50% 46%, 28% 100%, 0% 100%);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Fade-in on scroll ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 560ms ease, transform 560ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Hero animation ──────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-animate-1 { animation: fadeUp 600ms ease forwards; }
+    .hero-animate-2 { animation: fadeUp 600ms 100ms ease forwards; opacity: 0; }
+    .hero-animate-3 { animation: fadeUp 600ms 180ms ease forwards; opacity: 0; }
+    .hero-animate-4 { animation: fadeUp 600ms 280ms ease forwards; opacity: 0; }
+    .hero-animate-5 { animation: fadeUp 600ms 380ms ease forwards; opacity: 0; }
+
+    /* ── Red accent divider ──────────────────────────────────────── */
+    .red-rule {
+      border: none;
+      border-top: 2px solid var(--red);
+      margin: 20px 0;
+      opacity: 0.4;
+    }
+
+    /* ── Small label/badge ───────────────────────────────────────── */
+    .badge {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+
+    /* ── Print ───────────────────────────────────────────────────── */
+    @media print {
+      body { background: #fff; }
+      .topbar, .scroll-progress, .print-note { display: none !important; }
+      .shell { padding: 0; max-width: 100%; }
+      .packet { box-shadow: none; border: none; }
+      .pg { padding: 32px 48px; min-height: 0 !important; }
+      .pipeline { min-width: 0; }
+      .cards-2 { grid-template-columns: 1fr 1fr; }
+      .plan-phases { grid-template-columns: 1fr 1fr 1fr; }
+      .proof-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .gets-list { grid-template-columns: 1fr 1fr; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      a { text-decoration: none; }
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 860px) {
+      body { background: #fff; }
+      .shell { padding: 0; }
+      .packet { border-left: 0; border-right: 0; box-shadow: none; }
+      .topbar-inner {
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 10px 14px;
+        gap: 10px;
+      }
+      .brand-mark { max-width: calc(100% - 92px); white-space: normal; line-height: 1.2; }
+      .menu-toggle { display: inline-flex; align-items: center; margin-left: auto; min-height: 44px; }
+      .nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 0 4px;
+        border-top: 1px solid rgba(0,0,0,0.08);
+        max-height: 66vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .nav.open { display: flex; }
+      .nav a {
+        display: block;
+        padding: 12px 2px;
+        min-height: 44px;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        transform: none !important;
+        display: flex;
+        align-items: center;
+      }
+      .nav a.active { color: var(--red); border-bottom-color: rgba(250,15,0,0.28); }
+      .pg { padding: 36px 22px 52px; }
+      .pg-foot { position: static; margin-top: 30px; left: auto; right: auto; }
+      .cards-2 { grid-template-columns: 1fr; }
+      .plan-phases { grid-template-columns: 1fr; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .gets-list { grid-template-columns: 1fr; }
+      .hero-contact { line-height: 1.55; word-break: break-word; overflow-wrap: anywhere; }
+      .chips { gap: 10px; }
+      .chip { min-height: 44px; }
+      /* Hero role separators: let them wrap naturally */
+      .hero-role { word-break: break-word; }
+    }
+
+    @media (max-width: 700px) {
+      .match-table,
+      .match-table thead,
+      .match-table tbody,
+      .match-table tr,
+      .match-table th,
+      .match-table td {
+        display: block;
+        width: 100%;
+      }
+      .match-table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+      }
+      .match-table tr {
+        border: 1px solid var(--line);
+        margin-bottom: 12px;
+        background: #fff;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      }
+      .match-table td {
+        border: 0;
+        border-bottom: 1px solid rgba(0,0,0,0.07);
+        padding: 12px 14px;
+      }
+      .match-table td:last-child { border-bottom: 0; }
+      .match-table td:first-child { background: #fff4f3; }
+      .match-table td::before {
+        display: block;
+        font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+        color: var(--red);
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .match-table td:nth-child(1)::before { content: "Adobe Need"; }
+      .match-table td:nth-child(2)::before { content: "Damon Evidence"; }
+
+      .pipeline-wrap { overflow-x: visible; }
+      .pipeline {
+        min-width: 0;
+        flex-direction: column;
+        gap: 0;
+      }
+      .pipe-stage {
+        padding: 18px 16px;
+      }
+      /* Vertical connector arrow between pipeline stages on mobile */
+      .pipe-stage:not(:last-child)::after {
+        left: 50%;
+        right: auto;
+        top: auto;
+        bottom: -14px;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 14px solid #2a2a2a;
+        border-bottom: none;
+        background: none;
+        z-index: 2;
+      }
+      .pipe-stage:hover::after {
+        border-top-color: var(--red);
+      }
+      /* Add spacing below each stage to accommodate the arrow */
+      .pipe-stage:not(:last-child) {
+        margin-bottom: 14px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .pg { padding: 28px 16px 44px; }
+      h1.hero-name { font-size: clamp(28px, 11vw, 44px); letter-spacing: 0.06em; }
+      .hero-role { font-size: 11px; line-height: 1.65; }
+      .hero-statement { padding: 14px 15px; font-size: 14px; }
+      .hero-adobe-fit { font-size: 13px; }
+      .chips { flex-direction: column; gap: 8px; }
+      .chip { width: 100%; justify-content: center; min-height: 48px; font-size: 11px; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .exp-card, .phase, .proof-card, .card { padding: 18px 14px; }
+      .gets-list li { padding: 12px; }
+      /* Tighter table cell padding */
+      .match-table td { padding: 10px 12px; }
+      /* Prevent long words overflowing */
+      p, li, td { word-break: break-word; overflow-wrap: break-word; }
+      /* Letter section readability */
+      .letter p { font-size: 14px; }
+      /* Section headings slightly smaller */
+      h2.sec { font-size: 18px; }
+    }
+
+    /* Extra small phones */
+    @media (max-width: 380px) {
+      .pg { padding: 24px 14px 40px; }
+      .topbar-inner { padding: 8px 12px; }
+      .brand-mark { font-size: 10px; }
+      h1.hero-name { font-size: clamp(26px, 12vw, 40px); }
+      .chip { padding: 10px 12px; }
+    }
+
+    /* ── Respect reduced motion ──────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="ats-block" aria-hidden="true" role="presentation">
+  Damon Versaggi
+  Adobe Creative Technology Packet | AI Product Workflows | Real-Time 3D Systems | Brand and Product Storytelling
+  New York / New Jersey Area | damon@scrappymeals.com | linkedin.com/in/damonversaggi | scrappymeals.com/damo | fridgiesmalls.app
+
+  SUMMARY
+  Creative technology and product systems leader with 20+ years across real-time 3D, enterprise broadcast systems, AI-enabled workflows, WebXR/3D experiences, brand storytelling, customer-facing technical delivery, and cross-functional execution. Strong general fit for Adobe because Adobe sits at the intersection of creativity, product, enterprise scale, AI, content operations, 3D, design systems, and storytelling. Damon brings practical fluency across the creative and technical systems that turn ideas into shipped experiences.
+
+  CORE AREAS
+  Creative Technology, Product Strategy, AI Workflows, OpenAI API, Prompt and Context Design, Structured Outputs, WebXR, Sketchfab, React, Vite, Real-Time Graphics Systems, Adobe Creative Cloud, 3D Asset Workflows, Broadcast Graphics, Brand Systems, Product Storytelling, Cross-Functional Leadership, Customer-Facing Delivery, Enterprise Stakeholder Communication, Creative Operations, Technical Translation, Rapid Prototyping, Experience Design, Campaign Systems, Content Pipelines, Interactive Media, Digital Production, Executive Communication.
+
+  PROFESSIONAL EXPERIENCE
+  Founder / Technical Program and Creative Product Lead | Scrappy Meals XR / Fridgie Smalls / The Metacheese | Brooklyn, NY | 2016 to Present
+  Built an AI, WebXR, 3D, and food-tech product ecosystem from concept through live product. Created Fridgie Smalls with OpenAI API-powered product logic in React and Vite, structured recipe outputs, sponsor-ready experiences, WebXR/3D model workflows, Sketchfab embeds, brand storytelling, user-facing product behavior, and live product iteration. Managed developers, designers, interns, technical artists, restaurant partners, 3D collaborators, and sponsor concepts.
+
+  Vice President of Sales and Technology / Workflow Systems | eFundex | Remote | 2024 to Present
+  Designed AI-assisted outreach, lead workflows, CRM/process structures, pitch narratives, operational systems, and stakeholder-ready materials. Connected sales, marketing, data, leadership, and workflow technology to improve execution accountability.
+
+  Real-Time 3D and Broadcast Creative Systems Leadership | Vizrt / SNY / Comcast SportsNet / Tribune Media / WGN / Dick Clark Productions / Independent Clients | NYC and Global | 2004 to Present
+  20+ years delivering real-time 3D graphics systems, live production workflows, enterprise broadcast tools, sports visualization, technical storytelling, and high-pressure customer-facing implementation. Supported major media clients including ESPN, ABC, MLB Digital, CNN, Fox News, Bloomberg, CBS, MSNBC, BBC, YES Network, Turner Sports, Amazon Prime Sports, Verizon FiOS, Cablevision, New Year's Rockin' Eve, and national election control-room cycles.
+</div>
+
+<div class="scroll-progress" id="progress" role="progressbar" aria-label="Reading progress"></div>
+
+<nav class="topbar" id="topbar" aria-label="Page navigation">
+  <div class="topbar-inner">
+    <a class="brand-mark" href="#hero">
+      <span class="brand-mark-icon"></span>
+      Damon Versaggi
+    </a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
+    <div class="nav" id="site-nav" role="list">
+      <a href="#hero" role="listitem">Overview</a>
+      <a href="#match" role="listitem">Adobe Fit</a>
+      <a href="#why" role="listitem">Why Damon</a>
+      <a href="#experience" role="listitem">Experience</a>
+      <a href="#model" role="listitem">Operating Model</a>
+      <a href="#plan" role="listitem">30-60-90</a>
+      <a href="#proof" role="listitem">Project Proof</a>
+      <a href="#letter" role="listitem">Adobe Narrative</a>
+      <a href="#gets" role="listitem">What Adobe Gets</a>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+  <div class="print-note">
+    <button class="chip" onclick="window.print()" aria-label="Save or print this packet">&#x2399; Save / Print PDF</button>
+  </div>
+
+  <main class="packet" role="main">
+
+    <section class="pg" id="hero" aria-labelledby="name-heading">
+      <div class="section-label hero-animate-1">Adobe · Creative Technology · AI Workflows · Real-Time 3D · Product Storytelling</div>
+
+      <h1 class="hero-name hero-animate-1" id="name-heading">Damon<br>Versaggi</h1>
+
+      <p class="hero-role hero-animate-2">
+        Creative Technology Leader &nbsp;·&nbsp; AI Product Workflows &nbsp;·&nbsp; Real-Time 3D Systems &nbsp;·&nbsp; Brand + Product Storytelling
+      </p>
+
+      <p class="hero-contact hero-animate-3">
+        New York / New Jersey Area &nbsp;·&nbsp;
+        <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a> &nbsp;·&nbsp;
+        <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a>
+      </p>
+
+      <blockquote class="hero-statement hero-animate-4">
+        20+ years connecting creative craft, real-time 3D systems, AI-enabled workflows, customer-facing delivery, technical teams, and executive stakeholders into work that ships.
+      </blockquote>
+
+      <div class="hero-adobe-fit hero-animate-4">
+        <strong>General Adobe fit:</strong> Adobe lives where creativity, software, storytelling, AI, enterprise content systems, 3D, and product adoption collide. Damon brings the uncommon mix of creative systems taste, technical translation, real production discipline, founder-level product ownership, and the ability to turn ambiguous ideas into usable workflows.
+      </div>
+
+      <div class="chips hero-animate-5">
+        <button class="chip primary" id="email-btn" onclick="copyEmail()" aria-label="Copy email address">
+          <span class="chip-dot"></span> Email Damon
+        </button>
+        <a class="chip" href="https://scrappymeals.com/damo" target="_blank" rel="noopener">
+          <span class="chip-dot"></span> Portfolio
+        </a>
+        <a class="chip" href="https://fridgiesmalls.app" target="_blank" rel="noopener">
+          <span class="chip-dot"></span> Fridgie Smalls
+        </a>
+        <a class="chip" href="https://scrappymeals.com" target="_blank" rel="noopener">
+          <span class="chip-dot"></span> Scrappy Meals
+        </a>
+        <a class="chip" href="https://scrappymeals.com" target="_blank" rel="noopener">
+          <span class="chip-dot"></span> The Metacheese
+        </a>
+        <a class="chip" href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">
+          <span class="chip-dot"></span> LinkedIn
+        </a>
+      </div>
+
+      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg soft reveal" id="match" aria-labelledby="match-heading">
+      <div class="section-label">Section 01</div>
+      <h2 class="sec" id="match-heading">Adobe Fit Snapshot</h2>
+      <p>This version is not tied to one job description. It frames Damon as a broad Adobe candidate across creative technology, AI workflows, 3D systems, product storytelling, enterprise content systems, and cross-functional product delivery.</p>
+
+      <table class="match-table" role="table" aria-label="General Adobe fit between Adobe needs and Damon's evidence">
+        <thead>
+          <tr>
+            <th scope="col">Adobe Need</th>
+            <th scope="col">Damon Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Creative technology leadership</td>
+            <td>20+ years building at the edge of design, real-time 3D, broadcast systems, interactive media, product storytelling, and technical production. Not merely adjacent to creative tools. He has lived inside the workflows they serve.</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>AI-enabled product thinking</td>
+            <td>Created Fridgie Smalls, an AI-powered product using OpenAI API logic, structured outputs, prompt behavior, conversational inputs, sponsor flows, and user-facing recipe generation. Practical AI, not conference-panel fog.</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>3D and immersive systems fluency</td>
+            <td>Deep background in real-time 3D systems, Sketchfab/WebXR workflows, broadcast graphics, spatial product concepts, 3D asset pipelines, and technical artist collaboration.</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Enterprise stakeholder translation</td>
+            <td>Served as the connective layer across creative, engineering, production, sales, support, demos, client implementation, leadership, and live operations across media and founder environments.</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Brand and product storytelling</td>
+            <td>Built product narratives, pitch systems, sponsor concepts, portfolio packets, campaign logic, character ecosystems, and branded experiences that connect product value to audience understanding.</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Prototype-to-production discipline</td>
+            <td>Comfortable moving from idea to working prototype to launch constraint to iteration, with enough technical fluency to talk implementation and enough creative judgment to protect quality.</td>
+          </tr>
+          <tr>
+            <td><span class="match-check" aria-hidden="true">✓</span>Cross-functional operating range</td>
+            <td>Works across product, creative, engineering, technical artists, customers, sponsors, sales, marketing, data, and executive stakeholders without losing the plot, which is rarer than it should be.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg dark reveal" id="why" aria-labelledby="why-heading">
+      <div class="section-label" style="color:#ff6058;">Section 02</div>
+      <h2 class="sec" id="why-heading">Why Damon for Adobe</h2>
+
+      <div class="cards-2">
+        <div class="card">
+          <div class="card-num">01</div>
+          <h3>Creative Systems Thinker</h3>
+          <p>Damon does not separate the artifact from the system that produces it. He thinks in workflows, handoffs, production constraints, brand standards, audience experience, and repeatability. That maps to Adobe’s world better than a portfolio full of isolated pretty objects.</p>
+        </div>
+        <div class="card">
+          <div class="card-num">02</div>
+          <h3>AI as Production Layer</h3>
+          <p>He uses AI as an operating layer: product behavior, structured outputs, prompt logic, UX copy, campaign testing, workflow documentation, and rapid prototyping. The useful part is compression: strategy, copy, product logic, and execution moving closer together.</p>
+        </div>
+        <div class="card">
+          <div class="card-num">03</div>
+          <h3>Real-Time 3D Credibility</h3>
+          <p>His 3D background is operational, not decorative. Broadcast systems, live graphics, interactive experiences, WebXR embeds, technical artist collaboration, and high-pressure production environments gave him a practical sense for what actually works when the demo glow wears off.</p>
+        </div>
+        <div class="card">
+          <div class="card-num">04</div>
+          <h3>Executive Translation</h3>
+          <p>He can sit between creative teams, product leaders, engineers, sales, customers, and executives and translate the same idea at the right level of resolution. That is the work underneath most serious Adobe roles, even when the job post hides it behind cheerful corporate nouns.</p>
+        </div>
+      </div>
+
+      <div class="pg-foot" style="color:#444;">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg reveal" id="experience" aria-labelledby="exp-heading">
+      <div class="section-label">Section 03</div>
+      <h2 class="sec" id="exp-heading">Selected Experience</h2>
+
+      <article class="exp-card" aria-label="Scrappy Meals XR experience">
+        <div class="exp-org">Scrappy Meals XR / Fridgie Smalls / The Metacheese · Brooklyn, NY</div>
+        <div class="exp-title">Founder / Creative Product &amp; Technology Lead</div>
+        <div class="date-line">2016 – Present</div>
+        <ul>
+          <li>Built an AI, WebXR, 3D, and food-tech product ecosystem from concept through live product, including product strategy, UX direction, AI prompt behavior, structured output logic, sponsor concepts, demos, QA, and launch iteration.</li>
+          <li>Created Fridgie Smalls as an AI-powered user experience that converts ingredient input into structured recipe outputs, branded food experiences, and customer-facing product flows.</li>
+          <li>Designed workflows across voice input, typed input, dynamic recipe modes, inventory concepts, sponsored product flows, branded 3D models, and commerce-oriented recipe experiences.</li>
+          <li>Worked with developers and technical partners on React/Vite implementation, OpenAI API behavior, Sketchfab/WebXR embeds, modal states, analytics points, and production fixes.</li>
+          <li>Led creative storytelling, character/IP development, pitch materials, sponsor framing, and product narrative around Scrappy Meals, Fridgie Smalls, and The Metacheese.</li>
+        </ul>
+      </article>
+
+      <article class="exp-card" aria-label="eFundex experience">
+        <div class="exp-org">eFundex · Remote</div>
+        <div class="exp-title">Vice President of Sales &amp; Technology / Workflow Systems</div>
+        <div class="date-line">2024 – Present</div>
+        <ul>
+          <li>Designed AI-assisted outreach, lead workflow, CRM/process structures, pitch narratives, and operational systems for a high-trust financial services environment.</li>
+          <li>Translated ambiguous business goals into scoped execution plans, messaging frameworks, follow-up cadence, stakeholder-ready materials, and clearer workflow systems.</li>
+          <li>Connected sales, marketing, data, leadership, and technology priorities into more consistent communication, pipeline visibility, and execution accountability.</li>
+        </ul>
+      </article>
+
+      <article class="exp-card" aria-label="Broadcast systems experience">
+        <div class="exp-org">Vizrt / SNY / Comcast SportsNet / Tribune Media / WGN / Dick Clark Productions / Independent Clients · NYC / Global</div>
+        <div class="exp-title">Real-Time 3D &amp; Broadcast Creative Systems Leadership</div>
+        <div class="date-line">2004 – Present</div>
+        <ul>
+          <li>Delivered real-time 3D graphics systems, live production workflows, enterprise broadcast tools, sports visualization, technical storytelling, and customer-facing implementation across major media environments.</li>
+          <li>At Vizrt, operated across creative, demos, training, implementation, support, sales enablement, client onboarding, and product workflow input for enterprise real-time graphics platforms.</li>
+          <li>At SNY / Comcast SportsNet, helped lead and redesign real-time graphics ecosystems, aligning visual systems, technical constraints, sponsor-sensitive deliverables, HD production transitions, and live operational reliability.</li>
+          <li>At Tribune Media / WGN, worked across creative, production, news, online, sales, and promotion, connecting technical workflows and cross-functional delivery needs across departments.</li>
+          <li>Supported major national and global media clients including ESPN, ABC, MLB Digital, CNN, Fox News, Bloomberg, CBS, MSNBC, BBC, YES Network, Turner Sports, Amazon Prime Sports, Verizon FiOS, Cablevision, New Year's Rockin' Eve, and election control-room cycles.</li>
+        </ul>
+      </article>
+
+      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg blueprint reveal" id="model" aria-labelledby="model-heading">
+      <div class="section-label" style="color:#ff6058;">Section 04</div>
+      <h2 class="sec" id="model-heading">Adobe Operating Model</h2>
+      <p style="color:#aaa;font-family:Arial,sans-serif;font-size:14px;margin-bottom:20px;">A general model for how Damon would operate inside Adobe: from ambiguity to useful signal, prototype, story, and scalable system.</p>
+
+      <div class="pipeline-wrap" role="list" aria-label="Six-stage Adobe operating model">
+        <div class="pipeline">
+
+          <div class="pipe-stage" role="listitem" tabindex="0">
+            <div class="pipe-num">01</div>
+            <div class="pipe-name">Discover</div>
+            <p class="pipe-desc">Map the real workflow: users, tools, blockers, content states, production pressure, technical constraints, and business outcomes.</p>
+          </div>
+
+          <div class="pipe-stage" role="listitem" tabindex="0">
+            <div class="pipe-num">02</div>
+            <div class="pipe-name">Frame</div>
+            <p class="pipe-desc">Turn ambiguity into a clear problem statement, audience, value proposition, success criteria, and product or creative hypothesis.</p>
+          </div>
+
+          <div class="pipe-stage" role="listitem" tabindex="0">
+            <div class="pipe-num">03</div>
+            <div class="pipe-name">Prototype</div>
+            <p class="pipe-desc">Build the smallest convincing version that shows how the workflow, story, product behavior, or creative system should work.</p>
+          </div>
+
+          <div class="pipe-stage" role="listitem" tabindex="0">
+            <div class="pipe-num">04</div>
+            <div class="pipe-name">Translate</div>
+            <p class="pipe-desc">Bridge creative intent, product logic, technical feasibility, customer value, and executive narrative so teams can actually align.</p>
+          </div>
+
+          <div class="pipe-stage" role="listitem" tabindex="0">
+            <div class="pipe-num">05</div>
+            <div class="pipe-name">Validate</div>
+            <p class="pipe-desc">Test with real users, real constraints, real assets, and honest feedback instead of pretending the deck is the product.</p>
+          </div>
+
+          <div class="pipe-stage" role="listitem" tabindex="0">
+            <div class="pipe-num">06</div>
+            <div class="pipe-name">Scale</div>
+            <p class="pipe-desc">Convert what works into reusable systems: product direction, creative frameworks, implementation playbooks, and stakeholder-ready narratives.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="pg-foot" style="color:#444;">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg soft reveal" id="plan" aria-labelledby="plan-heading">
+      <div class="section-label">Section 05</div>
+      <h2 class="sec" id="plan-heading">30 · 60 · 90 Day Adobe Plan</h2>
+      <p>A general first-90-day framework for any Adobe team operating at the intersection of creativity, product, AI, 3D, content systems, and enterprise adoption.</p>
+
+      <div class="plan-phases">
+
+        <div class="phase">
+          <div class="phase-badge">Days 1 – 30</div>
+          <h3>Learn the System. Find the Real Friction.</h3>
+          <ul>
+            <li>Immerse in the team’s product surface, customer base, creative workflows, internal process, technical constraints, and existing success metrics.</li>
+            <li>Shadow product, design, engineering, research, sales, customer-facing teams, and creative operators to understand how decisions actually move.</li>
+            <li>Map the workflow from idea to execution: intake, prototype, review, production, approval, launch, measurement, and iteration.</li>
+            <li>Identify where ambiguity, quality risk, handoff friction, and stakeholder misalignment most often appear.</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-badge">Days 31 – 60</div>
+          <h3>Build Useful Proof. Tighten the Narrative.</h3>
+          <ul>
+            <li>Partner with the right cross-functional owners to define one or two high-signal opportunities where better creative systems or product workflows can show measurable value.</li>
+            <li>Create clear briefs, prototype directions, communication artifacts, risk notes, and stakeholder updates.</li>
+            <li>Use AI and rapid prototyping where they genuinely compress cycles, not where they create more shiny confusion for everyone to admire politely.</li>
+            <li>Turn early findings into practical recommendations: what to build, what to change, what to stop doing, and what needs deeper investment.</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-badge">Days 61 – 90</div>
+          <h3>Scale the Pattern. Become Useful Fast.</h3>
+          <ul>
+            <li>Package the strongest early work into reusable frameworks, playbooks, stakeholder narratives, or product inputs.</li>
+            <li>Build trust as a clear cross-functional operator who can protect creative quality while respecting technical and business constraints.</li>
+            <li>Establish a repeatable rhythm for discovery, prototype review, executive alignment, customer/user feedback, and measurable impact.</li>
+            <li>Become known as the connective tissue between creative ambition, product strategy, engineering reality, and business value.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg reveal" id="proof" aria-labelledby="proof-heading">
+      <div class="section-label">Section 06</div>
+      <h2 class="sec" id="proof-heading">Selected Project Proof</h2>
+
+      <div class="proof-grid">
+
+        <a class="proof-card" href="https://fridgiesmalls.app" target="_blank" rel="noopener" aria-label="Fridgie Smalls project">
+          <div class="proof-tag">AI · WebXR · 3D · React/Vite</div>
+          <h3>Fridgie Smalls</h3>
+          <p>AI-native consumer product with OpenAI API, React/Vite, WebXR/3D model workflows, structured outputs, sponsor-ready experiences, product UX, and launch-ready storytelling built from zero.</p>
+          <span class="proof-arrow">Visit ↗</span>
+        </a>
+
+        <a class="proof-card" href="https://scrappymeals.com/damo" target="_blank" rel="noopener" aria-label="Portfolio">
+          <div class="proof-tag">Portfolio · Creative Systems</div>
+          <h3>Portfolio</h3>
+          <p>Creative technology, production systems, brand/product storytelling, real-time 3D leadership, interactive media, and delivery proof across 20+ years of enterprise and founder work.</p>
+          <span class="proof-arrow">Visit ↗</span>
+        </a>
+
+        <a class="proof-card" href="https://scrappymeals.com" target="_blank" rel="noopener" aria-label="Scrappy Meals ecosystem">
+          <div class="proof-tag">Founder · Food-Tech · AI · 3D</div>
+          <h3>Scrappy Meals XR</h3>
+          <p>Founder-led creative systems ecosystem connecting sustainability, AI, 3D, immersive media, culinary storytelling, sponsor concepts, and product-market imagination.</p>
+          <span class="proof-arrow">Visit ↗</span>
+        </a>
+
+        <a class="proof-card" href="https://scrappymeals.com" target="_blank" rel="noopener" aria-label="The Metacheese concept">
+          <div class="proof-tag">3D · Immersive · Culinary · World</div>
+          <h3>The Metacheese</h3>
+          <p>Immersive culinary education and virtual world concept showing Damon’s ability to connect 3D, interactive storytelling, food systems, character IP, and product narrative.</p>
+          <span class="proof-arrow">Visit ↗</span>
+        </a>
+
+        <div class="proof-card" style="cursor:default;" aria-label="Real-time 3D systems proof">
+          <div class="proof-tag">Broadcast · Enterprise · Live</div>
+          <h3>Real-Time 3D Systems</h3>
+          <p>Two decades of enterprise-grade real-time 3D graphics, broadcast implementation, client workflows, product feedback, and high-pressure production environments.</p>
+        </div>
+
+        <div class="proof-card" style="cursor:default;" aria-label="AI workflow proof">
+          <div class="proof-tag">AI · Workflow · Content Systems</div>
+          <h3>AI Production Layer</h3>
+          <p>Uses AI to compress strategy, copy, product logic, UX behavior, prompt systems, campaign testing, documentation, and prototype-ready thinking into faster execution loops.</p>
+        </div>
+
+      </div>
+
+      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg soft reveal" id="letter" aria-labelledby="letter-heading">
+      <div class="section-label">Section 07</div>
+      <h2 class="sec" id="letter-heading">Adobe Narrative</h2>
+
+      <div class="letter" role="article" aria-label="General Adobe narrative">
+        <p>To the Adobe team,</p>
+
+        <p>Adobe sits at the center of the creative economy because it does more than sell tools. It shapes how creative work is made, scaled, governed, measured, and understood. That is the part of Adobe that maps directly to my career.</p>
+
+        <p>I have spent 20+ years working across real-time 3D systems, live production, enterprise creative technology, interactive media, AI-enabled product workflows, and customer-facing delivery. My background is not one clean corporate lane, which is inconvenient for forms but useful for real work. I have been the person connecting creative ambition, technical constraints, production reality, stakeholder expectations, and business value.</p>
+
+        <p>At Vizrt, SNY, Comcast SportsNet, Tribune Media, WGN, and across major broadcast/media clients, I worked inside environments where creative quality and technical reliability had to survive pressure. At Scrappy Meals XR and Fridgie Smalls, I built from the founder side: AI product behavior, OpenAI API workflows, React/Vite implementation, WebXR/3D model experiences, sponsor concepts, product storytelling, and user-facing creative logic.</p>
+
+        <p>What I would bring to Adobe is a rare operating mix: creative taste, technical translation, real-time 3D fluency, AI workflow experimentation, executive communication, and the ability to build systems that help teams move faster without flattening the craft. I understand Adobe’s value because I have lived on the user, builder, storyteller, and operator sides of the equation.</p>
+
+        <p>I am interested in Adobe broadly because the future of creative work will belong to teams that can connect AI, design systems, content operations, 3D, brand trust, and product experience into workflows people actually use. That is the work I know how to help shape.</p>
+
+        <div class="sig">
+          Damon Versaggi<br>
+          <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> &nbsp;·&nbsp;
+          <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a> &nbsp;·&nbsp;
+          <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a>
+        </div>
+      </div>
+
+      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg dark reveal" id="gets" aria-labelledby="gets-heading">
+      <div class="section-label" style="color:#ff6058;">Section 08</div>
+      <h2 class="sec" id="gets-heading">What Adobe Gets</h2>
+      <p style="color:#aaa;font-family:Arial,sans-serif;font-size:14px;margin-bottom:18px;">A cross-functional creative technology operator who can move between craft, systems, AI, 3D, product, and business value without needing six translators and a ceremonial alignment meeting.</p>
+
+      <ul class="gets-list" aria-label="Summary of Damon's capabilities for Adobe">
+        <li>
+          <span class="gets-icon" aria-hidden="true"></span>
+          A creative systems thinker who understands workflow, production reality, and the difference between a nice asset and a scalable creative engine.
+        </li>
+        <li>
+          <span class="gets-icon" aria-hidden="true"></span>
+          A hands-on builder with AI, WebXR, 3D, OpenAI API, React/Vite, Sketchfab, and structured product workflow experience.
+        </li>
+        <li>
+          <span class="gets-icon" aria-hidden="true"></span>
+          Real-time 3D credibility from two decades of enterprise broadcast graphics, live systems, technical storytelling, and high-pressure delivery.
+        </li>
+        <li>
+          <span class="gets-icon" aria-hidden="true"></span>
+          The ability to translate between creative teams, engineers, technical artists, product leaders, customers, sales, and executives.
+        </li>
+        <li>
+          <span class="gets-icon" aria-hidden="true"></span>
+          A founder’s bias toward making things real instead of turning every idea into a meeting series with snacks and no artifact.
+        </li>
+        <li>
+          <span class="gets-icon" aria-hidden="true"></span>
+          Strategic storytelling that connects product value, audience behavior, brand systems, campaign logic, and stakeholder confidence.
+        </li>
+        <li>
+          <span class="gets-icon" aria-hidden="true"></span>
+          Practical AI fluency focused on workflow compression, product behavior, content logic, and user trust.
+        </li>
+        <li>
+          <span class="gets-icon" aria-hidden="true"></span>
+          The pattern recognition to turn repeated creative or technical friction into frameworks, requirements, playbooks, or product signal.
+        </li>
+        <li>
+          <span class="gets-icon" aria-hidden="true"></span>
+          A portfolio that proves the overlap of creative technology, brand storytelling, interactive media, sustainability, food culture, 3D, and AI.
+        </li>
+        <li>
+          <span class="gets-icon" aria-hidden="true"></span>
+          A senior operator who can add value across Adobe teams touching Creative Cloud, Firefly, GenStudio, Substance 3D, Experience Cloud, content systems, or product storytelling.
+        </li>
+      </ul>
+
+      <div class="pg-foot" style="color:#444;">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── Scroll progress bar ──────────────────────────────────────────
+  var prog = document.getElementById('progress');
+  var topbar = document.getElementById('topbar');
+
+  function onScroll() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docH = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var pct = docH > 0 ? scrollTop / docH : 0;
+    prog.style.transform = 'scaleX(' + pct + ')';
+
+    if (scrollTop > 40) {
+      topbar.classList.add('scrolled');
+    } else {
+      topbar.classList.remove('scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  // ── Active nav highlighting ──────────────────────────────────────
+  var navLinks = document.querySelectorAll('.nav a');
+  var nav = document.getElementById('site-nav');
+  var menuToggle = document.getElementById('menu-toggle');
+  var sections = [];
+
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? 'Close' : 'Menu';
+    });
+
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (window.matchMedia('(max-width: 860px)').matches) {
+          nav.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.textContent = 'Menu';
+        }
+      });
+    });
+  }
+
+  navLinks.forEach(function (a) {
+    var id = a.getAttribute('href').replace('#', '');
+    var el = document.getElementById(id);
+    if (el) sections.push({ id: id, el: el, a: a });
+  });
+
+  function updateNav() {
+    var scrollMid = window.scrollY + window.innerHeight * 0.35;
+    var active = null;
+
+    sections.forEach(function (s) {
+      if (s.el.offsetTop <= scrollMid) active = s;
+    });
+
+    navLinks.forEach(function (a) { a.classList.remove('active'); });
+    if (active) active.a.classList.add('active');
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  // ── Reveal on scroll ─────────────────────────────────────────────
+  var reveals = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.07 });
+
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  // ── Copy email ───────────────────────────────────────────────────
+  window.copyEmail = function () {
+    var email = 'damon@scrappymeals.com';
+    var btn = document.getElementById('email-btn');
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(function () {
+        btn.textContent = 'Copied!';
+        setTimeout(function () {
+          btn.innerHTML = '<span class="chip-dot"></span> Email Damon';
+        }, 2200);
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = email;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      btn.textContent = 'Copied!';
+      setTimeout(function () {
+        btn.innerHTML = '<span class="chip-dot"></span> Email Damon';
+      }, 2200);
+    }
+  };
+
+  // ── Keyboard nav for pipeline stages ────────────────────────────
+  document.querySelectorAll('.pipe-stage').forEach(function (el) {
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        el.style.background = 'rgba(250,15,0,0.1)';
+        setTimeout(function () { el.style.background = ''; }, 400);
+      }
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
