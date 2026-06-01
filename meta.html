@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Damon Versaggi | Meta Product Manager Leadership Packet</title>
+  <meta name="description" content="Interactive candidate packet for Damon Versaggi targeting Meta Product Manager (Leadership): 0-1 product leadership, AI-native workflows, cross-functional execution, metrics, responsible AI, and consumer product strategy." />
+  <meta name="keywords" content="Meta Product Manager Leadership, Product Management, AI Workflows, Responsible AI, 0-1 Products, Consumer Technology, Cross Functional Leadership, Product Metrics, Product Strategy, Engineering Design Research, Damon Versaggi" />
+  <meta name="author" content="Damon Versaggi" />
+  <style>
+    :root {
+      --meta-blue: #0866ff;
+      --meta-blue-dark: #064fca;
+      --meta-cyan: #00d4ff;
+      --meta-purple: #7b61ff;
+      --ink: #0b1220;
+      --muted: #566275;
+      --line: #d9e1ee;
+      --paper: #ffffff;
+      --soft: #f5f8ff;
+      --dark: #07111f;
+      --dark-2: #0d1a2d;
+      --green: #00a86b;
+      --warning: #ffb000;
+      --shadow: 0 30px 80px rgba(4, 18, 42, 0.16);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #e8eef8;
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration-color: var(--meta-blue); text-underline-offset: 3px; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .ats-block {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      color: transparent;
+    }
+
+    .progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 4px; width: 100%;
+      background: linear-gradient(90deg, var(--meta-blue), var(--meta-cyan), var(--meta-purple));
+      transform: scaleX(0);
+      transform-origin: left center;
+      z-index: 1000;
+      pointer-events: none;
+      box-shadow: 0 0 18px rgba(8,102,255,.35);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: rgba(255,255,255,.94);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      backdrop-filter: blur(18px);
+      transition: box-shadow 180ms, border-color 180ms;
+    }
+    .topbar.scrolled {
+      box-shadow: 0 12px 36px rgba(0,0,0,.11);
+      border-color: rgba(8,102,255,.24);
+    }
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 950;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .meta-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--meta-blue), var(--meta-cyan));
+      color: white;
+      font-size: 20px;
+      font-weight: 950;
+      letter-spacing: -.08em;
+      box-shadow: 0 10px 24px rgba(8,102,255,.24);
+      flex-shrink: 0;
+    }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 14px;
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+    }
+    .nav a {
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding: 4px 0;
+      transition: color 160ms, border-color 160ms, transform 160ms;
+    }
+    .nav a:hover, .nav a.active {
+      color: var(--ink);
+      border-bottom-color: var(--meta-blue);
+      transform: translateY(-1px);
+    }
+    .menu {
+      display: none;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      cursor: pointer;
+    }
+
+    .shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 18px 84px;
+    }
+    .packet {
+      background: var(--paper);
+      border: 1px solid rgba(0,0,0,.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    section {
+      position: relative;
+      padding: 66px 74px;
+      border-bottom: 1px solid #e8edf6;
+    }
+    section:last-child { border-bottom: 0; }
+    .soft { background: var(--soft); }
+    .dark {
+      color: #f6f9ff;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(8,102,255,.24), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(0,212,255,.16), transparent 26%),
+        radial-gradient(circle at 65% 90%, rgba(123,97,255,.18), transparent 30%),
+        linear-gradient(135deg, var(--dark), var(--dark-2));
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(8,102,255,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8,102,255,.055) 1px, transparent 1px);
+      background-size: 34px 34px;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--meta-blue);
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      margin-bottom: 10px;
+    }
+    .dark .label { color: #81c5ff; }
+
+    .pulse {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--meta-blue);
+      box-shadow: 0 0 0 rgba(8,102,255,.45);
+      animation: pulse 1.9s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(8,102,255,.45); }
+      70% { box-shadow: 0 0 0 13px rgba(8,102,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(8,102,255,0); }
+    }
+
+    h1 {
+      font-size: clamp(40px, 7.2vw, 84px);
+      line-height: .88;
+      letter-spacing: -.065em;
+      text-transform: uppercase;
+      font-weight: 950;
+      margin-bottom: 16px;
+      max-width: 980px;
+    }
+    .role {
+      color: var(--muted);
+      font-size: clamp(14px, 1.45vw, 18px);
+      font-weight: 850;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      max-width: 960px;
+    }
+    .contact {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+      overflow-wrap: anywhere;
+    }
+    .hero-panel {
+      position: relative;
+      border: 1px solid rgba(8,102,255,.22);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(8,102,255,.10), rgba(0,212,255,.08)),
+        white;
+      padding: 24px;
+      max-width: 980px;
+      box-shadow: 0 18px 45px rgba(8,102,255,.10);
+      overflow: hidden;
+    }
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 6px;
+      background: linear-gradient(180deg, var(--meta-blue), var(--meta-cyan), var(--meta-purple));
+    }
+    .hero-panel p {
+      font-size: 17px;
+      font-family: Georgia, serif;
+      color: #16233a;
+      margin: 0;
+      padding-left: 6px;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: white;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 180ms, border-color 180ms, box-shadow 180ms, background 180ms;
+    }
+    .chip:hover {
+      transform: translateY(-2px);
+      border-color: var(--meta-blue);
+      box-shadow: 0 12px 30px rgba(8,102,255,.16);
+    }
+    .chip.primary {
+      background: var(--meta-blue);
+      color: white;
+      border-color: var(--meta-blue);
+    }
+    .chip .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--meta-blue);
+    }
+    .chip.primary .dot { background: white; }
+
+    h2 {
+      font-size: clamp(24px, 3.15vw, 40px);
+      line-height: 1.02;
+      letter-spacing: -.04em;
+      text-transform: uppercase;
+      font-weight: 950;
+      margin-bottom: 16px;
+    }
+    .intro {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 900px;
+      margin-bottom: 22px;
+    }
+    .dark .intro, .dark p, .dark li { color: #c6d2e4; }
+
+    .match-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .card {
+      position: relative;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 23px;
+      overflow: hidden;
+      transition: transform 180ms, box-shadow 180ms, border-color 180ms;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      height: 5px; width: 100%;
+      background: linear-gradient(90deg, var(--meta-blue), var(--meta-cyan), var(--meta-purple));
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 44px rgba(0,0,0,.11);
+      border-color: rgba(8,102,255,.38);
+    }
+    .card h3 {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-weight: 950;
+      margin-bottom: 8px;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .operating-system {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+    }
+    .os-panel {
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.055);
+      border-radius: var(--radius);
+      padding: 26px;
+      backdrop-filter: blur(8px);
+    }
+    .os-panel h3 {
+      font-size: 18px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      margin-bottom: 10px;
+    }
+    .os-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .os-item {
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,.05);
+      transition: background 180ms, border-color 180ms, transform 180ms;
+    }
+    .os-item:hover {
+      background: rgba(8,102,255,.16);
+      border-color: rgba(129,197,255,.45);
+      transform: translateX(3px);
+    }
+    .os-item strong {
+      display: block;
+      color: white;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 3px;
+    }
+    .os-item span {
+      color: #aebbd0;
+      font-size: 13px;
+    }
+
+    .tabs {
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: white;
+    }
+    .tab-buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+    .tab-btn {
+      appearance: none;
+      border: 0;
+      border-right: 1px solid var(--line);
+      background: #fbfdff;
+      color: var(--muted);
+      min-height: 64px;
+      padding: 12px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: background 180ms, color 180ms;
+    }
+    .tab-btn:last-child { border-right: 0; }
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--meta-blue);
+      color: white;
+    }
+    .tab-panel {
+      display: none;
+      padding: 28px;
+    }
+    .tab-panel.active { display: block; }
+    .tab-panel h3 {
+      font-size: 21px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: -.025em;
+      margin-bottom: 10px;
+    }
+    .tab-panel p { color: var(--muted); }
+    .tab-panel ul { margin: 12px 0 0 18px; }
+    .tab-panel li { color: #344258; font-size: 14px; margin-bottom: 7px; }
+
+    .experience {
+      display: grid;
+      gap: 16px;
+      margin-top: 22px;
+    }
+    .exp {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: transform 180ms, box-shadow 180ms, border-color 180ms;
+    }
+    .exp:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.10);
+      border-color: rgba(8,102,255,.35);
+    }
+    .org {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 11px;
+      font-weight: 950;
+      margin-bottom: 4px;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 950;
+      margin-bottom: 2px;
+    }
+    .date {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    ul { margin: 8px 0 0 18px; }
+    li { margin-bottom: 7px; color: #344258; font-size: 14px; }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .metric {
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.055);
+      border-radius: var(--radius);
+      padding: 23px 18px;
+      text-align: center;
+    }
+    .metric strong {
+      display: block;
+      color: white;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: -.04em;
+      margin-bottom: 8px;
+    }
+    .metric span {
+      color: #b9c7db;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .plan {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .phase {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: transform 180ms, box-shadow 180ms;
+    }
+    .phase:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 38px rgba(0,0,0,.10);
+    }
+    .badge {
+      display: inline-flex;
+      background: var(--meta-blue);
+      color: white;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .phase h3 {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      font-weight: 950;
+      margin-bottom: 8px;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .proof {
+      display: block;
+      text-decoration: none;
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 23px;
+      min-height: 175px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 180ms, box-shadow 180ms, border-color 180ms;
+    }
+    .proof::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: 0;
+      height: 5px; width: 100%;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: linear-gradient(90deg, var(--meta-blue), var(--meta-cyan), var(--meta-purple));
+      transition: transform 220ms;
+    }
+    .proof:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.11);
+      border-color: rgba(8,102,255,.38);
+    }
+    .proof:hover::after { transform: scaleX(1); }
+    .proof small {
+      display: block;
+      color: var(--meta-blue);
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .proof h3 {
+      font-size: 17px;
+      font-weight: 950;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 9px;
+    }
+    .proof p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .letter {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      max-width: 930px;
+    }
+    .letter p {
+      font-family: Georgia, serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #22304a;
+      margin-bottom: 14px;
+    }
+
+    .footer {
+      color: var(--muted);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      font-size: 11px;
+      font-weight: 850;
+      margin-top: 24px;
+    }
+    .dark .footer { color: #71809a; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 560ms, transform 560ms;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .a1 { animation: rise 560ms ease forwards; }
+    .a2 { animation: rise 560ms 90ms ease forwards; opacity: 0; }
+    .a3 { animation: rise 560ms 170ms ease forwards; opacity: 0; }
+    .a4 { animation: rise 560ms 260ms ease forwards; opacity: 0; }
+    .a5 { animation: rise 560ms 350ms ease forwards; opacity: 0; }
+
+    @media print {
+      body { background: white; }
+      .topbar, .progress, .print-wrap { display: none !important; }
+      .shell { padding: 0; max-width: none; }
+      .packet { border: 0; box-shadow: none; }
+      section { padding: 34px 46px; page-break-inside: avoid; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+
+    @media (max-width: 960px) {
+      body { background: white; }
+      .shell { padding: 0; }
+      .packet { box-shadow: none; border-left: 0; border-right: 0; }
+      .topbar-inner { flex-wrap: wrap; padding: 10px 14px; }
+      .menu { display: inline-flex; margin-left: auto; }
+      .brand { max-width: calc(100% - 90px); white-space: normal; line-height: 1.15; }
+      .nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding-top: 8px;
+        border-top: 1px solid rgba(0,0,0,.08);
+      }
+      .nav.open { display: flex; }
+      .nav a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgba(0,0,0,.08);
+      }
+      section { padding: 44px 24px; }
+      .match-grid, .operating-system, .plan { grid-template-columns: 1fr; }
+      .tab-buttons { grid-template-columns: 1fr; }
+      .tab-btn {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+      }
+      .metric-grid { grid-template-columns: 1fr 1fr; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      section { padding: 34px 16px; }
+      h1 { font-size: clamp(37px, 14vw, 60px); }
+      .role { font-size: 12px; line-height: 1.55; }
+      .hero-panel { padding: 18px; }
+      .hero-panel p { font-size: 15px; }
+      .chips { flex-direction: column; }
+      .chip { width: 100%; }
+      .metric-grid, .proof-grid { grid-template-columns: 1fr; }
+      .letter { padding: 22px 18px; }
+      .letter p { font-size: 15px; }
+      p, li, .contact { overflow-wrap: anywhere; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="ats-block" aria-hidden="true">
+  Damon Versaggi | Meta Product Manager Leadership | Product Management Leader | AI-native workflows | 0-1 product development | cross-functional leadership | engineering design research data science collaboration | executive communication | product metrics | team scaling | responsible AI | prompt engineering | consumer product strategy | marketplace platform ecosystem products | Meta Quest immersive social technology | Facebook Instagram WhatsApp Messenger.
+</div>
+
+<div class="progress" id="progress"></div>
+
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#hero"><span class="meta-mark">∞</span><span>Damon Versaggi · Meta PM Leadership</span></a>
+    <button class="menu" id="menu" type="button" aria-controls="nav" aria-expanded="false">Menu</button>
+    <nav class="nav" id="nav" aria-label="Page navigation">
+      <a href="#hero">Overview</a>
+      <a href="#match">Meta Match</a>
+      <a href="#system">PM System</a>
+      <a href="#ai">AI / Responsible AI</a>
+      <a href="#experience">Experience</a>
+      <a href="#metrics">Signals</a>
+      <a href="#plan">30-60-90</a>
+      <a href="#proof">Proof</a>
+      <a href="#pitch">Pitch</a>
+    </nav>
+  </div>
+</header>
+
+<div class="shell">
+  <div class="print-wrap" style="text-align:right;margin-bottom:12px;">
+    <button class="chip" onclick="window.print()">Save / Print PDF</button>
+  </div>
+
+  <main class="packet">
+    <section id="hero">
+      <div class="label a1"><span class="pulse"></span>Meta Product Manager Leadership · 0-1 Product · AI Workflows · Cross-Functional Execution</div>
+      <h1 class="a1">Damon<br>Versaggi</h1>
+      <p class="role a2">Product Leadership Candidate Packet · Consumer Product Strategy · AI-Native Workflow Design · Immersive / Social Product Systems</p>
+      <p class="contact a3">
+        New York / New Jersey Area · <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> ·
+        <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a> ·
+        <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a> ·
+        <a href="https://fridgiesmalls.app" target="_blank" rel="noopener">fridgiesmalls.app</a>
+      </p>
+      <div class="hero-panel a4">
+        <p>Product and creative systems leader with 20+ years building at the intersection of consumer experiences, AI workflows, real-time 3D, cross-functional execution, live production systems, and founder-led 0-1 product development. Strong Meta fit because the role needs entrepreneurial product leadership, fast execution, team scaling, AI-native operations, metrics discipline, and the ability to build shared vision across engineering, design, research, data, and executives without collapsing into ceremonial roadmap theater.</p>
+      </div>
+      <div class="chips a5">
+        <button class="chip primary" id="emailBtn" onclick="copyEmail()"><span class="dot"></span>Email Damon</button>
+        <a class="chip" href="https://scrappymeals.com/damo" target="_blank" rel="noopener"><span class="dot"></span>Portfolio</a>
+        <a class="chip" href="https://fridgiesmalls.app" target="_blank" rel="noopener"><span class="dot"></span>Fridgie Smalls</a>
+        <a class="chip" href="#plan"><span class="dot"></span>30-60-90 Plan</a>
+      </div>
+      <div class="footer">Damon Versaggi · Meta Product Manager Leadership Interactive Packet</div>
+    </section>
+
+    <section class="soft reveal" id="match">
+      <div class="label">Section 01 · Direct Role Alignment</div>
+      <h2>Meta Product Leadership Match</h2>
+      <p class="intro">This is built around the actual Meta Product Manager Leadership posting: product ideation, technical development, launch, engineering/design/research partnership, executive communication, product metrics, team scaling, AI workflow redesign, and responsible AI. No drift into generic creative executive mush, because we suffered enough already.</p>
+
+      <div class="match-grid">
+        <div class="card">
+          <h3>Lead Ideation Through Launch</h3>
+          <p>Built Fridgie Smalls from concept into live AI-powered product experience, including product logic, UX flows, content behavior, 3D/WebXR surfaces, sponsor-ready concepts, launch iteration, and execution planning.</p>
+        </div>
+        <div class="card">
+          <h3>Drive With Engineering + Design</h3>
+          <p>Operates across developers, technical artists, designers, producers, stakeholders, and creative teams. Comfortable translating product intent into technical requirements and creative constraints into shippable systems.</p>
+        </div>
+        <div class="card">
+          <h3>Build Shared Vision</h3>
+          <p>Turns ambiguous product and brand opportunities into clear briefs, operating models, pitch narratives, workflow maps, stakeholder presentations, and execution plans.</p>
+        </div>
+        <div class="card">
+          <h3>Metrics + Feedback Loops</h3>
+          <p>Frames success around user behavior, engagement, retention, conversion, product usefulness, content quality, workflow velocity, and stakeholder outcomes rather than decorative vanity metrics, the glitter of corporate dashboards.</p>
+        </div>
+        <div class="card">
+          <h3>Team Scaling + Leadership</h3>
+          <p>Has led interns, designers, developers, artists, sales collaborators, vendors, and technical contributors through standards, reviews, priorities, delivery needs, and coaching.</p>
+        </div>
+        <div class="card">
+          <h3>Consumer + Immersive Product Edge</h3>
+          <p>Deep experience across consumer-facing food-tech, WebXR, real-time 3D, social storytelling, live broadcast systems, interactive media, and audience-facing product experiences.</p>
+        </div>
+      </div>
+      <div class="footer">Product leadership · AI workflow · platform thinking · cross-functional execution</div>
+    </section>
+
+    <section class="dark reveal" id="system">
+      <div class="label">Section 02 · Product Operating System</div>
+      <h2>How Damon Would Operate at Meta</h2>
+      <p class="intro">Meta PM leadership needs speed without chaos, vision without fog, metrics without soulless spreadsheet worship, and enough technical fluency to earn trust with engineering.</p>
+
+      <div class="operating-system">
+        <div class="os-panel">
+          <h3>Product Leadership Loop</h3>
+          <p>Move from ambiguous opportunity to product hypothesis, user evidence, technical feasibility, launch plan, measurable outcome, and iteration rhythm.</p>
+          <div class="os-list">
+            <div class="os-item"><strong>Discover</strong><span>Clarify users, jobs-to-be-done, friction, behavior, market context, platform constraints, and strategic opportunity.</span></div>
+            <div class="os-item"><strong>Define</strong><span>Turn messy signal into a product thesis, requirements, scope, goals, tradeoffs, and measurable success criteria.</span></div>
+            <div class="os-item"><strong>Build</strong><span>Partner with engineering, design, research, and data to move from prototype to launch-ready execution.</span></div>
+            <div class="os-item"><strong>Measure</strong><span>Analyze usage, adoption, retention, quality, conversion, satisfaction, and operational efficiency.</span></div>
+            <div class="os-item"><strong>Scale</strong><span>Convert wins into repeatable systems, team rituals, roadmap clarity, and new opportunities.</span></div>
+          </div>
+        </div>
+
+        <div class="os-panel">
+          <h3>Leadership Behavior</h3>
+          <p>What Meta gets is a product operator who can build from zero, translate across disciplines, and keep teams aligned when the path is not clean. So, a human firewall against product chaos, basically.</p>
+          <div class="os-list">
+            <div class="os-item"><strong>Executive Clarity</strong><span>Concise framing for senior rooms: what matters, why now, what changes, what risks, what success looks like.</span></div>
+            <div class="os-item"><strong>Technical Respect</strong><span>Enough implementation fluency to discuss APIs, front-end behavior, 3D/WebXR constraints, data flows, QA, and platform dependencies.</span></div>
+            <div class="os-item"><strong>Creative Product Taste</strong><span>Understands the difference between a feature that works and a product moment users actually understand and remember.</span></div>
+            <div class="os-item"><strong>Operating Pace</strong><span>Comfortable in fluid environments where process is incomplete, priorities shift, and decisions still need to be made.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">Discover · define · build · measure · scale</div>
+    </section>
+
+    <section class="reveal" id="ai">
+      <div class="label">Section 03 · AI + Responsible AI</div>
+      <h2>AI-Native, Not AI-Theater</h2>
+      <p class="intro">The posting explicitly calls for AI workflow redesign, responsible AI practices, prompt/context engineering, and measurable impact. This section says it plainly.</p>
+
+      <div class="tabs">
+        <div class="tab-buttons" role="tablist">
+          <button class="tab-btn active" data-tab="workflow" role="tab">Workflow</button>
+          <button class="tab-btn" data-tab="prompting" role="tab">Prompting</button>
+          <button class="tab-btn" data-tab="quality" role="tab">Quality</button>
+          <button class="tab-btn" data-tab="risk" role="tab">Risk</button>
+          <button class="tab-btn" data-tab="impact" role="tab">Impact</button>
+        </div>
+
+        <div class="tab-panel active" id="workflow" role="tabpanel">
+          <h3>AI as Product and Operating Layer</h3>
+          <p>Uses AI to compress the distance between strategy, requirements, content, UX behavior, testing, and execution.</p>
+          <ul>
+            <li>Built Fridgie Smalls around OpenAI API-powered recipe generation and structured outputs.</li>
+            <li>Uses AI for product copy, pitch narratives, feature logic, workflow documentation, competitive framing, and campaign systems.</li>
+            <li>Designs AI workflows to reduce production friction, not merely decorate decks with futuristic adjectives.</li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="prompting" role="tabpanel">
+          <h3>Prompt + Context Engineering</h3>
+          <p>Experience shaping inputs, constraints, outputs, tone, data context, and structured responses so AI behavior is useful inside product workflows.</p>
+          <ul>
+            <li>Fridgie Smalls converts messy ingredient input into structured recipe outputs and user-facing content.</li>
+            <li>Experience defining constraints, response format, user intent, brand voice, iteration loops, and review standards.</li>
+            <li>Comfortable building repeatable prompt systems instead of one-off chatbot magic tricks.</li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="quality" role="tabpanel">
+          <h3>Quality Review and Accuracy</h3>
+          <p>Responsible AI is not a slogan. It needs review loops, output standards, error handling, user expectations, and human judgment.</p>
+          <ul>
+            <li>Applies quality checks across AI output clarity, usefulness, safety, tone, repeatability, and product fit.</li>
+            <li>Balances speed with accuracy and review, especially when outputs shape user behavior.</li>
+            <li>Uses human-in-the-loop thinking where AI can accelerate but should not blindly decide.</li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="risk" role="tabpanel">
+          <h3>Responsible AI Risk Awareness</h3>
+          <p>Understands risk assessment, bias mitigation, quality review, user trust, and product guardrails as practical product concerns.</p>
+          <ul>
+            <li>Frames AI around trust, accuracy, usefulness, and user-facing expectations.</li>
+            <li>Supports responsible implementation through review criteria, constraints, transparency, and measurable QA.</li>
+            <li>Can partner with legal, policy, design, research, and engineering instead of treating risk like a department to dodge.</li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="impact" role="tabpanel">
+          <h3>Measurable Workflow Impact</h3>
+          <p>AI should improve velocity, consistency, quality, and learning speed. Otherwise it is just expensive autocomplete wearing sunglasses.</p>
+          <ul>
+            <li>Uses AI to speed up concept development, content generation, personalization logic, sales systems, and product planning.</li>
+            <li>Measures value through reduced friction, faster iteration, clearer outputs, better consistency, and stronger user/product outcomes.</li>
+            <li>Turns repeated workflow patterns into templates, systems, and reusable product inputs.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer">AI workflow · prompt/context engineering · responsible implementation · measurable impact</div>
+    </section>
+
+    <section class="soft reveal" id="experience">
+      <div class="label">Section 04 · Experience Evidence</div>
+      <h2>Experience Mapped to Meta PM Leadership</h2>
+      <p class="intro">The through-line is product ownership, cross-functional leadership, consumer-facing experience design, technical translation, and operating under pressure.</p>
+
+      <div class="experience">
+        <article class="exp">
+          <div class="org">Scrappy Meals XR / Fridgie Smalls / The Metacheese · Brooklyn, NY</div>
+          <div class="title">Founder / Product, AI Workflow + Immersive Experience Lead</div>
+          <div class="date">2016 - Present</div>
+          <ul>
+            <li>Built FridgieSmalls.app from 0-1 as an AI-powered consumer food product spanning product strategy, UX flows, OpenAI API behavior, structured recipe outputs, WebXR/3D content, sponsor experiences, QA, and launch iteration.</li>
+            <li>Defined product roadmap, feature priorities, user stories, product narrative, interaction behavior, AI output quality standards, and partner/sponsor value propositions.</li>
+            <li>Led developers, interns, designers, 3D collaborators, restaurant partners, creative contributors, and technical advisors through briefs, reviews, launch requirements, and iteration cycles.</li>
+            <li>Designed AI-assisted workflows for recipe generation, product storytelling, branded food experiences, content systems, user onboarding ideas, and future inventory/commerce features.</li>
+          </ul>
+        </article>
+
+        <article class="exp">
+          <div class="org">eFundex · Remote / New York</div>
+          <div class="title">Vice President of Sales and Technology / Workflow Systems</div>
+          <div class="date">2024 - Present</div>
+          <ul>
+            <li>Built AI-assisted outreach, messaging, lead workflows, pitch narratives, CRM-adjacent systems, performance-informed communication structures, and operational process improvements.</li>
+            <li>Translated market, customer, sales, and stakeholder requirements into clear action plans, templates, follow-up logic, and executive-facing materials.</li>
+            <li>Created workflow systems to increase consistency, improve response quality, and support faster execution across sales and marketing initiatives.</li>
+          </ul>
+        </article>
+
+        <article class="exp">
+          <div class="org">Vizrt / SNY / Comcast SportsNet / Tribune Media / WGN / Dick Clark Productions / Independent Clients · NYC / Global</div>
+          <div class="title">Real-Time 3D, Broadcast Product Workflow + Creative Systems Leadership</div>
+          <div class="date">2004 - Present</div>
+          <ul>
+            <li>Delivered real-time 3D graphics systems, live production workflows, enterprise broadcast tools, sports visualization systems, client implementations, and public-facing media experiences.</li>
+            <li>Operated across creative, engineering, demos, training, product workflow input, support, implementation, sales, production, news, online, executives, and client stakeholders.</li>
+            <li>Supported major media and consumer platforms including ESPN, ABC, CNN, CBS, MSNBC, Bloomberg, BBC, YES Network, Turner Sports, MLB Digital, Amazon Prime Sports, Verizon FiOS, New Year’s Rockin’ Eve, and election control-room cycles.</li>
+            <li>Built strong pattern recognition around high-pressure launches, cross-functional handoffs, technical constraints, QA, and quality standards where failure was visible immediately.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="footer">0-1 product · AI systems · cross-functional leadership · technical delivery</div>
+    </section>
+
+    <section class="dark reveal" id="metrics">
+      <div class="label">Section 05 · Product Leadership Signals</div>
+      <h2>Signals Meta Should Care About</h2>
+      <p class="intro">This is not pretending Damon has already held the exact Meta title. It positions the underlying leadership signals honestly: years of product-adjacent systems leadership, 0-1 founder execution, AI workflow implementation, and cross-functional operating range.</p>
+
+      <div class="metric-grid">
+        <div class="metric"><strong data-count="20">0</strong><span>Years across creative technology, product systems, real-time 3D, and public-facing execution</span></div>
+        <div class="metric"><strong data-count="1">0</strong><span>0-1 AI-powered consumer product launched through founder ownership</span></div>
+        <div class="metric"><strong data-count="1000">0</strong><span>Artists/operators trained across technical creative systems over career</span></div>
+        <div class="metric"><strong data-count="12">0</strong><span>Months-plus of active AI product/workflow practice, with continuing development</span></div>
+      </div>
+      <div class="footer">Leadership signal · product evidence · AI practice · execution range</div>
+    </section>
+
+    <section class="reveal" id="plan">
+      <div class="label">Section 06 · 30-60-90 Plan</div>
+      <h2>First 90 Days at Meta</h2>
+      <p class="intro">The goal is not to enter Meta and perform theater. It is to learn the system, identify high-signal product opportunities, build trust with engineering/design/research/data, and turn ambiguity into execution.</p>
+
+      <div class="plan">
+        <div class="phase">
+          <div class="badge">Days 1-30</div>
+          <h3>Learn the System</h3>
+          <ul>
+            <li>Map the product area: users, business goals, technical architecture, org structure, roadmap, constraints, success metrics, and decision rituals.</li>
+            <li>Meet engineering, design, research, data science, policy, legal, marketing, and operations partners to understand what is actually blocking progress.</li>
+            <li>Audit current product surfaces, user feedback, experiments, metrics, quality issues, and AI workflow opportunities.</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="badge">Days 31-60</div>
+          <h3>Define High-Signal Bets</h3>
+          <ul>
+            <li>Frame product hypotheses tied to user value, platform strategy, measurable outcomes, technical feasibility, and team capacity.</li>
+            <li>Build crisp product briefs, requirements, success metrics, risk notes, and stakeholder narratives.</li>
+            <li>Identify where AI can reduce workflow friction, improve quality, personalize experiences, or accelerate learning without compromising trust.</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="badge">Days 61-90</div>
+          <h3>Execute and Scale</h3>
+          <ul>
+            <li>Drive one or two focused execution tracks with engineering, design, research, and data partners.</li>
+            <li>Set clear goals, launch criteria, experiment design, review cadence, and decision thresholds.</li>
+            <li>Package the operating model into reusable team rituals, metrics dashboards, roadmap clarity, and future product opportunities.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer">Learn · define · execute · scale</div>
+    </section>
+
+    <section class="soft reveal" id="proof">
+      <div class="label">Section 07 · Project Proof</div>
+      <h2>Selected Proof Points</h2>
+      <p class="intro">Clickable proof areas that support product leadership, AI workflows, consumer product storytelling, immersive experiences, and technical execution.</p>
+
+      <div class="proof-grid">
+        <a class="proof" href="https://fridgiesmalls.app" target="_blank" rel="noopener">
+          <small>AI Product · 0-1 Consumer Experience</small>
+          <h3>Fridgie Smalls</h3>
+          <p>AI-powered food product using OpenAI API logic, structured recipe outputs, WebXR/3D, mobile UX, sponsor concepts, and consumer-facing iteration.</p>
+        </a>
+        <a class="proof" href="https://scrappymeals.com/damo" target="_blank" rel="noopener">
+          <small>Portfolio · Creative Technology</small>
+          <h3>Damon Portfolio</h3>
+          <p>Selected work across real-time 3D, broadcast systems, product storytelling, interactive media, creative leadership, and technical workflows.</p>
+        </a>
+        <a class="proof" href="https://scrappymeals.com" target="_blank" rel="noopener">
+          <small>Founder Ecosystem · Product Vision</small>
+          <h3>Scrappy Meals XR</h3>
+          <p>Founder-led product ecosystem connecting food culture, sustainability, AI, immersive media, education, brand partnerships, and audience growth.</p>
+        </a>
+        <div class="proof">
+          <small>Real-Time 3D · Platform Systems</small>
+          <h3>Broadcast Systems</h3>
+          <p>Two decades delivering real-time technical systems for live media, sports, entertainment, news, and high-pressure consumer-facing products.</p>
+        </div>
+        <div class="proof">
+          <small>AI Workflow · Product Behavior</small>
+          <h3>AI Production Layer</h3>
+          <p>Uses AI to compress strategy, copy, requirements, product logic, workflow documentation, campaign systems, and rapid prototyping.</p>
+        </div>
+        <div class="proof">
+          <small>Leadership · Translation</small>
+          <h3>Cross-Functional Operator</h3>
+          <p>Connects product, creative, engineering, research, data, business, and executive stakeholders into clear action instead of polite organizational fog.</p>
+        </div>
+      </div>
+      <div class="footer">Proof mapped to Meta PM Leadership requirements</div>
+    </section>
+
+    <section class="reveal" id="pitch">
+      <div class="label">Section 08 · Direct Pitch</div>
+      <h2>Why This Meta Role Makes Sense</h2>
+      <div class="letter">
+        <p>To the Meta product leadership team,</p>
+        <p>Meta’s Product Manager Leadership role asks for entrepreneurial product leaders who can build shared vision, drive technical development, launch products, scale teams, use metrics, and keep moving in a fluid environment. That is the part of my career that does not fit neatly into one corporate title, which is inconvenient for forms but useful for actual product work.</p>
+        <p>I have spent 20+ years building at the intersection of creative technology, real-time 3D systems, consumer-facing experiences, AI workflows, technical production, and cross-functional leadership. At Scrappy Meals XR and Fridgie Smalls, I built a 0-1 AI-powered product from concept through launch iteration. That included product vision, UX behavior, OpenAI API logic, structured outputs, WebXR/3D content, sponsor experiences, creative systems, and team coordination across developers, designers, interns, partners, and collaborators.</p>
+        <p>My background also includes enterprise-grade real-time graphics and broadcast systems, where quality, technical reliability, creative clarity, and launch pressure were not optional. That experience maps directly to product leadership because it teaches the part many teams learn too late: good ideas only matter if they survive constraints, handoffs, execution, measurement, and public use.</p>
+        <p>What I would bring to Meta is a product leader who can translate across engineering, design, research, data, creative, business, and executive audiences. I understand AI as a practical operating layer, not a novelty. I understand 0-1 ambiguity because I have built inside it. I understand product storytelling because users do not adopt roadmaps. They adopt experiences they understand, trust, and want to return to.</p>
+        <p><strong>Damon Versaggi</strong><br><a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> · <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a></p>
+      </div>
+      <div class="footer">Damon Versaggi · Meta Product Manager Leadership Interactive Packet</div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  const progress = document.getElementById('progress');
+  const topbar = document.getElementById('topbar');
+  const nav = document.getElementById('nav');
+  const menu = document.getElementById('menu');
+  const links = Array.from(document.querySelectorAll('.nav a'));
+  const sections = links.map(a => ({ a, el: document.querySelector(a.getAttribute('href')) })).filter(x => x.el);
+
+  function onScroll(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? window.scrollY / max : 0;
+    progress.style.transform = `scaleX(${pct})`;
+    topbar.classList.toggle('scrolled', window.scrollY > 40);
+
+    const marker = window.scrollY + window.innerHeight * .34;
+    let active = sections[0];
+    sections.forEach(s => { if (s.el.offsetTop <= marker) active = s; });
+    links.forEach(a => a.classList.remove('active'));
+    if (active) active.a.classList.add('active');
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  if (menu) {
+    menu.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menu.setAttribute('aria-expanded', String(open));
+      menu.textContent = open ? 'Close' : 'Menu';
+    });
+    links.forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('open');
+      menu.setAttribute('aria-expanded', 'false');
+      menu.textContent = 'Menu';
+    }));
+  }
+
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .08 });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+
+  const buttons = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.tab;
+      buttons.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const panel = document.getElementById(id);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  const stats = document.querySelectorAll('[data-count]');
+  let counted = false;
+  function countStats(){
+    if (counted) return;
+    const metrics = document.getElementById('metrics');
+    const rect = metrics.getBoundingClientRect();
+    if (rect.top < window.innerHeight * .8) {
+      counted = true;
+      stats.forEach(el => {
+        const target = Number(el.dataset.count);
+        let cur = 0;
+        const steps = target > 100 ? 40 : 30;
+        const inc = target / steps;
+        const timer = setInterval(() => {
+          cur += inc;
+          if (cur >= target) {
+            cur = target;
+            clearInterval(timer);
+          }
+          el.textContent = Math.round(cur).toLocaleString();
+        }, 24);
+      });
+    }
+  }
+  window.addEventListener('scroll', countStats, { passive: true });
+  countStats();
+
+  window.copyEmail = function(){
+    const email = 'damon@scrappymeals.com';
+    const btn = document.getElementById('emailBtn');
+    function done(){
+      btn.innerHTML = '<span class="dot"></span>Copied';
+      setTimeout(() => btn.innerHTML = '<span class="dot"></span>Email Damon', 1800);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(done).catch(() => window.location.href = 'mailto:' + email);
+    } else {
+      window.location.href = 'mailto:' + email;
+    }
+  };
+})();
+</script>
+</body>
+</html>
