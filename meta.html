@@ -77,13 +77,13 @@
       border-color: rgba(8,102,255,.24);
     }
     .topbar-inner {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 12px 20px;
+      padding: 12px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
     }
     .brand {
       display: flex;
@@ -91,10 +91,11 @@
       gap: 10px;
       text-decoration: none;
       font-weight: 950;
-      letter-spacing: .1em;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      font-size: 12px;
+      font-size: 11px;
       white-space: nowrap;
+      flex: 0 0 auto;
     }
     .meta-mark {
       width: 36px;
@@ -113,20 +114,25 @@
     }
     .nav {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: flex-end;
-      gap: 14px;
-      font-size: 11px;
+      align-items: center;
+      gap: 11px;
+      font-size: 10px;
       font-weight: 950;
       text-transform: uppercase;
-      letter-spacing: .08em;
+      letter-spacing: .07em;
       color: var(--muted);
+      white-space: nowrap;
+      flex: 1 1 auto;
+      min-width: 0;
     }
     .nav a {
       text-decoration: none;
       border-bottom: 2px solid transparent;
       padding: 4px 0;
       transition: color 160ms, border-color 160ms, transform 160ms;
+      flex: 0 0 auto;
     }
     .nav a:hover, .nav a.active {
       color: var(--ink);
@@ -667,7 +673,7 @@
       .reveal { opacity: 1 !important; transform: none !important; }
     }
 
-    @media (max-width: 960px) {
+    @media (max-width: 1080px) {
       body { background: white; }
       .shell { padding: 0; }
       .packet { box-shadow: none; border-left: 0; border-right: 0; }
@@ -735,12 +741,12 @@
     <button class="menu" id="menu" type="button" aria-controls="nav" aria-expanded="false">Menu</button>
     <nav class="nav" id="nav" aria-label="Page navigation">
       <a href="#hero">Overview</a>
-      <a href="#match">Meta Match</a>
-      <a href="#system">PM System</a>
-      <a href="#ai">AI / Responsible AI</a>
+      <a href="#match">Match</a>
+      <a href="#system">System</a>
+      <a href="#ai">AI</a>
       <a href="#experience">Experience</a>
       <a href="#metrics">Signals</a>
-      <a href="#plan">30-60-90</a>
+      <a href="#plan">Plan</a>
       <a href="#proof">Proof</a>
       <a href="#pitch">Pitch</a>
     </nav>
