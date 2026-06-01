@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Damon Versaggi | Work & Co | Senior Design Lead</title>
+  <meta name="description" content="Damon Versaggi — interactive candidate packet for Work & Co / Accenture Song Senior Design Lead, Digital Product Design Manager: product strategy, UX/UI, visual design, prototyping, design systems, testing, launch, optimization, and client-facing digital product leadership." />
+  <meta name="keywords" content="Work and Co, Accenture Song, Senior Design Lead, Digital Product Design Manager, product design, UX, UI, visual design, prototyping, user flows, design systems, product strategy, user testing, launch optimization, Damon Versaggi" />
+  <meta name="author" content="Damon Versaggi" />
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    :root{
+      --work:#111111;
+      --work-dark:#000000;
+      --work-soft:#f4f0ff;
+      --work-mist:#ebe4ff;
+      --signal:#c8b8ff;
+      --ink:#111318;
+      --charcoal:#111318;
+      --muted:#626873;
+      --line:#ddd5f5;
+      --paper:#ffffff;
+      --cream:#fafafa;
+      --shadow:0 24px 80px rgba(10,12,16,.14);
+      --grid:rgba(255,255,255,.075);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:linear-gradient(135deg,#ffffff 0%,#f5f1ff 45%,#ffffff 100%);
+      color:var(--ink);
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration-color:var(--work);text-underline-offset:3px}
+    button,a{-webkit-tap-highlight-color:transparent}
+    .ats-block{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;font-size:10px;color:transparent}
+    .progress{position:fixed;inset:0 auto auto 0;width:100%;height:4px;background:linear-gradient(90deg,var(--work),var(--signal));transform:scaleX(0);transform-origin:left center;z-index:1000;box-shadow:0 0 18px rgba(200,184,255,.34);pointer-events:none}
+    .topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(200,184,255,.42);transition:box-shadow .18s ease,background .18s ease}
+    .topbar.scrolled{box-shadow:0 14px 38px rgba(70,55,120,.12);background:rgba(255,255,255,.97)}
+    .topbar-inner{max-width:1180px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;letter-spacing:.12em;text-transform:uppercase;font-size:11px;white-space:nowrap;color:var(--work-dark)}
+    .brand-icon{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;line-height:1;background:var(--work);color:#fff;border-radius:50%;font-weight:950;letter-spacing:.06em;box-shadow:0 8px 18px rgba(0,0,0,.16)}
+    .nav{display:flex;gap:11px;flex-wrap:wrap;justify-content:flex-end;font-size:10px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+    .nav a{text-decoration:none;border-bottom:2px solid transparent;padding:4px 1px;transition:.16s ease}
+    .nav a:hover,.nav a.active{color:var(--work-dark);border-bottom-color:var(--work);transform:translateY(-1px)}
+    .menu{display:none;appearance:none;border:1px solid var(--line);background:#fff;color:var(--work-dark);border-radius:999px;padding:8px 12px;font-weight:900;font-size:10px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+    .shell{max-width:1180px;margin:0 auto;padding:30px 18px 80px}
+    .print-note{text-align:right;margin-bottom:12px}
+    .packet{background:var(--paper);border:1px solid rgba(200,184,255,.42);box-shadow:var(--shadow);overflow:hidden}
+    section.pg{position:relative;padding:58px 68px 72px;border-bottom:1px solid rgba(200,184,255,.42)}
+    section.pg:last-child{border-bottom:none}
+    .pg.green{background:var(--charcoal);color:#f7f8fa;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:34px 34px}
+    .pg.soft{background:var(--cream)}
+    .pg-foot{position:absolute;left:68px;right:68px;bottom:20px;text-align:center;font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:800}
+    .green .pg-foot{color:rgba(255,255,255,.38)}
+    .label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--work);font-weight:950;margin-bottom:8px}
+    .green .label{color:#c8cdd5}
+    h1{font-size:clamp(36px,5.6vw,68px);line-height:.9;letter-spacing:.06em;text-transform:uppercase;font-weight:950;color:var(--work-dark);max-width:850px}
+    .green h1,.green h2{color:#f7f8fa}
+    .role{margin-top:14px;font-size:clamp(12px,1.45vw,16px);font-weight:850;letter-spacing:.075em;text-transform:uppercase;color:var(--muted)}
+    #hero .role{white-space:nowrap;font-size:clamp(10px,1.12vw,14px);letter-spacing:.07em}
+    @media(max-width:900px){#hero .role{white-space:normal}}
+    .contact{margin-top:8px;color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+    .statement{margin-top:24px;padding:18px 20px;border-left:5px solid var(--work);background:var(--work-soft);font-size:16px;line-height:1.58;max-width:960px}
+    .quick-fit{margin-top:16px;display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:stretch}
+    .fit-box{border:1px solid var(--line);background:#fff;padding:18px 18px;border-radius:18px;box-shadow:0 10px 28px rgba(70,55,120,.07)}
+    .fit-box strong{color:var(--work-dark)}
+    .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+
+    .work-buttons{
+      display:flex;
+      flex-wrap:nowrap;
+      gap:6px;
+      margin-top:20px;
+      align-items:center;
+      width:100%;
+    }
+    .work-buttons .chip{
+      flex:1 1 0;
+      min-width:0;
+      min-height:42px;
+      padding:8px 8px;
+      font-size:8.6px;
+      letter-spacing:.075em;
+      white-space:nowrap;
+    }
+    .work-buttons .dot{width:5px;height:5px}
+    .pg.green h2.sec{color:#f7f8fa}
+
+    #hero .statement{background:#f4f0ff;border-left-color:#111111}
+    #hero .fit-box{background:linear-gradient(180deg,#ffffff 0%,#fbf9ff 100%);border-color:#ddd5f5}
+    .chip:hover,.chip:focus-visible{background:#f4f0ff}
+    @media(max-width:900px){
+      .work-buttons{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+      .work-buttons .chip{width:100%;font-size:9px;letter-spacing:.08em;white-space:normal}
+    }
+    @media(max-width:560px){
+      .work-buttons{grid-template-columns:1fr}
+    }
+
+    .chip{appearance:none;border:1px solid var(--line);background:#fff;color:var(--work-dark);display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;border-radius:999px;text-decoration:none;font-size:10px;font-weight:950;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s,background .18s}
+    .chip:hover,.chip:focus-visible{transform:translateY(-2px);border-color:var(--work);box-shadow:0 8px 22px rgba(200,184,255,.30);outline:none;background:var(--work-soft)}
+    .chip.primary{background:var(--work);border-color:var(--work);color:#fff}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--signal);flex-shrink:0}.primary .dot{background:#fff}
+    h2.sec{font-size:clamp(20px,2.55vw,30px);letter-spacing:.09em;text-transform:uppercase;font-weight:950;color:var(--work-dark);border-bottom:3px solid var(--work);padding-bottom:10px;margin-bottom:18px}
+
+    .pg.green h2.sec{color:#f7f8fa}
+
+    #hero .statement{background:#f4f0ff;border-left-color:#111111}
+    #hero .fit-box{background:linear-gradient(180deg,#ffffff 0%,#fbf9ff 100%);border-color:#ddd5f5}
+    .chip:hover,.chip:focus-visible{background:#f4f0ff}
+    p{font-size:14px;margin-bottom:12px}.green p{color:#d8dce3}
+    ul{padding-left:18px;margin:8px 0 14px}li{font-size:14px;line-height:1.58;margin-bottom:6px}.green li{color:#e1e5eb}
+    .match-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .match-card{border:1px solid var(--line);background:#fff;border-radius:18px;padding:18px;transition:.2s ease;position:relative;overflow:hidden}
+    .match-card:before{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:linear-gradient(90deg,var(--work),transparent)}
+    .match-card:hover{transform:translateY(-3px);box-shadow:0 12px 34px rgba(70,55,120,.12);border-color:rgba(200,184,255,.70)}
+    .match-card h3,.stat h3,.phase h3,.proof h3{font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--work-dark);font-weight:950;margin-bottom:8px}
+    .match-card p,.proof p{font-size:13px;color:var(--muted);margin:0}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+    .stat{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.055);border-radius:18px;padding:18px;transition:.2s ease}
+    .stat:hover{transform:translateY(-3px);border-color:#c8cdd5;background:rgba(255,255,255,.12)}
+    .num{font-size:30px;font-weight:950;color:#ffffff;line-height:1;margin-bottom:8px}
+    .stat h3{color:#f7f8fa}.stat p{font-size:12px;margin:0;color:#c8cdd5}
+    .split{display:grid;grid-template-columns:.95fr 1.05fr;gap:22px;align-items:start;margin-top:18px}
+    .panel{border:1px solid var(--line);background:#fff;border-radius:22px;padding:22px;box-shadow:0 10px 28px rgba(70,55,120,.07)}
+    .panel.green-panel{background:var(--work-dark);border-color:rgba(255,255,255,.15);color:#fff}.panel.green-panel p,.panel.green-panel li{color:#e2e5ea}.panel.green-panel h3{color:#fff}
+    .timeline{display:grid;gap:11px;margin-top:10px}.step{border:1px solid var(--line);background:#fff;border-radius:16px;padding:14px 15px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start;transition:.18s ease}.step:hover{border-color:var(--work);transform:translateX(3px)}.step-num{font-weight:950;color:var(--work);letter-spacing:.12em;font-size:12px}.step p{font-size:13px;color:var(--muted);margin:0}
+    .plan{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}.phase{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;transition:.2s ease}.phase:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(70,55,120,.13)}.badge{display:inline-block;background:var(--work);color:#fff;font-weight:950;letter-spacing:.11em;text-transform:uppercase;font-size:10px;padding:4px 10px;border-radius:999px;margin-bottom:10px}
+    .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:18px}.proof{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);background:#fff;border-radius:22px;padding:20px;transition:.2s ease;position:relative;overflow:hidden}.proof:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:3px;background:var(--work);transform:scaleX(0);transform-origin:left;transition:.2s ease}.proof:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(70,55,120,.13)}.proof:hover:after{transform:scaleX(1)}.tag{font-size:9px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;color:var(--work);margin-bottom:7px}.arrow{display:inline-block;margin-top:10px;color:var(--work);font-size:12px;font-weight:900}
+    .content-tabs{margin-top:18px}.tab-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.tab-btn{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#e1e5eb;border-radius:999px;padding:10px 13px;font-size:10px;font-weight:950;letter-spacing:.09em;text-transform:uppercase;cursor:pointer}.tab-btn.active{background:#fff;color:#111318;border-color:#fff}.tab-panel{display:none;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.055);border-radius:22px;padding:20px}.tab-panel.active{display:block}.tab-panel h3{color:#fff;text-transform:uppercase;letter-spacing:.08em;font-size:13px;margin-bottom:8px}.tab-panel p{font-size:14px;color:#e1e5eb;margin:0}
+    .letter p{font-family:Georgia,serif;font-size:15px;line-height:1.68;color:var(--ink)}.sig{font-family:Georgia,serif;margin-top:20px;font-size:15px}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .56s ease,transform .56s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}.a1{animation:fadeUp .6s ease forwards}.a2{animation:fadeUp .6s .08s ease forwards;opacity:0}.a3{animation:fadeUp .6s .16s ease forwards;opacity:0}.a4{animation:fadeUp .6s .24s ease forwards;opacity:0}.a5{animation:fadeUp .6s .32s ease forwards;opacity:0}
+    @media print{body{background:#fff}.topbar,.progress,.print-note{display:none!important}.shell{padding:0;max-width:100%}.packet{box-shadow:none;border:none}section.pg{padding:34px 48px;break-inside:avoid}.reveal{opacity:1!important;transform:none!important}a{text-decoration:none}}
+    @media(max-width:900px){body{background:#fff}.shell{padding:0}.packet{border-left:none;border-right:none;box-shadow:none}.topbar-inner{padding:10px 14px;flex-wrap:wrap}.brand{max-width:calc(100% - 90px);white-space:normal;line-height:1.2}.menu{display:inline-flex;margin-left:auto}.nav{display:none;width:100%;flex-direction:column;align-items:stretch;gap:0;border-top:1px solid rgba(200,184,255,.42);padding-top:8px}.nav.open{display:flex}.nav a{padding:12px 2px;min-height:44px;border-bottom:1px solid rgba(200,184,255,.34)}section.pg{padding:38px 22px 54px}.pg-foot{position:static;margin-top:28px}.quick-fit,.split{grid-template-columns:1fr}.match-grid,.proof-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){section.pg{padding:30px 16px 44px}h1{font-size:clamp(32px,12vw,48px);letter-spacing:.045em}.role{font-size:11px;line-height:1.65}.chips{flex-direction:column}.chip{width:100%;min-height:48px}.match-grid,.proof-grid,.stats{grid-template-columns:1fr}.fit-box,.panel,.phase,.proof,.match-card{padding:17px 15px;border-radius:18px}.step{grid-template-columns:1fr;gap:5px}p,li{font-size:13px;overflow-wrap:break-word}.letter p{font-size:14px}}
+    @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+<div class="ats-block" aria-hidden="true">
+  Damon Versaggi Work and Co Accenture Song Senior Design Lead Digital Product Design Manager product design UX UI visual design user experience user interface design branding prototyping user flows product strategy design systems usability testing optimization launch collaboration product managers strategists developers client partners digital products services end user testing hands on design leadership interaction design creative technology real time 3D AI workflows Fridgie Smalls Scrappy Meals.
+</div>
+<div class="progress" id="progress"></div>
+<nav class="topbar" id="topbar" aria-label="Page navigation">
+  <div class="topbar-inner">
+    <a class="brand" href="#hero"><span class="brand-icon" aria-hidden="true">W</span>Damon Versaggi · Work &amp; Co</a>
+    <button class="menu" id="menu" aria-controls="nav" aria-expanded="false">Menu</button>
+    <div class="nav" id="nav" role="list">
+      <a href="#hero">Overview</a><a href="#match">Role Match</a><a href="#engine">Product Engine</a><a href="#experience">Experience</a><a href="#plan">30-60-90</a><a href="#proof">Proof</a><a href="#letter">Pitch</a>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <div class="print-note"><button class="chip" onclick="window.print()">⎙ Save / Print PDF</button></div>
+  <main class="packet">
+    <section class="pg" id="hero">
+      <div class="label a1">Work &amp; Co / Accenture Song · Senior Design Lead · Digital Product Design Manager</div>
+      <h1 class="a1">Damon<br>Versaggi</h1>
+      <p class="role a2">Digital Product Design · UX/UI · Visual Systems · Prototyping · Product Storytelling · Creative Technology</p>
+      <p class="contact a3">New York / New Jersey Area · <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> · <a href="https://linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a> · <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a></p>
+      <div class="statement a4"><strong>Target fit:</strong> a hands-on senior design lead who can move from product strategy to user flows, visual design, prototypes, testing, launch, and optimization while working directly with partners, PMs, strategists, developers, and clients. Basically the actual job, not “visionary design vibes” taped to a mood board.</div>
+      <div class="quick-fit a5">
+        <div class="fit-box"><strong>Why Work &amp; Co:</strong> Damon’s career sits where form and function collide: real-time 3D systems, digital products, visual storytelling, product logic, AI workflows, interactive prototypes, brand worlds, and client-facing creative technology. He understands craft, but also the machinery underneath craft that makes products usable, scalable, and shippable.</div>
+        <div class="fit-box"><strong>Immediate value:</strong> senior-level product design leadership, rapid prototyping, UX/UI systems, visual polish, client-ready storytelling, design/dev collaboration, launch discipline, usability thinking, and the ability to turn ambiguous product goals into clean, testable digital experiences.</div>
+      </div>
+      <div class="chips work-buttons a5">
+        <button class="chip primary" id="emailBtn" onclick="copyEmail()"><span class="dot"></span>Email Damon</button>
+        <a class="chip" href="https://scrappymeals.com/damo" target="_blank" rel="noopener"><span class="dot"></span>Portfolio</a>
+        <a class="chip" href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener"><span class="dot"></span>Digital Assets ↗</a>
+        <a class="chip" href="https://fridgiesmalls.app" target="_blank" rel="noopener"><span class="dot"></span>Fridgie Smalls ↗</a>
+        <a class="chip" href="https://scrappymeals.com" target="_blank" rel="noopener"><span class="dot"></span>Scrappy Meals ↗</a>
+        <a class="chip" href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener"><span class="dot"></span>Metacheese ↗</a>
+        <a class="chip" href="https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13" target="_blank" rel="noopener"><span class="dot"></span>Live ↗</a>
+        <button class="chip" onclick="window.print()"><span class="dot"></span>Print / PDF</button>
+      </div>
+      <div class="pg-foot">Damon Versaggi · Work &amp; Co Senior Design Lead Interactive Packet · damon@scrappymeals.com</div>
+    </section>
+
+    <section class="pg soft reveal" id="match">
+      <div class="label">Section 01</div><h2 class="sec">Role Match Snapshot</h2>
+      <p>This is built around Work &amp; Co’s actual ask: a hands-on senior product design leader who sees no wall between strategy, UX, UI, visual design, branding, prototyping, testing, developer collaboration, and shipped digital products.</p>
+      <div class="match-grid">
+        <div class="match-card"><h3>Digital Product Design</h3><p>Experience shaping product logic, user-facing flows, interface hierarchy, brand storytelling, and functional creative systems from concept into usable experiences.</p></div>
+        <div class="match-card"><h3>UX / UI / Visual Craft</h3><p>Strong foundation in visual systems, interaction logic, real-time design environments, motion, hierarchy, interface behavior, and polished execution under pressure.</p></div>
+        <div class="match-card"><h3>Prototyping Mindset</h3><p>Builds quickly to make ideas tangible: interactive HTML packets, product flows, AI outputs, Fridgie Smalls UX, demos, storyboards, decks, and working digital concepts.</p></div>
+        <div class="match-card"><h3>Client Collaboration</h3><p>Comfortable translating complex creative technology into clear product language for clients, partners, executives, developers, strategists, and internal teams.</p></div>
+        <div class="match-card"><h3>Strategy to Launch</h3><p>Can move across discovery, concepting, user flows, visual direction, prototype iteration, QA, launch support, optimization, and stakeholder alignment.</p></div>
+        <div class="match-card"><h3>End-User Focus</h3><p>Fridgie Smalls is built around simple user behavior: take ingredients, generate recipes, save outputs, reduce friction, and turn a useful action into a branded product experience.</p></div>
+      </div>
+      <div class="pg-foot">Role fit · product design · prototyping · UX/UI · client collaboration</div>
+    </section>
+
+    <section class="pg green reveal" id="engine">
+      <div class="label">Section 02</div><h2 class="sec">Product Design Engine</h2>
+      <p>A practical model for the role: find the user problem, make the flow visible, prototype fast, pressure-test the concept, collaborate with builders, and polish the thing until it behaves like an actual product instead of a deck that learned to breathe.</p>
+      <div class="stats">
+        <div class="stat"><div class="num" data-count="4">0</div><h3>Core Moves</h3><p>Strategy, flow, prototype, launch.</p></div>
+        <div class="stat"><div class="num" data-count="6">0</div><h3>Design Layers</h3><p>UX, UI, brand, motion, content, systems.</p></div>
+        <div class="stat"><div class="num" data-count="3">0</div><h3>Partner Teams</h3><p>PMs, strategists, developers.</p></div>
+        <div class="stat"><div class="num" data-count="1">0</div><h3>End User</h3><p>The person the product actually serves.</p></div>
+      </div>
+      <div class="content-tabs">
+        <div class="tab-buttons" role="tablist">
+          <button class="tab-btn active" data-tab="strategy">Strategy</button>
+          <button class="tab-btn" data-tab="flows">Flows</button>
+          <button class="tab-btn" data-tab="prototype">Prototype</button>
+          <button class="tab-btn" data-tab="optimize">Optimize</button>
+        </div>
+        <div class="tab-panel active" id="strategy"><h3>Product Strategy</h3><p>Clarify the business goal, user need, audience behavior, product promise, brand role, technical constraints, and success signal before everyone starts lovingly rearranging rectangles.</p></div>
+        <div class="tab-panel" id="flows"><h3>User Flows + Interaction Logic</h3><p>Translate ambiguity into usable paths: onboarding, input, feedback loops, save states, decision points, content hierarchy, visual cues, and the moments where users either understand the product or quietly leave.</p></div>
+        <div class="tab-panel" id="prototype"><h3>Prototyping + Testing</h3><p>Build early and often through clickable flows, interface comps, HTML prototypes, AI-assisted concepts, interaction models, and testable experiences that expose what works before production locks in the mistakes.</p></div>
+        <div class="tab-panel" id="optimize"><h3>Launch + Optimization</h3><p>Support delivery with design QA, developer collaboration, visual polish, usability feedback, stakeholder clarity, and post-launch improvements based on actual behavior, not someone’s conference-room hunch.</p></div>
+      </div>
+      <div class="pg-foot">Strategy · flows · prototype · test · launch · optimize</div>
+    </section>
+
+    <section class="pg reveal" id="experience">
+      <div class="label">Section 03</div><h2 class="sec">Relevant Experience</h2>
+      <div class="split">
+        <div class="panel green-panel"><h3>Product + Creative Technology Credibility</h3><p>Damon is not coming at product design as a decorative layer. He has built across real-time 3D systems, live broadcast interfaces, AI product logic, brand worlds, digital storytelling, and working prototypes that need to communicate clearly and function under real constraints.</p><ul><li>Created Fridgie Smalls, an AI-powered food product that turns user ingredients into structured recipe experiences.</li><li>Built Scrappy Meals as a food-tech and immersive storytelling ecosystem spanning product, content, 3D, education, and partnerships.</li><li>Designed and supported high-pressure real-time graphics systems where visual execution and technical behavior had to work together immediately.</li></ul></div>
+        <div class="panel"><h3>Execution Range</h3><div class="timeline"><div class="step"><div class="step-num">01</div><p><strong>Product strategy:</strong> translating user needs, stakeholder goals, and business value into clear product concepts and execution paths.</p></div><div class="step"><div class="step-num">02</div><p><strong>UX/UI systems:</strong> user flows, interface hierarchy, visual language, interaction logic, content structure, and product storytelling.</p></div><div class="step"><div class="step-num">03</div><p><strong>Prototyping:</strong> interactive HTML packets, product demos, pitch prototypes, AI-assisted workflows, branded flows, and rapid concept validation.</p></div><div class="step"><div class="step-num">04</div><p><strong>Delivery:</strong> design QA, launch support, stakeholder communication, developer collaboration, optimization, and calm execution when the room gets theatrical.</p></div></div></div>
+      </div>
+      <div class="pg-foot">Fridgie Smalls · Scrappy Meals · real-time 3D · digital product design</div>
+    </section>
+
+    <section class="pg soft reveal" id="plan">
+      <div class="label">Section 04</div><h2 class="sec">30 · 60 · 90 Day Plan</h2>
+      <div class="plan">
+        <div class="phase"><span class="badge">Days 1-30</span><h3>Understand + Frame</h3><ul><li>Learn Work &amp; Co project context, client goals, product constraints, team operating style, and success metrics.</li><li>Audit existing product flows, design systems, research signals, stakeholder expectations, and technical dependencies.</li><li>Identify the core user problem and translate it into clear design priorities.</li><li>Build fast alignment artifacts: journey maps, flow diagrams, product principles, and early concept directions.</li></ul></div>
+        <div class="phase"><span class="badge">Days 31-60</span><h3>Prototype + Validate</h3><ul><li>Lead iterative product design across UX, UI, visual direction, prototype behavior, and content hierarchy.</li><li>Partner closely with PMs, strategists, and developers to test feasibility and sharpen execution.</li><li>Prepare clickable prototypes and testable design directions for user feedback and client review.</li><li>Refine based on testing, stakeholder signal, technical reality, and product value.</li></ul></div>
+        <div class="phase"><span class="badge">Days 61-90</span><h3>Launch + Optimize</h3><ul><li>Move strongest design direction into production-ready systems, specs, components, and QA standards.</li><li>Support developers through implementation details, edge cases, motion, responsive behavior, and visual polish.</li><li>Track launch performance and user feedback to identify optimization opportunities.</li><li>Document patterns and learnings so the team can move faster on the next cycle.</li></ul></div>
+      </div>
+      <div class="pg-foot">Understand · prototype · validate · launch · optimize</div>
+    </section>
+
+    <section class="pg reveal" id="proof">
+      <div class="label">Section 05</div><h2 class="sec">Project Proof</h2>
+      <div class="proof-grid">
+        <a class="proof" href="https://scrappymeals.com/damo" target="_blank" rel="noopener"><div class="tag">Portfolio · Creative Systems</div><h3>Damon Portfolio</h3><p>Creative direction, real-time 3D, product storytelling, digital production, brand systems, and high-pressure execution proof.</p><span class="arrow">Visit ↗</span></a>
+        <a class="proof" href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener"><div class="tag">Digital Assets · 3D · Visual Systems</div><h3>Digital Assets</h3><p>Selected creative technology, 3D, product, character, and visual systems work that supports the Work &amp; Co product-design story.</p><span class="arrow">Open ↗</span></a>
+        <a class="proof" href="https://fridgiesmalls.app" target="_blank" rel="noopener"><div class="tag">AI Product · UX · Digital Experience</div><h3>Fridgie Smalls</h3><p>AI-powered food product turning fridge ingredients into recipes, structured outputs, branded flows, and usable consumer-facing experiences.</p><span class="arrow">Visit ↗</span></a>
+        <a class="proof" href="https://scrappymeals.com" target="_blank" rel="noopener"><div class="tag">Founder · Brand World · Product Storytelling</div><h3>Scrappy Meals XR</h3><p>Food-first ecosystem connecting sustainability, culinary education, product concepts, immersive storytelling, restaurant partnerships, and audience engagement.</p><span class="arrow">Visit ↗</span></a>
+        <a class="proof" href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener"><div class="tag">Virtual World · Education · Systems</div><h3>Metacheese</h3><p>Virtual internship and culinary education world connected to the larger Scrappy Meals ecosystem, showing world-building and interactive learning logic.</p><span class="arrow">Visit ↗</span></a>
+        <a class="proof" href="https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13" target="_blank" rel="noopener"><div class="tag">Live Production · Real-Time Systems</div><h3>Live</h3><p>Live broadcast and real-time production proof showing the high-pressure creative systems background behind the product-design packet.</p><span class="arrow">Watch ↗</span></a>
+      </div>
+      <div class="pg-foot">Product design · UX/UI · prototypes · creative systems · launch thinking</div>
+    </section>
+
+    <section class="pg soft reveal" id="letter">
+      <div class="label">Section 06</div><h2 class="sec">Direct Pitch</h2>
+      <div class="letter">
+        <p>To the Work &amp; Co team,</p>
+        <p>I’m interested in the Senior Design Lead role because it sits exactly where I do my strongest work: digital product strategy, visual design, interaction logic, prototyping, storytelling, technical collaboration, and hands-on execution from concept through launch.</p>
+        <p>My background is not a traditional single-lane product design path, and that is the advantage. I have worked across real-time 3D systems, live broadcast graphics, AI product workflows, founder-led product building, immersive brand worlds, pitch systems, and client-facing creative technology. The through-line is always the same: take something complex, make it understandable, design the path, prototype the experience, and help ship it with craft.</p>
+        <p>For Work &amp; Co, I would bring a senior design partner who can work directly with PMs, strategists, developers, partners, and clients without needing layers of translation. I can help shape user flows, visual systems, prototypes, product narratives, launch details, and optimization cycles while keeping the end-user and product value in focus.</p>
+        <p>I care about the thing actually working. Strategy should become a flow. A flow should become a prototype. A prototype should reveal what users understand. A design system should help the product scale. And the final execution should feel sharp enough that nobody has to explain why it matters with a 67-slide hostage situation.</p>
+<div class="sig">Damon Versaggi<br><a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> · <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a> · <a href="https://linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a></div>
+      </div>
+      <div class="pg-foot">Damon Versaggi · Work &amp; Co Senior Design Lead Interactive Packet</div>
+    </section>
+  </main>
+</div>
+<script>
+(function(){
+  const progress=document.getElementById('progress'), topbar=document.getElementById('topbar'), nav=document.getElementById('nav'), menu=document.getElementById('menu');
+  function onScroll(){const st=scrollY||document.documentElement.scrollTop;const dh=document.documentElement.scrollHeight-document.documentElement.clientHeight;progress.style.transform='scaleX('+(dh?st/dh:0)+')';topbar.classList.toggle('scrolled',st>35)}
+  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll,{passive:true});onScroll();
+  menu&&menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Close':'Menu'});
+  const links=[...document.querySelectorAll('.nav a')], sections=links.map(a=>({a,el:document.querySelector(a.getAttribute('href'))})).filter(x=>x.el);
+  links.forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu'}));
+  function activeNav(){let cur=null,mid=scrollY+innerHeight*.34;sections.forEach(s=>{if(s.el.offsetTop<=mid)cur=s});links.forEach(a=>a.classList.remove('active'));if(cur)cur.a.classList.add('active')}addEventListener('scroll',activeNav,{passive:true});activeNav();
+  const reveals=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.08});reveals.forEach(el=>io.observe(el))}else reveals.forEach(el=>el.classList.add('visible'));
+  document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active')}));
+  let counted=false;function countUp(){if(counted)return;const engine=document.getElementById('engine');if(engine.getBoundingClientRect().top<innerHeight*.75){counted=true;document.querySelectorAll('[data-count]').forEach(el=>{const target=+el.dataset.count;let n=0;const step=()=>{n+=Math.max(1,Math.ceil(target/24));if(n>=target){el.textContent=target;return}el.textContent=n;requestAnimationFrame(step)};step()})}}addEventListener('scroll',countUp,{passive:true});countUp();
+  window.copyEmail=function(){const email='damon@scrappymeals.com',btn=document.getElementById('emailBtn');function done(){btn.innerHTML='<span class="dot"></span>Copied';setTimeout(()=>btn.innerHTML='<span class="dot"></span>Email Damon',1800)}if(navigator.clipboard){navigator.clipboard.writeText(email).then(done)}else{const t=document.createElement('textarea');t.value=email;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(t)}};
+})();
+</script>
+</body>
+</html>
