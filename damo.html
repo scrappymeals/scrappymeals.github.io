@@ -1,1278 +1,796 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Damon Versaggi | Creative Solutions Architect</title>
-<meta content="Damon Versaggi — Creative Solutions Architect spanning real-time 3D, live broadcast, AI workflows, product storytelling, campaign logic, partnerships, and audience growth." name="description"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damon Versaggi — Creative Solutions Architect</title>
+<meta name="description" content="Damon Versaggi — Creative Solutions Architect spanning real-time 3D, live broadcast, AI workflows, product storytelling, campaign systems, partnerships, and audience growth.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --black: #0d1117;
-  --dark: #141920;
-  --panel: #181f28;
-  --mid: #1e2834;
-  --rule: #2a3542;
-  --muted: #5a6a7a;
-  --stone: #8a9aaa;
-  --cream: #d8dfe8;
-  --white: #eef2f7;
-  --acid: #d4ff1a;
-  --acid-dim: rgba(212,255,26,0.07);
-  --acid-glow: rgba(212,255,26,0.22);
-  --acid-glow2: rgba(212,255,26,0.08);
-  --blue: #4fa8ff;
-  --blue-dim: rgba(79,168,255,0.08);
-  --shadow: rgba(0,0,0,0.7);
-  --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
-  --font-serif: 'DM Serif Display', Georgia, serif;
-  --font-mono: 'Space Mono', 'Courier New', monospace;
-}
+  :root {
+    --bg: #09090E;
+    --surface: #141420;
+    --surface2: #1C1C2C;
+    --surface3: #232337;
+    --accent: #D4FF1A;
+    --accent-soft: #E8FF40;
+    --accent-dim: rgba(212,255,26,0.12);
+    --accent-line: rgba(212,255,26,0.35);
+    --text: #F2F1ED;
+    --text-mid: #A5A5B6;
+    --text-dim: #686879;
+    --rule: rgba(255,255,255,0.07);
+    --rule-bright: rgba(255,255,255,0.14);
+    --radius: 4px;
+    --max: 1180px;
+  }
 
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
 
-/* NOISE OVERLAY */
-body::before {
-  content:"";
-  position:fixed;
-  inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  background-size:200px;
-  pointer-events:none;
-  z-index:9999;
-  opacity:0.45;
-}
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: 3000;
+    box-shadow: 0 0 24px rgba(212,255,26,0.45);
+  }
 
-body {
-  background:#0d1117;
-  color:var(--cream);
-  font-family:var(--font-mono);
-  font-size:13px;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  cursor:none;
-}
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 60px;
+    background: rgba(9,9,14,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--rule);
+  }
 
-a{color:inherit;text-decoration:none;}
+  .nav-logo {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .nav-logo span { color: var(--accent); }
 
-/* CUSTOM CURSOR */
-.cursor-dot {
-  position:fixed;
-  width:8px;height:8px;
-  background:var(--acid);
-  border-radius:50%;
-  pointer-events:none;
-  z-index:10000;
-  transform:translate(-50%,-50%);
-  transition:transform 0.05s, width 0.2s, height 0.2s, background 0.2s;
-  mix-blend-mode:difference;
-}
-.cursor-ring {
-  position:fixed;
-  width:28px;height:28px;
-  border:1px solid rgba(212,255,26,0.5);
-  border-radius:50%;
-  pointer-events:none;
-  z-index:9998;
-  transform:translate(-50%,-50%);
-  transition:transform 0.12s ease, width 0.25s, height 0.25s, border-color 0.2s;
-}
-.cursor-ring.hovering {
-  width:44px;height:44px;
-  border-color:var(--acid);
-}
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-cta {
+    color: var(--accent) !important;
+    border: 1px solid rgba(212,255,26,0.4) !important;
+    padding: 7px 16px;
+    border-radius: var(--radius);
+    transition: background 0.2s, border-color 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent-dim) !important; border-color: var(--accent) !important; }
+  .nav-toggle { display: none; background: none; border: none; color: var(--text-mid); font-size: 20px; cursor: pointer; padding: 8px; }
 
-/* SCROLL PROGRESS */
-.scroll-progress {
-  position:fixed;
-  top:0;left:0;right:0;
-  height:2px;
-  background:var(--acid);
-  transform:scaleX(0);
-  transform-origin:left;
-  z-index:2000;
-  pointer-events:none;
-  box-shadow:0 0 12px var(--acid-glow);
-}
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    align-items: center;
+    padding: 120px 80px 80px;
+    gap: 64px;
+    position: relative;
+    overflow: hidden;
+    border-top: none;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -260px; right: -210px;
+    width: 760px; height: 760px;
+    background: radial-gradient(circle, rgba(212,255,26,0.075) 0%, transparent 64%);
+    pointer-events: none;
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rule-bright), transparent);
+  }
 
-/* TOPBAR */
-.topbar {
-  position:sticky;
-  top:0;z-index:500;
-  background:rgba(13,17,23,0.88);
-  backdrop-filter:blur(20px) saturate(140%);
-  border-bottom:1px solid var(--rule);
-  transition:border-color 300ms, box-shadow 300ms;
-}
-.topbar.scrolled {
-  border-bottom-color:rgba(212,255,26,0.3);
-  box-shadow:0 1px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,255,26,0.06);
-}
-.topbar-inner {
-  max-width:1300px;margin:0 auto;
-  padding:10px 28px;
-  display:flex;justify-content:space-between;align-items:center;gap:20px;
-}
-.brand-mark {
-  display:flex;align-items:center;gap:10px;
-  font-family:var(--font-display);
-  font-size:15px;letter-spacing:0.1em;
-  color:var(--white);white-space:nowrap;
-}
-.brand-pill {
-  background:var(--acid);color:var(--black);
-  font-family:var(--font-display);
-  font-size:10px;letter-spacing:0.14em;
-  padding:3px 8px 2px;line-height:1;
-}
-.brand-sep{color:var(--muted);font-size:11px;}
+  .hero-left { max-width: 650px; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--accent); }
 
-.nav {
-  display:flex;gap:0;
-  font-family:var(--font-mono);font-size:10px;
-  text-transform:uppercase;letter-spacing:0.14em;
-}
-.nav a {
-  position:relative;padding:6px 14px;
-  color:var(--muted);
-  transition:color 150ms;
-}
-.nav a::after {
-  content:"";position:absolute;
-  bottom:0;left:14px;right:14px;
-  height:1px;background:var(--acid);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform 200ms ease;
-}
-.nav a:hover,.nav a.active{color:var(--acid);}
-.nav a:hover::after,.nav a.active::after{transform:scaleX(1);}
+  h1 {
+    font-size: clamp(38px, 5vw, 66px);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: var(--text);
+    margin-bottom: 22px;
+  }
+  h1 em, h2 em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+  }
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text-mid);
+    margin-bottom: 38px;
+    max-width: 560px;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 500; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary { background: var(--accent); color: #09090E; }
+  .btn-primary:hover { background: #E8FF40; color: #09090E; transform: translateY(-1px); box-shadow: 0 0 28px rgba(212,255,26,0.22); }
+  .btn-ghost { background: transparent; color: var(--text-mid); border: 1px solid var(--rule-bright); }
+  .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.28); background: var(--surface); transform: translateY(-1px); }
 
-/* SHELL */
-.site-shell{max-width:1300px;margin:0 auto;padding:28px 28px 100px;}
+  .hero-right { display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
+  .capability-matrix { width: 100%; max-width: 470px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .cap-cell {
+    padding: 16px 14px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s, transform 0.5s, background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .cap-cell.visible { opacity: 1; transform: translateY(0); }
+  .cap-cell:hover { background: var(--surface2); color: var(--text); border-color: var(--rule-bright); cursor: default; }
+  .cap-cell.highlight { color: var(--accent-soft); border-color: rgba(212,255,26,0.25); background: var(--accent-dim); }
 
-/* PAGE */
-.page {
-  position:relative;
-  padding:72px 80px 80px;
-  border-bottom:1px solid var(--rule);
-  background:var(--dark);
-  border:1px solid var(--rule);
-  margin-bottom:2px;
-  opacity:0;
-  transform:translateY(24px);
-  transition:opacity 550ms ease, transform 550ms ease;
-  overflow:hidden;
-}
-.page.visible{opacity:1;transform:translateY(0);}
+  section { padding: 100px 80px; border-top: 1px solid var(--rule); position: relative; }
+  .section-inner { max-width: var(--max); margin: 0 auto; }
+  .section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  h2 { font-size: clamp(30px, 3.2vw, 46px); font-weight: 300; line-height: 1.12; letter-spacing: -0.025em; color: var(--text); margin-bottom: 20px; }
+  .section-lead { font-size: 17px; line-height: 1.7; color: var(--text-mid); max-width: 720px; margin-bottom: 56px; }
 
-/* Animated corner accents */
-.page::after {
-  content:"";
-  position:absolute;
-  top:0;left:0;right:0;
-  height:1px;
-  background:linear-gradient(90deg, var(--acid) 0%, transparent 40%);
-  opacity:0;
-  transition:opacity 400ms ease;
-}
-.page.visible::after{opacity:1;}
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px; }
+  .fit-card {
+    padding: 32px 28px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    transition: background 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .fit-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transition: transform 0.3s; transform-origin: left; }
+  .fit-card:hover, .fit-card.active { background: var(--surface2); border-color: rgba(212,255,26,0.28); }
+  .fit-card:hover::after, .fit-card.active::after { transform: scaleX(1); }
+  .card-num { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; }
+  .card-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 12px; line-height: 1.3; }
+  .card-body { font-size: 14px; line-height: 1.65; color: var(--text-mid); max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s; opacity: 0; }
+  .fit-card.active .card-body, .fit-card:hover .card-body { max-height: 240px; opacity: 1; }
+  .card-arrow { margin-top: 16px; font-size: 12px; color: var(--accent); font-weight: 500; opacity: 0; transition: opacity 0.2s; }
+  .fit-card.active .card-arrow, .fit-card:hover .card-arrow { opacity: 1; }
 
-/* Ghost page number */
-.page-num-ghost {
-  position:absolute;
-  right:60px;bottom:40px;
-  font-family:var(--font-display);
-  font-size:180px;
-  color:rgba(212,255,26,0.025);
-  line-height:1;
-  pointer-events:none;
-  user-select:none;
-  letter-spacing:0.02em;
-  transition:color 0.5s;
-}
-.page:hover .page-num-ghost{color:rgba(212,255,26,0.04);}
+  #proof, #model { background: var(--surface); }
+  .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .proof-list { list-style: none; display: flex; flex-direction: column; }
+  .proof-list li { padding: 18px 0; border-bottom: 1px solid var(--rule); font-size: 15px; color: var(--text-mid); display: flex; align-items: flex-start; gap: 14px; line-height: 1.55; }
+  .proof-list li::before { content: ''; flex-shrink: 0; margin-top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+  .pull-panel { padding: 36px; border: 1px solid var(--rule-bright); border-left: 3px solid var(--accent); background: var(--bg); }
+  .pull-panel p { font-size: 20px; font-weight: 300; line-height: 1.55; color: var(--text); letter-spacing: -0.01em; margin-bottom: 20px; }
+  .pull-panel-meta { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .tag { padding: 6px 13px; font-size: 12px; font-weight: 500; border-radius: 2px; letter-spacing: 0.04em; background: var(--surface2); color: var(--text-mid); border: 1px solid var(--rule); }
+  .tag.hot { background: rgba(212,255,26,0.1); color: var(--accent-soft); border-color: rgba(212,255,26,0.22); }
 
-/* PAGE FOOTER */
-.page-footer {
-  margin-top:48px;
-  padding-top:14px;
-  border-top:1px solid var(--rule);
-  display:flex;justify-content:space-between;
-  color:var(--muted);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
-}
+  .edge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 48px; }
+  .edge-item { padding: 28px; border: 1px solid var(--rule); background: var(--surface); opacity: 0; transform: translateY(16px); transition: opacity 0.5s, transform 0.5s, background 0.2s, border-color 0.2s; }
+  .edge-item.visible { opacity: 1; transform: translateY(0); }
+  .edge-item:hover { background: var(--surface2); border-color: var(--rule-bright); }
+  .edge-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .edge-text { font-size: 15px; line-height: 1.65; color: var(--text-mid); }
+  .edge-text strong { color: var(--text); font-weight: 500; }
 
-/* ---- HERO ---- */
-.eyebrow {
-  font-family:var(--font-mono);font-size:11px;
-  letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--acid);margin-bottom:20px;
-}
-.eyebrow::before{content:"// ";color:var(--muted);}
+  .timeline-track { position: relative; margin-top: 48px; }
+  .timeline-track::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--rule-bright); }
+  .timeline-item { display: grid; grid-template-columns: 170px 1fr; gap: 40px; padding: 0 0 48px 0; position: relative; opacity: 0; transform: translateX(-12px); transition: opacity 0.5s, transform 0.5s; }
+  .timeline-item.visible { opacity: 1; transform: translateX(0); }
+  .timeline-item::before { content: ''; position: absolute; left: -4px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--surface); border: 2px solid var(--rule-bright); transition: border-color 0.2s, background 0.2s; }
+  .timeline-item:hover::before { border-color: var(--accent); background: var(--accent-dim); }
+  .timeline-year { padding-left: 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: var(--text-dim); padding-top: 3px; text-transform: uppercase; }
+  .timeline-content h3 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 6px; line-height: 1.3; }
+  .timeline-content p { font-size: 14px; line-height: 1.65; color: var(--text-mid); }
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .mini-tag { font-size: 11px; font-weight: 500; padding: 3px 10px; background: var(--surface2); border: 1px solid var(--rule); color: var(--text-dim); border-radius: 2px; letter-spacing: 0.04em; }
 
-.hero-name {
-  font-family:var(--font-display);
-  font-size:clamp(64px,9vw,128px);
-  line-height:0.88;
-  letter-spacing:0.03em;
-  text-transform:uppercase;
-  color:var(--white);
-}
-.hero-name .accent{
-  color:var(--acid);
-  text-shadow:0 0 60px rgba(212,255,26,0.3);
-}
+  .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2px; margin-top: 48px; }
+  .work-card { padding: 30px 28px; background: var(--surface); border: 1px solid var(--rule); min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; transition: background 0.22s, border-color 0.22s, transform 0.22s; opacity: 0; transform: translateY(16px); }
+  .work-card.visible { opacity: 1; transform: translateY(0); }
+  .work-card:hover { background: var(--surface2); border-color: var(--rule-bright); transform: translateY(-3px); }
+  .work-num { font-size: 10px; color: var(--text-dim); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: 14px; }
+  .work-title { font-size: 17px; color: var(--text); font-weight: 600; margin-bottom: 10px; }
+  .work-copy { font-size: 14px; color: var(--text-mid); line-height: 1.65; margin-bottom: 22px; }
+  .work-link { font-size: 12px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
 
-/* Letter-by-letter reveal */
-.hero-name .letter {
-  display:inline-block;
-  opacity:0;
-  transform:translateY(30px) skewX(-3deg);
-  transition:opacity 0.4s ease, transform 0.4s ease;
-}
-.hero-name .letter.shown{opacity:1;transform:none;}
+  .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 2px; margin-top: 48px; }
+  .model-step { padding: 24px 22px; background: var(--bg); border: 1px solid var(--rule); transition: background 0.22s, border-color 0.22s; }
+  .model-step:hover { background: var(--surface2); border-color: var(--rule-bright); }
+  .model-step-num { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+  .model-step h3 { font-size: 16px; color: var(--text); font-weight: 600; margin-bottom: 8px; }
+  .model-step p { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
 
-.hero-role {
-  margin:18px 0 6px;
-  font-family:var(--font-serif);
-  font-style:italic;
-  font-size:clamp(18px,2.2vw,28px);
-  color:var(--stone);
-}
+  #quotes { background: var(--bg); }
+  .quotes-stack { display: flex; flex-direction: column; gap: 2px; margin-top: 48px; }
+  .quote-block { padding: 40px 48px; background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid transparent; opacity: 0; transform: translateY(10px); transition: opacity 0.5s, transform 0.5s, border-left-color 0.3s, background 0.2s; }
+  .quote-block.visible { opacity: 1; transform: translateY(0); }
+  .quote-block:hover { border-left-color: var(--accent); background: var(--surface2); }
+  .quote-text { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(18px, 2.2vw, 24px); font-weight: 300; line-height: 1.55; color: var(--text); letter-spacing: -0.01em; max-width: 900px; }
 
-.contact-line {
-  color:var(--muted);font-size:11px;letter-spacing:0.08em;
-  margin-top:4px;line-height:2;
-}
-.contact-line a:hover{color:var(--acid);}
+  #contact { background: var(--surface); text-align: center; padding: 120px 80px; }
+  #contact h2 { max-width: 740px; margin: 0 auto 16px; }
+  #contact .section-lead { max-width: 620px; margin: 0 auto 48px; font-size: 16px; }
+  #contact .btn-row { justify-content: center; }
+  .footer-meta { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--rule); font-size: 12px; color: var(--text-dim); letter-spacing: 0.06em; }
+  .toast { position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(14px); background: var(--accent); color: #fff; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 18px; border-radius: var(--radius); opacity: 0; pointer-events: none; z-index: 5000; transition: opacity 0.2s, transform 0.2s; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* Typewriter tagline */
-.hero-tagline {
-  margin-top:22px;max-width:860px;
-  font-family:var(--font-serif);
-  font-size:clamp(15px,1.7vw,20px);
-  font-style:italic;color:var(--cream);
-  line-height:1.5;
-  border-left:2px solid var(--acid);
-  padding-left:20px;
-  min-height:2em;
-}
-.cursor-blink {
-  display:inline-block;
-  width:2px;height:1em;
-  background:var(--acid);
-  vertical-align:middle;
-  margin-left:2px;
-  animation:blink 0.9s step-end infinite;
-}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ACTIONS */
-.hero-actions {
-  display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;
-}
-.chip {
-  display:inline-flex;align-items:center;justify-content:center;
-  padding:9px 18px 8px;
-  font-family:var(--font-mono);font-size:10px;
-  letter-spacing:0.16em;text-transform:uppercase;font-weight:700;
-  border:1px solid var(--rule);background:transparent;
-  color:var(--stone);cursor:pointer;
-  transition:color 160ms, border-color 160ms, background 160ms, transform 160ms, box-shadow 160ms;
-  position:relative;overflow:hidden;
-}
-.chip::before {
-  content:"";position:absolute;
-  top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(212,255,26,0.06),transparent);
-  transition:left 0.4s;
-}
-.chip:hover::before{left:100%;}
-.chip:hover{color:var(--acid);border-color:var(--acid);transform:translateY(-2px);box-shadow:0 4px 20px rgba(212,255,26,0.12);}
-.chip.primary{background:var(--acid);color:var(--black);border-color:var(--acid);font-weight:700;}
-.chip.primary:hover{background:#e8ff40;box-shadow:0 4px 30px rgba(212,255,26,0.35);}
+  @media (max-width: 980px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    #hero { grid-template-columns: 1fr; padding: 100px 24px 64px; gap: 42px; }
+    .hero-right { display: none; }
+    section { padding: 68px 24px; }
+    .split-grid { grid-template-columns: 1fr; gap: 42px; }
+    .timeline-item { grid-template-columns: 110px 1fr; gap: 22px; }
+    #contact { padding: 82px 24px; }
+  }
+  @media (max-width: 620px) {
+    .btn-row { flex-direction: column; }
+    .btn { width: 100%; }
+    .timeline-item { grid-template-columns: 1fr; gap: 8px; padding-left: 24px; }
+    .timeline-year { padding-left: 0; }
+    .timeline-track::before { left: 0; }
+    .quote-block { padding: 30px 26px; }
+  }
 
-/* SIGNAL GRID (animated counters) */
-.signal-grid {
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--rule);
-  border:1px solid var(--rule);
-  margin:32px 0 28px;
-}
-.signal-cell {
-  background:var(--panel);padding:20px 18px;
-  transition:background 200ms;
-  cursor:default;
-}
-.signal-cell:hover{background:var(--mid);}
-.signal-num {
-  display:block;
-  font-family:var(--font-display);
-  font-size:52px;color:var(--acid);
-  line-height:1;letter-spacing:0.02em;
-}
-.signal-label {
-  display:block;margin-top:6px;
-  font-size:10px;letter-spacing:0.16em;
-  text-transform:uppercase;color:var(--muted);
-}
 
-/* SECTION TITLES */
-h2.section-title {
-  position:relative;
-  font-family:var(--font-display);
-  font-size:clamp(32px,3.5vw,50px);
-  letter-spacing:0.06em;text-transform:uppercase;
-  color:var(--white);line-height:1;
-  padding-bottom:12px;margin-bottom:20px;
-}
-h2.section-title::after {
-  content:"";position:absolute;
-  left:0;bottom:0;
-  width:100%;height:1px;
-  background:linear-gradient(90deg,var(--acid) 0%,transparent 55%);
-}
+  /* Centered hero/nav layout patch */
+  nav {
+    height: auto;
+    min-height: 96px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 24px 16px;
+  }
+  .nav-logo {
+    width: min(var(--max), calc(100vw - 48px));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    text-align: center;
+  }
+  .nav-logo::before,
+  .nav-logo::after {
+    content: '';
+    height: 1px;
+    flex: 1 1 auto;
+    background: var(--rule);
+  }
+  .nav-links {
+    width: min(var(--max), calc(100vw - 48px));
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 156px 80px 92px;
+    gap: 42px;
+  }
+  .hero-left {
+    width: min(var(--max), 100%);
+    max-width: var(--max);
+    margin: 0 auto;
+    text-align: left;
+  }
+  .hero-left h1 {
+    max-width: 780px;
+  }
+  .hero-sub {
+    max-width: 640px;
+  }
+  .hero-right {
+    width: min(var(--max), 100%);
+    max-width: var(--max);
+    margin: 0 auto;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .capability-matrix {
+    width: 100%;
+    max-width: var(--max);
+  }
 
-h3.sub-title {
-  font-family:var(--font-mono);font-size:11px;
-  letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--acid);margin:26px 0 10px;font-weight:700;
-}
-h3.sub-title::before{content:"→ ";}
+  @media (max-width: 980px) {
+    nav {
+      min-height: 70px;
+      padding: 14px 20px;
+      align-items: center;
+    }
+    .nav-logo {
+      width: auto;
+      max-width: calc(100% - 52px);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+    .nav-logo::before,
+    .nav-logo::after {
+      display: none;
+    }
+    .nav-links {
+      display: none;
+    }
+    .nav-toggle {
+      display: block;
+      position: absolute;
+      right: 16px;
+      top: 14px;
+    }
+    #hero {
+      display: flex;
+      grid-template-columns: none;
+      padding: 112px 24px 64px;
+      gap: 36px;
+    }
+    .hero-left,
+    .hero-right {
+      width: min(var(--max), 100%);
+      max-width: var(--max);
+    }
+    .hero-right {
+      display: flex;
+    }
+    .capability-matrix {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 
-/* PILLAR GRID */
-.thesis-pillars,.ops-steps,.case-grid,.timeline,.work-grid {
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--rule);
-  border:1px solid var(--rule);margin:20px 0;
-}
-.pillar,.ops-step,.case-card,.phase,.work-card {
-  background:var(--panel);padding:26px 22px;
-  transition:background 200ms,transform 200ms,box-shadow 200ms;
-  position:relative;overflow:hidden;
-}
-.pillar:hover,.ops-step:hover,.case-card:hover,.phase:hover,.work-card:hover {
-  background:var(--mid);
-  transform:translateY(-3px);
-  box-shadow:0 8px 32px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(212,255,26,0.15);
-  z-index:2;
-}
+  @media (max-width: 620px) {
+    #hero {
+      padding-top: 104px;
+    }
+    .capability-matrix {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .cap-cell {
+      padding: 13px 12px;
+    }
+  }
 
-.pillar-num,.ops-step-num,.case-num {
-  font-family:var(--font-display);
-  font-size:64px;color:rgba(212,255,26,0.1);
-  line-height:1;display:block;margin-bottom:8px;
-  transition:color 200ms;
-}
-.pillar:hover .pillar-num,.ops-step:hover .ops-step-num,.case-card:hover .case-num {
-  color:rgba(212,255,26,0.2);
-}
-.pillar h4,.case-card h4,.work-card h4 {
-  margin:0 0 10px;
-  font-family:var(--font-mono);font-size:11px;
-  letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--acid);font-weight:700;
-}
-.pillar p,.case-card p,.work-card p{margin:0;font-size:13px;color:var(--stone);line-height:1.65;}
-
-/* EXP BLOCKS */
-.exp-block {
-  margin-bottom:18px;padding:24px;
-  border:1px solid var(--rule);background:var(--panel);
-  transition:border-color 200ms,background 200ms,transform 200ms,box-shadow 200ms;
-  position:relative;overflow:hidden;
-}
-.exp-block::before {
-  content:"";position:absolute;left:0;top:0;bottom:0;
-  width:2px;background:var(--acid);
-  transform:scaleY(0);transform-origin:top;
-  transition:transform 300ms ease;
-}
-.exp-block:hover{border-color:rgba(212,255,26,0.2);background:var(--mid);transform:translateX(4px);box-shadow:0 0 40px rgba(0,0,0,0.3);}
-.exp-block:hover::before{transform:scaleY(1);}
-
-.exp-header {
-  display:flex;justify-content:space-between;
-  align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:12px;
-}
-.exp-company {
-  font-family:var(--font-display);font-size:28px;
-  letter-spacing:0.06em;text-transform:uppercase;
-  color:var(--white);line-height:1;
-}
-.exp-role {
-  font-family:var(--font-mono);font-size:10px;
-  letter-spacing:0.16em;text-transform:uppercase;
-  color:var(--acid);font-weight:700;margin-top:4px;
-}
-.exp-date {
-  font-family:var(--font-mono);font-size:10px;
-  letter-spacing:0.1em;color:var(--muted);white-space:nowrap;
-}
-.exp-block ul,.phase ul{list-style:none;margin-top:12px;}
-.exp-block li,.phase li {
-  padding:7px 0 7px 20px;position:relative;
-  font-size:13px;color:var(--stone);
-  border-bottom:1px solid rgba(255,255,255,0.05);
-  transition:color 150ms,padding-left 200ms;
-}
-.exp-block li:last-child,.phase li:last-child{border-bottom:0;}
-.exp-block li::before,.phase li::before {
-  content:"—";position:absolute;left:0;
-  color:var(--acid);font-weight:700;
-}
-.exp-block li:hover,.phase li:hover{color:var(--cream);padding-left:28px;}
-
-/* MATCH TABLE */
-.match-table {
-  width:100%;border-collapse:collapse;
-  margin:16px 0 24px;font-size:13px;
-}
-.match-table thead th {
-  padding:10px 16px;text-align:left;
-  font-family:var(--font-mono);font-size:10px;
-  letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--acid);border-bottom:1px solid var(--acid);
-  background:var(--panel);
-}
-.match-table tbody tr {
-  border-bottom:1px solid var(--rule);
-  background:var(--panel);
-  transition:background 160ms, transform 160ms;
-}
-.match-table tbody tr:hover{background:var(--mid);}
-.match-table tbody td{padding:14px 16px;color:var(--stone);vertical-align:top;}
-.match-table tbody td:first-child {
-  font-family:var(--font-mono);font-size:11px;
-  letter-spacing:0.1em;color:var(--cream);
-  font-weight:700;white-space:nowrap;width:34%;
-}
-
-/* OPS STEPS */
-.ops-step h4 {
-  margin:0 0 10px;font-family:var(--font-display);
-  font-size:22px;letter-spacing:0.08em;
-  text-transform:uppercase;color:var(--white);line-height:1;
-}
-.ops-step p{margin:0;font-size:12px;color:var(--muted);line-height:1.6;}
-
-/* PHASE */
-.phase-kicker {
-  font-family:var(--font-mono);font-size:10px;
-  letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--acid);font-weight:700;
-  margin-bottom:10px;display:flex;align-items:center;gap:8px;
-}
-.phase-kicker::before{content:"";display:inline-block;width:20px;height:1px;background:var(--acid);}
-.phase h4 {
-  margin:0 0 12px;font-family:var(--font-display);
-  font-size:28px;letter-spacing:0.06em;
-  text-transform:uppercase;color:var(--white);line-height:1;
-}
-.phase li{font-size:12px;color:var(--muted);line-height:1.5;}
-.phase li::before{content:"·";left:4px;}
-
-/* PULL QUOTE */
-.pull-quote {
-  margin:28px 0;padding:22px 28px;
-  border-left:3px solid var(--acid);
-  background:var(--acid-dim);
-  font-family:var(--font-serif);
-  font-size:clamp(15px,1.6vw,19px);
-  font-style:italic;color:var(--cream);line-height:1.5;
-  position:relative;
-}
-.pull-quote::before{
-  content:"\201C";
-  position:absolute;top:-10px;left:20px;
-  font-family:var(--font-serif);font-size:60px;
-  color:rgba(212,255,26,0.15);line-height:1;
-}
-
-/* SKILL TAGS (filterable) */
-.skills-wrap {
-  display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 24px;
-}
-.skill-tag {
-  padding:6px 13px 5px;
-  font-family:var(--font-mono);font-size:10px;
-  letter-spacing:0.14em;text-transform:uppercase;font-weight:700;
-  border:1px solid var(--rule);color:var(--muted);
-  background:transparent;
-  transition:color 150ms, border-color 150ms, background 150ms, transform 120ms;
-  cursor:pointer;
-}
-.skill-tag:hover{color:var(--acid);border-color:var(--acid);background:var(--acid-dim);transform:translateY(-2px);}
-.skill-tag.active{color:var(--black);background:var(--acid);border-color:var(--acid);}
-
-/* LINK CARD */
-.link-card {
-  display:block;margin-top:16px;padding-top:12px;
-  border-top:1px solid rgba(255,255,255,0.07);
-  font-size:10px;letter-spacing:0.16em;text-transform:uppercase;
-  color:var(--acid);font-weight:700;
-  transition:color 150ms, letter-spacing 200ms;
-}
-.link-card:hover{color:var(--white);letter-spacing:0.22em;}
-
-/* LETTER */
-.letter-body{max-width:800px;line-height:1.75;}
-.letter-body p{margin:0 0 18px;font-size:14px;color:var(--stone);}
-.letter-body p.lede{font-family:var(--font-serif);font-size:clamp(16px,1.8vw,21px);font-style:italic;color:var(--cream);}
-.letter-salutation{font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--acid);margin-bottom:22px;display:block;}
-.letter-sig{margin-top:32px;border-top:1px solid var(--rule);padding-top:20px;}
-.letter-sig-name{font-family:var(--font-display);font-size:42px;letter-spacing:0.06em;text-transform:uppercase;color:var(--white);display:block;line-height:1;margin-bottom:10px;}
-.letter-sig-contact{font-size:11px;color:var(--muted);letter-spacing:0.08em;}
-.letter-sig-contact a:hover{color:var(--acid);}
-
-/* THESIS LEDE */
-.thesis-lede {
-  font-family:var(--font-serif);
-  font-size:clamp(16px,1.8vw,22px);font-style:italic;
-  color:var(--cream);line-height:1.5;max-width:860px;margin:0 0 28px;
-}
-
-/* TOAST */
-.toast {
-  position:fixed;bottom:32px;left:50%;
-  transform:translateX(-50%) translateY(16px);
-  background:var(--acid);color:var(--black);
-  font-family:var(--font-mono);font-size:11px;
-  letter-spacing:0.18em;text-transform:uppercase;font-weight:700;
-  padding:10px 22px;opacity:0;pointer-events:none;
-  transition:opacity 200ms, transform 200ms;z-index:5000;
-}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* BROADCAST SCANLINE — subtle */
-@keyframes scan {
-  0%{background-position:0 0}
-  100%{background-position:0 100vh}
-}
-
-/* PRINT */
-@media print {
-  body{background:#fff;color:#111;cursor:auto;}
-  .cursor-dot,.cursor-ring,.topbar,.scroll-progress,.hero-actions,.toast{display:none;}
-  .page{opacity:1;transform:none;border:none;padding:40px;background:#fff;}
-  .page-num-ghost,.page::after{display:none;}
-  h2.section-title,.exp-company,.hero-name,.phase h4,.ops-step h4{color:#111;}
-  h2.section-title::after{background:#111;}
-  .exp-block::before{display:none;}
-  body::before{display:none;}
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .page{padding:40px 32px 56px;}
-  .signal-grid,.thesis-pillars,.ops-steps,.timeline,.case-grid,.work-grid{grid-template-columns:1fr 1fr;}
-  .match-table tbody td:first-child{width:auto;white-space:normal;}
-  .nav{display:none;}
-}
-@media(max-width:560px){
-  .site-shell{padding:14px 14px 56px;}
-  .page{padding:28px 20px 44px;}
-  .signal-grid,.thesis-pillars,.ops-steps,.timeline,.case-grid,.work-grid{grid-template-columns:1fr;}
-  .hero-name{font-size:clamp(52px,14vw,88px);}
-}
-
-/* Staggered card entrance for grids */
-.thesis-pillars .pillar,
-.ops-steps .ops-step,
-.case-grid .case-card,
-.work-grid .work-card {
-  opacity:0;
-  transform:translateY(16px);
-  transition:opacity 400ms ease, transform 400ms ease, background 200ms, box-shadow 200ms;
-}
-.page.visible .thesis-pillars .pillar,
-.page.visible .ops-steps .ops-step,
-.page.visible .case-grid .case-card,
-.page.visible .work-grid .work-card {
-  opacity:1;transform:none;
-}
-.page.visible .thesis-pillars .pillar:nth-child(1){ transition-delay:0.1s;}
-.page.visible .thesis-pillars .pillar:nth-child(2){ transition-delay:0.2s;}
-.page.visible .thesis-pillars .pillar:nth-child(3){ transition-delay:0.3s;}
-.page.visible .ops-steps .ops-step:nth-child(1){ transition-delay:0.05s;}
-.page.visible .ops-steps .ops-step:nth-child(2){ transition-delay:0.1s;}
-.page.visible .ops-steps .ops-step:nth-child(3){ transition-delay:0.15s;}
-.page.visible .ops-steps .ops-step:nth-child(4){ transition-delay:0.2s;}
-.page.visible .ops-steps .ops-step:nth-child(5){ transition-delay:0.25s;}
-.page.visible .ops-steps .ops-step:nth-child(6){ transition-delay:0.3s;}
-.page.visible .case-grid .case-card:nth-child(1){ transition-delay:0.1s;}
-.page.visible .case-grid .case-card:nth-child(2){ transition-delay:0.18s;}
-.page.visible .case-grid .case-card:nth-child(3){ transition-delay:0.26s;}
-.page.visible .case-grid .case-card:nth-child(4){ transition-delay:0.34s;}
-.page.visible .case-grid .case-card:nth-child(5){ transition-delay:0.42s;}
-.page.visible .work-grid .work-card:nth-child(1){ transition-delay:0.1s;}
-.page.visible .work-grid .work-card:nth-child(2){ transition-delay:0.2s;}
-.page.visible .work-grid .work-card:nth-child(3){ transition-delay:0.3s;}
-
-/* Signal cell entrance */
-.signal-cell {
-  opacity:0;transform:translateY(12px);
-  transition:opacity 350ms ease, transform 350ms ease, background 200ms;
-}
-.page.visible .signal-cell{opacity:1;transform:none;}
-.page.visible .signal-cell:nth-child(1){transition-delay:0.15s;}
-.page.visible .signal-cell:nth-child(2){transition-delay:0.25s;}
-.page.visible .signal-cell:nth-child(3){transition-delay:0.35s;}
-.page.visible .signal-cell:nth-child(4){transition-delay:0.45s;}
-
-/* Exp block entrance */
-.exp-block {
-  opacity:0;transform:translateX(-12px);
-  transition:opacity 400ms ease, transform 400ms ease, border-color 200ms, background 200ms, box-shadow 200ms;
-}
-.page.visible .exp-block{opacity:1;transform:translateX(0);}
-.page.visible .exp-block:nth-child(2){transition-delay:0.1s;}
-.page.visible .exp-block:nth-child(3){transition-delay:0.2s;}
-.page.visible .exp-block:nth-child(4){transition-delay:0.3s;}
-
-/* Table row entrance */
-.match-table tbody tr{
-  opacity:0;transform:translateX(-8px);
-  transition:opacity 300ms ease, transform 300ms ease, background 160ms;
-}
-.page.visible .match-table tbody tr{opacity:1;transform:none;}
-.page.visible .match-table tbody tr:nth-child(1){transition-delay:0.05s;}
-.page.visible .match-table tbody tr:nth-child(2){transition-delay:0.1s;}
-.page.visible .match-table tbody tr:nth-child(3){transition-delay:0.15s;}
-.page.visible .match-table tbody tr:nth-child(4){transition-delay:0.2s;}
-.page.visible .match-table tbody tr:nth-child(5){transition-delay:0.25s;}
-.page.visible .match-table tbody tr:nth-child(6){transition-delay:0.3s;}
-.page.visible .match-table tbody tr:nth-child(7){transition-delay:0.35s;}
-.page.visible .match-table tbody tr:nth-child(8){transition-delay:0.4s;}
-
-/* Skill tag entrance */
-.skill-tag{
-  opacity:0;transform:scale(0.9);
-  transition:opacity 250ms ease, transform 250ms ease, color 150ms, border-color 150ms, background 150ms;
-}
-.page.visible .skill-tag{opacity:1;transform:scale(1);}
-
-/* Print note */
-.print-note{text-align:right;color:var(--muted);font-size:11px;letter-spacing:0.1em;margin-bottom:12px;}
+  @media print {
+    nav, .scroll-progress, .toast, .nav-toggle { display: none !important; }
+    body { background: #fff; color: #111; }
+    section, #hero, #proof, #model, #contact { background: #fff; color: #111; padding: 36px 0; border-top: 1px solid #ddd; }
+    .section-inner, .hero-left { max-width: none; }
+    h1, h2, .timeline-content h3, .work-title, .model-step h3, .card-title { color: #111; }
+    .hero-sub, .section-lead, .edge-text, .timeline-content p, .work-copy, .model-step p, .proof-list li { color: #333; }
+    .hero-right, .capability-matrix { display: none; }
+    .fit-card, .edge-item, .work-card, .model-step, .quote-block, .pull-panel { break-inside: avoid; background: #fff; border-color: #ddd; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
 </style>
 </head>
 <body>
-
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<div class="topbar" id="topbar">
-  <div class="topbar-inner">
-    <div class="brand-mark">
-      <span class="brand-pill">CREATIVE SYSTEMS</span>
-      <span class="brand-sep">×</span>
-      Damon Versaggi
+<nav>
+  <a href="#hero" class="nav-logo">Damon Versaggi <span>×</span> Creative Solutions Architect</a>
+  <ul class="nav-links">
+    <li><a href="#positioning">Positioning</a></li>
+    <li><a href="#proof">Proof</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#model">Model</a></li>
+    <li><a href="mailto:damon@scrappymeals.com" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Creative Solutions Architect · Real-Time 3D · AI Product Systems</div>
+    <h1>Creative technology translated into <em>systems people can use</em>.</h1>
+    <p class="hero-sub">
+      I operate where <strong>creative direction, technical architecture, product storytelling, and business execution</strong> collide. The value is not just making the work look good. It is building the structure underneath the idea so teams can explain it, produce it, sell it, launch it, and scale it.
+    </p>
+    <div class="btn-row">
+      <a href="mailto:damon@scrappymeals.com" class="btn btn-primary">Email Damon</a>
+      <button class="btn btn-ghost" id="copyBtn">Copy Contact</button>
+      <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener" class="btn btn-ghost">Digital Assets</a>
+      <a href="https://fridgiesmalls.app" target="_blank" rel="noopener" class="btn btn-ghost">Fridgie Smalls</a>
+      <a href="https://scrappymeals.com" target="_blank" rel="noopener" class="btn btn-ghost">Scrappy Meals</a>
+      <a href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener" class="btn btn-ghost">Metacheese</a>
+      <button class="btn btn-ghost" id="printBtn">Print / PDF</button>
     </div>
-    <nav class="nav" aria-label="Page sections">
-      <a href="#cover">Cover</a>
-      <a href="#positioning">Positioning</a>
-      <a href="#proof">Proof</a>
-      <a href="#capabilities">Capabilities</a>
-      <a href="#links">Work</a>
-      <a href="#model">Model</a>
-      <a href="#contact">Contact</a>
-    </nav>
   </div>
-</div>
-
-<main class="site-shell">
-  <p class="print-note">Interactive Portfolio — <button class="chip" id="printBtn" style="border:none;padding:0;color:inherit;background:none;font-family:inherit;font-size:inherit;letter-spacing:inherit;cursor:pointer;">Print / Save PDF ↗</button></p>
-
-  <!-- PAGE 01: COVER -->
-  <section class="page" id="cover">
-    <div class="eyebrow">Creative Solutions Architect — Portfolio</div>
-
-    <div class="hero-name" id="heroName" aria-label="Damon Versaggi"></div>
-    <div class="hero-role">Creative Solutions Architect</div>
-    <p class="contact-line">
-      <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a>
-      &ensp;·&ensp;
-      <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">LinkedIn</a>
-      &ensp;·&ensp;
-      <a href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener">Digital Assets</a>
-      &ensp;·&ensp;
-      <a href="https://fridgiesmalls.app" target="_blank" rel="noopener">Fridgie Smalls</a>
-      &ensp;·&ensp;
-      <a href="https://scrappymeals.com" target="_blank" rel="noopener">Scrappy Meals</a>
-      &ensp;·&ensp;
-      <a href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener">Metacheese</a>
-    </p>
-
-    <blockquote class="hero-tagline" id="heroTagline"><span class="cursor-blink"></span></blockquote>
-
-    <div class="hero-actions">
-      <button class="chip primary" id="copyBtn">Copy Contact Info</button>
-      <a href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener" class="chip">Digital Assets ↗</a>
-      <a href="https://fridgiesmalls.app" target="_blank" rel="noopener" class="chip">Fridgie Smalls ↗</a>
-      <a href="https://scrappymeals.com" target="_blank" rel="noopener" class="chip">Scrappy Meals ↗</a>
-      <a href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener" class="chip">Metacheese ↗</a>
-      <a href="https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13" target="_blank" rel="noopener" class="chip">Live ↗</a>
-      <button class="chip" id="printBtn2">Print / PDF</button>
+  <div class="hero-right">
+    <div class="capability-matrix" id="capMatrix">
+      <div class="cap-cell highlight">Real-Time 3D</div>
+      <div class="cap-cell">Creative Direction</div>
+      <div class="cap-cell">AI Workflows</div>
+      <div class="cap-cell">Live Broadcast</div>
+      <div class="cap-cell highlight">Product Storytelling</div>
+      <div class="cap-cell">Campaign Systems</div>
+      <div class="cap-cell">WebXR</div>
+      <div class="cap-cell">Partner Demos</div>
+      <div class="cap-cell highlight">Brand Worlds</div>
+      <div class="cap-cell">GTM Strategy</div>
+      <div class="cap-cell">Sales Enablement</div>
+      <div class="cap-cell">Content Systems</div>
+      <div class="cap-cell highlight">Technical Leadership</div>
+      <div class="cap-cell">Audience Growth</div>
+      <div class="cap-cell">Pitch Narratives</div>
+      <div class="cap-cell">3D Production</div>
+      <div class="cap-cell">Founder-Led</div>
+      <div class="cap-cell highlight">Execution Standards</div>
     </div>
+  </div>
+</section>
 
-    <div class="signal-grid">
-      <div class="signal-cell">
-        <span class="signal-num" data-target="20" data-suffix="+">0</span>
-        <span class="signal-label">Years Creative Technology</span>
+<section id="positioning">
+  <div class="section-inner">
+    <div class="section-eyebrow">Positioning</div>
+    <h2>Solving high-stakes creative technology problems <em>without the fog</em>.</h2>
+    <p class="section-lead">My work sits across real-time graphics, live broadcast, 3D production, immersive content, AI product logic, brand storytelling, and technical creative leadership. The through-line is translation: turning complicated systems into clear experiences and usable operating models.</p>
+    <div class="cards-grid">
+      <div class="fit-card active" onclick="toggleCard(this)">
+        <div class="card-num">01</div>
+        <div class="card-title">Creative Direction With Architecture</div>
+        <div class="card-body">I build the narrative, design logic, content system, production rules, review standards, and execution path that allow ideas to survive actual deadlines and stakeholder gravity.</div>
+        <div class="card-arrow">View detail →</div>
       </div>
-      <div class="signal-cell">
-        <span class="signal-num">3D</span>
-        <span class="signal-label">Real-Time Systems &amp; Visual Worlds</span>
+      <div class="fit-card" onclick="toggleCard(this)">
+        <div class="card-num">02</div>
+        <div class="card-title">Technical Fluency Without Tech Fog</div>
+        <div class="card-body">Real-time 3D, broadcast systems, interactive media, AI workflows, and product systems become useful only when people understand what they do, why they matter, and how they create value.</div>
+        <div class="card-arrow">View detail →</div>
       </div>
-      <div class="signal-cell">
-        <span class="signal-num">AI</span>
-        <span class="signal-label">Product Workflows &amp; Agent Logic</span>
+      <div class="fit-card" onclick="toggleCard(this)">
+        <div class="card-num">03</div>
+        <div class="card-title">Business Logic Inside The Creative</div>
+        <div class="card-body">Every creative system should know what it is trying to move: audience growth, partner trust, campaign performance, sales enablement, product adoption, sponsor value, cultural relevance, or internal speed.</div>
+        <div class="card-arrow">View detail →</div>
       </div>
-      <div class="signal-cell">
-        <span class="signal-num">GTM</span>
-        <span class="signal-label">Storytelling, Sales &amp; Growth</span>
+      <div class="fit-card" onclick="toggleCard(this)">
+        <div class="card-num">04</div>
+        <div class="card-title">AI As Production Layer</div>
+        <div class="card-body">I use AI to compress strategy, product copy, campaign logic, workflow documentation, pitch structure, and product behavior into faster, sharper, repeatable outputs.</div>
+        <div class="card-arrow">View detail →</div>
       </div>
-    </div>
-
-    <h2 class="section-title">Portfolio Thesis</h2>
-    <p style="font-size:14px;color:var(--stone);max-width:820px;line-height:1.7;">
-      I operate where creative direction, technical architecture, product storytelling, and business execution collide. That is usually the place where organizations get slow, departments get territorial, and great ideas are murdered by meeting culture. My value is building the system underneath the idea so teams can actually ship the thing.
-    </p>
-    <p style="font-size:14px;color:var(--stone);max-width:820px;line-height:1.7;margin-top:14px;">
-      The through-line is simple: translate complicated creative technology into clear experiences, sellable narratives, repeatable workflows, and public-facing work that moves audiences, clients, partners, and internal teams in the same direction.
-    </p>
-
-    <div class="page-num-ghost">01</div>
-    <div class="page-footer">
-      <span>Damon Versaggi · Creative Solutions Architect Portfolio</span>
-      <span>01 / 07</span>
-    </div>
-  </section>
-
-  <!-- PAGE 02: POSITIONING -->
-  <section class="page" id="positioning">
-    <h2 class="section-title">Solving High-Stakes Creative Technology Problems</h2>
-    <p class="thesis-lede">
-      Systems-driven creative execution across real-time graphics, live broadcast, 3D production, immersive content, AI product logic, brand storytelling, and technical creative leadership.
-    </p>
-
-    <div class="thesis-pillars">
-      <div class="pillar">
-        <span class="pillar-num">01</span>
-        <h4>Creative Direction With Architecture</h4>
-        <p>Not just taste. Not just visuals. I build the structure behind the work: the narrative, design logic, content system, production rules, review standards, and execution path that allow ideas to survive real deadlines.</p>
-      </div>
-      <div class="pillar">
-        <span class="pillar-num">02</span>
-        <h4>Technical Fluency Without Tech Fog</h4>
-        <p>Real-time 3D, broadcast graphics, interactive media, AI workflows, and product systems become useful only when people understand what they do, why they matter, and how they create value. Otherwise it is just expensive blinking.</p>
-      </div>
-      <div class="pillar">
-        <span class="pillar-num">03</span>
-        <h4>Business Logic Inside The Creative</h4>
-        <p>Every creative system should know what it is trying to move: audience growth, partner trust, campaign performance, sales enablement, product adoption, sponsor value, cultural relevance, or internal speed.</p>
+      <div class="fit-card" onclick="toggleCard(this)">
+        <div class="card-num">05</div>
+        <div class="card-title">Cross-Discipline Leadership</div>
+        <div class="card-body">I work between creative, technical, sales, product, production, vendors, interns, executives, and partners without collapsing the room into a jargon bonfire.</div>
+        <div class="card-arrow">View detail →</div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="pull-quote">
-      I do not just make content. I build the systems that make content perform: creative direction, AI workflow design, production logic, brand storytelling, go-to-market structure, and execution standards that help teams move faster and ship stronger work.
-    </div>
-
-    <div class="page-num-ghost">02</div>
-    <div class="page-footer">
-      <span>Damon Versaggi · Creative Solutions Architect Portfolio</span>
-      <span>02 / 07</span>
-    </div>
-  </section>
-
-  <!-- PAGE 03: PROOF -->
-  <section class="page" id="proof">
-    <h2 class="section-title">Experience Proof</h2>
-    <p style="font-size:14px;color:var(--stone);max-width:800px;line-height:1.7;margin-bottom:24px;">
-      The portfolio is not one clean corporate lane, because apparently life chose difficulty settings designed by a committee. The advantage is range: live broadcast pressure, creative technology systems, founder-led product building, AI implementation, sales workflows, brand worlds, and partner-facing storytelling.
-    </p>
-
-    <div class="exp-block">
-      <div class="exp-header">
-        <div>
-          <div class="exp-company">Scrappy Meals / Fridgie Smalls / The Metacheese</div>
-          <div class="exp-role">Founder · Creative Product Architect · Brand World Builder</div>
-        </div>
-        <div class="exp-date">Ongoing</div>
-      </div>
-      <ul>
-        <li>Built a food-tech and character-driven product ecosystem connecting AI recipe generation, 3D storytelling, sponsor concepts, education, sustainability, and audience-facing experiences.</li>
-        <li>Used OpenAI API workflows to turn everyday ingredients into structured recipe experiences, with product logic, UI behavior, sponsor pathways, and user-facing creative systems.</li>
-        <li>Developed pitch narratives, event concepts, partner activations, intern programs, branded demos, and commercial pathways around food, technology, gaming culture, and audience engagement.</li>
-      </ul>
-    </div>
-
-    <div class="exp-block">
-      <div class="exp-header">
-        <div>
-          <div class="exp-company">REAL-TIME</div>
-          <div class="exp-role">Vizrt · ESPN · ABC · MLB Digital · Amazon Prime Sports · Fox News · CNN · CBS · MSNBC · Bloomberg · Cablevision · Verizon FiOS · BBC · TV2 Norway · SNY · YES Network · Turner Sports</div>
-        </div>
-        <div class="exp-date">2004–Ongoing</div>
-      </div>
-      <ul>
-        <li>Designed, implemented, and supported high-pressure real-time visual systems where technical reliability, creative quality, live production needs, and stakeholder trust had to align instantly.</li>
-        <li>Supported election control room coverage for 2004, 2008, 2012, and 2016 across major news environments including CNN, Fox News, CBS, and MSNBC.</li>
-        <li>Delivered real-time graphics and live production support across sports, news, broadcast, and event environments, including New Year’s Rockin’ Eve Ball Drop.</li>
-      </ul>
-    </div>
-
-    <div class="exp-block">
-      <div class="exp-header">
-        <div>
-          <div class="exp-company">eFundex</div>
-          <div class="exp-role">VP Sales &amp; Technology · Workflow Systems · Commercial Storytelling</div>
+<section id="proof">
+  <div class="section-inner">
+    <div class="section-eyebrow">Proof</div>
+    <h2>The range is the advantage.</h2>
+    <div class="split-grid">
+      <div>
+        <p class="section-lead" style="margin-bottom: 24px;">The portfolio is not one clean corporate lane. It spans live production pressure, founder-led product building, AI implementation, sales workflows, brand worlds, partner-facing storytelling, and creative technology systems.</p>
+        <ul class="proof-list">
+          <li>Built Scrappy Meals, Fridgie Smalls, and The Metacheese as a food-tech ecosystem connecting AI recipe generation, 3D storytelling, education, sustainability, partner concepts, and audience-facing experiences.</li>
+          <li>Worked across real-time graphics and live production environments for sports, news, broadcast, and major events where reliability, speed, taste, and technical accuracy have to show up at the same time.</li>
+          <li>Created AI-assisted outreach, sales narrative, lead workflow, pitch, and communication systems for a high-trust financial services environment through eFundex.</li>
+          <li>Turned complex product and technical ideas into sharper messaging, demos, pitch logic, content systems, and execution standards.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag hot">Creative Solutions Architect</span>
+          <span class="tag hot">Real-Time 3D</span>
+          <span class="tag hot">AI Product Logic</span>
+          <span class="tag">Live Broadcast</span>
+          <span class="tag">Food-Tech</span>
+          <span class="tag">WebXR</span>
+          <span class="tag">Partner Strategy</span>
+          <span class="tag">Campaign Logic</span>
         </div>
       </div>
-      <ul>
-        <li>Built AI-assisted outreach, sales narrative, lead workflow, pitch, and communication systems for a high-trust financial services environment.</li>
-        <li>Translated complex funding products into clearer executive-facing value propositions, repeatable messaging, and sales enablement structures.</li>
-        <li>Connected creative systems thinking to business development, audience targeting, content strategy, and revenue-facing execution.</li>
-      </ul>
-    </div>
-
-    <div class="page-num-ghost">03</div>
-    <div class="page-footer">
-      <span>Damon Versaggi · Creative Solutions Architect Portfolio</span>
-      <span>03 / 07</span>
-    </div>
-  </section>
-
-  <!-- PAGE 04: CAPABILITIES -->
-  <section class="page" id="capabilities">
-    <h2 class="section-title">Core Capabilities</h2>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:22px;letter-spacing:0.06em;">Creative architecture mapped to actual execution, because slides alone do not ship anything.</p>
-
-    <table class="match-table">
-      <thead>
-        <tr>
-          <th>Capability</th>
-          <th>How It Shows Up</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Creative Solutions Architecture</td>
-          <td>Turns ambiguous goals into clear creative systems: message, audience, format, platform behavior, production model, stakeholder path, and measurable output.</td>
-        </tr>
-        <tr>
-          <td>Real-Time 3D + Live Broadcast</td>
-          <td>Deep background in live graphics, real-time visual systems, motion logic, implementation, and pressure-tested production environments.</td>
-        </tr>
-        <tr>
-          <td>AI Workflow Design</td>
-          <td>Builds practical AI-assisted systems for recipe generation, sales outreach, structured content, campaign thinking, ideation, workflow speed, and repeatable output.</td>
-        </tr>
-        <tr>
-          <td>Product Storytelling</td>
-          <td>Explains what a product does, why it matters, how users move through it, and why partners, clients, or audiences should care before their eyes glaze over.</td>
-        </tr>
-        <tr>
-          <td>Campaign Logic</td>
-          <td>Connects concept, audience, channel behavior, asset system, launch rhythm, content hierarchy, and performance goal into one usable operating structure.</td>
-        </tr>
-        <tr>
-          <td>Partnership Strategy</td>
-          <td>Builds partner-facing narratives, sponsor activations, demos, pitch systems, and commercial framing that make unusual creative products easier to understand and buy into.</td>
-        </tr>
-        <tr>
-          <td>Audience Growth</td>
-          <td>Shapes messaging, content pathways, platform-native hooks, social-first ideas, and product entry points around attention, retention, usefulness, and shareability.</td>
-        </tr>
-        <tr>
-          <td>Leadership Across Disciplines</td>
-          <td>Works between creative, technical, sales, product, production, vendors, interns, executives, and partners without collapsing the room into jargon soup.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3 class="sub-title">Working Vocabulary</h3>
-    <div class="skills-wrap" id="skillsWrap">
-      <span class="skill-tag" tabindex="0">Creative Direction</span>
-      <span class="skill-tag" tabindex="0">Solutions Architecture</span>
-      <span class="skill-tag" tabindex="0">Real-Time 3D</span>
-      <span class="skill-tag" tabindex="0">Live Broadcast</span>
-      <span class="skill-tag" tabindex="0">AI Workflows</span>
-      <span class="skill-tag" tabindex="0">Product Storytelling</span>
-      <span class="skill-tag" tabindex="0">Campaign Systems</span>
-      <span class="skill-tag" tabindex="0">Go-To-Market Strategy</span>
-      <span class="skill-tag" tabindex="0">Audience Growth</span>
-      <span class="skill-tag" tabindex="0">Partner Demos</span>
-      <span class="skill-tag" tabindex="0">Pitch Narratives</span>
-      <span class="skill-tag" tabindex="0">Technical Creative Leadership</span>
-      <span class="skill-tag" tabindex="0">Content Systems</span>
-      <span class="skill-tag" tabindex="0">Brand Worlds</span>
-      <span class="skill-tag" tabindex="0">Sales Enablement</span>
-      <span class="skill-tag" tabindex="0">Execution Standards</span>
-    </div>
-
-    <div class="page-num-ghost">04</div>
-    <div class="page-footer">
-      <span>Damon Versaggi · Creative Solutions Architect Portfolio</span>
-      <span>04 / 07</span>
-    </div>
-  </section>
-
-  <!-- PAGE 05: WORK LINKS -->
-  <section class="page" id="links">
-    <h2 class="section-title">Selected Work Links</h2>
-    <p style="font-size:14px;color:var(--stone);max-width:780px;line-height:1.7;margin-bottom:24px;">
-      These links give the cleanest path into the work: digital asset proof, first food agent proof, live production proof, founder proof, virtual internship proof, and the broader Scrappy Meals / Metacheese ecosystem. No 47-tab scavenger hunt, mercifully.
-    </p>
-
-    <div class="case-grid">
-      <div class="case-card">
-        <span class="case-num">01</span>
-        <h4>Digital Assets</h4>
-        <p>Selected creative technology, product, character, 3D, and visual systems work. Best first click for understanding the range.</p>
-        <a class="link-card" href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener">Open Digital Assets ↗</a>
-      </div>
-      <div class="case-card">
-        <span class="case-num">02</span>
-        <h4>Fridgie Smalls</h4>
-        <p>First food agent built around ingredient input, recipe generation, 3D character interaction, product UX, and sponsor-ready storytelling.</p>
-        <a class="link-card" href="https://fridgiesmalls.app" target="_blank" rel="noopener">Open App ↗</a>
-      </div>
-      <div class="case-card">
-        <span class="case-num">03</span>
-        <h4>Scrappy Meals</h4>
-        <p>The larger food, sustainability, education, character, events, and immersive storytelling ecosystem behind Fridgie Smalls and The Metacheese.</p>
-        <a class="link-card" href="https://scrappymeals.com" target="_blank" rel="noopener">Open Site ↗</a>
-      </div>
-      <div class="case-card">
-        <span class="case-num">04</span>
-        <h4>Metacheese</h4>
-        <p>Virtual internship and culinary education world connected to the larger Scrappy Meals ecosystem.</p>
-        <a class="link-card" href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener">Open Metacheese ↗</a>
-      </div>
-      <div class="case-card">
-        <span class="case-num">05</span>
-        <h4>Live</h4>
-        <p>Live broadcast and real-time production proof, showing the high-pressure creative systems background behind the portfolio.</p>
-        <a class="link-card" href="https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13" target="_blank" rel="noopener">Watch Live Work ↗</a>
-      </div>
-      <div class="case-card">
-        <span class="case-num">06</span>
-        <h4>The Nightlight</h4>
-        <p>SVA award-winning senior thesis submitted for Student Oscar consideration, showing early visual storytelling, production discipline, and cinematic execution.</p>
-        <a class="link-card" href="https://opensea.io/item/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/109208400969062635290625311071503353448562745337013885995367713339183061794817" target="_blank" rel="noopener">Open The Nightlight ↗</a>
+      <div class="pull-panel reveal">
+        <p>“I do not just make content. I build the systems that make content perform: creative direction, AI workflow design, production logic, brand storytelling, go-to-market structure, and execution standards.”</p>
+        <div class="pull-panel-meta">Damon Versaggi · Creative Solutions Architect</div>
       </div>
     </div>
 
+    <div class="timeline-track">
+      <div class="timeline-item">
+        <div class="timeline-year">Ongoing</div>
+        <div class="timeline-content">
+          <h3>Scrappy Meals / Fridgie Smalls / The Metacheese</h3>
+          <p>Founder, creative product architect, and brand world builder. Built a food-tech and character-driven product ecosystem connecting AI recipe generation, immersive storytelling, sponsor concepts, education, sustainability, and audience engagement.</p>
+          <div class="timeline-tags"><span class="mini-tag">OpenAI API</span><span class="mini-tag">Food-Tech</span><span class="mini-tag">WebXR</span><span class="mini-tag">Brand World</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2004–Present</div>
+        <div class="timeline-content">
+          <h3>Real-Time 3D / Broadcast / Live Production</h3>
+          <p>Designed, implemented, and supported high-pressure visual systems across sports, news, broadcast, AR, and events, including election coverage environments and New Year’s Rockin’ Eve Ball Drop work.</p>
+          <div class="timeline-tags"><span class="mini-tag">Vizrt</span><span class="mini-tag">ESPN</span><span class="mini-tag">CNN</span><span class="mini-tag">CBS</span><span class="mini-tag">MSNBC</span><span class="mini-tag">MLB Digital</span><span class="mini-tag">Amazon Prime Sports</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Sales + Systems</div>
+        <div class="timeline-content">
+          <h3>eFundex</h3>
+          <p>VP Sales & Technology. Built AI-assisted outreach, sales narrative, lead workflow, pitch, and communication systems, translating complex funding products into clearer executive-facing value propositions and repeatable messaging.</p>
+          <div class="timeline-tags"><span class="mini-tag">Sales Enablement</span><span class="mini-tag">Workflow Systems</span><span class="mini-tag">Commercial Storytelling</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="capabilities">
+  <div class="section-inner">
+    <div class="section-eyebrow">Capabilities</div>
+    <h2>Core strengths mapped to <em>actual execution</em>.</h2>
+    <p class="section-lead">This is the working vocabulary: creative direction, real-time 3D, AI workflows, product storytelling, campaign systems, go-to-market strategy, partner demos, content systems, technical creative leadership, and execution standards.</p>
+    <div class="edge-grid">
+      <div class="edge-item"><div class="edge-label">Creative Solutions Architecture</div><div class="edge-text">Turns ambiguous goals into clear creative systems: message, audience, format, platform behavior, production model, stakeholder path, and measurable output.</div></div>
+      <div class="edge-item"><div class="edge-label">Real-Time 3D + Live Broadcast</div><div class="edge-text">Deep background in live graphics, real-time visual systems, motion logic, implementation, and pressure-tested production environments.</div></div>
+      <div class="edge-item"><div class="edge-label">AI Workflow Design</div><div class="edge-text">Builds practical AI-assisted systems for recipe generation, sales outreach, structured content, campaign thinking, ideation, workflow speed, and repeatable output.</div></div>
+      <div class="edge-item"><div class="edge-label">Product Storytelling</div><div class="edge-text">Explains what a product does, why it matters, how users move through it, and why partners, clients, or audiences should care before their eyes glaze over.</div></div>
+      <div class="edge-item"><div class="edge-label">Campaign Logic</div><div class="edge-text">Connects concept, audience, channel behavior, asset system, launch rhythm, content hierarchy, and performance goal into one usable operating structure.</div></div>
+      <div class="edge-item"><div class="edge-label">Partnership Strategy</div><div class="edge-text">Builds partner-facing narratives, sponsor activations, demos, pitch systems, and commercial framing that make unusual creative products easier to understand and buy into.</div></div>
+      <div class="edge-item"><div class="edge-label">Audience Growth</div><div class="edge-text">Shapes messaging, content pathways, platform-native hooks, social-first ideas, and product entry points around attention, retention, usefulness, and shareability.</div></div>
+      <div class="edge-item"><div class="edge-label">Leadership Across Disciplines</div><div class="edge-text">Works between creative, technical, sales, product, production, vendors, interns, executives, and partners while keeping ownership clear and momentum intact.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-inner">
+    <div class="section-eyebrow">Selected Work</div>
+    <h2>Clean entry points into the work.</h2>
+    <p class="section-lead">Digital asset proof, food agent proof, live production proof, founder proof, virtual education proof, and the broader Scrappy Meals / Metacheese ecosystem. No scavenger hunt, mercifully.</p>
     <div class="work-grid">
-      <div class="work-card">
-        <h4>AI + Product Execution</h4>
-        <p>Built Fridgie Smalls using OpenAI API logic to turn everyday ingredients into structured recipe experiences, supporting typed input, voice concepts, modal workflows, sponsor pathways, and branded recipe experiences.</p>
-      </div>
-      <div class="work-card">
-        <h4>Systems-Driven Creative Execution</h4>
-        <p>Real-time graphics, live broadcast, 3D production, interactive media, brand worlds, pitch systems, and technical leadership, built for environments where failure is visible and excuses are not a strategy.</p>
-      </div>
-      <div class="work-card">
-        <h4>Business + Go-To-Market</h4>
-        <p>Experience across product storytelling, sales systems, campaign logic, partnerships, audience growth, sponsor narratives, and commercial framing for creative products that need to be understood quickly.</p>
-      </div>
+      <a class="work-card" href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener">
+        <div><div class="work-num">01</div><div class="work-title">Digital Assets</div><div class="work-copy">Selected creative technology, product, character, 3D, and visual systems work. Best first click for understanding the range.</div></div>
+        <div class="work-link">Open Digital Assets ↗</div>
+      </a>
+      <a class="work-card" href="https://fridgiesmalls.app" target="_blank" rel="noopener">
+        <div><div class="work-num">02</div><div class="work-title">Fridgie Smalls</div><div class="work-copy">AI-powered food agent built around ingredient input, recipe generation, 3D character interaction, product UX, and sponsor-ready storytelling.</div></div>
+        <div class="work-link">Open App ↗</div>
+      </a>
+      <a class="work-card" href="https://scrappymeals.com" target="_blank" rel="noopener">
+        <div><div class="work-num">03</div><div class="work-title">Scrappy Meals</div><div class="work-copy">The larger food, sustainability, education, character, events, and immersive storytelling ecosystem behind Fridgie Smalls and The Metacheese.</div></div>
+        <div class="work-link">Open Site ↗</div>
+      </a>
+      <a class="work-card" href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener">
+        <div><div class="work-num">04</div><div class="work-title">Metacheese</div><div class="work-copy">Virtual internship and culinary education world connected to the larger Scrappy Meals ecosystem.</div></div>
+        <div class="work-link">Open Metacheese ↗</div>
+      </a>
+      <a class="work-card" href="https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13" target="_blank" rel="noopener">
+        <div><div class="work-num">05</div><div class="work-title">Live</div><div class="work-copy">Live broadcast and real-time production proof showing the high-pressure creative systems background behind the portfolio.</div></div>
+        <div class="work-link">Watch Live Work ↗</div>
+      </a>
+      <a class="work-card" href="https://opensea.io/item/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/109208400969062635290625311071503353448562745337013885995367713339183061794817" target="_blank" rel="noopener">
+        <div><div class="work-num">06</div><div class="work-title">The Nightlight</div><div class="work-copy">SVA award-winning senior thesis submitted for Student Oscar consideration, showing early visual storytelling, production discipline, and cinematic execution.</div></div>
+        <div class="work-link">Open The Nightlight ↗</div>
+      </a>
     </div>
+  </div>
+</section>
 
-    <div class="pull-quote">
-      The work is not just visual. It is operational: how an idea gets explained, prototyped, sold, produced, launched, measured, reused, and scaled.
+<section id="model">
+  <div class="section-inner">
+    <div class="section-eyebrow">Operating Model</div>
+    <h2>Build the engine, not just the artifact.</h2>
+    <p class="section-lead">The job is not to make a nice thing once. The job is to build a repeatable creative engine: fast diagnosis, clear strategy, sharp concepting, technical feasibility, production discipline, and enough business logic to keep the work from becoming decorative confetti.</p>
+    <div class="model-grid">
+      <div class="model-step"><div class="model-step-num">01</div><h3>Diagnose</h3><p>Clarify the audience, problem, cultural context, business goal, platform behavior, stakeholder tension, technical constraints, and success signal.</p></div>
+      <div class="model-step"><div class="model-step-num">02</div><h3>Architect</h3><p>Define the system: message hierarchy, experience flow, asset model, workflow, production path, approval path, and technical requirements.</p></div>
+      <div class="model-step"><div class="model-step-num">03</div><h3>Prototype</h3><p>Make the idea visible quickly through decks, demos, interactive pages, mockups, product flows, scripts, AI outputs, or visual systems.</p></div>
+      <div class="model-step"><div class="model-step-num">04</div><h3>Translate</h3><p>Turn technical complexity into language that executives, clients, partners, users, and creative teams can actually use without needing a decoder ring.</p></div>
+      <div class="model-step"><div class="model-step-num">05</div><h3>Ship</h3><p>Stay close to execution: creative QA, product behavior, production details, copy, design, motion, launch standards, and the tiny things that decide quality.</p></div>
+      <div class="model-step"><div class="model-step-num">06</div><h3>Scale</h3><p>Turn what works into repeatable playbooks, templates, component logic, pitch frameworks, content systems, and team habits that compound over time.</p></div>
     </div>
+  </div>
+</section>
 
-    <div class="page-num-ghost">05</div>
-    <div class="page-footer">
-      <span>Damon Versaggi · Creative Solutions Architect Portfolio</span>
-      <span>05 / 07</span>
+<section id="quotes">
+  <div class="section-inner">
+    <div class="section-eyebrow">Thesis</div>
+    <h2>The short version, for people allergic to scrolling.</h2>
+    <div class="quotes-stack">
+      <div class="quote-block"><div class="quote-text">“I build systems that make creative work easier to understand, easier to sell, easier to produce, and harder to ignore.”</div></div>
+      <div class="quote-block"><div class="quote-text">“My strongest work happens where creative, technical, and business teams need one person who can understand the idea, shape the system, explain the value, and push the work across the finish line.”</div></div>
+      <div class="quote-block"><div class="quote-text">“High-stakes creative technology only matters when people can see it, use it, buy it, share it, and build on it.”</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PAGE 06: MODEL -->
-  <section class="page" id="model">
-    <h2 class="section-title">Operating Model</h2>
-    <p style="font-size:13px;color:var(--muted);max-width:720px;line-height:1.7;margin-bottom:24px;">
-      The job is not to make a nice thing once. The job is to build a repeatable creative engine: fast diagnosis, clear strategy, sharp concepting, technical feasibility, production discipline, and enough business logic to keep the work from becoming decorative confetti.
-    </p>
-
-    <div class="ops-steps">
-      <div class="ops-step">
-        <span class="ops-step-num">01</span>
-        <h4>Diagnose</h4>
-        <p>Clarify the audience, problem, cultural context, business goal, platform behavior, stakeholder tension, technical constraints, and success signal.</p>
-      </div>
-      <div class="ops-step">
-        <span class="ops-step-num">02</span>
-        <h4>Architect</h4>
-        <p>Define the system: message hierarchy, experience flow, asset model, workflow, production path, approval path, and technical requirements.</p>
-      </div>
-      <div class="ops-step">
-        <span class="ops-step-num">03</span>
-        <h4>Prototype</h4>
-        <p>Make the idea visible quickly through decks, demos, interactive pages, mockups, product flows, scripts, AI outputs, or visual systems.</p>
-      </div>
-      <div class="ops-step">
-        <span class="ops-step-num">04</span>
-        <h4>Translate</h4>
-        <p>Turn technical complexity into language that executives, clients, partners, users, and creative teams can actually use without needing a decoder ring.</p>
-      </div>
-      <div class="ops-step">
-        <span class="ops-step-num">05</span>
-        <h4>Ship</h4>
-        <p>Stay close to execution: creative QA, product behavior, production details, copy, design, motion, launch standards, and the thousand tiny things that decide quality.</p>
-      </div>
-      <div class="ops-step">
-        <span class="ops-step-num">06</span>
-        <h4>Scale</h4>
-        <p>Turn what works into repeatable playbooks, templates, component logic, pitch frameworks, content systems, and team habits that compound over time.</p>
-      </div>
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-eyebrow">Contact</div>
+    <h2>Creative Solutions Architect · Damon Versaggi</h2>
+    <p class="section-lead">Real-time 3D, live broadcast, product storytelling, AI-assisted workflows, founder-led brand building, campaign systems, partner narratives, and business development. That range is not random. It is the pattern.</p>
+    <div class="btn-row">
+      <a href="mailto:damon@scrappymeals.com" class="btn btn-primary">Email Damon</a>
+      <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener" class="btn btn-ghost">Digital Assets</a>
+      <a href="https://fridgiesmalls.app" target="_blank" rel="noopener" class="btn btn-ghost">Fridgie Smalls</a>
+      <a href="https://scrappymeals.com" target="_blank" rel="noopener" class="btn btn-ghost">Scrappy Meals</a>
+      <a href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener" class="btn btn-ghost">Metacheese</a>
+      <a href="https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13" target="_blank" rel="noopener" class="btn btn-ghost">Live</a>
     </div>
+    <div class="footer-meta">Damon Versaggi · damon@scrappymeals.com · linkedin.com/in/damonversaggi</div>
+  </div>
+</section>
 
-    <h3 class="sub-title">Best-Fit Problems</h3>
-    <div class="timeline">
-      <div class="phase">
-        <div class="phase-kicker">Problem Type</div>
-        <h4>Creative Tech Translation</h4>
-        <ul>
-          <li>Explaining complex platforms, tools, or product systems in a way people can understand and buy into.</li>
-          <li>Turning emerging technology into useful content, brand, product, or sales experiences.</li>
-        </ul>
-      </div>
-      <div class="phase">
-        <div class="phase-kicker">Problem Type</div>
-        <h4>Execution Systems</h4>
-        <ul>
-          <li>Building workflows, templates, pitch structures, review standards, and launch processes that help creative teams move faster.</li>
-          <li>Connecting strategy, design, production, content, and technical implementation without losing ownership.</li>
-        </ul>
-      </div>
-      <div class="phase">
-        <div class="phase-kicker">Problem Type</div>
-        <h4>Growth Storytelling</h4>
-        <ul>
-          <li>Creating narratives and systems that help products, campaigns, partnerships, and founder-led ideas reach the right audience.</li>
-          <li>Making creative output accountable to adoption, trust, revenue, attention, and long-term brand value.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="page-num-ghost">06</div>
-    <div class="page-footer">
-      <span>Damon Versaggi · Creative Solutions Architect Portfolio</span>
-      <span>06 / 07</span>
-    </div>
-  </section>
-
-  <!-- PAGE 07: CONTACT -->
-  <section class="page" id="contact">
-    <h2 class="section-title">The Engine Behind The Work</h2>
-
-    <div class="letter-body">
-      <span class="letter-salutation">Creative Solutions Architect · Damon Versaggi</span>
-
-      <p class="lede">I build the systems that make creative work easier to understand, easier to sell, easier to produce, and harder to ignore.</p>
-
-      <p>My background sits across real-time 3D, live broadcast, product storytelling, AI-assisted workflows, founder-led brand building, campaign systems, partner narratives, and business development. That range is not random. It is the pattern: I help teams take complicated ideas and turn them into clear public-facing experiences.</p>
-
-      <p>For broadcast teams, that meant real-time graphics systems that had to work live. For Scrappy Meals and Fridgie Smalls, it means an AI-powered product and character world that translates food, sustainability, storytelling, and user behavior into something people can actually use. For sales and partnerships, it means sharper messaging, cleaner workflows, stronger pitch logic, and clearer pathways from attention to action.</p>
-
-      <p>I am strongest where creative, technical, and business teams need one person who can understand the idea, shape the system, explain the value, and help push the work across the finish line without turning the process into corporate fog.</p>
-
-      <p>That is the portfolio in one sentence: high-stakes creative technology translated into systems people can see, use, buy, share, and build on.</p>
-
-      <div class="hero-actions" style="margin-top:32px;">
-        <a href="mailto:damon@scrappymeals.com" class="chip primary">Email Damon</a>
-        <a href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener" class="chip">Digital Assets ↗</a>
-        <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener" class="chip">LinkedIn ↗</a>
-        <a href="https://fridgiesmalls.app" target="_blank" rel="noopener" class="chip">Fridgie Smalls ↗</a>
-        <a href="https://scrappymeals.com" target="_blank" rel="noopener" class="chip">Scrappy Meals ↗</a>
-        <a href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener" class="chip">Metacheese ↗</a>
-        <a href="https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13" target="_blank" rel="noopener" class="chip">Live ↗</a>
-      </div>
-
-      <div class="letter-sig">
-        <span class="letter-sig-name">Damon Versaggi</span>
-        <span class="letter-sig-contact">
-          <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a>
-          &ensp;·&ensp;
-          <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a>
-          &ensp;·&ensp;
-          <a href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener">opensea.io/collection/damonversaggi</a>
-        </span>
-      </div>
-    </div>
-
-    <div class="page-num-ghost">07</div>
-    <div class="page-footer">
-      <span>Damon Versaggi · Creative Solutions Architect Portfolio</span>
-      <span>07 / 07</span>
-    </div>
-  </section>
-
-</main>
-
-<div class="toast" id="toast">Copied ✓</div>
+<div class="toast" id="toast">Copied</div>
 
 <script>
-(() => {
-  // ---- CUSTOM CURSOR ----
-  const dot = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove', e => {
-    mx=e.clientX; my=e.clientY;
-    dot.style.left=mx+'px'; dot.style.top=my+'px';
-  });
-  const interactables = 'a,button,.chip,.skill-tag,.exp-block,.pillar,.case-card,.work-card,.ops-step,.phase,.signal-cell';
-  document.querySelectorAll(interactables).forEach(el => {
-    el.addEventListener('mouseenter',()=>ring.classList.add('hovering'));
-    el.addEventListener('mouseleave',()=>ring.classList.remove('hovering'));
-  });
-  function animateRing(){
-    rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
-    ring.style.left=rx+'px'; ring.style.top=ry+'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-
-  // ---- SCROLL PROGRESS ----
   const progress = document.getElementById('scrollProgress');
-  const topbar = document.getElementById('topbar');
-  const navLinks = [...document.querySelectorAll('.nav a')];
-  const pages = [...document.querySelectorAll('.page')];
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${height > 0 ? scrollTop / height : 0})`;
+  });
+
+  function toggleCard(card) {
+    const isActive = card.classList.contains('active');
+    document.querySelectorAll('.fit-card').forEach(c => c.classList.remove('active'));
+    if (!isActive) card.classList.add('active');
+  }
+
+  const matrixCells = document.querySelectorAll('.cap-cell');
+  matrixCells.forEach((cell, index) => {
+    setTimeout(() => cell.classList.add('visible'), index * 55 + 250);
+  });
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.16 });
+
+  document.querySelectorAll('.reveal, .edge-item, .timeline-item, .work-card, .quote-block').forEach(el => revealObserver.observe(el));
+
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(section => navObserver.observe(section));
+
   const toast = document.getElementById('toast');
-
-  function updateScroll(){
-    const st = window.scrollY;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.transform = `scaleX(${max>0 ? Math.min(1,st/max) : 0})`;
-    topbar.classList.toggle('scrolled', st > 10);
-  }
-  window.addEventListener('scroll', updateScroll, {passive:true});
-  updateScroll();
-
-  // ---- INTERSECTION: PAGE REVEAL + NAV ----
-  const revealObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        e.target.classList.add('visible');
-        // Stagger skill tags
-        const tags = e.target.querySelectorAll('.skill-tag');
-        tags.forEach((t,i) => {
-          t.style.transitionDelay = (0.05 + i*0.04)+'s';
-        });
-        // Count up numbers
-        e.target.querySelectorAll('[data-target]').forEach(el => {
-          const target = parseInt(el.dataset.target);
-          const suffix = el.dataset.suffix || '';
-          let count = 0;
-          const step = Math.max(1, Math.floor(target/20));
-          const timer = setInterval(()=>{
-            count = Math.min(count+step, target);
-            el.textContent = count + suffix;
-            if(count>=target) clearInterval(timer);
-          }, 60);
-        });
-      }
-    });
-  }, {threshold:0.08, rootMargin:'0px 0px -5% 0px'});
-
-  const activeObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
-      }
-    });
-  }, {threshold:0.3});
-
-  pages.forEach(p => { revealObs.observe(p); activeObs.observe(p); });
-
-  // ---- HERO NAME: letter-by-letter reveal ----
-  const heroNameEl = document.getElementById('heroName');
-  const nameText = 'DAMON\nVERSAGGI';
-  nameText.split('').forEach((ch,i) => {
-    if(ch==='\n'){
-      heroNameEl.appendChild(document.createElement('br'));
-      return;
-    }
-    const span = document.createElement('span');
-    span.className = 'letter' + (i>=6?' accent':'');
-    span.textContent = ch==' '?'\u00A0':ch;
-    span.style.transitionDelay = (0.05 + i*0.045)+'s';
-    heroNameEl.appendChild(span);
-  });
-  setTimeout(()=>{
-    document.querySelectorAll('#heroName .letter').forEach(l=>l.classList.add('shown'));
-  }, 200);
-
-  // ---- TYPEWRITER TAGLINE ----
-  const tagline = document.getElementById('heroTagline');
-  const tagText = 'Real-time 3D, live broadcast, AI workflows, product storytelling, campaign logic, partnerships, and audience growth — built across creative, technical, and business execution.';
-  const cursor = tagline.querySelector('.cursor-blink');
-  let ti = 0;
-  function typeNext(){
-    if(ti<=tagText.length){
-      const textNode = document.createTextNode(tagText.slice(0,ti));
-      while(tagline.firstChild && tagline.firstChild !== cursor) tagline.removeChild(tagline.firstChild);
-      tagline.insertBefore(textNode, cursor);
-      ti++;
-      setTimeout(typeNext, ti<20?80:ti<60?45:32);
-    }
-  }
-  setTimeout(typeNext, 900);
-
-  // ---- SKILL TAG TOGGLE ----
-  document.getElementById('skillsWrap').addEventListener('click', e => {
-    if(e.target.classList.contains('skill-tag')){
-      e.target.classList.toggle('active');
-    }
-  });
-
-  // ---- COPY CONTACT ----
-  const contactText = `Damon Versaggi
-Creative Solutions Architect
-damon@scrappymeals.com
-LinkedIn: https://www.linkedin.com/in/damonversaggi
-Digital Assets: https://opensea.io/collection/damonversaggi
-Fridgie Smalls: https://fridgiesmalls.app
-Scrappy Meals: https://scrappymeals.com
-METACHEESE: https://metacheese.scrappymeals.com
-LIVE: https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13`;
-
   let toastTimer;
-  function showToast(msg){
-    toast.textContent=msg;
+  function showToast(message) {
+    toast.textContent = message;
     toast.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer=setTimeout(()=>toast.classList.remove('show'),1800);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
   }
+
+  const contactText = `Damon Versaggi\ndamon@scrappymeals.com\nLinkedIn: https://www.linkedin.com/in/damonversaggi\nDigital Assets: https://opensea.io/collection/damonversaggi\nFridgie Smalls: https://fridgiesmalls.app\nScrappy Meals: https://scrappymeals.com\nMetacheese: https://metacheese.scrappymeals.com\nLive: https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13`;
 
   document.getElementById('copyBtn').addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(contactText);
-      showToast('Contact info copied ✓');
-    } catch { showToast('Copy blocked by browser'); }
+      showToast('Contact copied');
+    } catch(e) {
+      showToast('Copy blocked by browser');
+    }
   });
 
-  // ---- PRINT BUTTONS ----
-  document.getElementById('printBtn').addEventListener('click',()=>window.print());
-  document.getElementById('printBtn2').addEventListener('click',()=>window.print());
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
 
-  // ---- NAV SMOOTH SCROLL ----
-  navLinks.forEach(l => {
-    l.addEventListener('click', e => {
-      const id = l.getAttribute('href').slice(1);
-      const el = document.getElementById(id);
-      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.querySelector('.nav-links');
+  let mobileNavOpen = false;
+  navToggle.addEventListener('click', () => {
+    mobileNavOpen = !mobileNavOpen;
+    if (mobileNavOpen) {
+      navList.style.display = 'flex';
+      navList.style.flexDirection = 'column';
+      navList.style.position = 'fixed';
+      navList.style.top = '60px';
+      navList.style.left = '0';
+      navList.style.right = '0';
+      navList.style.background = 'rgba(9,9,14,0.97)';
+      navList.style.padding = '24px 24px 32px';
+      navList.style.gap = '20px';
+      navList.style.borderBottom = '1px solid var(--rule)';
+    } else {
+      navList.style.display = 'none';
+    }
+  });
+
+  navList.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 980) {
+        navList.style.display = 'none';
+        mobileNavOpen = false;
+      }
     });
   });
-
-})();
 </script>
 </body>
 </html>
