@@ -1,1633 +1,1285 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Damon Versaggi | Adobe Creative Technology Packet | AI + 3D + Product Storytelling</title>
-  <meta name="description" content="Damon Versaggi — Adobe-focused interactive packet for creative technology, AI product workflows, real-time 3D systems, brand/product storytelling, and enterprise creative systems leadership." />
-  <meta name="keywords" content="Adobe, Creative Technology, AI Product Workflows, Real-Time 3D, WebXR, OpenAI API, Sketchfab, React, Vite, Firefly, GenStudio, Creative Cloud, Substance 3D, Product Storytelling, Brand Systems, Enterprise Creative Systems, Damon Versaggi" />
-  <meta name="author" content="Damon Versaggi" />
-  <script>document.documentElement.classList.add('js');</script>
-  <style>
-    /* ── Design tokens ───────────────────────────────────────────── */
-    :root {
-      --red:      #fa0f00;
-      --red-dim:  #c00b00;
-      --ink:      #111111;
-      --charcoal: #1a1a1a;
-      --mid:      #2e2e2e;
-      --muted:    #5a5a5a;
-      --line:     #d4d4d4;
-      --soft:     #f5f5f5;
-      --paper:    #ffffff;
-      --note:     #fff4f3;
-      --grid:     rgba(250,15,0,0.04);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: #e8e8e8;
-      color: var(--ink);
-      font-family: "Georgia", "Times New Roman", serif;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration-color: var(--red); text-underline-offset: 3px; }
-    a, button { -webkit-tap-highlight-color: transparent; }
-    .hero-contact a, .sig a { overflow-wrap: anywhere; }
-    b, strong { font-weight: 700; }
-
-    /* ── ATS-visible off-screen text block ───────────────────────── */
-    .ats-block {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      white-space: nowrap;
-      font-size: 10px;
-      color: transparent;
-    }
-
-    /* ── Scroll progress ─────────────────────────────────────────── */
-    .scroll-progress {
-      position: fixed;
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--red), #ff6058);
-      transform: scaleX(0);
-      transform-origin: left center;
-      z-index: 1000;
-      pointer-events: none;
-      box-shadow: 0 0 14px rgba(250,15,0,0.3);
-      transition: transform 80ms linear;
-    }
-
-    /* ── Top bar ─────────────────────────────────────────────────── */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: rgba(255,255,255,0.95);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(14px);
-      transition: box-shadow 200ms ease, border-bottom-color 200ms ease;
-    }
-
-    .topbar.scrolled {
-      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
-      border-bottom-color: rgba(250,15,0,0.2);
-    }
-
-    .topbar-inner {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .brand-mark {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 11px;
-      white-space: nowrap;
-      text-decoration: none;
-    }
-
-    .brand-mark-icon {
-      width: 22px;
-      height: 22px;
-      background: var(--red);
-      clip-path: polygon(50% 0%, 100% 100%, 72% 100%, 50% 46%, 28% 100%, 0% 100%);
-      flex-shrink: 0;
-    }
-
-    .menu-toggle {
-      display: none;
-      appearance: none;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--ink);
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 900;
-      cursor: pointer;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-    }
-
-    .menu-toggle:hover,
-    .menu-toggle:focus-visible {
-      transform: translateY(-1px);
-      border-color: var(--red);
-      background: #fff8f7;
-      outline: none;
-    }
-
-    .nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 10px;
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--muted);
-      font-weight: 900;
-    }
-
-    .nav a {
-      text-decoration: none;
-      padding: 4px 1px;
-      border-bottom: 2px solid transparent;
-      transition: color 160ms, border-color 160ms, transform 160ms;
-      position: relative;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      color: var(--ink);
-      border-bottom-color: var(--red);
-      transform: translateY(-1px);
-    }
-
-    /* ── Page shell ──────────────────────────────────────────────── */
-    .shell {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 28px 18px 80px;
-    }
-
-    .print-note {
-      text-align: right;
-      font-size: 11px;
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      margin-bottom: 12px;
-    }
-
-    .packet {
-      background: var(--paper);
-      border: 1px solid #d0d0d0;
-      box-shadow: 0 28px 80px rgba(0,0,0,0.13);
-    }
-
-    /* ── Section pages ───────────────────────────────────────────── */
-    .pg {
-      position: relative;
-      padding: 56px 68px 68px;
-      border-bottom: 1px solid #e4e4e4;
-    }
-
-    .pg:last-child { border-bottom: none; }
-
-    /* Grid background pattern on dark sections */
-    .pg.dark {
-      background: var(--charcoal);
-      color: #f0f0f0;
-    }
-
-    .pg.dark .muted { color: #909090; }
-
-    .pg.blueprint {
-      background: var(--charcoal);
-      color: #f0f0f0;
-      background-image:
-        linear-gradient(rgba(250,15,0,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(250,15,0,0.05) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-
-    .pg.soft {
-      background: #f9f9f9;
-    }
-
-    /* ── Page footers ────────────────────────────────────────────── */
-    .pg-foot {
-      position: absolute;
-      left: 68px; right: 68px; bottom: 20px;
-      text-align: center;
-      font-size: 10px;
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .pg.dark .pg-foot { color: #555; }
-
-    /* Safe area padding for notched phones */
-    .topbar-inner {
-      padding-left: max(20px, env(safe-area-inset-left, 20px));
-      padding-right: max(20px, env(safe-area-inset-right, 20px));
-    }
-
-    /* ── Typography ──────────────────────────────────────────────── */
-    h1.hero-name {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: clamp(32px, 4.5vw, 52px);
-      font-weight: 900;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      line-height: 0.95;
-      color: var(--ink);
-    }
-
-    .hero-role {
-      font-family: Arial, sans-serif;
-      font-size: clamp(12px, 1.4vw, 15px);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
-      margin-top: 10px;
-      overflow-wrap: break-word;
-      word-break: break-word;
-    }
-
-    .hero-contact {
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 5px;
-    }
-
-    .hero-statement {
-      margin-top: 22px;
-      padding: 18px 20px;
-      border-left: 3px solid var(--red);
-      background: var(--note);
-      font-size: 15px;
-      line-height: 1.55;
-      font-style: italic;
-    }
-
-    .hero-adobe-fit {
-      margin-top: 16px;
-      padding: 14px 16px;
-      border: 1px solid #e0e0e0;
-      background: var(--soft);
-      font-size: 14px;
-      line-height: 1.5;
-      font-family: Arial, sans-serif;
-    }
-
-    .section-label {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--red);
-      font-weight: 900;
-      margin-bottom: 6px;
-    }
-
-    h2.sec {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: clamp(18px, 2.5vw, 24px);
-      font-weight: 900;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-bottom: 2px solid var(--red);
-      padding-bottom: 8px;
-      margin: 0 0 18px;
-      color: var(--ink);
-    }
-
-    .pg.dark h2.sec,
-    .pg.blueprint h2.sec {
-      color: #f0f0f0;
-      border-bottom-color: var(--red);
-    }
-
-    h3.sub {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-weight: 900;
-      font-size: 14px;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin: 18px 0 4px;
-    }
-
-    .pg.dark h3.sub { color: #ff6058; }
-
-    p {
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 12px;
-      font-family: Arial, sans-serif;
-    }
-
-    ul {
-      padding-left: 18px;
-      margin: 6px 0 14px;
-    }
-
-    li {
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 5px;
-      font-family: Arial, sans-serif;
-    }
-
-    .date-line {
-      font-size: 12px;
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      margin-bottom: 7px;
-    }
-
-    /* ── Action chips ────────────────────────────────────────────── */
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
-    }
-
-    .chip {
-      appearance: none;
-      border: 1px solid var(--line);
-      background: var(--paper);
-      color: var(--ink);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 10px;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      font-weight: 900;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 180ms, border-color 180ms, box-shadow 180ms, background 180ms;
-    }
-
-    .chip:hover,
-    .chip:focus-visible {
-      transform: translateY(-2px);
-      border-color: var(--red);
-      box-shadow: 0 4px 16px rgba(250,15,0,0.15);
-      background: #fff8f7;
-    }
-
-    .chip.primary {
-      background: var(--red);
-      border-color: var(--red);
-      color: #fff;
-    }
-
-    .chip.primary:hover {
-      background: var(--red-dim);
-      border-color: var(--red-dim);
-    }
-
-    .chip-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--red);
-      flex-shrink: 0;
-    }
-
-    .chip.primary .chip-dot { background: rgba(255,255,255,0.6); }
-
-    /* ── Role match table ────────────────────────────────────────── */
-    .match-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      font-family: Arial, sans-serif;
-      margin-top: 14px;
-    }
-
-    .match-table th {
-      background: var(--charcoal);
-      color: #fff;
-      padding: 12px 14px;
-      text-align: left;
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      font-size: 12px;
-    }
-
-    .match-table th:first-child { width: 38%; }
-
-    .match-table td {
-      border: 1px solid var(--line);
-      padding: 12px 14px;
-      vertical-align: top;
-      line-height: 1.5;
-    }
-
-    .match-table td:first-child {
-      background: var(--soft);
-      font-weight: 700;
-      font-family: "Arial Bold", Arial, sans-serif;
-    }
-
-    .match-table tr {
-      transition: background 140ms;
-    }
-
-    .match-table tbody tr:hover td {
-      background: #fff5f4;
-    }
-
-    .match-table tbody tr:hover td:first-child {
-      background: #ffe8e6;
-    }
-
-    .match-check {
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--red);
-      color: #fff;
-      text-align: center;
-      line-height: 14px;
-      font-size: 9px;
-      font-weight: 900;
-      margin-right: 6px;
-      flex-shrink: 0;
-      vertical-align: middle;
-    }
-
-    /* ── Why cards ───────────────────────────────────────────────── */
-    .cards-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 16px;
-    }
-
-    .card {
-      border: 1px solid #2e2e2e;
-      padding: 22px 20px;
-      background: rgba(255,255,255,0.04);
-      transition: transform 200ms, border-color 200ms, box-shadow 200ms;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: var(--red);
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: var(--red);
-      box-shadow: 0 12px 40px rgba(250,15,0,0.15);
-    }
-
-    .card-num {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 28px;
-      font-weight: 900;
-      color: var(--red);
-      opacity: 0.35;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .card h3 {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: #e8e8e8;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      font-size: 13px;
-      color: #a8a8a8;
-      line-height: 1.55;
-      margin: 0;
-    }
-
-    /* ── Experience cards (light) ────────────────────────────────── */
-    .exp-card {
-      border: 1px solid var(--line);
-      padding: 22px 22px;
-      margin-bottom: 18px;
-      background: var(--paper);
-      transition: transform 200ms, box-shadow 200ms, border-color 200ms;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .exp-card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 200ms;
-    }
-
-    .exp-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      border-color: #bbb;
-    }
-
-    .exp-card:hover::before {
-      opacity: 1;
-    }
-
-    .exp-org {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 3px;
-    }
-
-    .exp-title {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 16px;
-      font-weight: 900;
-      color: var(--ink);
-      margin-bottom: 2px;
-    }
-
-    /* ── Delivery pipeline ───────────────────────────────────────── */
-    .pipeline-wrap {
-      margin-top: 24px;
-      overflow-x: auto;
-    }
-
-    .pipeline {
-      display: flex;
-      align-items: stretch;
-      gap: 0;
-      min-width: 700px;
-    }
-
-    .pipe-stage {
-      flex: 1;
-      position: relative;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid #2a2a2a;
-      padding: 20px 14px 18px;
-      transition: background 200ms, border-color 200ms;
-      cursor: default;
-    }
-
-    .pipe-stage:not(:last-child)::after {
-      content: "";
-      position: absolute;
-      right: -13px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-top: 11px solid transparent;
-      border-bottom: 11px solid transparent;
-      border-left: 13px solid #2a2a2a;
-      z-index: 2;
-      transition: border-left-color 200ms;
-    }
-
-    .pipe-stage:hover {
-      background: rgba(250,15,0,0.07);
-      border-color: var(--red);
-    }
-
-    .pipe-stage:hover::after {
-      border-left-color: var(--red);
-    }
-
-    .pipe-num {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--red);
-      opacity: 0.4;
-      line-height: 1;
-    }
-
-    .pipe-name {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: #e0e0e0;
-      margin: 6px 0 8px;
-    }
-
-    .pipe-desc {
-      font-size: 11px;
-      color: #888;
-      line-height: 1.5;
-      font-family: Arial, sans-serif;
-      margin: 0;
-    }
-
-    /* ── 30-60-90 section ────────────────────────────────────────── */
-    .plan-phases {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 18px;
-      margin-top: 16px;
-    }
-
-    .phase {
-      border: 1px solid var(--line);
-      background: var(--paper);
-      padding: 20px 18px;
-      transition: transform 200ms, box-shadow 200ms;
-    }
-
-    .phase:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
-    }
-
-    .phase-badge {
-      display: inline-block;
-      background: var(--red);
-      color: #fff;
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      margin-bottom: 10px;
-    }
-
-    .phase h3 {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ink);
-      margin-bottom: 10px;
-    }
-
-    /* ── Proof grid ──────────────────────────────────────────────── */
-    .proof-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .proof-card {
-      border: 1px solid var(--line);
-      padding: 20px 18px;
-      text-decoration: none;
-      color: var(--ink);
-      background: var(--paper);
-      display: block;
-      transition: transform 200ms, border-color 200ms, box-shadow 200ms;
-      position: relative;
-    }
-
-    .proof-card::before {
-      content: "";
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%; height: 2px;
-      background: var(--red);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 220ms ease;
-    }
-
-    .proof-card:hover {
-      transform: translateY(-3px);
-      border-color: #bbb;
-      box-shadow: 0 10px 36px rgba(0,0,0,0.1);
-    }
-
-    .proof-card:hover::before { transform: scaleX(1); }
-
-    .proof-tag {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 6px;
-    }
-
-    .proof-card h3 {
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-
-    .proof-card p {
-      font-size: 12px;
-      color: var(--muted);
-      margin: 0;
-      line-height: 1.5;
-    }
-
-    .proof-arrow {
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      color: var(--red);
-      margin-top: 10px;
-      display: block;
-      font-weight: 700;
-    }
-
-    /* ── Cover letter ────────────────────────────────────────────── */
-    .letter p {
-      font-size: 15px;
-      line-height: 1.65;
-      margin-bottom: 14px;
-      font-family: Georgia, serif;
-    }
-
-    .letter .sig {
-      margin-top: 22px;
-      font-family: Georgia, serif;
-      font-size: 15px;
-    }
-
-    /* ── What Adobe gets ─────────────────────────────────────────── */
-    .gets-list {
-      list-style: none;
-      padding: 0;
-      margin: 16px 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .gets-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 14px;
-      font-family: Arial, sans-serif;
-      line-height: 1.5;
-      padding: 12px 14px;
-      border: 1px solid #2e2e2e;
-      background: rgba(255,255,255,0.03);
-      transition: border-color 180ms, background 180ms;
-    }
-
-    .gets-list li:hover {
-      border-color: var(--red);
-      background: rgba(250,15,0,0.05);
-    }
-
-    .gets-icon {
-      width: 18px;
-      height: 18px;
-      background: var(--red);
-      clip-path: polygon(50% 0%, 100% 100%, 72% 100%, 50% 46%, 28% 100%, 0% 100%);
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    /* ── Fade-in on scroll ───────────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 560ms ease, transform 560ms ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── Hero animation ──────────────────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-animate-1 { animation: fadeUp 600ms ease forwards; }
-    .hero-animate-2 { animation: fadeUp 600ms 100ms ease forwards; opacity: 0; }
-    .hero-animate-3 { animation: fadeUp 600ms 180ms ease forwards; opacity: 0; }
-    .hero-animate-4 { animation: fadeUp 600ms 280ms ease forwards; opacity: 0; }
-    .hero-animate-5 { animation: fadeUp 600ms 380ms ease forwards; opacity: 0; }
-
-    /* ── Red accent divider ──────────────────────────────────────── */
-    .red-rule {
-      border: none;
-      border-top: 2px solid var(--red);
-      margin: 20px 0;
-      opacity: 0.4;
-    }
-
-    /* ── Small label/badge ───────────────────────────────────────── */
-    .badge {
-      display: inline-block;
-      background: var(--red);
-      color: #fff;
-      font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      vertical-align: middle;
-      margin-left: 6px;
-    }
-
-    /* ── Print ───────────────────────────────────────────────────── */
-    @media print {
-      body { background: #fff; }
-      .topbar, .scroll-progress, .print-note { display: none !important; }
-      .shell { padding: 0; max-width: 100%; }
-      .packet { box-shadow: none; border: none; }
-      .pg { padding: 32px 48px; min-height: 0 !important; }
-      .pipeline { min-width: 0; }
-      .cards-2 { grid-template-columns: 1fr 1fr; }
-      .plan-phases { grid-template-columns: 1fr 1fr 1fr; }
-      .proof-grid { grid-template-columns: 1fr 1fr 1fr; }
-      .gets-list { grid-template-columns: 1fr 1fr; }
-      .reveal { opacity: 1 !important; transform: none !important; }
-      a { text-decoration: none; }
-    }
-
-    /* ── Responsive ──────────────────────────────────────────────── */
-    @media (max-width: 860px) {
-      body { background: #fff; }
-      .shell { padding: 0; }
-      .packet { border-left: 0; border-right: 0; box-shadow: none; }
-      .topbar-inner {
-        flex-wrap: wrap;
-        align-items: center;
-        padding: 10px 14px;
-        gap: 10px;
-      }
-      .brand-mark { max-width: calc(100% - 92px); white-space: normal; line-height: 1.2; }
-      .menu-toggle { display: inline-flex; align-items: center; margin-left: auto; min-height: 44px; }
-      .nav {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 8px 0 4px;
-        border-top: 1px solid rgba(0,0,0,0.08);
-        max-height: 66vh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      .nav.open { display: flex; }
-      .nav a {
-        display: block;
-        padding: 12px 2px;
-        min-height: 44px;
-        border-bottom: 1px solid rgba(0,0,0,0.08);
-        transform: none !important;
-        display: flex;
-        align-items: center;
-      }
-      .nav a.active { color: var(--red); border-bottom-color: rgba(250,15,0,0.28); }
-      .pg { padding: 36px 22px 52px; }
-      .pg-foot { position: static; margin-top: 30px; left: auto; right: auto; }
-      .cards-2 { grid-template-columns: 1fr; }
-      .plan-phases { grid-template-columns: 1fr; }
-      .proof-grid { grid-template-columns: 1fr 1fr; }
-      .gets-list { grid-template-columns: 1fr; }
-      .hero-contact { line-height: 1.55; word-break: break-word; overflow-wrap: anywhere; }
-      .chips { gap: 10px; }
-      .chip { min-height: 44px; }
-      /* Hero role separators: let them wrap naturally */
-      .hero-role { word-break: break-word; }
-    }
-
-    @media (max-width: 700px) {
-      .match-table,
-      .match-table thead,
-      .match-table tbody,
-      .match-table tr,
-      .match-table th,
-      .match-table td {
-        display: block;
-        width: 100%;
-      }
-      .match-table thead {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        clip: rect(0,0,0,0);
-      }
-      .match-table tr {
-        border: 1px solid var(--line);
-        margin-bottom: 12px;
-        background: #fff;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      }
-      .match-table td {
-        border: 0;
-        border-bottom: 1px solid rgba(0,0,0,0.07);
-        padding: 12px 14px;
-      }
-      .match-table td:last-child { border-bottom: 0; }
-      .match-table td:first-child { background: #fff4f3; }
-      .match-table td::before {
-        display: block;
-        font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
-        color: var(--red);
-        font-size: 9px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        margin-bottom: 4px;
-      }
-      .match-table td:nth-child(1)::before { content: "Adobe Need"; }
-      .match-table td:nth-child(2)::before { content: "Damon Evidence"; }
-
-      .pipeline-wrap { overflow-x: visible; }
-      .pipeline {
-        min-width: 0;
-        flex-direction: column;
-        gap: 0;
-      }
-      .pipe-stage {
-        padding: 18px 16px;
-      }
-      /* Vertical connector arrow between pipeline stages on mobile */
-      .pipe-stage:not(:last-child)::after {
-        left: 50%;
-        right: auto;
-        top: auto;
-        bottom: -14px;
-        transform: translateX(-50%);
-        width: 0;
-        height: 0;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-top: 14px solid #2a2a2a;
-        border-bottom: none;
-        background: none;
-        z-index: 2;
-      }
-      .pipe-stage:hover::after {
-        border-top-color: var(--red);
-      }
-      /* Add spacing below each stage to accommodate the arrow */
-      .pipe-stage:not(:last-child) {
-        margin-bottom: 14px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .pg { padding: 28px 16px 44px; }
-      h1.hero-name { font-size: clamp(28px, 11vw, 44px); letter-spacing: 0.06em; }
-      .hero-role { font-size: 11px; line-height: 1.65; }
-      .hero-statement { padding: 14px 15px; font-size: 14px; }
-      .hero-adobe-fit { font-size: 13px; }
-      .chips { flex-direction: column; gap: 8px; }
-      .chip { width: 100%; justify-content: center; min-height: 48px; font-size: 11px; }
-      .proof-grid { grid-template-columns: 1fr; }
-      .exp-card, .phase, .proof-card, .card { padding: 18px 14px; }
-      .gets-list li { padding: 12px; }
-      /* Tighter table cell padding */
-      .match-table td { padding: 10px 12px; }
-      /* Prevent long words overflowing */
-      p, li, td { word-break: break-word; overflow-wrap: break-word; }
-      /* Letter section readability */
-      .letter p { font-size: 14px; }
-      /* Section headings slightly smaller */
-      h2.sec { font-size: 18px; }
-    }
-
-    /* Extra small phones */
-    @media (max-width: 380px) {
-      .pg { padding: 24px 14px 40px; }
-      .topbar-inner { padding: 8px 12px; }
-      .brand-mark { font-size: 10px; }
-      h1.hero-name { font-size: clamp(26px, 12vw, 40px); }
-      .chip { padding: 10px 12px; }
-    }
-
-    /* ── Respect reduced motion ──────────────────────────────────── */
-    @media (prefers-reduced-motion: reduce) {
-      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damon Versaggi — Adobe Substance 3D, Business Development</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09090E;
+    --surface: #141420;
+    --surface2: #1C1C2C;
+    --accent: #FA0F00;
+    --accent-dim: rgba(250,15,0,0.12);
+    --text: #F2F1ED;
+    --text-mid: #9090A0;
+    --text-dim: #5A5A6A;
+    --rule: rgba(255,255,255,0.07);
+    --rule-bright: rgba(255,255,255,0.14);
+    --radius: 4px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 60px;
+    background: rgba(9,9,14,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-logo {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent) !important;
+    border: 1px solid rgba(250,15,0,0.4) !important;
+    padding: 7px 16px;
+    border-radius: var(--radius);
+    transition: background 0.2s, border-color 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--accent-dim) !important;
+    border-color: var(--accent) !important;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 80px 80px;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(250,15,0,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    max-width: 580px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 28px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(36px, 4.5vw, 58px);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  h1 em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-mid);
+    margin-bottom: 40px;
+    max-width: 500px;
+  }
+
+  .hero-sub strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background: #D80D00;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-mid);
+    border: 1px solid var(--rule-bright);
+  }
+
+  .btn-ghost:hover {
+    color: var(--text);
+    border-color: rgba(255,255,255,0.28);
+    background: var(--surface);
+  }
+
+  /* CAPABILITY MATRIX (hero right) */
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .capability-matrix {
+    width: 100%;
+    max-width: 440px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .cap-cell {
+    padding: 16px 14px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s, transform 0.5s, background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .cap-cell.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cap-cell:hover {
+    background: var(--surface2);
+    color: var(--text);
+    border-color: var(--rule-bright);
+    cursor: default;
+  }
+
+  .cap-cell.highlight {
+    color: var(--accent);
+    border-color: rgba(250,15,0,0.25);
+    background: var(--accent-dim);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 80px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  h2 em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .section-lead {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-mid);
+    max-width: 640px;
+    margin-bottom: 60px;
+  }
+
+  /* ROLE FIT CARDS */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+  }
+
+  .fit-card {
+    padding: 32px 28px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    transition: background 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fit-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .fit-card:hover {
+    background: var(--surface2);
+    border-color: var(--rule-bright);
+  }
+
+  .fit-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .fit-card.active {
+    background: var(--surface2);
+    border-color: rgba(250,15,0,0.3);
+  }
+
+  .fit-card.active::after {
+    transform: scaleX(1);
+  }
+
+  .card-num {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .card-body {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-mid);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s;
+    opacity: 0;
+  }
+
+  .fit-card.active .card-body,
+  .fit-card:hover .card-body {
+    max-height: 200px;
+    opacity: 1;
+  }
+
+  .card-arrow {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .fit-card.active .card-arrow,
+  .fit-card:hover .card-arrow {
+    opacity: 1;
+  }
+
+  /* OPPORTUNITY SECTION */
+  #opportunity {
+    background: var(--surface);
+  }
+
+  .opportunity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .opp-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .opp-list li {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 15px;
+    color: var(--text-mid);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    line-height: 1.5;
+  }
+
+  .opp-list li::before {
+    content: '';
+    flex-shrink: 0;
+    margin-top: 8px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .opp-pull {
+    padding: 36px;
+    border: 1px solid var(--rule-bright);
+    border-left: 3px solid var(--accent);
+    background: var(--bg);
+  }
+
+  .opp-pull p {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+
+  .opp-pull-meta {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .ecosystem-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+  }
+
+  .ecosystem-tag {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .tag-adobe {
+    background: rgba(250,15,0,0.1);
+    color: #FF5A52;
+    border: 1px solid rgba(250,15,0,0.2);
+  }
+
+  .tag-market {
+    background: var(--surface2);
+    color: var(--text-mid);
+    border: 1px solid var(--rule);
+  }
+
+  /* MY EDGE */
+  .edge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .edge-item {
+    padding: 28px;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s, transform 0.5s, background 0.2s, border-color 0.2s;
+  }
+
+  .edge-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .edge-item:hover {
+    background: var(--surface2);
+    border-color: var(--rule-bright);
+  }
+
+  .edge-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .edge-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-mid);
+  }
+
+  .edge-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* TIMELINE */
+  #timeline {
+    background: var(--surface);
+  }
+
+  .timeline-track {
+    position: relative;
+    margin-top: 48px;
+  }
+
+  .timeline-track::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--rule-bright);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 40px;
+    padding: 0 0 48px 0;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--rule-bright);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .timeline-item:hover::before {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .timeline-year {
+    padding-left: 24px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    padding-top: 3px;
+    text-transform: uppercase;
+  }
+
+  .timeline-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .timeline-content p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-mid);
+  }
+
+  .timeline-clients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .client-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    background: var(--surface2);
+    border: 1px solid var(--rule);
+    color: var(--text-dim);
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  /* GTM THESIS */
+  .gtm-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 48px;
+  }
+
+  .gtm-col h3 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .vertical-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .vertical-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    color: var(--text-mid);
+    transition: color 0.2s;
+    cursor: default;
+  }
+
+  .vertical-list li:hover {
+    color: var(--text);
+  }
+
+  .vertical-list li span {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .vertical-list li:hover span {
+    opacity: 1;
+  }
+
+  .motion-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .motion-item {
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    font-size: 14px;
+    color: var(--text-mid);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    cursor: default;
+  }
+
+  .motion-item:hover {
+    background: var(--surface2);
+    border-color: var(--rule-bright);
+    color: var(--text);
+  }
+
+  .motion-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* QUOTES */
+  #quotes {
+    background: var(--bg);
+  }
+
+  .quotes-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .quote-block {
+    padding: 40px 48px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid transparent;
+    transition: border-left-color 0.3s, background 0.2s;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s, transform 0.5s, border-left-color 0.3s, background 0.2s;
+  }
+
+  .quote-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .quote-block:hover {
+    border-left-color: var(--accent);
+    background: var(--surface2);
+  }
+
+  .quote-text {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 24px);
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    max-width: 860px;
+  }
+
+  /* FOOTER CTA */
+  #contact {
+    background: var(--surface);
+    text-align: center;
+    padding: 120px 80px;
+  }
+
+  #contact h2 {
+    max-width: 700px;
+    margin: 0 auto 16px;
+  }
+
+  #contact .section-lead {
+    max-width: 540px;
+    margin: 0 auto 48px;
+    font-size: 16px;
+  }
+
+  #contact .btn-row {
+    justify-content: center;
+  }
+
+  .footer-meta {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE NAV */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-mid);
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+
+    #hero {
+      grid-template-columns: 1fr;
+      padding: 100px 24px 60px;
+      gap: 48px;
+    }
+
+    .hero-right { display: none; }
+
+    section { padding: 64px 24px; }
+
+    .opportunity-grid { grid-template-columns: 1fr; gap: 40px; }
+    .gtm-layout { grid-template-columns: 1fr; gap: 40px; }
+
+    .timeline-item { grid-template-columns: 100px 1fr; gap: 20px; }
+
+    #contact { padding: 80px 24px; }
+  }
+
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .edge-grid { grid-template-columns: 1fr; }
+    .btn-row { flex-direction: column; }
+    .btn { justify-content: center; }
+  }
+
+  /* REDUCED MOTION */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+</style>
 </head>
 <body>
 
-<div class="ats-block" aria-hidden="true" role="presentation">
-  Damon Versaggi
-  Adobe Creative Technology Packet | AI Product Workflows | Real-Time 3D Systems | Brand and Product Storytelling
-  New York / New Jersey Area | damon@scrappymeals.com | linkedin.com/in/damonversaggi | scrappymeals.com/damo | fridgiesmalls.app
-
-  SUMMARY
-  Creative technology and product systems leader with 20+ years across real-time 3D, enterprise broadcast systems, AI-enabled workflows, WebXR/3D experiences, brand storytelling, customer-facing technical delivery, and cross-functional execution. Strong general fit for Adobe because Adobe sits at the intersection of creativity, product, enterprise scale, AI, content operations, 3D, design systems, and storytelling. Damon brings practical fluency across the creative and technical systems that turn ideas into shipped experiences.
-
-  CORE AREAS
-  Creative Technology, Product Strategy, AI Workflows, OpenAI API, Prompt and Context Design, Structured Outputs, WebXR, Sketchfab, React, Vite, Real-Time Graphics Systems, Adobe Creative Cloud, 3D Asset Workflows, Broadcast Graphics, Brand Systems, Product Storytelling, Cross-Functional Leadership, Customer-Facing Delivery, Enterprise Stakeholder Communication, Creative Operations, Technical Translation, Rapid Prototyping, Experience Design, Campaign Systems, Content Pipelines, Interactive Media, Digital Production, Executive Communication.
-
-  PROFESSIONAL EXPERIENCE
-  Founder / Technical Program and Creative Product Lead | Scrappy Meals XR / Fridgie Smalls / The Metacheese | Brooklyn, NY | 2016 to Present
-  Built an AI, WebXR, 3D, and food-tech product ecosystem from concept through live product. Created Fridgie Smalls with OpenAI API-powered product logic in React and Vite, structured recipe outputs, sponsor-ready experiences, WebXR/3D model workflows, Sketchfab embeds, brand storytelling, user-facing product behavior, and live product iteration. Managed developers, designers, interns, technical artists, restaurant partners, 3D collaborators, and sponsor concepts.
-
-  Vice President of Sales and Technology / Workflow Systems | eFundex | Remote | 2024 to Present
-  Designed AI-assisted outreach, lead workflows, CRM/process structures, pitch narratives, operational systems, and stakeholder-ready materials. Connected sales, marketing, data, leadership, and workflow technology to improve execution accountability.
-
-  Real-Time 3D and Broadcast Creative Systems Leadership | Vizrt / SNY / Comcast SportsNet / Tribune Media / WGN / Dick Clark Productions / Independent Clients | NYC and Global | 2004 to Present
-  20+ years delivering real-time 3D graphics systems, live production workflows, enterprise broadcast tools, sports visualization, technical storytelling, and high-pressure customer-facing implementation. Supported major media clients including ESPN, ABC, MLB Digital, CNN, Fox News, Bloomberg, CBS, MSNBC, BBC, YES Network, Turner Sports, Amazon Prime Sports, Verizon FiOS, Cablevision, New Year's Rockin' Eve, and national election control-room cycles.
-</div>
-
-<div class="scroll-progress" id="progress" role="progressbar" aria-label="Reading progress"></div>
-
-<nav class="topbar" id="topbar" aria-label="Page navigation">
-  <div class="topbar-inner">
-    <a class="brand-mark" href="#hero">
-      <span class="brand-mark-icon"></span>
-      Damon Versaggi
-    </a>
-    <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
-    <div class="nav" id="site-nav" role="list">
-      <a href="#hero" role="listitem">Overview</a>
-      <a href="#match" role="listitem">Adobe Fit</a>
-      <a href="#why" role="listitem">Why Damon</a>
-      <a href="#experience" role="listitem">Experience</a>
-      <a href="#model" role="listitem">Operating Model</a>
-      <a href="#plan" role="listitem">30-60-90</a>
-      <a href="#proof" role="listitem">Project Proof</a>
-      <a href="#letter" role="listitem">Adobe Narrative</a>
-      <a href="#gets" role="listitem">What Adobe Gets</a>
-    </div>
-  </div>
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Damon Versaggi <span>×</span> Adobe</a>
+  <ul class="nav-links">
+    <li><a href="#rolefit">Role Fit</a></li>
+    <li><a href="#opportunity">Opportunity</a></li>
+    <li><a href="#timeline">Experience</a></li>
+    <li><a href="#gtm">GTM Thesis</a></li>
+    <li><a href="mailto:damon@scrappymeals.com" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
 </nav>
 
-<div class="shell">
-  <div class="print-note">
-    <button class="chip" onclick="window.print()" aria-label="Save or print this packet">&#x2399; Save / Print PDF</button>
+<!-- HERO -->
+<section id="hero" style="border-top: none; padding-top: 120px;">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Director, Business Development · Substance 3D · North America</div>
+    <h1>Helping Adobe move 3D from<br><em>specialist tool</em> to<br>enterprise system.</h1>
+    <p class="hero-sub">
+      I understand the <strong>production reality behind 3D adoption</strong>—because I've lived it. Twenty years across real-time graphics, broadcast systems, enterprise training, and founder-led creative technology means I can build GTM strategy that actually connects to how creative teams work.
+    </p>
+    <div class="btn-row">
+      <a href="mailto:damon@scrappymeals.com" class="btn btn-primary">Email Damon</a>
+      <a href="https://linkedin.com/in/damonversaggi" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://scrappymeals.com/damo" target="_blank" class="btn btn-ghost">Portfolio</a>
+      <a href="https://scrappymeals.com" target="_blank" class="btn btn-ghost">Scrappy Meals</a>
+      <a href="https://fridgesmalls.com" target="_blank" class="btn btn-ghost">Fridgie Smalls</a>
+    </div>
   </div>
+  <div class="hero-right">
+    <div class="capability-matrix" id="capMatrix">
+      <div class="cap-cell highlight">Real-Time 3D</div>
+      <div class="cap-cell">Enterprise GTM</div>
+      <div class="cap-cell">Substance 3D</div>
+      <div class="cap-cell">Team Training</div>
+      <div class="cap-cell highlight">BD Strategy</div>
+      <div class="cap-cell">C-Suite Sales</div>
+      <div class="cap-cell">Firefly AI</div>
+      <div class="cap-cell">WebXR</div>
+      <div class="cap-cell highlight">Founder-Led</div>
+      <div class="cap-cell">Sports Media</div>
+      <div class="cap-cell">GenStudio</div>
+      <div class="cap-cell">Pipeline Dev</div>
+      <div class="cap-cell highlight">Content Supply Chain</div>
+      <div class="cap-cell">Vizrt Systems</div>
+      <div class="cap-cell">AR Production</div>
+      <div class="cap-cell">Digital Twins</div>
+      <div class="cap-cell">Product Strategy</div>
+      <div class="cap-cell highlight">Revenue Growth</div>
+    </div>
+  </div>
+</section>
 
-  <main class="packet" role="main">
+<!-- ROLE FIT -->
+<section id="rolefit">
+  <div class="section-eyebrow">Role Alignment</div>
+  <h2>Why this role fits—<em>and why I fit this role</em></h2>
+  <p class="section-lead">Adobe is looking for a senior leader who can own North America revenue, shape GTM strategy, build enterprise relationships, and align cross-functional teams around Substance 3D growth. Here's where my background maps directly.</p>
+  <div class="cards-grid">
+    <div class="fit-card" onclick="toggleCard(this)">
+      <div class="card-num">01</div>
+      <div class="card-title">3D Ecosystem Fluency</div>
+      <div class="card-body">Twenty years inside real-time 3D—Vizrt systems, broadcast graphics, AR production, WebXR development—means I understand the technical decisions creative and technical teams make when adopting 3D tooling. I'm not learning the landscape. I've been building in it.</div>
+      <div class="card-arrow">View detail →</div>
+    </div>
+    <div class="fit-card" onclick="toggleCard(this)">
+      <div class="card-num">02</div>
+      <div class="card-title">Enterprise Adoption</div>
+      <div class="card-body">I've trained approximately 1,000 artists and operators on real-time graphics workflows across networks like ESPN, CNN, CBS, and Amazon Prime. I know how enterprise creative teams actually evaluate, resist, and ultimately adopt new production tools—and how to accelerate that cycle.</div>
+      <div class="card-arrow">View detail →</div>
+    </div>
+    <div class="fit-card" onclick="toggleCard(this)">
+      <div class="card-num">03</div>
+      <div class="card-title">GTM and Business Development</div>
+      <div class="card-body">As the founder of Scrappy Meals XR, I've built commercial narratives, partner models, pricing concepts, pitch systems, and sponsorship structures for emerging creative technology. As a Vizrt-adjacent operator, I've connected product capability to enterprise customer outcomes at scale.</div>
+      <div class="card-arrow">View detail →</div>
+    </div>
+    <div class="fit-card" onclick="toggleCard(this)">
+      <div class="card-num">04</div>
+      <div class="card-title">AI and Content Supply Chain</div>
+      <div class="card-body">Fridgie Smalls is an AI-powered platform combining generative recipes, 3D content, AR menus, and immersive commerce. It's a small-scale model of exactly the kind of AI-assisted content supply chain Adobe is positioning Substance 3D, Firefly, and GenStudio to enable at enterprise scale.</div>
+      <div class="card-arrow">View detail →</div>
+    </div>
+    <div class="fit-card" onclick="toggleCard(this)">
+      <div class="card-num">05</div>
+      <div class="card-title">Cross-Functional Leadership</div>
+      <div class="card-body">I've operated across creative, technical, production, sales, support, and executive stakeholders simultaneously—inside Vizrt, broadcast networks, and my own product organization. I can hold conversations across the full stakeholder map that enterprise BD requires: artist, technical director, product leader, executive buyer.</div>
+      <div class="card-arrow">View detail →</div>
+    </div>
+  </div>
+</section>
 
-    <section class="pg" id="hero" aria-labelledby="name-heading">
-      <div class="section-label hero-animate-1">Adobe · Creative Technology · AI Workflows · Real-Time 3D · Product Storytelling</div>
-
-      <h1 class="hero-name hero-animate-1" id="name-heading">Damon<br>Versaggi</h1>
-
-      <p class="hero-role hero-animate-2">
-        Creative Technology Leader &nbsp;·&nbsp; AI Product Workflows &nbsp;·&nbsp; Real-Time 3D Systems &nbsp;·&nbsp; Brand + Product Storytelling
-      </p>
-
-      <p class="hero-contact hero-animate-3">
-        New York / New Jersey Area &nbsp;·&nbsp;
-        <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> &nbsp;·&nbsp;
-        <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a> &nbsp;·&nbsp;
-        <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a>
-      </p>
-
-      <blockquote class="hero-statement hero-animate-4">
-        20+ years connecting creative craft, real-time 3D systems, AI-enabled workflows, customer-facing delivery, technical teams, and executive stakeholders into work that ships.
-      </blockquote>
-
-      <div class="hero-adobe-fit hero-animate-4">
-        <strong>General Adobe fit:</strong> Adobe lives where creativity, software, storytelling, AI, enterprise content systems, 3D, and product adoption collide. Damon brings the uncommon mix of creative systems taste, technical translation, real production discipline, founder-level product ownership, and the ability to turn ambiguous ideas into usable workflows.
-      </div>
-
-      <div class="chips hero-animate-5">
-        <button class="chip primary" id="email-btn" onclick="copyEmail()" aria-label="Copy email address">
-          <span class="chip-dot"></span> Email Damon
-        </button>
-        <a class="chip" href="https://scrappymeals.com/damo" target="_blank" rel="noopener">
-          <span class="chip-dot"></span> Portfolio
-        </a>
-        <a class="chip" href="https://fridgiesmalls.app" target="_blank" rel="noopener">
-          <span class="chip-dot"></span> Fridgie Smalls
-        </a>
-        <a class="chip" href="https://scrappymeals.com" target="_blank" rel="noopener">
-          <span class="chip-dot"></span> Scrappy Meals
-        </a>
-        <a class="chip" href="https://scrappymeals.com" target="_blank" rel="noopener">
-          <span class="chip-dot"></span> The Metacheese
-        </a>
-        <a class="chip" href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">
-          <span class="chip-dot"></span> LinkedIn
-        </a>
-      </div>
-
-      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
-    </section>
-
-    <section class="pg soft reveal" id="match" aria-labelledby="match-heading">
-      <div class="section-label">Section 01</div>
-      <h2 class="sec" id="match-heading">Adobe Fit Snapshot</h2>
-      <p>This version is not tied to one job description. It frames Damon as a broad Adobe candidate across creative technology, AI workflows, 3D systems, product storytelling, enterprise content systems, and cross-functional product delivery.</p>
-
-      <table class="match-table" role="table" aria-label="General Adobe fit between Adobe needs and Damon's evidence">
-        <thead>
-          <tr>
-            <th scope="col">Adobe Need</th>
-            <th scope="col">Damon Evidence</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="match-check" aria-hidden="true">✓</span>Creative technology leadership</td>
-            <td>20+ years building at the edge of design, real-time 3D, broadcast systems, interactive media, product storytelling, and technical production. Not merely adjacent to creative tools. He has lived inside the workflows they serve.</td>
-          </tr>
-          <tr>
-            <td><span class="match-check" aria-hidden="true">✓</span>AI-enabled product thinking</td>
-            <td>Created Fridgie Smalls, an AI-powered product using OpenAI API logic, structured outputs, prompt behavior, conversational inputs, sponsor flows, and user-facing recipe generation. Practical AI, not conference-panel fog.</td>
-          </tr>
-          <tr>
-            <td><span class="match-check" aria-hidden="true">✓</span>3D and immersive systems fluency</td>
-            <td>Deep background in real-time 3D systems, Sketchfab/WebXR workflows, broadcast graphics, spatial product concepts, 3D asset pipelines, and technical artist collaboration.</td>
-          </tr>
-          <tr>
-            <td><span class="match-check" aria-hidden="true">✓</span>Enterprise stakeholder translation</td>
-            <td>Served as the connective layer across creative, engineering, production, sales, support, demos, client implementation, leadership, and live operations across media and founder environments.</td>
-          </tr>
-          <tr>
-            <td><span class="match-check" aria-hidden="true">✓</span>Brand and product storytelling</td>
-            <td>Built product narratives, pitch systems, sponsor concepts, portfolio packets, campaign logic, character ecosystems, and branded experiences that connect product value to audience understanding.</td>
-          </tr>
-          <tr>
-            <td><span class="match-check" aria-hidden="true">✓</span>Prototype-to-production discipline</td>
-            <td>Comfortable moving from idea to working prototype to launch constraint to iteration, with enough technical fluency to talk implementation and enough creative judgment to protect quality.</td>
-          </tr>
-          <tr>
-            <td><span class="match-check" aria-hidden="true">✓</span>Cross-functional operating range</td>
-            <td>Works across product, creative, engineering, technical artists, customers, sponsors, sales, marketing, data, and executive stakeholders without losing the plot, which is rarer than it should be.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
-    </section>
-
-    <section class="pg dark reveal" id="why" aria-labelledby="why-heading">
-      <div class="section-label" style="color:#ff6058;">Section 02</div>
-      <h2 class="sec" id="why-heading">Why Damon for Adobe</h2>
-
-      <div class="cards-2">
-        <div class="card">
-          <div class="card-num">01</div>
-          <h3>Creative Systems Thinker</h3>
-          <p>Damon does not separate the artifact from the system that produces it. He thinks in workflows, handoffs, production constraints, brand standards, audience experience, and repeatability. That maps to Adobe’s world better than a portfolio full of isolated pretty objects.</p>
-        </div>
-        <div class="card">
-          <div class="card-num">02</div>
-          <h3>AI as Production Layer</h3>
-          <p>He uses AI as an operating layer: product behavior, structured outputs, prompt logic, UX copy, campaign testing, workflow documentation, and rapid prototyping. The useful part is compression: strategy, copy, product logic, and execution moving closer together.</p>
-        </div>
-        <div class="card">
-          <div class="card-num">03</div>
-          <h3>Real-Time 3D Credibility</h3>
-          <p>His 3D background is operational, not decorative. Broadcast systems, live graphics, interactive experiences, WebXR embeds, technical artist collaboration, and high-pressure production environments gave him a practical sense for what actually works when the demo glow wears off.</p>
-        </div>
-        <div class="card">
-          <div class="card-num">04</div>
-          <h3>Executive Translation</h3>
-          <p>He can sit between creative teams, product leaders, engineers, sales, customers, and executives and translate the same idea at the right level of resolution. That is the work underneath most serious Adobe roles, even when the job post hides it behind cheerful corporate nouns.</p>
-        </div>
-      </div>
-
-      <div class="pg-foot" style="color:#444;">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
-    </section>
-
-    <section class="pg reveal" id="experience" aria-labelledby="exp-heading">
-      <div class="section-label">Section 03</div>
-      <h2 class="sec" id="exp-heading">Selected Experience</h2>
-
-      <article class="exp-card" aria-label="Scrappy Meals XR experience">
-        <div class="exp-org">Scrappy Meals XR / Fridgie Smalls / The Metacheese · Brooklyn, NY</div>
-        <div class="exp-title">Founder / Creative Product &amp; Technology Lead</div>
-        <div class="date-line">2016 – Present</div>
-        <ul>
-          <li>Built an AI, WebXR, 3D, and food-tech product ecosystem from concept through live product, including product strategy, UX direction, AI prompt behavior, structured output logic, sponsor concepts, demos, QA, and launch iteration.</li>
-          <li>Created Fridgie Smalls as an AI-powered user experience that converts ingredient input into structured recipe outputs, branded food experiences, and customer-facing product flows.</li>
-          <li>Designed workflows across voice input, typed input, dynamic recipe modes, inventory concepts, sponsored product flows, branded 3D models, and commerce-oriented recipe experiences.</li>
-          <li>Worked with developers and technical partners on React/Vite implementation, OpenAI API behavior, Sketchfab/WebXR embeds, modal states, analytics points, and production fixes.</li>
-          <li>Led creative storytelling, character/IP development, pitch materials, sponsor framing, and product narrative around Scrappy Meals, Fridgie Smalls, and The Metacheese.</li>
-        </ul>
-      </article>
-
-      <article class="exp-card" aria-label="eFundex experience">
-        <div class="exp-org">eFundex · Remote</div>
-        <div class="exp-title">Vice President of Sales &amp; Technology / Workflow Systems</div>
-        <div class="date-line">2024 – Present</div>
-        <ul>
-          <li>Designed AI-assisted outreach, lead workflow, CRM/process structures, pitch narratives, and operational systems for a high-trust financial services environment.</li>
-          <li>Translated ambiguous business goals into scoped execution plans, messaging frameworks, follow-up cadence, stakeholder-ready materials, and clearer workflow systems.</li>
-          <li>Connected sales, marketing, data, leadership, and technology priorities into more consistent communication, pipeline visibility, and execution accountability.</li>
-        </ul>
-      </article>
-
-      <article class="exp-card" aria-label="Broadcast systems experience">
-        <div class="exp-org">Vizrt / SNY / Comcast SportsNet / Tribune Media / WGN / Dick Clark Productions / Independent Clients · NYC / Global</div>
-        <div class="exp-title">Real-Time 3D &amp; Broadcast Creative Systems Leadership</div>
-        <div class="date-line">2004 – Present</div>
-        <ul>
-          <li>Delivered real-time 3D graphics systems, live production workflows, enterprise broadcast tools, sports visualization, technical storytelling, and customer-facing implementation across major media environments.</li>
-          <li>At Vizrt, operated across creative, demos, training, implementation, support, sales enablement, client onboarding, and product workflow input for enterprise real-time graphics platforms.</li>
-          <li>At SNY / Comcast SportsNet, helped lead and redesign real-time graphics ecosystems, aligning visual systems, technical constraints, sponsor-sensitive deliverables, HD production transitions, and live operational reliability.</li>
-          <li>At Tribune Media / WGN, worked across creative, production, news, online, sales, and promotion, connecting technical workflows and cross-functional delivery needs across departments.</li>
-          <li>Supported major national and global media clients including ESPN, ABC, MLB Digital, CNN, Fox News, Bloomberg, CBS, MSNBC, BBC, YES Network, Turner Sports, Amazon Prime Sports, Verizon FiOS, Cablevision, New Year's Rockin' Eve, and election control-room cycles.</li>
-        </ul>
-      </article>
-
-      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
-    </section>
-
-    <section class="pg blueprint reveal" id="model" aria-labelledby="model-heading">
-      <div class="section-label" style="color:#ff6058;">Section 04</div>
-      <h2 class="sec" id="model-heading">Adobe Operating Model</h2>
-      <p style="color:#aaa;font-family:Arial,sans-serif;font-size:14px;margin-bottom:20px;">A general model for how Damon would operate inside Adobe: from ambiguity to useful signal, prototype, story, and scalable system.</p>
-
-      <div class="pipeline-wrap" role="list" aria-label="Six-stage Adobe operating model">
-        <div class="pipeline">
-
-          <div class="pipe-stage" role="listitem" tabindex="0">
-            <div class="pipe-num">01</div>
-            <div class="pipe-name">Discover</div>
-            <p class="pipe-desc">Map the real workflow: users, tools, blockers, content states, production pressure, technical constraints, and business outcomes.</p>
-          </div>
-
-          <div class="pipe-stage" role="listitem" tabindex="0">
-            <div class="pipe-num">02</div>
-            <div class="pipe-name">Frame</div>
-            <p class="pipe-desc">Turn ambiguity into a clear problem statement, audience, value proposition, success criteria, and product or creative hypothesis.</p>
-          </div>
-
-          <div class="pipe-stage" role="listitem" tabindex="0">
-            <div class="pipe-num">03</div>
-            <div class="pipe-name">Prototype</div>
-            <p class="pipe-desc">Build the smallest convincing version that shows how the workflow, story, product behavior, or creative system should work.</p>
-          </div>
-
-          <div class="pipe-stage" role="listitem" tabindex="0">
-            <div class="pipe-num">04</div>
-            <div class="pipe-name">Translate</div>
-            <p class="pipe-desc">Bridge creative intent, product logic, technical feasibility, customer value, and executive narrative so teams can actually align.</p>
-          </div>
-
-          <div class="pipe-stage" role="listitem" tabindex="0">
-            <div class="pipe-num">05</div>
-            <div class="pipe-name">Validate</div>
-            <p class="pipe-desc">Test with real users, real constraints, real assets, and honest feedback instead of pretending the deck is the product.</p>
-          </div>
-
-          <div class="pipe-stage" role="listitem" tabindex="0">
-            <div class="pipe-num">06</div>
-            <div class="pipe-name">Scale</div>
-            <p class="pipe-desc">Convert what works into reusable systems: product direction, creative frameworks, implementation playbooks, and stakeholder-ready narratives.</p>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="pg-foot" style="color:#444;">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
-    </section>
-
-    <section class="pg soft reveal" id="plan" aria-labelledby="plan-heading">
-      <div class="section-label">Section 05</div>
-      <h2 class="sec" id="plan-heading">30 · 60 · 90 Day Adobe Plan</h2>
-      <p>A general first-90-day framework for any Adobe team operating at the intersection of creativity, product, AI, 3D, content systems, and enterprise adoption.</p>
-
-      <div class="plan-phases">
-
-        <div class="phase">
-          <div class="phase-badge">Days 1 – 30</div>
-          <h3>Learn the System. Find the Real Friction.</h3>
-          <ul>
-            <li>Immerse in the team’s product surface, customer base, creative workflows, internal process, technical constraints, and existing success metrics.</li>
-            <li>Shadow product, design, engineering, research, sales, customer-facing teams, and creative operators to understand how decisions actually move.</li>
-            <li>Map the workflow from idea to execution: intake, prototype, review, production, approval, launch, measurement, and iteration.</li>
-            <li>Identify where ambiguity, quality risk, handoff friction, and stakeholder misalignment most often appear.</li>
-          </ul>
-        </div>
-
-        <div class="phase">
-          <div class="phase-badge">Days 31 – 60</div>
-          <h3>Build Useful Proof. Tighten the Narrative.</h3>
-          <ul>
-            <li>Partner with the right cross-functional owners to define one or two high-signal opportunities where better creative systems or product workflows can show measurable value.</li>
-            <li>Create clear briefs, prototype directions, communication artifacts, risk notes, and stakeholder updates.</li>
-            <li>Use AI and rapid prototyping where they genuinely compress cycles, not where they create more shiny confusion for everyone to admire politely.</li>
-            <li>Turn early findings into practical recommendations: what to build, what to change, what to stop doing, and what needs deeper investment.</li>
-          </ul>
-        </div>
-
-        <div class="phase">
-          <div class="phase-badge">Days 61 – 90</div>
-          <h3>Scale the Pattern. Become Useful Fast.</h3>
-          <ul>
-            <li>Package the strongest early work into reusable frameworks, playbooks, stakeholder narratives, or product inputs.</li>
-            <li>Build trust as a clear cross-functional operator who can protect creative quality while respecting technical and business constraints.</li>
-            <li>Establish a repeatable rhythm for discovery, prototype review, executive alignment, customer/user feedback, and measurable impact.</li>
-            <li>Become known as the connective tissue between creative ambition, product strategy, engineering reality, and business value.</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
-    </section>
-
-    <section class="pg reveal" id="proof" aria-labelledby="proof-heading">
-      <div class="section-label">Section 06</div>
-      <h2 class="sec" id="proof-heading">Selected Project Proof</h2>
-
-      <div class="proof-grid">
-
-        <a class="proof-card" href="https://fridgiesmalls.app" target="_blank" rel="noopener" aria-label="Fridgie Smalls project">
-          <div class="proof-tag">AI · WebXR · 3D · React/Vite</div>
-          <h3>Fridgie Smalls</h3>
-          <p>AI-native consumer product with OpenAI API, React/Vite, WebXR/3D model workflows, structured outputs, sponsor-ready experiences, product UX, and launch-ready storytelling built from zero.</p>
-          <span class="proof-arrow">Visit ↗</span>
-        </a>
-
-        <a class="proof-card" href="https://scrappymeals.com/damo" target="_blank" rel="noopener" aria-label="Portfolio">
-          <div class="proof-tag">Portfolio · Creative Systems</div>
-          <h3>Portfolio</h3>
-          <p>Creative technology, production systems, brand/product storytelling, real-time 3D leadership, interactive media, and delivery proof across 20+ years of enterprise and founder work.</p>
-          <span class="proof-arrow">Visit ↗</span>
-        </a>
-
-        <a class="proof-card" href="https://scrappymeals.com" target="_blank" rel="noopener" aria-label="Scrappy Meals ecosystem">
-          <div class="proof-tag">Founder · Food-Tech · AI · 3D</div>
-          <h3>Scrappy Meals XR</h3>
-          <p>Founder-led creative systems ecosystem connecting sustainability, AI, 3D, immersive media, culinary storytelling, sponsor concepts, and product-market imagination.</p>
-          <span class="proof-arrow">Visit ↗</span>
-        </a>
-
-        <a class="proof-card" href="https://scrappymeals.com" target="_blank" rel="noopener" aria-label="The Metacheese concept">
-          <div class="proof-tag">3D · Immersive · Culinary · World</div>
-          <h3>The Metacheese</h3>
-          <p>Immersive culinary education and virtual world concept showing Damon’s ability to connect 3D, interactive storytelling, food systems, character IP, and product narrative.</p>
-          <span class="proof-arrow">Visit ↗</span>
-        </a>
-
-        <div class="proof-card" style="cursor:default;" aria-label="Real-time 3D systems proof">
-          <div class="proof-tag">Broadcast · Enterprise · Live</div>
-          <h3>Real-Time 3D Systems</h3>
-          <p>Two decades of enterprise-grade real-time 3D graphics, broadcast implementation, client workflows, product feedback, and high-pressure production environments.</p>
-        </div>
-
-        <div class="proof-card" style="cursor:default;" aria-label="AI workflow proof">
-          <div class="proof-tag">AI · Workflow · Content Systems</div>
-          <h3>AI Production Layer</h3>
-          <p>Uses AI to compress strategy, copy, product logic, UX behavior, prompt systems, campaign testing, documentation, and prototype-ready thinking into faster execution loops.</p>
-        </div>
-
-      </div>
-
-      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
-    </section>
-
-    <section class="pg soft reveal" id="letter" aria-labelledby="letter-heading">
-      <div class="section-label">Section 07</div>
-      <h2 class="sec" id="letter-heading">Adobe Narrative</h2>
-
-      <div class="letter" role="article" aria-label="General Adobe narrative">
-        <p>To the Adobe team,</p>
-
-        <p>Adobe sits at the center of the creative economy because it does more than sell tools. It shapes how creative work is made, scaled, governed, measured, and understood. That is the part of Adobe that maps directly to my career.</p>
-
-        <p>I have spent 20+ years working across real-time 3D systems, live production, enterprise creative technology, interactive media, AI-enabled product workflows, and customer-facing delivery. My background is not one clean corporate lane, which is inconvenient for forms but useful for real work. I have been the person connecting creative ambition, technical constraints, production reality, stakeholder expectations, and business value.</p>
-
-        <p>At Vizrt, SNY, Comcast SportsNet, Tribune Media, WGN, and across major broadcast/media clients, I worked inside environments where creative quality and technical reliability had to survive pressure. At Scrappy Meals XR and Fridgie Smalls, I built from the founder side: AI product behavior, OpenAI API workflows, React/Vite implementation, WebXR/3D model experiences, sponsor concepts, product storytelling, and user-facing creative logic.</p>
-
-        <p>What I would bring to Adobe is a rare operating mix: creative taste, technical translation, real-time 3D fluency, AI workflow experimentation, executive communication, and the ability to build systems that help teams move faster without flattening the craft. I understand Adobe’s value because I have lived on the user, builder, storyteller, and operator sides of the equation.</p>
-
-        <p>I am interested in Adobe broadly because the future of creative work will belong to teams that can connect AI, design systems, content operations, 3D, brand trust, and product experience into workflows people actually use. That is the work I know how to help shape.</p>
-
-        <div class="sig">
-          Damon Versaggi<br>
-          <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> &nbsp;·&nbsp;
-          <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a> &nbsp;·&nbsp;
-          <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a>
-        </div>
-      </div>
-
-      <div class="pg-foot">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
-    </section>
-
-    <section class="pg dark reveal" id="gets" aria-labelledby="gets-heading">
-      <div class="section-label" style="color:#ff6058;">Section 08</div>
-      <h2 class="sec" id="gets-heading">What Adobe Gets</h2>
-      <p style="color:#aaa;font-family:Arial,sans-serif;font-size:14px;margin-bottom:18px;">A cross-functional creative technology operator who can move between craft, systems, AI, 3D, product, and business value without needing six translators and a ceremonial alignment meeting.</p>
-
-      <ul class="gets-list" aria-label="Summary of Damon's capabilities for Adobe">
-        <li>
-          <span class="gets-icon" aria-hidden="true"></span>
-          A creative systems thinker who understands workflow, production reality, and the difference between a nice asset and a scalable creative engine.
-        </li>
-        <li>
-          <span class="gets-icon" aria-hidden="true"></span>
-          A hands-on builder with AI, WebXR, 3D, OpenAI API, React/Vite, Sketchfab, and structured product workflow experience.
-        </li>
-        <li>
-          <span class="gets-icon" aria-hidden="true"></span>
-          Real-time 3D credibility from two decades of enterprise broadcast graphics, live systems, technical storytelling, and high-pressure delivery.
-        </li>
-        <li>
-          <span class="gets-icon" aria-hidden="true"></span>
-          The ability to translate between creative teams, engineers, technical artists, product leaders, customers, sales, and executives.
-        </li>
-        <li>
-          <span class="gets-icon" aria-hidden="true"></span>
-          A founder’s bias toward making things real instead of turning every idea into a meeting series with snacks and no artifact.
-        </li>
-        <li>
-          <span class="gets-icon" aria-hidden="true"></span>
-          Strategic storytelling that connects product value, audience behavior, brand systems, campaign logic, and stakeholder confidence.
-        </li>
-        <li>
-          <span class="gets-icon" aria-hidden="true"></span>
-          Practical AI fluency focused on workflow compression, product behavior, content logic, and user trust.
-        </li>
-        <li>
-          <span class="gets-icon" aria-hidden="true"></span>
-          The pattern recognition to turn repeated creative or technical friction into frameworks, requirements, playbooks, or product signal.
-        </li>
-        <li>
-          <span class="gets-icon" aria-hidden="true"></span>
-          A portfolio that proves the overlap of creative technology, brand storytelling, interactive media, sustainability, food culture, 3D, and AI.
-        </li>
-        <li>
-          <span class="gets-icon" aria-hidden="true"></span>
-          A senior operator who can add value across Adobe teams touching Creative Cloud, Firefly, GenStudio, Substance 3D, Experience Cloud, content systems, or product storytelling.
-        </li>
+<!-- OPPORTUNITY -->
+<section id="opportunity">
+  <div class="section-eyebrow">Market Opportunity</div>
+  <h2>The Substance 3D<br><em>enterprise moment</em></h2>
+  <div class="opportunity-grid">
+    <div>
+      <p class="section-lead" style="margin-bottom: 28px;">3D is no longer a production specialty. It's becoming the foundation of how brands build product content, ecommerce experiences, digital twins, and AI-assisted asset workflows—at scale.</p>
+      <ul class="opp-list">
+        <li>Brands need product content in hundreds of variants, environments, and formats—3D is the only scalable answer.</li>
+        <li>Ecommerce visualization, digital twins, and immersive product experiences are moving from R&D into standard brand infrastructure.</li>
+        <li>AI-assisted content workflows are accelerating production volume while raising the need for high-quality 3D source assets.</li>
+        <li>Substance 3D's material and asset libraries become exponentially more valuable when connected to Firefly generation and GenStudio distribution.</li>
+        <li>Enterprise content supply chains need 3D to sit at the center—not as a specialist plugin, but as a core production layer.</li>
       </ul>
+      <div class="ecosystem-tags">
+        <span class="ecosystem-tag tag-adobe">Substance 3D</span>
+        <span class="ecosystem-tag tag-adobe">Firefly</span>
+        <span class="ecosystem-tag tag-adobe">GenStudio</span>
+        <span class="ecosystem-tag tag-adobe">Firefly Foundry</span>
+        <span class="ecosystem-tag tag-adobe">Creative Cloud</span>
+        <span class="ecosystem-tag tag-market">3D Visualization</span>
+        <span class="ecosystem-tag tag-market">Digital Twins</span>
+        <span class="ecosystem-tag tag-market">AI Content Workflows</span>
+        <span class="ecosystem-tag tag-market">Ecommerce Assets</span>
+      </div>
+    </div>
+    <div>
+      <div class="opp-pull">
+        <p>"Substance 3D is not just a creative toolset. It is part of the next enterprise content supply chain."</p>
+        <div class="opp-pull-meta">Damon Versaggi — on Adobe's Substance 3D opportunity</div>
+      </div>
+      <div style="margin-top: 24px; padding: 28px; border: 1px solid var(--rule); background: var(--bg);">
+        <div class="edge-label" style="margin-bottom: 14px;">The Convergence</div>
+        <p style="font-size: 14px; line-height: 1.7; color: var(--text-mid);">The brands that move early—connecting 3D material and asset workflows to AI generation and enterprise distribution—will build structural content advantages over competitors still running fragmented, agency-dependent production models. Substance 3D is positioned to own that transition. The BD role is to make sure that story lands in the right rooms.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="pg-foot" style="color:#444;">Damon Versaggi · Adobe Creative Technology Packet · damon@scrappymeals.com</div>
-    </section>
+<!-- MY EDGE -->
+<section id="edge">
+  <div class="section-eyebrow">Differentiation</div>
+  <h2>Why my background<br><em>is different</em></h2>
+  <p class="section-lead">Most BD candidates for a role like this come from SaaS sales or creative software backgrounds. My path is less common—and more directly relevant to what enterprise 3D adoption actually requires.</p>
+  <div class="edge-grid">
+    <div class="edge-item">
+      <div class="edge-label">Production Reality</div>
+      <div class="edge-text">I've operated <strong>inside real-time 3D production environments</strong> under live broadcast pressure. I know what it feels like when a workflow breaks, when a render fails at 11pm before election night. That context makes enterprise customer conversations different.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-label">Adoption Dynamics</div>
+      <div class="edge-text">I've seen how <strong>creative and technical teams actually resist—then adopt—new tooling</strong>. Training ~1,000 operators across ESPN, CNN, CBS, and SNY taught me more about enterprise software rollout than most sales training programs.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-label">Stakeholder Range</div>
+      <div class="edge-text">I can hold credible conversations with <strong>the artist, the technical director, the product leader, and the executive buyer</strong>—without losing the thread between them. That's a rare combination in enterprise creative technology BD.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-label">Founder Discipline</div>
+      <div class="edge-text">Building Scrappy Meals XR from zero—product strategy, AI workflows, partner pitches, WebXR development, GTM positioning, revenue modeling—means I know how to <strong>build new business capabilities from scratch</strong>, not just scale existing ones.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-label">AI-Native Thinking</div>
+      <div class="edge-text">I've been <strong>building with AI as a production layer</strong>—not experimenting with it. Fridgie Smalls uses generative AI for recipe output, content workflows, and product thinking. I understand what AI-assisted content pipelines actually require to work at scale.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-label">Product-to-Revenue Bridge</div>
+      <div class="edge-text">I translate product capability into <strong>buyer narratives and commercial strategy</strong>—not just demos. I've done this inside Vizrt, inside broadcast networks, and inside my own platform. That's the core skill this Adobe role requires.</div>
+    </div>
+  </div>
+</section>
 
-  </main>
-</div>
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section-eyebrow">Experience</div>
+  <h2>Two decades at the<br><em>intersection of 3D and production</em></h2>
+  <p class="section-lead">A career built across the systems, clients, and workflows that define where enterprise 3D is heading.</p>
+  <div class="timeline-track">
+    <div class="timeline-item">
+      <div class="timeline-year">2004 – Present</div>
+      <div class="timeline-content">
+        <h3>Real-Time 3D, Broadcast Graphics & Enterprise Systems</h3>
+        <p>Delivered real-time 3D graphics, broadcast design, AR concepts, and live production workflows across major U.S. and international networks. Operated in cross-functional roles spanning creative, sales support, training, implementation, and client workflow—connecting product capability to enterprise adoption.</p>
+        <div class="timeline-clients">
+          <span class="client-tag">Vizrt</span>
+          <span class="client-tag">ESPN</span>
+          <span class="client-tag">NBC/ABC</span>
+          <span class="client-tag">CNN</span>
+          <span class="client-tag">CBS</span>
+          <span class="client-tag">MSNBC</span>
+          <span class="client-tag">Bloomberg</span>
+          <span class="client-tag">BBC</span>
+          <span class="client-tag">TV2 Norway</span>
+          <span class="client-tag">Fox</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Sports Graphics</div>
+      <div class="timeline-content">
+        <h3>NBA, MLB Digital & Sports Visualization</h3>
+        <p>Built early MLB Digital K-Zone prototypes and contributed to New York Yankees AR work for Amazon Prime, connecting sports rights, 3D data visualization, fan engagement, and real-time production value. Supported NBA graphics through ESPN.</p>
+        <div class="timeline-clients">
+          <span class="client-tag">Amazon Prime Sports</span>
+          <span class="client-tag">NY Yankees AR</span>
+          <span class="client-tag">MLB Digital</span>
+          <span class="client-tag">K-Zone Prototype</span>
+          <span class="client-tag">Turner Sports</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Team Leadership</div>
+      <div class="timeline-content">
+        <h3>Enterprise Training & Creative Team Enablement</h3>
+        <p>Trained approximately 1,000 artists, designers, and operators on real-time graphics workflows across complex, high-pressure production environments. This is enterprise software adoption at scale—the exact dynamic Substance 3D needs to drive across North American accounts.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Election Cycles</div>
+      <div class="timeline-content">
+        <h3>CNN, CBS, MSNBC — National Election Graphics</h3>
+        <p>Supported major election graphics workflows across 2004, 2008, 2012, and 2016 cycles—QA, sponsored graphics execution, live production support, and multi-stakeholder coordination under extreme deadline pressure.</p>
+        <div class="timeline-clients">
+          <span class="client-tag">CNN</span>
+          <span class="client-tag">CBS</span>
+          <span class="client-tag">MSNBC</span>
+          <span class="client-tag">New Year's Rockin' Eve (2011–present)</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Local / Regional</div>
+      <div class="timeline-content">
+        <h3>SNY, Tribune Media & Regional Network Work</h3>
+        <p>Helped implement the national Comcast real-time graphics package, then led the SportsNet New York package—redesigning SNY graphics and establishing a visual foundation still reflected 17+ years later. Worked across creative, production, news, sales, and promotion at Tribune Media / WGNA.</p>
+        <div class="timeline-clients">
+          <span class="client-tag">SNY</span>
+          <span class="client-tag">YES Network</span>
+          <span class="client-tag">Tribune Media</span>
+          <span class="client-tag">Comcast SportsNet</span>
+          <span class="client-tag">Verizon Fios</span>
+          <span class="client-tag">Cablevision</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2016 – Present</div>
+      <div class="timeline-content">
+        <h3>Scrappy Meals XR / Fridgie Smalls — Founder, CEO</h3>
+        <p>Founded and scaled an AI/WebXR food-tech platform combining generative recipes, 3D AR menus, immersive commerce, and brand activation. Built partner pitch narratives, pricing models, onboarding flows, and sponsorship packages. Established a Cranfield University internship program across multiple years. This is the founder-led product and GTM work that directly maps to building new business capability from the ground up.</p>
+        <div class="timeline-clients">
+          <span class="client-tag">AI Recipe Generation</span>
+          <span class="client-tag">WebXR</span>
+          <span class="client-tag">3D AR Menus</span>
+          <span class="client-tag">Cranfield University</span>
+          <span class="client-tag">NY Tech Week</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Education</div>
+      <div class="timeline-content">
+        <h3>School of Visual Arts — New York</h3>
+        <p>Senior Thesis: <em>Flicker</em>, 2003. Best Production Design. Submitted to the Student Oscars. The foundation of a career built at the intersection of creative craft and production systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GTM THESIS -->
+<section id="gtm">
+  <div class="section-eyebrow">Strategic Thinking</div>
+  <h2>How I would approach<br><em>North America GTM for Substance 3D</em></h2>
+  <p class="section-lead">The opportunity is real. The question is sequencing: which verticals, which motions, which partnerships, and how to build the enterprise narrative that connects Substance 3D to the broader Adobe ecosystem story.</p>
+  <div class="gtm-layout">
+    <div class="gtm-col">
+      <h3>Target Verticals</h3>
+      <ul class="vertical-list">
+        <li>Retail &amp; Ecommerce <span>High priority</span></li>
+        <li>Consumer Packaged Goods (CPG) <span>High priority</span></li>
+        <li>Fashion &amp; Apparel <span>High priority</span></li>
+        <li>Sports &amp; Entertainment <span>Strong fit</span></li>
+        <li>Media &amp; Broadcast <span>Strong fit</span></li>
+        <li>Automotive &amp; Product Design <span>Strategic</span></li>
+        <li>Gaming &amp; Immersive Experiences <span>Strategic</span></li>
+        <li>Education &amp; Training <span>Pipeline</span></li>
+      </ul>
+    </div>
+    <div class="gtm-col">
+      <h3>GTM Motions</h3>
+      <div class="motion-items">
+        <div class="motion-item"><div class="motion-dot"></div>Strategic enterprise accounts—new logos and expansion</div>
+        <div class="motion-item"><div class="motion-dot"></div>Executive workshops connecting 3D to content supply chain ROI</div>
+        <div class="motion-item"><div class="motion-dot"></div>Vertical-specific sales plays tied to real production pain points</div>
+        <div class="motion-item"><div class="motion-dot"></div>Proof-of-value pilots that demonstrate Substance 3D + Firefly integration</div>
+        <div class="motion-item"><div class="motion-dot"></div>Strategic partnerships with system integrators and platform partners</div>
+        <div class="motion-item"><div class="motion-dot"></div>Customer education programs that accelerate adoption and reduce churn</div>
+        <div class="motion-item"><div class="motion-dot"></div>Thought leadership at industry events—bridging 3D, AI, and enterprise content</div>
+        <div class="motion-item"><div class="motion-dot"></div>Cross-sell narratives with GenStudio, Firefly Foundry, and Creative Cloud</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 48px; padding: 36px; background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--accent);">
+    <div class="section-eyebrow" style="margin-bottom: 12px;">Core GTM Thesis</div>
+    <p style="font-size: 17px; line-height: 1.7; color: var(--text); font-weight: 300; max-width: 800px;">The enterprise 3D conversation is often still framed around tooling and workflows. The real GTM unlock is reframing it as a <strong style="font-weight: 500;">content infrastructure decision</strong>—one that connects directly to brand revenue, content production velocity, and AI readiness. The brands that understand this first will move fastest. Our job in BD is to bring them into that frame before competitors do.</p>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section id="quotes">
+  <div class="section-eyebrow">Positioning</div>
+  <h2>In my own words</h2>
+  <div class="quotes-stack">
+    <div class="quote-block">
+      <div class="quote-text">"I understand how 3D moves from specialist tool to enterprise business system—and I know how to sell that transformation because I've lived the production reality behind it."</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"Substance 3D is not just a creative toolset. It is part of the next enterprise content supply chain. The BD role is making sure the right buyers understand that before they build their infrastructure around something else."</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"My advantage is that I can speak to the artist, the technical director, the product leader, and the executive buyer—and I don't lose the thread between them. That's the conversation enterprise 3D adoption actually requires."</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">Let's Talk</div>
+  <h2>Open to discussing how my background can help Adobe scale Substance 3D across North America.</h2>
+  <p class="section-lead">Twenty years of real-time 3D, enterprise training, founder-led product work, and GTM strategy—built for exactly this kind of role.</p>
+  <div class="btn-row">
+    <a href="mailto:damon@scrappymeals.com" class="btn btn-primary">Email Damon</a>
+    <a href="https://linkedin.com/in/damonversaggi" target="_blank" class="btn btn-ghost">LinkedIn</a>
+    <a href="https://scrappymeals.com/damo" target="_blank" class="btn btn-ghost">Portfolio</a>
+  </div>
+  <div class="footer-meta">
+    Damon Versaggi · New York, NY · damon@scrappymeals.com · scrappymeals.com/damo
+  </div>
+</section>
 
 <script>
-(function () {
-  'use strict';
-
-  // ── Scroll progress bar ──────────────────────────────────────────
-  var prog = document.getElementById('progress');
-  var topbar = document.getElementById('topbar');
-
-  function onScroll() {
-    var scrollTop = window.scrollY || document.documentElement.scrollTop;
-    var docH = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var pct = docH > 0 ? scrollTop / docH : 0;
-    prog.style.transform = 'scaleX(' + pct + ')';
-
-    if (scrollTop > 40) {
-      topbar.classList.add('scrolled');
-    } else {
-      topbar.classList.remove('scrolled');
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  onScroll();
-
-  // ── Active nav highlighting ──────────────────────────────────────
-  var navLinks = document.querySelectorAll('.nav a');
-  var nav = document.getElementById('site-nav');
-  var menuToggle = document.getElementById('menu-toggle');
-  var sections = [];
-
-  if (menuToggle && nav) {
-    menuToggle.addEventListener('click', function () {
-      var isOpen = nav.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-      menuToggle.textContent = isOpen ? 'Close' : 'Menu';
-    });
-
-    navLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        if (window.matchMedia('(max-width: 860px)').matches) {
-          nav.classList.remove('open');
-          menuToggle.setAttribute('aria-expanded', 'false');
-          menuToggle.textContent = 'Menu';
-        }
-      });
-    });
-  }
-
-  navLinks.forEach(function (a) {
-    var id = a.getAttribute('href').replace('#', '');
-    var el = document.getElementById(id);
-    if (el) sections.push({ id: id, el: el, a: a });
+  // Stagger capability matrix reveal
+  const cells = document.querySelectorAll('.cap-cell');
+  cells.forEach((cell, i) => {
+    setTimeout(() => {
+      cell.classList.add('visible');
+    }, 600 + i * 60);
   });
 
-  function updateNav() {
-    var scrollMid = window.scrollY + window.innerHeight * 0.35;
-    var active = null;
-
-    sections.forEach(function (s) {
-      if (s.el.offsetTop <= scrollMid) active = s;
-    });
-
-    navLinks.forEach(function (a) { a.classList.remove('active'); });
-    if (active) active.a.classList.add('active');
+  // Toggle role fit cards
+  function toggleCard(card) {
+    const wasActive = card.classList.contains('active');
+    document.querySelectorAll('.fit-card').forEach(c => c.classList.remove('active'));
+    if (!wasActive) card.classList.add('active');
   }
 
-  window.addEventListener('scroll', updateNav, { passive: true });
-  updateNav();
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .edge-item, .timeline-item, .quote-block');
 
-  // ── Reveal on scroll ─────────────────────────────────────────────
-  var reveals = document.querySelectorAll('.reveal');
-
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.07 });
-
-    reveals.forEach(function (el) { io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add('visible'); });
-  }
-
-  // ── Copy email ───────────────────────────────────────────────────
-  window.copyEmail = function () {
-    var email = 'damon@scrappymeals.com';
-    var btn = document.getElementById('email-btn');
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(email).then(function () {
-        btn.textContent = 'Copied!';
-        setTimeout(function () {
-          btn.innerHTML = '<span class="chip-dot"></span> Email Damon';
-        }, 2200);
-      });
-    } else {
-      var ta = document.createElement('textarea');
-      ta.value = email;
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
-      document.body.removeChild(ta);
-      btn.textContent = 'Copied!';
-      setTimeout(function () {
-        btn.innerHTML = '<span class="chip-dot"></span> Email Damon';
-      }, 2200);
-    }
-  };
-
-  // ── Keyboard nav for pipeline stages ────────────────────────────
-  document.querySelectorAll('.pipe-stage').forEach(function (el) {
-    el.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        el.style.background = 'rgba(250,15,0,0.1)';
-        setTimeout(function () { el.style.background = ''; }, 400);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
       }
     });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => observer.observe(el));
+
+  // Stagger timeline items
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  timelineItems.forEach(el => timelineObserver.observe(el));
+
+  // Edge items stagger
+  const edgeItems = document.querySelectorAll('.edge-item');
+  const edgeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(edgeItems).indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, idx * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  edgeItems.forEach(el => edgeObserver.observe(el));
+
+  // Quote reveal
+  const quoteBlocks = document.querySelectorAll('.quote-block');
+  const quoteObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(quoteBlocks).indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, idx * 120);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  quoteBlocks.forEach(el => quoteObserver.observe(el));
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav-links');
+  let mobileNavOpen = false;
+
+  navToggle.addEventListener('click', () => {
+    mobileNavOpen = !mobileNavOpen;
+    if (mobileNavOpen) {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'fixed';
+      navLinks.style.top = '60px';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'rgba(9,9,14,0.97)';
+      navLinks.style.padding = '24px 24px 32px';
+      navLinks.style.gap = '20px';
+      navLinks.style.borderBottom = '1px solid var(--rule)';
+    } else {
+      navLinks.style.display = 'none';
+    }
   });
-
-})();
 </script>
-
 </body>
 </html>
