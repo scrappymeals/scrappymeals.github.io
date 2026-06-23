@@ -1,0 +1,1555 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Interactive executive packet for Damon Versaggi targeting Corgan Creative Director, Brand + Graphics." />
+  <title>Damon Versaggi | Corgan Creative Director, Brand + Graphics</title>
+  <style>
+    :root {
+      --bg: #070a0d;
+      --bg-2: #0d1318;
+      --paper: #f6f2e9;
+      --paper-2: #ede6d8;
+      --ink: #10151a;
+      --muted: #65717d;
+      --text: #f7f3eb;
+      --text-2: #b8c0c8;
+      --line: rgba(255,255,255,.12);
+      --line-dark: rgba(0,0,0,.14);
+      --accent: #e4aa4f;
+      --accent-2: #67d5c8;
+      --accent-3: #bd7f4f;
+      --danger: #ff674d;
+      --shadow: 0 24px 70px rgba(0,0,0,.34);
+      --shadow-soft: 0 18px 48px rgba(6,10,16,.16);
+      --radius: 24px;
+      --radius-sm: 14px;
+      --max: 1220px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% -10%, rgba(228,170,79,.22), transparent 30%),
+        radial-gradient(circle at 95% 10%, rgba(103,213,200,.16), transparent 28%),
+        linear-gradient(140deg, #070a0d 0%, #0d1318 48%, #13120f 100%);
+      color: var(--text);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-underline-offset: 4px; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+      transform: scaleX(0);
+      transform-origin: left center;
+      z-index: 1000;
+      box-shadow: 0 0 22px rgba(228,170,79,.32);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(7,10,13,.78);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar.scrolled {
+      background: rgba(7,10,13,.92);
+      box-shadow: 0 14px 40px rgba(0,0,0,.28);
+    }
+
+    .navwrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 13px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      min-width: 0;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, rgba(228,170,79,.95), rgba(189,127,79,.88)),
+        linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #15100a;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 950;
+      letter-spacing: -.08em;
+      box-shadow: 0 12px 30px rgba(228,170,79,.22);
+      flex: 0 0 auto;
+    }
+
+    .brand span:last-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      white-space: nowrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding: 5px 0;
+      transition: color .18s ease, border-color .18s ease, transform .18s ease;
+    }
+
+    .nav a:hover, .nav a.active {
+      color: white;
+      border-bottom-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .menu {
+      display: none;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: transparent;
+      border-radius: 999px;
+      min-height: 38px;
+      padding: 0 14px;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      font-size: 10px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .shell {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 26px 22px 80px;
+    }
+
+    .print-strip {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 14px;
+    }
+
+    .packet {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(12,18,24,.74);
+      box-shadow: var(--shadow);
+      border-radius: 34px;
+    }
+
+    .packet::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.65), transparent 45%);
+    }
+
+    section {
+      position: relative;
+      padding: 76px clamp(24px, 5vw, 72px);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+
+    section:last-child { border-bottom: 0; }
+
+    .paper {
+      background:
+        linear-gradient(180deg, rgba(246,242,233,.98), rgba(237,230,216,.98));
+      color: var(--ink);
+    }
+
+    .paper + .paper { border-top: 1px solid var(--line-dark); }
+
+    .paper .eyebrow,
+    .paper .metric small { color: #915f25; }
+
+    .paper p,
+    .paper li,
+    .paper .sub,
+    .paper .lede { color: #51606b; }
+
+    .hero {
+      min-height: 760px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+      gap: clamp(30px, 5vw, 70px);
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 86% 22%, rgba(103,213,200,.18), transparent 24%),
+        radial-gradient(circle at 18% 82%, rgba(228,170,79,.18), transparent 28%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 680px;
+      height: 680px;
+      right: -280px;
+      top: 50px;
+      border: 1px solid rgba(228,170,79,.18);
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 32px rgba(255,255,255,.015), inset 0 0 0 64px rgba(255,255,255,.01);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 7px rgba(228,170,79,.12);
+    }
+
+    h1 {
+      max-width: 940px;
+      font-size: clamp(47px, 8.5vw, 104px);
+      line-height: .86;
+      letter-spacing: -.075em;
+      text-transform: uppercase;
+      font-weight: 950;
+      margin-bottom: 22px;
+    }
+
+    .thin {
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      text-transform: none;
+      font-weight: 400;
+      letter-spacing: -.06em;
+      color: var(--accent);
+    }
+
+    .hero-role {
+      max-width: 860px;
+      color: #d6dde3;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      font-size: clamp(14px, 1.4vw, 18px);
+      font-weight: 850;
+      margin-bottom: 16px;
+    }
+
+    .hero-copy {
+      max-width: 780px;
+      color: var(--text-2);
+      font-size: clamp(16px, 1.5vw, 19px);
+      line-height: 1.75;
+      margin-bottom: 26px;
+    }
+
+    .hero-copy strong { color: white; font-weight: 760; }
+
+    .actions, .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      color: var(--text);
+      min-height: 44px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 920;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.28);
+      box-shadow: 0 14px 28px rgba(0,0,0,.18);
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #16110a;
+      border-color: var(--accent);
+      box-shadow: 0 18px 38px rgba(228,170,79,.22);
+    }
+
+    .btn.primary:hover { background: #f2bd63; }
+    .btn.alt { border-color: rgba(103,213,200,.36); color: #d7fffb; }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: .72;
+    }
+
+    .hero-board {
+      position: relative;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+    }
+
+    .studio-card {
+      width: min(100%, 430px);
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.11), rgba(255,255,255,.035)),
+        rgba(6,9,12,.62);
+      backdrop-filter: blur(14px);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      transform: rotate(-1deg);
+    }
+
+    .studio-card-top {
+      min-height: 210px;
+      border-radius: 24px;
+      background:
+        linear-gradient(135deg, rgba(228,170,79,.34), rgba(103,213,200,.18)),
+        linear-gradient(135deg, #151b21, #0c1116);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .studio-card-top::before,
+    .studio-card-top::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 50%;
+    }
+
+    .studio-card-top::before {
+      width: 220px;
+      height: 220px;
+      right: -80px;
+      top: -70px;
+    }
+
+    .studio-card-top::after {
+      width: 150px;
+      height: 150px;
+      left: -62px;
+      bottom: -60px;
+    }
+
+    .studio-title {
+      position: relative;
+      z-index: 1;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #fcf3df;
+      margin-bottom: 64px;
+    }
+
+    .studio-number {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(48px, 6.8vw, 82px);
+      line-height: .82;
+      font-weight: 950;
+      letter-spacing: -.07em;
+      color: #fff8ea;
+    }
+
+    .studio-label {
+      position: relative;
+      z-index: 1;
+      margin-top: 10px;
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      font-weight: 850;
+    }
+
+    .board-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .board-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      background: rgba(255,255,255,.045);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .board-item:hover {
+      transform: translateX(4px);
+      border-color: rgba(228,170,79,.34);
+      background: rgba(228,170,79,.08);
+    }
+
+    .board-index {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(228,170,79,.14);
+      color: #ffe1aa;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .08em;
+    }
+
+    .board-item strong {
+      display: block;
+      color: white;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 3px;
+    }
+
+    .board-item span {
+      color: #aeb8c1;
+      font-size: 13px;
+    }
+
+    h2 {
+      max-width: 940px;
+      font-size: clamp(34px, 5vw, 66px);
+      line-height: .95;
+      letter-spacing: -.06em;
+      text-transform: uppercase;
+      font-weight: 950;
+      margin-bottom: 16px;
+    }
+
+    .lede {
+      max-width: 860px;
+      color: var(--text-2);
+      font-size: clamp(16px, 1.5vw, 19px);
+      line-height: 1.72;
+      margin-bottom: 28px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .fit-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 28px;
+    }
+
+    .card {
+      position: relative;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      padding: 24px;
+      overflow: hidden;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(228,170,79,.34);
+      background: rgba(255,255,255,.075);
+      box-shadow: 0 18px 45px rgba(0,0,0,.18);
+    }
+
+    .card:hover::after { transform: scaleX(1); }
+
+    .card small {
+      display: block;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      color: white;
+      font-size: 17px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: -.02em;
+      font-weight: 950;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--text-2);
+      font-size: 14px;
+    }
+
+    .paper .card {
+      background: rgba(255,255,255,.62);
+      border-color: var(--line-dark);
+      box-shadow: 0 12px 30px rgba(0,0,0,.05);
+    }
+
+    .paper .card:hover {
+      background: white;
+      border-color: rgba(145,95,37,.28);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .paper .card h3 { color: var(--ink); }
+    .paper .card p { color: #53616b; }
+
+    .metric-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 26px;
+    }
+
+    .metric {
+      min-height: 168px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: var(--radius);
+      border: 1px solid var(--line-dark);
+      background:
+        linear-gradient(150deg, rgba(255,255,255,.70), rgba(255,255,255,.34));
+      padding: 24px;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .metric:hover {
+      transform: translateY(-4px);
+      background: white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: .9;
+      letter-spacing: -.07em;
+      font-weight: 950;
+      color: var(--ink);
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 12px;
+      color: #56636e;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .system-layout {
+      display: grid;
+      grid-template-columns: .84fr 1.16fr;
+      gap: 22px;
+      align-items: stretch;
+      margin-top: 28px;
+    }
+
+    .quote-block {
+      border: 1px solid rgba(228,170,79,.28);
+      background:
+        radial-gradient(circle at top left, rgba(228,170,79,.19), transparent 34%),
+        rgba(255,255,255,.045);
+      border-radius: var(--radius);
+      padding: 30px;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .quote-block p {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(22px, 2.55vw, 36px);
+      line-height: 1.18;
+      color: #fff7e8;
+    }
+
+    .quote-block small {
+      margin-top: 28px;
+      display: block;
+      color: #96a4af;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .step {
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.045);
+      border-radius: 20px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .step:hover {
+      transform: translateY(-3px);
+      background: rgba(103,213,200,.065);
+      border-color: rgba(103,213,200,.28);
+    }
+
+    .step b {
+      display: block;
+      color: #dffefa;
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--text-2);
+      font-size: 14px;
+    }
+
+    .experience {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .exp {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 24px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line-dark);
+      border-radius: var(--radius);
+      padding: 26px;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .exp:hover {
+      transform: translateY(-4px);
+      background: white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .date {
+      color: #915f25;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .exp h3 {
+      font-size: 20px;
+      line-height: 1.1;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: -.025em;
+      margin-bottom: 7px;
+    }
+
+    .org {
+      color: #64717b;
+      font-size: 13px;
+      font-weight: 820;
+      margin-bottom: 11px;
+    }
+
+    ul.clean {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+
+    ul.clean li {
+      position: relative;
+      padding-left: 18px;
+      color: #4f5c66;
+      font-size: 14px;
+    }
+
+    ul.clean li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .68em;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #bd7f4f;
+    }
+
+    .tabs {
+      margin-top: 28px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: rgba(255,255,255,.045);
+    }
+
+    .tab-buttons {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: 0;
+      border-right: 1px solid rgba(255,255,255,.12);
+      min-height: 62px;
+      padding: 14px;
+      background: rgba(255,255,255,.035);
+      color: var(--text-2);
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      transition: background .18s ease, color .18s ease;
+    }
+
+    .tab-btn:last-child { border-right: 0; }
+
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--accent);
+      color: #15100a;
+    }
+
+    .tab-panel {
+      display: none;
+      padding: 28px;
+    }
+
+    .tab-panel.active { display: block; }
+
+    .tab-panel h3 {
+      font-size: clamp(20px, 2.4vw, 30px);
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: -.035em;
+      font-weight: 950;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .tab-panel p {
+      color: var(--text-2);
+      max-width: 860px;
+      margin-bottom: 12px;
+    }
+
+    .tab-panel ul {
+      margin-left: 18px;
+      display: grid;
+      gap: 7px;
+      color: var(--text-2);
+      font-size: 14px;
+    }
+
+    .plan {
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      margin-top: 28px;
+    }
+
+    .phase {
+      border-radius: var(--radius);
+      border: 1px solid var(--line-dark);
+      background: rgba(255,255,255,.65);
+      padding: 26px;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .phase:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+      background: white;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: #10151a;
+      color: #ffe2aa;
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .phase h3 {
+      font-size: 18px;
+      line-height: 1.1;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: -.025em;
+      margin-bottom: 10px;
+    }
+
+    .phase p { color: #52606a; font-size: 14px; }
+
+    .pitch {
+      max-width: 960px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.055);
+      padding: clamp(24px, 4vw, 42px);
+      box-shadow: 0 22px 60px rgba(0,0,0,.16);
+    }
+
+    .pitch p {
+      color: #d1d8df;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(17px, 1.6vw, 21px);
+      line-height: 1.72;
+      margin-bottom: 16px;
+    }
+
+    .pitch p:last-child { margin-bottom: 0; }
+
+    .footer-cta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .footer-cta h2 { margin-bottom: 10px; }
+    .footer-cta .lede { margin-bottom: 0; }
+
+    .footer-meta {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      color: #86939f;
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .62s ease, transform .62s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .a1 { animation: rise .62s ease both; }
+    .a2 { animation: rise .62s .10s ease both; }
+    .a3 { animation: rise .62s .20s ease both; }
+    .a4 { animation: rise .62s .30s ease both; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .copy-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      background: #f6f2e9;
+      color: #10151a;
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 11px;
+      z-index: 1001;
+      box-shadow: var(--shadow-soft);
+      transition: opacity .22s ease, transform .22s ease;
+    }
+
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 1080px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-board { min-height: auto; place-items: start; }
+      .studio-card { transform: none; max-width: 100%; }
+      .fit-grid, .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .system-layout { grid-template-columns: 1fr; }
+      .footer-cta { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      body { background: var(--bg); }
+      .shell { padding: 0; }
+      .packet { border-left: 0; border-right: 0; border-radius: 0; }
+      .print-strip { display: none; }
+      .navwrap { flex-wrap: wrap; padding: 11px 16px; }
+      .menu { display: inline-flex; align-items: center; margin-left: auto; }
+      .brand { max-width: calc(100% - 92px); }
+      .nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding-top: 10px;
+      }
+      .nav.open { display: flex; }
+      .nav a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+      section { padding: 54px 20px; }
+      .tab-buttons { grid-template-columns: 1fr; }
+      .tab-btn {
+        text-align: left;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.10);
+      }
+      .steps, .plan { grid-template-columns: 1fr; }
+      .exp { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      h1 { font-size: clamp(43px, 16vw, 70px); }
+      .hero-role { font-size: 12px; line-height: 1.55; }
+      .actions { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .fit-grid, .metric-grid { grid-template-columns: 1fr; }
+      .studio-card { padding: 14px; border-radius: 24px; }
+      .studio-card-top { min-height: 190px; border-radius: 18px; }
+      .card, .phase, .exp, .pitch { border-radius: 18px; }
+      .footer-meta { font-size: 10px; line-height: 1.7; overflow-wrap: anywhere; }
+      p, li, .org { overflow-wrap: anywhere; }
+    }
+
+    @media print {
+      body {
+        background: white !important;
+        color: #10151a !important;
+      }
+      .progress, .topbar, .print-strip, .copy-toast, .hero-board { display: none !important; }
+      .shell { width: 100%; padding: 0; }
+      .packet {
+        border: 0;
+        box-shadow: none;
+        border-radius: 0;
+        background: white;
+      }
+      .packet::before { display: none; }
+      section {
+        padding: 28px 34px;
+        border-bottom: 1px solid #d7dce1;
+        page-break-inside: avoid;
+      }
+      .hero { min-height: auto; display: block; background: white !important; color: #10151a; }
+      h1, h2, .card h3, .tab-panel h3 { color: #10151a !important; }
+      .hero-copy, .hero-role, .lede, .card p, .step p, .quote-block small, .tab-panel p, .tab-panel li, .pitch p, .footer-meta {
+        color: #36424c !important;
+      }
+      .btn { border: 1px solid #9ba4ad; color: #10151a; background: white; box-shadow: none; }
+      .card, .metric, .step, .quote-block, .phase, .exp, .pitch, .tabs {
+        background: white !important;
+        color: #10151a !important;
+        border: 1px solid #d0d5da !important;
+        box-shadow: none !important;
+      }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progress" id="progress"></div>
+
+  <header class="topbar" id="topbar">
+    <div class="navwrap">
+      <a class="brand" href="#hero" aria-label="Back to top">
+        <span class="brand-mark">DV</span>
+        <span>Damon Versaggi · Corgan Brand + Graphics</span>
+      </a>
+      <button class="menu" id="menu" type="button" aria-controls="nav" aria-expanded="false">Menu</button>
+      <nav class="nav" id="nav" aria-label="Packet navigation">
+        <a href="#fit">Fit</a>
+        <a href="#proof">Proof</a>
+        <a href="#system">System</a>
+        <a href="#experience">Experience</a>
+        <a href="#plan">90 Days</a>
+        <a href="#pitch">Pitch</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="shell">
+    <div class="print-strip">
+      <button class="btn" type="button" onclick="window.print()"><span class="dot"></span>Save / Print PDF</button>
+    </div>
+
+    <main class="packet">
+      <section class="hero" id="hero">
+        <div>
+          <div class="eyebrow a1">Creative Director · Brand + Graphics · New York</div>
+          <h1 class="a1">Design leadership for <span class="thin">brand systems</span> that people can actually feel.</h1>
+          <p class="hero-role a2">Damon Versaggi · Brand Systems · Experiential Storytelling · Real-Time Graphics · Immersive Design · Creative Team Leadership</p>
+          <p class="hero-copy a3">
+            Corgan is looking for a director who can shape creative vision, guide design narratives, mentor multidisciplinary teams, strengthen process, build client trust, and champion new tools. Damon’s career sits directly at that intersection: <strong>brand storytelling, experiential graphics, real-time visual systems, immersive technology, stakeholder-heavy delivery, and launch discipline.</strong>
+          </p>
+          <div class="actions a4">
+            <a class="btn primary" href="mailto:damon@scrappymeals.com"><span class="dot"></span>Email Damon</a>
+            <a class="btn" href="https://linkedin.com/in/damonversaggi" target="_blank" rel="noopener"><span class="dot"></span>LinkedIn</a>
+            <a class="btn alt" href="https://scrappymeals.com/damo" target="_blank" rel="noopener"><span class="dot"></span>Portfolio</a>
+            <button class="btn" type="button" onclick="copyEmail()"><span class="dot"></span>Copy Email</button>
+          </div>
+        </div>
+
+        <aside class="hero-board a4" aria-label="Positioning summary">
+          <div class="studio-card">
+            <div class="studio-card-top">
+              <div class="studio-title">Executive signal</div>
+              <div class="studio-number">20+</div>
+              <div class="studio-label">years across creative technology, brand, media, immersive, and live systems</div>
+            </div>
+            <div class="board-list">
+              <div class="board-item">
+                <div class="board-index">01</div>
+                <div><strong>Creative vision</strong><span>Concept, narrative, visual systems, and stakeholder presentation.</span></div>
+              </div>
+              <div class="board-item">
+                <div class="board-index">02</div>
+                <div><strong>Team leadership</strong><span>Mentorship, delegation, feedback, stretch opportunities, and accountability.</span></div>
+              </div>
+              <div class="board-item">
+                <div class="board-index">03</div>
+                <div><strong>Execution discipline</strong><span>Workflow standards, QA, risk management, scope clarity, and launch readiness.</span></div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="fit" class="reveal">
+        <div class="eyebrow">Role Alignment</div>
+        <h2>Why this is a credible match without overreaching.</h2>
+        <p class="lede">
+          The strongest positioning is not to pretend Damon has followed a conventional architecture-studio path. It is to show that Corgan’s Brand + Graphics team needs the exact leadership muscles he has used for years: translating ambiguous ideas into cohesive visual systems, guiding multidisciplinary teams, and delivering public-facing work where craft, timing, client trust, and reliability matter.
+        </p>
+
+        <div class="grid fit-grid">
+          <article class="card">
+            <small>01 · Creative Vision</small>
+            <h3>Design narratives with a systems spine</h3>
+            <p>Damon shapes narratives across brand behavior, product experience, character systems, sponsor moments, digital content flows, pitch decks, and interactive prototypes.</p>
+          </article>
+          <article class="card">
+            <small>02 · Experiential Graphics</small>
+            <h3>Audience-facing visuals under real pressure</h3>
+            <p>His work spans broadcast environments, venue-aware graphics, sports/media systems, sponsor-sensitive visual systems, motion-led storytelling, and immersive experience design.</p>
+          </article>
+          <article class="card">
+            <small>03 · Team Leadership</small>
+            <h3>Direction, feedback, accountability</h3>
+            <p>He has led multidisciplinary contributors across product, design, development, content, AI workflows, production, training, technical execution, and stakeholder presentation.</p>
+          </article>
+          <article class="card">
+            <small>04 · Client + Business Development</small>
+            <h3>Clear stories for complex work</h3>
+            <p>He supports proposals, presentations, client demos, pitch narratives, partner concepts, and business development conversations by making technical and creative ideas understandable.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="proof" class="paper reveal">
+        <div class="eyebrow">Proof Signals</div>
+        <h2>Executive proof mapped to Corgan’s needs.</h2>
+        <p class="lede">
+          Corgan’s posting emphasizes creative direction, design excellence, team development, process standardization, client communication, business development, and innovation. Damon’s ATS resume supports each of those signals through creative technology leadership, experiential graphics, real-time systems, sponsor activations, and reusable design frameworks.
+        </p>
+
+        <div class="grid metric-grid">
+          <div class="metric">
+            <small>Career scale</small>
+            <div>
+              <strong>20+</strong>
+              <span>Years translating complex ideas into brand, graphics, digital, immersive, and real-time experiences.</span>
+            </div>
+          </div>
+          <div class="metric">
+            <small>Reliability signal</small>
+            <div>
+              <strong>12+</strong>
+              <span>Concurrent live systems supported for high-profile broadcast execution.</span>
+            </div>
+          </div>
+          <div class="metric">
+            <small>Creative foundation</small>
+            <div>
+              <strong>BFA</strong>
+              <span>Computer Art, School of Visual Arts, with award-recognized thesis work.</span>
+            </div>
+          </div>
+          <div class="metric">
+            <small>Operating range</small>
+            <div>
+              <strong>AI + XR</strong>
+              <span>New-tool exploration across OpenAI workflows, voice input, 3D rendering, WebXR, and interactive prototypes.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="system" class="reveal">
+        <div class="eyebrow">Operating System</div>
+        <h2>How Damon turns creative ambition into repeatable delivery.</h2>
+        <p class="lede">
+          The packet’s central argument: Damon is a creative director who treats brand and graphics work as both story and system. He can protect concept quality while building the practices, templates, critiques, and handoffs that make a team stronger over time.
+        </p>
+
+        <div class="system-layout">
+          <div class="quote-block">
+            <p>“The best creative systems leave room for wonder without leaving teams guessing how to ship.”</p>
+            <small>Damon Versaggi · Brand + Graphics Leadership Lens</small>
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <b>Clarify the brief</b>
+              <p>Translate client, user, site, stakeholder, brand, budget, and scope signals into a shared creative direction.</p>
+            </div>
+            <div class="step">
+              <b>Shape the narrative</b>
+              <p>Connect concept, story, hierarchy, motion, spatial/experiential sensibility, and visual behavior into a coherent direction.</p>
+            </div>
+            <div class="step">
+              <b>Build the system</b>
+              <p>Create reusable components, templates, playbooks, QA standards, and production patterns that support team consistency.</p>
+            </div>
+            <div class="step">
+              <b>Coach the team</b>
+              <p>Delegate around strengths, create stretch opportunities, give direct feedback, and protect accountability without flattening creativity.</p>
+            </div>
+            <div class="step">
+              <b>Manage the risk</b>
+              <p>Make scope, timing, technical feasibility, stakeholder review, and launch readiness visible before they become delivery problems.</p>
+            </div>
+            <div class="step">
+              <b>Tell the client story</b>
+              <p>Turn complex creative and technical decisions into clear presentation narratives that build trust and maintain momentum.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs" aria-label="Corgan alignment tabs">
+          <div class="tab-buttons" role="tablist">
+            <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab="creative">Creative</button>
+            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="team">Team</button>
+            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="process">Process</button>
+            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="client">Client</button>
+            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="innovation">Innovation</button>
+          </div>
+
+          <div class="tab-panel active" id="creative" role="tabpanel">
+            <h3>Creative vision across brand + experiential systems</h3>
+            <p>Damon’s work connects brand strategy, user behavior, motion, interaction, content hierarchy, technical feasibility, and stakeholder expectations.</p>
+            <ul>
+              <li>Shape design narratives that are conceptually strong and visually compelling.</li>
+              <li>Translate abstract ideas into prototypes, pitch stories, visual systems, and launch-ready experience plans.</li>
+              <li>Bring real-time graphics and immersive storytelling instincts to brand environments and public-facing moments.</li>
+            </ul>
+          </div>
+
+          <div class="tab-panel" id="team" role="tabpanel">
+            <h3>Mentorship, delegation, and accountability</h3>
+            <p>The resume supports leadership across multidisciplinary contributors, from product and design through technical execution, training, content, and production.</p>
+            <ul>
+              <li>Create clear responsibilities and feedback loops so creative teams know what “great” means.</li>
+              <li>Balance encouragement with direction, performance standards, and delivery accountability.</li>
+              <li>Use stretch assignments to help designers, technologists, and producers expand capability.</li>
+            </ul>
+          </div>
+
+          <div class="tab-panel" id="process" role="tabpanel">
+            <h3>Standardized workflows without killing creativity</h3>
+            <p>Corgan needs process improvement and predictable delivery. Damon has repeatedly created frameworks, templates, QA practices, playbooks, and operating standards.</p>
+            <ul>
+              <li>Map project setup, scope alignment, creative review, asset production, QA, and launch readiness.</li>
+              <li>Build reusable frameworks that reduce duplicate effort while preserving concept-specific expression.</li>
+              <li>Clarify risks, dependencies, and decision points early enough for teams to act.</li>
+            </ul>
+          </div>
+
+          <div class="tab-panel" id="client" role="tabpanel">
+            <h3>Client confidence through clear creative communication</h3>
+            <p>Damon’s consulting and business development work centers on translating complex creative and technical ideas into persuasive stories for clients, collaborators, investors, and internal stakeholders.</p>
+            <ul>
+              <li>Lead confident presentations of creative direction and project decisions.</li>
+              <li>Clarify requirements, resolve ambiguity, and maintain momentum across stakeholder groups.</li>
+              <li>Support pursuits, proposals, demos, pitch narratives, and relationship expansion.</li>
+            </ul>
+          </div>
+
+          <div class="tab-panel" id="innovation" role="tabpanel">
+            <h3>New tools with human-centered judgment</h3>
+            <p>Corgan calls out computational and human-centered design approaches. Damon’s record includes OpenAI-based workflows, structured content generation, voice input, personalization logic, 3D rendering, WebXR, and reusable content frameworks.</p>
+            <ul>
+              <li>Explore new tools where they improve creative exploration, documentation, prototyping, and delivery quality.</li>
+              <li>Keep human-centered design and brand trust as the decision filter, not novelty for novelty’s sake.</li>
+              <li>Build standards that help teams adopt tools responsibly and consistently.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="paper reveal">
+        <div class="eyebrow">Relevant Experience</div>
+        <h2>Selected experience, not a resume dump.</h2>
+        <p class="lede">
+          The experience below focuses on the work that directly supports the Corgan brief: creative direction, design narratives, experiential graphics, team leadership, reusable systems, client communication, and disciplined delivery.
+        </p>
+
+        <div class="experience">
+          <article class="exp">
+            <div class="date">2016 – Present</div>
+            <div>
+              <h3>Founder & Director of Engineering</h3>
+              <div class="org">Scrappy Meals XR / Fridgie Smalls · Brooklyn / Remote</div>
+              <ul class="clean">
+                <li>Leads creative, product, and technical direction for an AI-powered consumer platform combining brand storytelling, product UX, personalized content, sponsor concepts, 3D/interactive assets, and audience engagement.</li>
+                <li>Built reusable branded experience components, content frameworks, sponsor modules, design standards, onboarding patterns, QA standards, and launch-ready experience plans.</li>
+                <li>Champions exploration of OpenAI workflows, structured content generation, voice input, personalization logic, 3D model rendering, and human-centered interaction patterns.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="exp">
+            <div class="date">2015 – Present</div>
+            <div>
+              <h3>Digital Experience & Creative Solutions Architect</h3>
+              <div class="org">Independent Consultant · NYC Metro</div>
+              <ul class="clean">
+                <li>Advises media, sports, entertainment, brand, and emerging technology organizations on creative technology strategy, immersive product development, branded content systems, audience-facing experiences, and platform modernization.</li>
+                <li>Leads requirements definition, creative direction, experience architecture, workflow planning, testing, launch, and optimization for high-visibility digital and experiential initiatives.</li>
+                <li>Supports proposals, presentations, client demos, pitch narratives, and business development conversations by making complex creative and technical ideas clear and persuasive.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="exp">
+            <div class="date">2011 – Present</div>
+            <div>
+              <h3>Real-Time Systems Lead</h3>
+              <div class="org">Dick Clark Productions · National Live Broadcast / New York</div>
+              <ul class="clean">
+                <li>Leads real-time graphics and technical implementation teams delivering high-profile audience-facing visual systems for national live broadcast events.</li>
+                <li>Directs graphics systems, live media workflows, visual standards, content readiness, and technical execution in environments where timing, clarity, brand fidelity, and failure prevention are mission-critical.</li>
+                <li>Establishes repeatable production standards, testing practices, launch-readiness workflows, and operational safeguards that improve quality, predictability, and continuity.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="exp">
+            <div class="date">2024 – Present</div>
+            <div>
+              <h3>VP, Sales & Workflow Systems Design</h3>
+              <div class="org">EFUNDEX · Brooklyn / NYC Metro</div>
+              <ul class="clean">
+                <li>Leads workflow systems, revenue operations, marketing strategy, and stakeholder communication initiatives in a compliance-sensitive business environment.</li>
+                <li>Translates complex business goals into clear systems, documentation, narratives, and delivery plans that improve consistency and reduce friction.</li>
+                <li>Develops repeatable communication frameworks, pitch narratives, process standards, and operational tools supporting client engagement and business development.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="exp">
+            <div class="date">Additional leadership</div>
+            <div>
+              <h3>Creative Director · Head of XR · Production Manager · Real-Time Graphics Leader</h3>
+              <div class="org">Sports, entertainment, news, live events, broadcast media, real-time 3D, immersive technology, and interactive product experiences</div>
+              <ul class="clean">
+                <li>Helped launch and operationalize SportsNet New York graphics workflows including Mets in-game, pre-game, post-game, studio, and stadium graphics packages.</li>
+                <li>Worked across Vizrt creative services, demos, training, support, client implementation, sales enablement, R&D feedback, and product workflow for major broadcast and media clients.</li>
+                <li>Delivered creative and technical systems for organizations including ESPN, SNY, MLB, NBC, CNN, CBS, Bloomberg, BBC, Amazon Prime Sports, and related live-event properties.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="plan" class="paper reveal">
+        <div class="eyebrow">90-Day Plan</div>
+        <h2>How Damon would create value quickly.</h2>
+        <p class="lede">
+          This plan is built directly around the Corgan posting: in-office collaboration, creative vision, design narratives, team development, process consistency, project setup, client communication, risk management, proposals, and business development.
+        </p>
+
+        <div class="grid plan">
+          <article class="phase">
+            <span class="badge">Days 1–30</span>
+            <h3>Listen, map, and earn trust</h3>
+            <p>Embed with the Brand + Graphics team, Design Leads, interior design and architecture partners, and active client teams. Review project types, proposal patterns, templates, review rituals, delivery pain points, scope boundaries, and team strengths. Identify where clearer briefs, critique standards, asset systems, and risk visibility would help immediately.</p>
+          </article>
+          <article class="phase">
+            <span class="badge">Days 31–60</span>
+            <h3>Standardize the creative operating model</h3>
+            <p>Partner with leadership to sharpen project setup, creative direction documentation, design narrative frameworks, stakeholder review cadence, and handoff standards. Introduce practical team rituals for critique, mentorship, delegation, quality checkpoints, and project momentum without adding unnecessary ceremony.</p>
+          </article>
+          <article class="phase">
+            <span class="badge">Days 61–90</span>
+            <h3>Scale quality, visibility, and momentum</h3>
+            <p>Apply the model to active work, proposals, and presentation narratives. Help package strong work for pursuits, interviews, client conversations, firmwide visibility, and community engagement. Establish a repeatable feedback loop so the team improves craft, speed, predictability, and confidence from project to project.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="pitch" class="reveal">
+        <div class="eyebrow">Executive Pitch</div>
+        <h2>A practical creative leader for places, stories, systems, and teams.</h2>
+        <div class="pitch">
+          <p>Damon Versaggi brings Corgan a rare blend of creative direction, brand systems thinking, experiential graphics sensibility, and technical execution discipline. His career has been built in environments where visual work has to carry a story, satisfy stakeholders, survive constraints, and perform in public. That maps cleanly to a Brand + Graphics practice responsible for making places more understandable, memorable, and emotionally resonant.</p>
+          <p>He is strongest where the assignment is complex: ambiguous inputs, multiple stakeholders, evolving tools, high expectations, and a team that needs both freedom and structure. Damon can shape the creative narrative, coach the team, standardize the workflow, manage the risk, and communicate the decision path clearly to clients and internal partners.</p>
+          <p>For Corgan, the value is not only the portfolio of past work. It is the operating behavior: curiosity, craft, accountability, systems discipline, and the ability to keep creative teams moving toward outstanding results without losing the human energy that makes the work worth doing.</p>
+        </div>
+      </section>
+
+      <section id="contact" class="reveal">
+        <div class="footer-cta">
+          <div>
+            <div class="eyebrow">Submission Packet</div>
+            <h2>Ready for a conversation with Corgan’s Brand + Graphics team.</h2>
+            <p class="lede">Creative direction, experiential storytelling, brand systems, immersive design, client communication, and team leadership for high-impact environments.</p>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="mailto:damon@scrappymeals.com"><span class="dot"></span>Email Damon</a>
+            <a class="btn" href="https://linkedin.com/in/damonversaggi" target="_blank" rel="noopener"><span class="dot"></span>LinkedIn</a>
+            <a class="btn alt" href="https://scrappymeals.com/damo" target="_blank" rel="noopener"><span class="dot"></span>Portfolio</a>
+            <button class="btn" type="button" onclick="window.print()"><span class="dot"></span>Print</button>
+          </div>
+        </div>
+        <div class="footer-meta">
+          Damon Versaggi · Brooklyn, NY · damon@scrappymeals.com · linkedin.com/in/damonversaggi · scrappymeals.com/damo
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="copy-toast" id="toast" role="status" aria-live="polite">Email copied</div>
+
+  <script>
+    const progress = document.getElementById('progress');
+    const topbar = document.getElementById('topbar');
+    const nav = document.getElementById('nav');
+    const menu = document.getElementById('menu');
+    const toast = document.getElementById('toast');
+    const navLinks = Array.from(document.querySelectorAll('.nav a'));
+    const sections = Array.from(document.querySelectorAll('main section[id]'));
+
+    function updateProgress() {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? window.scrollY / max : 0;
+      progress.style.transform = `scaleX(${Math.min(1, Math.max(0, pct))})`;
+      topbar.classList.toggle('scrolled', window.scrollY > 12);
+    }
+
+    function updateActiveNav() {
+      let active = sections[0]?.id || '';
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 140) active = section.id;
+      }
+      navLinks.forEach(link => {
+        const id = link.getAttribute('href')?.replace('#','');
+        link.classList.toggle('active', id === active);
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      updateProgress();
+      updateActiveNav();
+    }, { passive: true });
+
+    updateProgress();
+    updateActiveNav();
+
+    menu.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      menu.setAttribute('aria-expanded', String(isOpen));
+      menu.textContent = isOpen ? 'Close' : 'Menu';
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        menu.setAttribute('aria-expanded', 'false');
+        menu.textContent = 'Menu';
+      });
+    });
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    document.querySelectorAll('.tab-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const tab = button.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+          const active = btn === button;
+          btn.classList.toggle('active', active);
+          btn.setAttribute('aria-selected', String(active));
+        });
+        document.querySelectorAll('.tab-panel').forEach(panel => {
+          panel.classList.toggle('active', panel.id === tab);
+        });
+      });
+    });
+
+    function copyEmail() {
+      const email = 'damon@scrappymeals.com';
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(email).then(showToast).catch(() => fallbackCopy(email));
+      } else {
+        fallbackCopy(email);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const input = document.createElement('textarea');
+      input.value = text;
+      input.setAttribute('readonly', '');
+      input.style.position = 'fixed';
+      input.style.left = '-9999px';
+      document.body.appendChild(input);
+      input.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(input);
+      showToast();
+    }
+
+    function showToast() {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1600);
+    }
+  </script>
+</body>
+</html>
