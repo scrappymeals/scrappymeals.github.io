@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fridgie &amp; Scraps — Channel Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blueprint: #0C0D12;
+    --blueprint-deep: #050507;
+    --grid-line: rgba(255,255,255,0.07);
+    --paper: #16181F;
+    --paper-shadow: rgba(0,0,0,0.55);
+    --ink: #F5F0FF;
+    --ink-soft: #B6ABD6;
+    --scraps: #FF2E9A;
+    --scraps-deep: #C4127A;
+    --fridgie: #8B3FF2;
+    --fridgie-deep: #5B1FC7;
+    --fridgie-text: #F6D9FF;
+    --fridgie-light: #C9A6FF;
+    --yellow: #FFD54A;
+    --mustard: #21E6C1;
+    --line-white: #F2E9FF;
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;overflow-x:hidden;width:100%;}
+  body{
+    background:
+      linear-gradient(var(--grid-line),var(--grid-line)) 0 0/100% 42px,
+      linear-gradient(90deg,var(--grid-line),var(--grid-line)) 0 0/42px 100%,
+      var(--blueprint);
+    color:var(--line-white);
+    font-family:'Nunito Sans', sans-serif;
+    min-height:100vh;
+    min-height:100dvh;
+    -webkit-text-size-adjust:100%;
+    touch-action:manipulation;
+  }
+  button, [onclick], .char-card, .ep-card, .phase, .check-item, .day-card, nav.side button{
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:rgba(255,255,255,0.12);
+  }
+  ::selection{ background:var(--mustard); color:var(--ink); }
+
+  .stamp{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--fridgie-text);
+    opacity:0.85;
+  }
+
+  header.top{
+    display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;
+    gap:16px;
+    padding:28px clamp(18px,4vw,48px) 18px;
+    border-bottom:1px dashed var(--grid-line);
+  }
+  .wordmark-row{ display:flex; flex-direction:column; align-items:flex-start; gap:2px; }
+  .wordmark{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:clamp(26px,4vw,40px);
+    line-height:1;
+    color:var(--fridgie-light);
+    letter-spacing:0.01em;
+  }
+  .wordmark span.amp{ color:var(--mustard); }
+  .co-name{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:clamp(14px,1.6vw,18px);
+    color:var(--yellow);
+    opacity:0.95;
+  }
+  .asterisk{ color:var(--mustard); }
+  .footnote{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    color:var(--line-white);
+    opacity:0.5;
+    margin-top:2px;
+    letter-spacing:0.02em;
+  }
+  .footnote .asterisk{ margin-right:2px; }
+  .tagline{
+    font-size:13px;
+    color:var(--line-white);
+    opacity:0.65;
+    margin-top:6px;
+    max-width:420px;
+  }
+  .title-block{
+    text-align:right;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--fridgie-text);
+    line-height:1.6;
+  }
+  .title-block b{ color:var(--mustard); }
+  @media (max-width:480px){
+    header.top{ padding-top:20px; }
+    .title-block{ text-align:left; }
+  }
+
+  .layout{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:0;
+    max-width:1280px;
+    margin:0 auto;
+  }
+  @media (max-width:860px){
+    .layout{ grid-template-columns:1fr; }
+  }
+
+  nav.side{
+    padding:26px 14px;
+    position:sticky; top:0; align-self:start;
+    display:flex; flex-direction:column; gap:4px;
+  }
+  @media (max-width:860px){
+    nav.side{
+      position:static;
+      flex-direction:row;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      padding:14px clamp(12px,3vw,24px);
+      border-bottom:1px dashed var(--grid-line);
+      gap:8px;
+    }
+    nav.side::-webkit-scrollbar{ display:none; }
+    nav.side button{ padding:12px 14px; font-size:12px; }
+  }
+  nav.side button{
+    -webkit-appearance:none;
+    appearance:none;
+    border:none;
+    background:none;
+    font:inherit;
+    margin:0;
+    cursor:pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.06em;
+    color:var(--line-white);
+    opacity:0.55;
+    padding:10px 12px;
+    border-radius:8px;
+    white-space:nowrap;
+    display:flex; align-items:center; gap:8px;
+    transition:opacity .2s, background .2s;
+  }
+  nav.side button .num{ color:var(--fridgie-text); opacity:0.9; }
+  nav.side button:hover{ opacity:0.9; background:rgba(255,255,255,0.04); }
+  nav.side button.active{
+    opacity:1;
+    background:rgba(255,255,255,0.07);
+    box-shadow:inset 3px 0 0 var(--mustard);
+  }
+
+  main{ padding:8px clamp(18px,4vw,48px) 80px; min-width:0; }
+  section.panel{ display:none; animation:fade .35s ease; }
+  section.panel.active{ display:block; }
+  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+
+  h2.section-title{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:clamp(22px,3vw,30px);
+    margin:34px 0 6px;
+    color:var(--line-white);
+  }
+  p.section-sub{
+    font-size:14px; opacity:0.65; max-width:640px; margin:0 0 22px;
+  }
+
+  .paper{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:var(--radius);
+    box-shadow:0 14px 30px var(--paper-shadow);
+    padding:20px 22px;
+    position:relative;
+  }
+  .paper::before{
+    content:'';
+    position:absolute; top:-7px; left:22px;
+    width:14px; height:14px; border-radius:50%;
+    background:var(--scraps-deep);
+    box-shadow:0 2px 4px rgba(0,0,0,0.3);
+  }
+  .paper h3{ font-family:'Baloo 2',sans-serif; margin:2px 0 8px; font-size:17px; }
+  .paper p{ font-size:13.5px; line-height:1.55; margin:0; color:var(--ink-soft); }
+
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid2,.grid3{ grid-template-columns:1fr; } }
+
+  table.spec{
+    width:100%; border-collapse:collapse; margin-top:6px;
+    font-size:13px;
+  }
+  table.spec td{
+    padding:9px 10px; border-bottom:1px dashed var(--grid-line);
+    word-break:break-word;
+  }
+  table.spec td.k{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--fridgie-text); width:44%;
+    text-transform:uppercase; letter-spacing:0.04em;
+  }
+  table.spec td.v{ color:var(--line-white); font-weight:600; }
+  @media (max-width:420px){
+    table.spec, table.spec tbody, table.spec tr{ display:block; }
+    table.spec tr{ padding:8px 0; border-bottom:1px dashed var(--grid-line); }
+    table.spec td{ display:block; width:100% !important; border-bottom:none; padding:2px 0; }
+  }
+
+  .hierarchy{
+    display:flex; flex-direction:column; gap:0; margin-top:18px;
+  }
+  .hlink{
+    display:flex; align-items:center; gap:14px;
+    padding:14px 16px; border:1px solid var(--grid-line); border-radius:10px;
+    background:rgba(255,255,255,0.02);
+    margin-bottom:0;
+  }
+  .hlink .tag{
+    font-family:'JetBrains Mono',monospace; font-size:10px; padding:4px 8px;
+    border-radius:5px; color:var(--blueprint-deep); font-weight:700;
+  }
+  .harrow{ text-align:center; font-size:18px; opacity:0.4; margin:2px 0; }
+
+  /* Characters */
+  .char-card{
+    border-radius:18px; padding:22px; position:relative; overflow:hidden;
+    min-height:340px; cursor:pointer; transition:transform .25s;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .char-card:hover{ transform:translateY(-3px); }
+  @media (max-width:700px){
+    .char-card{ min-height:260px; }
+  }
+  .char-card.scraps{ background:linear-gradient(160deg, #2E0A20, #120509); }
+  .char-card.fridgie{ background:linear-gradient(160deg, #1E0E3A, #0D0619); }
+  .char-card h3{
+    font-family:'Baloo 2',sans-serif; font-size:24px; margin:14px 0 2px; color:var(--line-white);
+  }
+  .char-card .role{
+    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+  }
+  .char-card.scraps .role{ color:var(--scraps); }
+  .char-card.fridgie .role{ color:var(--fridgie-text); }
+  .char-icon{ width:64px; height:64px; }
+  .behaviors{
+    margin-top:16px; display:none; font-size:12.5px; line-height:1.6; color:var(--line-white); opacity:0.85;
+  }
+  .char-card.open .behaviors{ display:block; }
+  .behaviors b{ display:block; font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em; margin-top:10px;
+    font-family:'JetBrains Mono',monospace; }
+  .char-card.scraps .behaviors b{ color:var(--scraps); }
+  .char-card.fridgie .behaviors b{ color:var(--fridgie-text); }
+  .flip-hint{ position:absolute; bottom:14px; right:18px; font-size:11px; opacity:0.4; font-family:'JetBrains Mono',monospace; }
+
+  .rule-note{ margin-top:18px; }
+
+  /* Timeline */
+  .timeline-wrap{ margin-top:10px; }
+  .timeline-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .timeline{
+    display:flex; width:100%; border-radius:10px; overflow:hidden; height:56px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+  }
+  @media (max-width:640px){
+    .timeline{ width:640px; }
+  }
+  .tseg{
+    height:100%; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(0,0,0,0.55);
+    border-right:2px solid rgba(0,0,0,0.15);
+    transition:filter .15s;
+  }
+  .tseg:last-child{ border-right:none; }
+  .tseg:hover, .tseg.active{ filter:brightness(1.15); }
+  .tdetail{
+    margin-top:14px; padding:16px 18px;
+  }
+  .tdetail .fn{ font-family:'Baloo 2',sans-serif; font-size:16px; margin-bottom:4px; }
+  .tdetail .time{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--fridgie-deep); }
+
+  .checklist{ margin-top:22px; display:grid; gap:8px; }
+  .check-item{
+    display:flex; align-items:center; gap:10px; padding:10px 14px;
+    border:1px solid var(--grid-line); border-radius:8px; font-size:13px;
+    cursor:pointer; user-select:none;
+  }
+  .check-item .box{
+    width:18px; height:18px; border-radius:5px; border:2px solid var(--mustard);
+    flex:none; display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--mustard);
+  }
+  .check-item.checked .box{ background:var(--mustard); color:var(--blueprint-deep); }
+  .check-item.checked{ opacity:0.6; text-decoration:line-through; }
+
+  /* Season slate */
+  .ep-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px; margin-top:8px; }
+  @media (max-width:380px){
+    .ep-grid{ grid-template-columns:1fr; }
+  }
+  .ep-card{
+    background:rgba(255,255,255,0.03); border:1px solid var(--grid-line); border-radius:12px;
+    padding:14px 16px; cursor:pointer; transition:background .2s;
+  }
+  .ep-card:hover{ background:rgba(255,255,255,0.06); }
+  .ep-num{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mustard); }
+  .ep-title{ font-family:'Baloo 2',sans-serif; font-size:15px; margin:4px 0 8px; }
+  .ep-more{ display:none; font-size:12px; opacity:0.75; line-height:1.6; }
+  .ep-card.open .ep-more{ display:block; }
+  .ep-row-label{ font-family:'JetBrains Mono',monospace; font-size:9.5px; text-transform:uppercase; color:var(--fridgie-text); margin-top:6px; }
+
+  .pillars{ margin-top:26px; display:flex; flex-direction:column; gap:10px; }
+  .pillar-row{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .pillar-label{ width:190px; font-size:12.5px; flex:none; }
+  .pillar-bar-bg{ flex:1; min-width:80px; height:16px; border-radius:8px; background:rgba(255,255,255,0.06); overflow:hidden; }
+  .pillar-bar{ height:100%; border-radius:8px; }
+  .pillar-pct{ width:40px; text-align:right; font-family:'JetBrains Mono',monospace; font-size:12px; flex:none; }
+  @media (max-width:480px){
+    .pillar-label{ width:100%; }
+  }
+
+  /* Cadence */
+  .week-strip{ display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-top:14px; }
+  @media (max-width:520px){
+    .week-strip{ grid-template-columns:repeat(4,1fr); }
+  }
+  @media (max-width:360px){
+    .week-strip{ grid-template-columns:repeat(3,1fr); }
+  }
+  .day-card{
+    border-radius:10px; padding:12px 8px; text-align:center; font-size:11px;
+    border:1px solid var(--grid-line); background:rgba(255,255,255,0.02);
+  }
+  .day-card .d{ font-family:'JetBrains Mono',monospace; font-size:10px; opacity:0.6; margin-bottom:6px; }
+  .day-card.hot{ background:rgba(255,46,154,0.16); border-color:var(--scraps); }
+  .day-card.mid{ background:rgba(139,63,242,0.14); border-color:var(--fridgie); }
+
+  .launch-seq{ margin-top:20px; display:flex; flex-direction:column; gap:8px; }
+  .launch-row{ display:flex; gap:14px; align-items:baseline; font-size:13px; padding:8px 0; border-bottom:1px dashed var(--grid-line); flex-wrap:wrap; }
+  .launch-row .day{ font-family:'JetBrains Mono',monospace; color:var(--mustard); width:150px; flex:none; }
+  @media (max-width:420px){
+    .launch-row .day{ width:100%; }
+  }
+
+  /* Monetization */
+  .ladder{ display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+  .phase{
+    border:1px solid var(--grid-line); border-radius:12px; padding:16px 18px;
+    cursor:pointer; background:rgba(255,255,255,0.02);
+  }
+  .phase-head{ display:flex; align-items:center; gap:12px; justify-content:space-between; }
+  .phase-num{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--blueprint-deep);
+    background:var(--mustard); border-radius:50%; width:26px; height:26px;
+    display:flex; align-items:center; justify-content:center; flex:none; font-weight:700;
+  }
+  .phase-title{ font-family:'Baloo 2',sans-serif; font-size:15px; flex:1; }
+  .phase-arrow{ font-size:14px; opacity:0.5; transition:transform .2s; }
+  .phase.open .phase-arrow{ transform:rotate(90deg); }
+  .phase-body{ display:none; margin-top:12px; font-size:12.5px; line-height:1.6; opacity:0.85; }
+  .phase.open .phase-body{ display:block; }
+
+  /* 90 day */
+  .plan-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-top:14px; }
+  .plan-card{
+    border:1px solid var(--grid-line); border-radius:12px; padding:14px 16px; background:rgba(255,255,255,0.02);
+  }
+  .plan-card .win{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--fridgie-text); text-transform:uppercase; }
+  .plan-card h4{ font-family:'Baloo 2',sans-serif; font-size:14.5px; margin:6px 0 6px; }
+  .plan-card p{ font-size:12px; opacity:0.75; margin:0; line-height:1.55; }
+
+  footer.close{
+    text-align:center; margin-top:70px; padding:40px 20px 20px; border-top:1px dashed var(--grid-line);
+  }
+  footer.close .lines{ font-family:'Baloo 2',sans-serif; font-size:clamp(15px,2.4vw,20px); line-height:1.7; }
+  footer.close .lines span{ display:block; }
+  footer.close .lines span:nth-child(1){ color:var(--scraps); }
+  footer.close .lines span:nth-child(2){ color:var(--mustard); }
+  footer.close .lines span:nth-child(3){ color:var(--fridgie-text); }
+  footer.close .northstar{ margin-top:20px; font-size:12px; opacity:0.55; max-width:480px; margin-left:auto; margin-right:auto; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div>
+    <div class="wordmark-row">
+      <div class="wordmark">FRIDGIE</div>
+      <div class="co-name">W/ Scraps the Raccoon<span class="asterisk">*</span></div>
+    </div>
+    <div class="footnote"><span class="asterisk">*</span>Food Scavenger Extraordinaire</div>
+    <div class="tagline">A musical, character-driven food-adventure channel blueprint — high-level interactive view.</div>
+  </div>
+  <div class="title-block">
+    SCRAPPY MEALS ORIGINAL SERIES<br>
+    <b>CHANNEL BLUEPRINT</b> · Rev. 01<br>
+    Prepared July 2026 · Brooklyn, NY
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="side" id="sideNav">
+    <button type="button" data-target="overview" class="active"><span class="num">01</span> Overview</button>
+    <button type="button" data-target="characters"><span class="num">02</span> Characters</button>
+    <button type="button" data-target="anatomy"><span class="num">03</span> Episode Anatomy</button>
+    <button type="button" data-target="slate"><span class="num">04</span> Season One</button>
+    <button type="button" data-target="cadence"><span class="num">05</span> Publishing</button>
+    <button type="button" data-target="money"><span class="num">06</span> Monetization</button>
+    <button type="button" data-target="plan"><span class="num">07</span> 90-Day Plan</button>
+  </nav>
+
+  <main>
+
+    <!-- 01 OVERVIEW -->
+    <section class="panel active" id="overview">
+      <h2 class="section-title">The Channel in One Page</h2>
+      <p class="section-sub">Fridgie and Scraps turn everyday food problems into funny musical adventures that help children appreciate ingredients, explore new foods, and participate in the kitchen.</p>
+
+      <div class="grid2">
+        <div class="paper">
+          <h3>Child promise</h3>
+          <p>Food is funny, surprising, musical, and worth exploring.</p>
+        </div>
+        <div class="paper">
+          <h3>Parent promise</h3>
+          <p>Constructive entertainment that creates useful family conversations about food.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="font-size:19px;">Operating standard</h2>
+      <table class="spec">
+        <tr><td class="k">Primary audience</td><td class="v">Children ages 3–7</td></tr>
+        <tr><td class="k">Flagship runtime</td><td class="v">2:25 – 2:45</td></tr>
+        <tr><td class="k">Release</td><td class="v">Saturday, 11:00 a.m. ET</td></tr>
+        <tr><td class="k">Frequency</td><td class="v">One flagship episode weekly</td></tr>
+        <tr><td class="k">Core cast</td><td class="v">Fridgie + Scraps</td></tr>
+        <tr><td class="k">Dialogue model</td><td class="v">No character dialogue — narrator-driven, non-verbal cast</td></tr>
+        <tr><td class="k">Music</td><td class="v">One original song per episode</td></tr>
+        <tr><td class="k">Format</td><td class="v">16:9 · Master 4K · 1080p delivery min.</td></tr>
+        <tr><td class="k">Classification</td><td class="v">Made for kids when child-directed</td></tr>
+        <tr><td class="k">Primary engine</td><td class="v">YouTube + YouTube Kids</td></tr>
+      </table>
+
+      <h2 class="section-title" style="font-size:19px;">Strategic hierarchy</h2>
+      <div class="hierarchy">
+        <div class="hlink"><span class="tag" style="background:var(--mustard);">GATEWAY</span> fridgiesmalls.app — the useful entry point</div>
+        <div class="harrow">↓</div>
+        <div class="hlink"><span class="tag" style="background:var(--scraps);">RELATIONSHIP</span> The Fridgie &amp; Scraps Show — builds the love</div>
+        <div class="harrow">↓</div>
+        <div class="hlink"><span class="tag" style="background:var(--fridgie);">WORLD</span> The Metacheese — expands into stories, games, education, products</div>
+      </div>
+    </section>
+
+    <!-- 02 CHARACTERS -->
+    <section class="panel" id="characters">
+      <h2 class="section-title">Character System</h2>
+      <p class="section-sub">Click either card to open their recurring behaviors. Scraps creates emotional energy — Fridgie gives that energy direction. Neither character speaks a language.</p>
+
+      <div class="paper rule-note" style="margin-bottom:20px;">
+        <h3>Voice &amp; language model</h3>
+        <p>No character dialogue, in any language. A single off-screen <b>narrator</b> carries the story ("Scraps couldn't resist just one more bite…"), while Fridgie and Scraps communicate entirely through sound, gesture, and expression — closer to <b>Wile E. Coyote and the Road Runner</b> than to a talking-animal sitcom. This makes the show translation-proof: swapping markets means recording one new narrator track, not re-casting and re-timing two characters' dialogue.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="char-card scraps" onclick="this.classList.toggle('open')">
+          <svg class="char-icon" viewBox="0 0 100 100">
+            <circle cx="50" cy="55" r="30" fill="#FF2E9A"/>
+            <path d="M25 35 Q20 15 35 22 Q30 32 25 35Z" fill="#FF2E9A"/>
+            <path d="M75 35 Q80 15 65 22 Q70 32 75 35Z" fill="#FF2E9A"/>
+            <path d="M30 48 Q50 40 70 48 L70 58 Q50 50 30 58 Z" fill="#2C0620"/>
+            <circle cx="42" cy="55" r="4" fill="#2C0620"/>
+            <circle cx="58" cy="55" r="4" fill="#2C0620"/>
+            <ellipse cx="50" cy="66" rx="6" ry="4" fill="#2C0620"/>
+          </svg>
+          <div class="role">Emotional engine · no dialogue</div>
+          <h3>Scraps</h3>
+          <div style="font-size:12.5px;opacity:0.75;">Curious, impulsive, hungry, expressive, physical, occasionally overconfident. Vocalizes like a mischievous little gremlin — babble, gasps, squeaks, hums — never real words.</div>
+          <div class="behaviors">
+            <b>Vocal identity</b> Minion-style gibberish and non-verbal sounds carry emotion in place of lines; pitch and rhythm do the acting.
+            <b>Physical comedy</b> Dramatic sniffing; hiding food; rushing; dancing badly; celebrating too early.
+            <b>Food behavior</b> Hesitates, investigates, grabs too much, changes his mind, discovers one small thing.
+          </div>
+          <div class="flip-hint">tap to flip ▾</div>
+        </div>
+
+        <div class="char-card fridgie" onclick="this.classList.toggle('open')">
+          <svg class="char-icon" viewBox="0 0 100 100">
+            <rect x="28" y="12" width="44" height="76" rx="10" fill="#8B3FF2"/>
+            <rect x="34" y="12" width="32" height="30" rx="6" fill="#180837" opacity="0.2"/>
+            <rect x="60" y="22" width="4" height="14" rx="2" fill="#180837"/>
+            <rect x="60" y="55" width="4" height="14" rx="2" fill="#180837"/>
+            <circle cx="42" cy="60" r="3.5" fill="#180837"/>
+            <circle cx="58" cy="60" r="3.5" fill="#180837"/>
+            <path d="M42 72 Q50 78 58 72" stroke="#180837" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="role">Possibility engine · no dialogue</div>
+          <h3>Fridgie</h3>
+          <div style="font-size:12.5px;opacity:0.75;">Warm, clever, playful, calm under pressure. Speaks through light patterns, chimes, and gesture — the narrator translates intent, Fridgie never lectures in words.</div>
+          <div class="behaviors">
+            <b>Signals</b> Door-glow pulses, chime tones, and door-swing gestures stand in for offering choices, giving a hint, or flagging a safety beat.
+            <b>Personality</b> Gentle teasing; confident but not perfect; occasionally surprised by Scraps.
+            <b>Story function</b> Turns kitchen reality into a game, song, visual transformation, or Metacheese doorway.
+          </div>
+          <div class="flip-hint">tap to flip ▾</div>
+        </div>
+      </div>
+
+      <div class="paper rule-note">
+        <h3>Relationship rule</h3>
+        <p>Play it like a chase-partnership, not a conversation: Scraps creates the problem through action, Fridgie complicates or redirects it through a visual gag or signal, and the narrator stitches the beats together the way a storybook narrator would over silent slapstick. Either one can solve the problem, they celebrate together, and no scene should ever depend on one character verbally explaining something to the other.</p>
+      </div>
+    </section>
+
+    <!-- 03 EPISODE ANATOMY -->
+    <section class="panel" id="anatomy">
+      <h2 class="section-title">Flagship Episode Anatomy</h2>
+      <p class="section-sub">2:25–2:45, always starting inside the problem. Click a segment on the timeline.</p>
+
+      <div class="timeline-wrap">
+        <div class="timeline-scroll">
+          <div class="timeline" id="timeline"></div>
+        </div>
+        <div class="paper tdetail" id="tdetail">
+          <div class="time">0:00 – 0:06</div>
+          <div class="fn">Visual hook</div>
+          <p>The food problem is already happening.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="font-size:19px;">Story test before production</h2>
+      <div class="checklist" id="checklist"></div>
+    </section>
+
+    <!-- 04 SEASON ONE -->
+    <section class="panel" id="slate">
+      <h2 class="section-title">Season One Content Slate</h2>
+      <p class="section-sub">Twelve episodes establish character, parent value, and musical range. Click a card to expand.</p>
+      <div class="ep-grid" id="epGrid"></div>
+
+      <h2 class="section-title" style="font-size:19px;">Content pillars</h2>
+      <div class="pillars" id="pillars"></div>
+    </section>
+
+    <!-- 05 CADENCE -->
+    <section class="panel" id="cadence">
+      <h2 class="section-title">Weekly Publishing Rhythm</h2>
+      <p class="section-sub">Saturday 11:00 a.m. ET is the initial operating standard — held for at least eight releases before it's revisited.</p>
+      <div class="week-strip" id="weekStrip"></div>
+
+      <h2 class="section-title" style="font-size:19px;">Launch sequence</h2>
+      <div class="launch-seq" id="launchSeq"></div>
+    </section>
+
+    <!-- 06 MONETIZATION -->
+    <section class="panel" id="money">
+      <h2 class="section-title">Monetization &amp; Franchise Expansion</h2>
+      <p class="section-sub">Attention → trust → repeat viewing → reusable IP → revenue. Click a phase to open it.</p>
+      <div class="ladder" id="ladder"></div>
+    </section>
+
+    <!-- 07 90-DAY PLAN -->
+    <section class="panel" id="plan">
+      <h2 class="section-title">Immediate 90-Day Action Plan</h2>
+      <p class="section-sub">Launch readiness is a gate, not a date.</p>
+      <div class="plan-grid" id="planGrid"></div>
+
+      <h2 class="section-title" style="font-size:19px;">First five decisions to lock</h2>
+      <div class="checklist" id="decisions"></div>
+    </section>
+
+    <footer class="close">
+      <div class="lines">
+        <span>The app opens the door.</span>
+        <span>The show builds the love.</span>
+        <span>The Metacheese makes the world bigger.</span>
+      </div>
+      <div class="northstar">Working north star: one polished, musical, emotionally clear food adventure every Saturday at 11:00 a.m. Eastern — built around exact character fidelity, parent trust, and a repeatable reason for children to return.</div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+// ---- NAV ----
+const navButtons = document.querySelectorAll('#sideNav button');
+navButtons.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    navButtons.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('section.panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById(btn.dataset.target).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+// ---- EPISODE ANATOMY TIMELINE ----
+const beats = [
+  {t:"0:00–0:06", fn:"Visual hook", ac:"The food problem is already happening.", w:6, c:"#FF2E9A"},
+  {t:"0:06–0:18", fn:"Scraps reacts", ac:"Resistance, panic, misunderstanding, appetite, or trouble.", w:12, c:"#FF6BBE"},
+  {t:"0:18–0:32", fn:"Problem definition", ac:"The viewer understands exactly what must be solved.", w:14, c:"#21E6C1"},
+  {t:"0:32–0:42", fn:"Fridgie reframes", ac:"The situation becomes a game or imaginative adventure.", w:10, c:"#B98CFF"},
+  {t:"0:42–0:55", fn:"Song setup", ac:"Beat, phrase, movement, or call-and-response begins.", w:13, c:"#8B3FF2"},
+  {t:"0:55–1:50", fn:"Musical adventure", ac:"Repetition, participation, escalation, and discovery.", w:55, c:"#5B1FC7"},
+  {t:"1:50–2:10", fn:"Practical resolution", ac:"Scraps tries, transforms, saves, sorts, or helps.", w:20, c:"#8B3FF2"},
+  {t:"2:10–2:25", fn:"Emotional payoff", ac:"Scraps recognizes what changed.", w:15, c:"#21E6C1"},
+  {t:"2:25–2:38", fn:"Final refrain", ac:"The memorable musical phrase returns.", w:13, c:"#FF6BBE"},
+  {t:"2:38–2:43", fn:"Character button", ac:"One short joke, reaction, or surprise.", w:5, c:"#FF2E9A"},
+  {t:"2:43–2:45", fn:"Sonic sting", ac:"Extremely short brand identity — only if it earns its time.", w:2, c:"#C4127A"},
+];
+const timelineEl = document.getElementById('timeline');
+const tdetail = document.getElementById('tdetail');
+beats.forEach((b,i)=>{
+  const seg = document.createElement('div');
+  seg.className = 'tseg';
+  seg.style.width = b.w+'%';
+  seg.style.background = b.c;
+  seg.title = b.fn;
+  seg.addEventListener('click', ()=>{
+    document.querySelectorAll('.tseg').forEach(s=>s.classList.remove('active'));
+    seg.classList.add('active');
+    tdetail.innerHTML = `<div class="time">${b.t}</div><div class="fn">${b.fn}</div><p>${b.ac}</p>`;
+  });
+  timelineEl.appendChild(seg);
+});
+
+const storyTest = [
+  "Can a child understand the problem with the sound off in ten seconds?",
+  "Does Scraps want something specific?",
+  "Does Fridgie transform the situation instead of lecture?",
+  "Can a viewer copy a sound, movement, phrase, or choice?",
+  "Does the ending show a real change, however small?",
+  "Can the song and final payoff stand alone as short-form clips?"
+];
+const checklistEl = document.getElementById('checklist');
+storyTest.forEach(q=>{
+  const row = document.createElement('div');
+  row.className = 'check-item';
+  row.innerHTML = `<div class="box">✓</div><div>${q}</div>`;
+  row.addEventListener('click', ()=>row.classList.toggle('checked'));
+  checklistEl.appendChild(row);
+});
+
+// ---- SEASON SLATE ----
+const episodes = [
+  {n:1, title:"Don't Throw That Away", prob:"Usable food is headed for the trash", song:"Leftover Rescue Song", val:"Positive leftovers"},
+  {n:2, title:"Take One Tiny Bite", prob:"Scraps refuses an unfamiliar food", song:"Tiny Bite Game", val:"Low-pressure exploration"},
+  {n:3, title:"What's Hiding in the Fridge?", prob:"Ingredients appear boring", song:"Fridge Treasure Hunt", val:"Family participation"},
+  {n:4, title:"The Funny-Looking Vegetable", prob:"Produce looks strange", song:"Silly Veggie Parade", val:"Reduce food anxiety"},
+  {n:5, title:"Wash Those Paws, Scraps!", prob:"Scraps starts cooking with dirty paws", song:"Bubble Beat", val:"Kitchen hygiene"},
+  {n:6, title:"The Leftover Shuffle", prob:"No one knows what leftovers can become", song:"Mix-and-Match Dance", val:"Food transformation"},
+  {n:7, title:"The Bruised Banana", prob:"Scraps thinks imperfect food is bad", song:"Spotty Banana Boogie", val:"Appearance vs. quality"},
+  {n:8, title:"Too Much on the Plate", prob:"Scraps takes more than he can eat", song:"Scoop a Little Song", val:"Portions without shame"},
+  {n:9, title:"Where Did My Carrot Come From?", prob:"Food origin is a mystery", song:"Farm-to-Fridge Rhythm", val:"Food systems awareness"},
+  {n:10, title:"The Crunchy, Squishy Game", prob:"Textures feel unfamiliar", song:"Texture Call-and-Response", val:"Sensory vocabulary"},
+  {n:11, title:"Three Colors for Dinner", prob:"The plate feels dull", song:"Rainbow Food Game", val:"Variety through play"},
+  {n:12, title:"The Metacheese Door Opens", prob:"A recipe needs one final idea", song:"Season Motif Medley", val:"World expansion"},
+];
+const epGrid = document.getElementById('epGrid');
+episodes.forEach(e=>{
+  const card = document.createElement('div');
+  card.className = 'ep-card';
+  card.innerHTML = `
+    <div class="ep-num">EP ${String(e.n).padStart(2,'0')}</div>
+    <div class="ep-title">${e.title}</div>
+    <div class="ep-more">
+      <div class="ep-row-label">Problem</div>${e.prob}
+      <div class="ep-row-label">Musical device</div>${e.song}
+      <div class="ep-row-label">Parent value</div>${e.val}
+    </div>`;
+  card.addEventListener('click', ()=>card.classList.toggle('open'));
+  epGrid.appendChild(card);
+});
+
+const pillarData = [
+  {label:"Food exploration", pct:30, c:"#FF2E9A"},
+  {label:"Food rescue", pct:25, c:"#21E6C1"},
+  {label:"Kitchen participation", pct:20, c:"#8B3FF2"},
+  {label:"Food origins & appreciation", pct:15, c:"#B98CFF"},
+  {label:"Metacheese world-building", pct:10, c:"#C4127A"},
+];
+const pillarsEl = document.getElementById('pillars');
+pillarData.forEach(p=>{
+  const row = document.createElement('div');
+  row.className = 'pillar-row';
+  row.innerHTML = `
+    <div class="pillar-label">${p.label}</div>
+    <div class="pillar-bar-bg"><div class="pillar-bar" style="width:${p.pct}%; background:${p.c};"></div></div>
+    <div class="pillar-pct">${p.pct}%</div>`;
+  pillarsEl.appendChild(row);
+});
+
+// ---- CADENCE ----
+const week = [
+  {d:"MON", label:"Problem clip", sub:"15–25 sec hook", cls:""},
+  {d:"TUE", label:"—", sub:"", cls:""},
+  {d:"WED", label:"Song clip", sub:"15–30 sec", cls:"mid"},
+  {d:"THU", label:"—", sub:"", cls:""},
+  {d:"FRI", label:"Parent teaser", sub:"IG / TikTok", cls:""},
+  {d:"SAT", label:"Flagship episode", sub:"11:00a ET", cls:"hot"},
+  {d:"SUN", label:"Best payoff clip", sub:"recapture", cls:"mid"},
+];
+const weekStrip = document.getElementById('weekStrip');
+week.forEach(w=>{
+  const c = document.createElement('div');
+  c.className = 'day-card ' + w.cls;
+  c.innerHTML = `<div class="d">${w.d}</div><div>${w.label}</div><div style="opacity:0.55;font-size:10px;margin-top:2px;">${w.sub}</div>`;
+  weekStrip.appendChild(c);
+});
+
+const launch = [
+  {day:"Tuesday, 10:00a", ev:"Official 30–40 second channel trailer"},
+  {day:"Wednesday, 11:00a", ev:"Flagship Episode 1"},
+  {day:"Wednesday, 11:00a", ev:"Flagship Episode 2"},
+  {day:"Saturday, 11:00a", ev:"Song clip or character introduction"},
+  {day:"Following Sat.", ev:"Flagship Episode 3"},
+  {day:"Every Saturday", ev:"One new 2:25–2:45 flagship episode"},
+];
+const launchSeq = document.getElementById('launchSeq');
+launch.forEach(l=>{
+  const row = document.createElement('div');
+  row.className = 'launch-row';
+  row.innerHTML = `<div class="day">${l.day}</div><div>${l.ev}</div>`;
+  launchSeq.appendChild(row);
+});
+
+// ---- MONETIZATION ----
+const phases = [
+  {n:1, title:"Prove attention", obj:"A repeatable show format and recognizable songs.", prod:"YouTube revenue when eligible; platform distribution."},
+  {n:2, title:"Build parent trust", obj:"Demonstrate practical family value.", prod:"Aligned sponsorships; grants; education partnerships."},
+  {n:3, title:"Reuse the IP", obj:"Turn episodes into durable assets.", prod:"Music streaming; compilations; books; activity kits; licensing."},
+  {n:4, title:"Connect utility", obj:"Move families between entertainment and action.", prod:"Fridgie subscriptions; recipe features; partner ingredients."},
+  {n:5, title:"Expand the world", obj:"Make the Metacheese explorable.", prod:"Games; live events; classroom products; merchandise; immersive experiences."},
+];
+const ladder = document.getElementById('ladder');
+phases.forEach(p=>{
+  const el = document.createElement('div');
+  el.className = 'phase';
+  el.innerHTML = `
+    <div class="phase-head">
+      <div class="phase-num">${p.n}</div>
+      <div class="phase-title">${p.title}</div>
+      <div class="phase-arrow">▸</div>
+    </div>
+    <div class="phase-body">
+      <div><b style="color:var(--mustard);font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;">Objective</b><br>${p.obj}</div>
+      <div style="margin-top:8px;"><b style="color:var(--fridgie-text);font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;">Potential products</b><br>${p.prod}</div>
+    </div>`;
+  el.addEventListener('click', ()=>el.classList.toggle('open'));
+  ladder.appendChild(el);
+});
+
+// ---- 90 DAY PLAN ----
+const planData = [
+  {win:"Weeks 1–2", h:"Lock the system", p:"Channel name, premise, audience, character bible, visual rules, sonic identity, 12-episode slate."},
+  {win:"Weeks 3–4", h:"Build the launch slate", p:"Scripts and songs for Episodes 1–4; trailer; thumbnail system; production schedule."},
+  {win:"Weeks 5–8", h:"Produce ahead", p:"Episodes 1–4 complete; 5–6 in pipeline; captions, stems, clips, metadata."},
+  {win:"Week 9", h:"Package and test", p:"Channel art, trailer, playlists; private reviews with parents; final corrections."},
+  {win:"Week 10", h:"Launch", p:"Trailer Tuesday; Episodes 1 & 2 Wednesday; supporting clip Saturday."},
+  {win:"Weeks 11–12", h:"Establish habit", p:"Episode 3 & 4 on Saturdays; weekly clips; 24h/7d performance reviews."},
+];
+const planGrid = document.getElementById('planGrid');
+planData.forEach(pl=>{
+  const c = document.createElement('div');
+  c.className = 'plan-card';
+  c.innerHTML = `<div class="win">${pl.win}</div><h4>${pl.h}</h4><p>${pl.p}</p>`;
+  planGrid.appendChild(c);
+});
+
+const decisions = [
+  "Final channel and flagship-series naming",
+  "Exact approved character assets, voices, and animation method",
+  "Episode 1–4 concepts and song hooks",
+  "The sustainable production budget and weekly capacity",
+  "Who owns final approval for story, character, music, and publish"
+];
+const decisionsEl = document.getElementById('decisions');
+decisions.forEach(d=>{
+  const row = document.createElement('div');
+  row.className = 'check-item';
+  row.innerHTML = `<div class="box">✓</div><div>${d}</div>`;
+  row.addEventListener('click', ()=>row.classList.toggle('checked'));
+  decisionsEl.appendChild(row);
+});
+</script>
+
+</body>
+</html>
