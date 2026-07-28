@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fridgie &amp; Scraps — Master Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blueprint: #0C0D12;
+    --blueprint-deep: #050507;
+    --grid-line: rgba(255,255,255,0.07);
+    --paper: #16181F;
+    --paper-shadow: rgba(0,0,0,0.55);
+    --ink: #F5F0FF;
+    --ink-soft: #B6ABD6;
+    --scraps: #FF2E9A;
+    --scraps-deep: #C4127A;
+    --fridgie: #8B3FF2;
+    --fridgie-deep: #5B1FC7;
+    --fridgie-text: #F6D9FF;
+    --fridgie-light: #C9A6FF;
+    --yellow: #FFD54A;
+    --mustard: #21E6C1;
+    --line-white: #F2E9FF;
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;overflow-x:hidden;width:100%;}
+  body{
+    background:
+      linear-gradient(var(--grid-line),var(--grid-line)) 0 0/100% 42px,
+      linear-gradient(90deg,var(--grid-line),var(--grid-line)) 0 0/42px 100%,
+      var(--blueprint);
+    color:var(--line-white);
+    font-family:'Nunito Sans', sans-serif;
+    min-height:100vh;
+    min-height:100dvh;
+    -webkit-text-size-adjust:100%;
+    touch-action:manipulation;
+  }
+  button, [onclick], .char-card, .ep-card, .phase, .check-item, .day-card, nav.side button{
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:rgba(255,255,255,0.12);
+  }
+  ::selection{ background:var(--mustard); color:var(--ink); }
+
+  .stamp{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--fridgie-text);
+    opacity:0.85;
+  }
+
+  header.top{
+    display:flex; flex-direction:column; align-items:center;
+    text-align:center;
+    gap:10px;
+    padding:28px clamp(18px,4vw,48px) 22px;
+    border-bottom:1px dashed var(--grid-line);
+  }
+  .wordmark-row{ display:flex; flex-direction:column; align-items:center; gap:2px; }
+  .wordmark{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:clamp(26px,4vw,40px);
+    line-height:1;
+    color:var(--fridgie-light);
+    letter-spacing:0.01em;
+  }
+  .wordmark span.amp{ color:var(--mustard); }
+  .co-name{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:clamp(14px,1.6vw,18px);
+    color:var(--yellow);
+    opacity:0.95;
+  }
+  .asterisk{ color:var(--mustard); }
+  .footnote{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    color:var(--line-white);
+    opacity:0.5;
+    margin-top:2px;
+    letter-spacing:0.02em;
+  }
+  .footnote .asterisk{ margin-right:2px; }
+  .tagline{
+    font-size:13px;
+    color:var(--line-white);
+    opacity:0.65;
+    margin-top:6px;
+    max-width:420px;
+  }
+  .title-block{
+    text-align:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--fridgie-text);
+    line-height:1.6;
+  }
+  .title-block b{ color:var(--mustard); }
+  @media (max-width:480px){
+    header.top{ padding-top:20px; }
+  }
+
+  .layout{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+    max-width:1280px;
+    margin:0 auto;
+  }
+
+  nav.side{
+    position:sticky; top:0; z-index:5;
+    display:flex; flex-direction:row; flex-wrap:nowrap;
+    align-items:center; justify-content:center;
+    gap:2px;
+    padding:14px clamp(10px,2.5vw,24px);
+    background:none;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  nav.side::-webkit-scrollbar{ display:none; }
+  @media (max-width:900px){
+    nav.side{ justify-content:flex-start; }
+  }
+  @media (max-width:640px){
+    nav.side button{ padding:10px 10px; font-size:11px; }
+  }
+  nav.side button{
+    -webkit-appearance:none;
+    appearance:none;
+    border:none;
+    background:none;
+    font:inherit;
+    margin:0;
+    cursor:pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.04em;
+    color:var(--line-white);
+    opacity:0.55;
+    padding:9px 9px;
+    border-radius:8px;
+    white-space:nowrap;
+    display:flex; align-items:center; gap:6px;
+    transition:opacity .2s, background .2s;
+    flex:0 0 auto;
+  }
+  nav.side button .num{ color:var(--fridgie-text); opacity:0.9; }
+  nav.side button:hover{ opacity:0.9; background:rgba(255,255,255,0.04); }
+  nav.side button.active{
+    opacity:1;
+    background:rgba(255,255,255,0.07);
+    box-shadow:inset 0 -3px 0 var(--mustard);
+  }
+
+  main{ padding:8px clamp(18px,4vw,48px) 80px; min-width:0; }
+  section.panel{ display:none; animation:fade .35s ease; }
+  section.panel.active{ display:block; }
+  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+
+  h2.section-title{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:clamp(22px,3vw,30px);
+    margin:34px 0 6px;
+    color:var(--line-white);
+  }
+  p.section-sub{
+    font-size:14px; opacity:0.65; max-width:640px; margin:0 0 22px;
+  }
+
+  .paper{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:var(--radius);
+    box-shadow:0 14px 30px var(--paper-shadow);
+    padding:20px 22px;
+    position:relative;
+  }
+  .paper::before{
+    content:'';
+    position:absolute; top:-7px; left:22px;
+    width:14px; height:14px; border-radius:50%;
+    background:var(--scraps-deep);
+    box-shadow:0 2px 4px rgba(0,0,0,0.3);
+  }
+  .paper h3{ font-family:'Baloo 2',sans-serif; margin:2px 0 8px; font-size:17px; }
+  .paper p{ font-size:13.5px; line-height:1.55; margin:0; color:var(--ink-soft); }
+
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .grid2,.grid3{ grid-template-columns:1fr; } }
+
+  table.spec{
+    width:100%; border-collapse:collapse; margin-top:6px;
+    font-size:13px;
+  }
+  table.spec td{
+    padding:9px 10px; border-bottom:1px dashed var(--grid-line);
+    word-break:break-word;
+  }
+  table.spec td.k{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--fridgie-text); width:44%;
+    text-transform:uppercase; letter-spacing:0.04em;
+  }
+  table.spec td.v{ color:var(--line-white); font-weight:600; }
+  @media (max-width:420px){
+    table.spec, table.spec tbody, table.spec tr{ display:block; }
+    table.spec tr{ padding:8px 0; border-bottom:1px dashed var(--grid-line); }
+    table.spec td{ display:block; width:100% !important; border-bottom:none; padding:2px 0; }
+  }
+
+  .hierarchy{
+    display:flex; flex-direction:column; gap:0; margin-top:18px;
+  }
+  .hlink{
+    display:flex; align-items:center; gap:14px;
+    padding:14px 16px; border:1px solid var(--grid-line); border-radius:10px;
+    background:rgba(255,255,255,0.02);
+    margin-bottom:0;
+  }
+  .hlink .tag{
+    font-family:'JetBrains Mono',monospace; font-size:10px; padding:4px 8px;
+    border-radius:5px; color:var(--blueprint-deep); font-weight:700;
+  }
+  .harrow{ text-align:center; font-size:18px; opacity:0.4; margin:2px 0; }
+
+  /* Characters */
+  .char-card{
+    border-radius:18px; padding:22px; position:relative; overflow:hidden;
+    min-height:340px; cursor:pointer; transition:transform .25s;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .char-card:hover{ transform:translateY(-3px); }
+  @media (max-width:700px){
+    .char-card{ min-height:260px; }
+  }
+  .char-card.scraps{ background:linear-gradient(160deg, #2E0A20, #120509); }
+  .char-card.fridgie{ background:linear-gradient(160deg, #1E0E3A, #0D0619); }
+  .char-card h3{
+    font-family:'Baloo 2',sans-serif; font-size:24px; margin:14px 0 2px; color:var(--line-white);
+  }
+  .char-card .role{
+    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+  }
+  .char-card.scraps .role{ color:var(--scraps); }
+  .char-card.fridgie .role{ color:var(--fridgie-text); }
+  .char-icon{ width:64px; height:64px; }
+  .behaviors{
+    margin-top:16px; display:none; font-size:12.5px; line-height:1.6; color:var(--line-white); opacity:0.85;
+  }
+  .char-card.open .behaviors{ display:block; }
+  .behaviors b{ display:block; font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em; margin-top:10px;
+    font-family:'JetBrains Mono',monospace; }
+  .char-card.scraps .behaviors b{ color:var(--scraps); }
+  .char-card.fridgie .behaviors b{ color:var(--fridgie-text); }
+  .flip-hint{ position:absolute; bottom:14px; right:18px; font-size:11px; opacity:0.4; font-family:'JetBrains Mono',monospace; }
+
+  .rule-note{ margin-top:18px; }
+
+  /* Timeline */
+  .timeline-wrap{ margin-top:10px; }
+  .timeline-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .timeline{
+    display:flex; width:100%; border-radius:10px; overflow:hidden; height:56px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+  }
+  @media (max-width:640px){
+    .timeline{ width:640px; }
+  }
+  .tseg{
+    height:100%; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(0,0,0,0.55);
+    border-right:2px solid rgba(0,0,0,0.15);
+    transition:filter .15s;
+  }
+  .tseg:last-child{ border-right:none; }
+  .tseg:hover, .tseg.active{ filter:brightness(1.15); }
+  .tdetail{
+    margin-top:14px; padding:16px 18px;
+  }
+  .tdetail .fn{ font-family:'Baloo 2',sans-serif; font-size:16px; margin-bottom:4px; }
+  .tdetail .time{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--fridgie-deep); }
+
+  .checklist{ margin-top:22px; display:grid; gap:8px; }
+  .check-item{
+    display:flex; align-items:center; gap:10px; padding:10px 14px;
+    border:1px solid var(--grid-line); border-radius:8px; font-size:13px;
+    cursor:pointer; user-select:none;
+  }
+  .check-item .box{
+    width:18px; height:18px; border-radius:5px; border:2px solid var(--mustard);
+    flex:none; display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--mustard);
+  }
+  .check-item.checked .box{ background:var(--mustard); color:var(--blueprint-deep); }
+  .check-item.checked{ opacity:0.6; text-decoration:line-through; }
+
+  /* Season slate */
+  .ep-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px; margin-top:8px; }
+  @media (max-width:380px){
+    .ep-grid{ grid-template-columns:1fr; }
+  }
+  .ep-card{
+    background:rgba(255,255,255,0.03); border:1px solid var(--grid-line); border-radius:12px;
+    padding:14px 16px; cursor:pointer; transition:background .2s;
+  }
+  .ep-card:hover{ background:rgba(255,255,255,0.06); }
+  .ep-num{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mustard); }
+  .ep-title{ font-family:'Baloo 2',sans-serif; font-size:15px; margin:4px 0 8px; }
+  .ep-more{ display:none; font-size:12px; opacity:0.75; line-height:1.6; }
+  .ep-card.open .ep-more{ display:block; }
+  .ep-row-label{ font-family:'JetBrains Mono',monospace; font-size:9.5px; text-transform:uppercase; color:var(--fridgie-text); margin-top:6px; }
+
+  .pillars{ margin-top:26px; display:flex; flex-direction:column; gap:10px; }
+  .pillar-row{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .pillar-label{ width:190px; font-size:12.5px; flex:none; }
+  .pillar-bar-bg{ flex:1; min-width:80px; height:16px; border-radius:8px; background:rgba(255,255,255,0.06); overflow:hidden; }
+  .pillar-bar{ height:100%; border-radius:8px; }
+  .pillar-pct{ width:40px; text-align:right; font-family:'JetBrains Mono',monospace; font-size:12px; flex:none; }
+  @media (max-width:480px){
+    .pillar-label{ width:100%; }
+  }
+
+  /* Cadence */
+  .week-strip{ display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-top:14px; }
+  @media (max-width:520px){
+    .week-strip{ grid-template-columns:repeat(4,1fr); }
+  }
+  @media (max-width:360px){
+    .week-strip{ grid-template-columns:repeat(3,1fr); }
+  }
+  .day-card{
+    border-radius:10px; padding:12px 8px; text-align:center; font-size:11px;
+    border:1px solid var(--grid-line); background:rgba(255,255,255,0.02);
+  }
+  .day-card .d{ font-family:'JetBrains Mono',monospace; font-size:10px; opacity:0.6; margin-bottom:6px; }
+  .day-card.hot{ background:rgba(255,46,154,0.16); border-color:var(--scraps); }
+  .day-card.mid{ background:rgba(139,63,242,0.14); border-color:var(--fridgie); }
+
+  .launch-seq{ margin-top:20px; display:flex; flex-direction:column; gap:8px; }
+  .launch-row{ display:flex; gap:14px; align-items:baseline; font-size:13px; padding:8px 0; border-bottom:1px dashed var(--grid-line); flex-wrap:wrap; }
+  .launch-row .day{ font-family:'JetBrains Mono',monospace; color:var(--mustard); width:150px; flex:none; }
+  @media (max-width:420px){
+    .launch-row .day{ width:100%; }
+  }
+
+  /* Monetization */
+  .ladder{ display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+  .phase{
+    border:1px solid var(--grid-line); border-radius:12px; padding:16px 18px;
+    cursor:pointer; background:rgba(255,255,255,0.02);
+  }
+  .phase-head{ display:flex; align-items:center; gap:12px; justify-content:space-between; }
+  .phase-num{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--blueprint-deep);
+    background:var(--mustard); border-radius:50%; width:26px; height:26px;
+    display:flex; align-items:center; justify-content:center; flex:none; font-weight:700;
+  }
+  .phase-title{ font-family:'Baloo 2',sans-serif; font-size:15px; flex:1; }
+  .phase-arrow{ font-size:14px; opacity:0.5; transition:transform .2s; }
+  .phase.open .phase-arrow{ transform:rotate(90deg); }
+  .phase-body{ display:none; margin-top:12px; font-size:12.5px; line-height:1.6; opacity:0.85; }
+  .phase.open .phase-body{ display:block; }
+
+  /* 90 day */
+  .plan-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-top:14px; }
+  .plan-card{
+    border:1px solid var(--grid-line); border-radius:12px; padding:14px 16px; background:rgba(255,255,255,0.02);
+  }
+  .plan-card .win{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--fridgie-text); text-transform:uppercase; }
+  .plan-card h4{ font-family:'Baloo 2',sans-serif; font-size:14.5px; margin:6px 0 6px; }
+  .plan-card p{ font-size:12px; opacity:0.75; margin:0; line-height:1.55; }
+
+  footer.close{
+    text-align:center; margin-top:70px; padding:40px 20px 20px; border-top:1px dashed var(--grid-line);
+  }
+  footer.close .lines{ font-family:'Baloo 2',sans-serif; font-size:clamp(15px,2.4vw,20px); line-height:1.7; }
+  footer.close .lines span{ display:block; }
+  footer.close .lines span:nth-child(1){ color:var(--scraps); }
+  footer.close .lines span:nth-child(2){ color:var(--mustard); }
+  footer.close .lines span:nth-child(3){ color:var(--fridgie-text); }
+  footer.close .northstar{ margin-top:20px; font-size:12px; opacity:0.55; max-width:480px; margin-left:auto; margin-right:auto; }
+
+  /* ===== Merged from Production Workflow / AI Pipeline doc ===== */
+  section.block{ margin-bottom:44px; }
+  section.block:last-of-type{ margin-bottom:0; }
+  /* ---------- SIGNATURE DIAGRAM: the spine & the stem ---------- */
+  .diagram-card{
+    background:var(--paper); border-radius:var(--radius);
+    box-shadow:0 6px 18px var(--paper-shadow);
+    padding:26px clamp(14px,3vw,30px) 18px;
+  }
+  .legend{ display:flex; flex-wrap:wrap; gap:18px; margin-bottom:6px; }
+  .legend .item{ display:flex; align-items:center; gap:7px; font-size:12px; color:var(--ink-soft); }
+  .legend .swatch{ width:16px; height:3px; border-radius:2px; }
+
+  .diagram{ position:relative; height:230px; margin:14px 0 6px; }
+  .diagram svg{ position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+  .fan-label{
+    position:absolute; font-family:'JetBrains Mono',monospace; font-size:10px;
+    color:var(--scraps); background:var(--paper); padding:1px 5px; border-radius:4px;
+    transform:translate(-50%,-50%); white-space:nowrap;
+  }
+
+  .node{
+    position:absolute; top:0; transform:translate(-50%,-50%);
+    width:34px; height:34px; border-radius:50%;
+    background:var(--blueprint); border:2.5px solid var(--mustard);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:12px; color:var(--line-white);
+    cursor:pointer; transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .node:hover{ transform:translate(-50%,-50%) scale(1.1); }
+  .node.active{
+    background:var(--mustard); color:var(--blueprint);
+    box-shadow:0 0 0 5px rgba(33,230,193,0.18);
+  }
+  .node-label{
+    position:absolute; top:0; transform:translate(-50%,10px);
+    text-align:center; width:110px;
+    font-family:'Baloo 2',sans-serif; font-size:12.5px; color:var(--line-white); opacity:0.85;
+  }
+
+  /* ---------- Phase detail (progressive disclosure) ---------- */
+  .phase-detail{
+    background:var(--paper); border-radius:var(--radius); padding:22px 24px;
+    box-shadow:0 6px 18px var(--paper-shadow); margin-top:18px;
+    border-left:4px solid var(--phasecolor, var(--mustard));
+    transition:border-color .2s ease;
+  }
+  .phase-detail .tag{
+    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10.5px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--phasecolor, var(--mustard));
+    opacity:0.95; margin-bottom:6px;
+  }
+  .phase-detail h3{ font-family:'Baloo 2',sans-serif; font-size:20px; margin:0 0 8px; }
+  .phase-detail p.desc{ font-size:13.5px; color:var(--line-white); opacity:0.85; margin:0 0 14px; max-width:680px; line-height:1.6; }
+  .kv-row{ display:flex; flex-wrap:wrap; gap:22px; margin-top:10px; }
+  .kv{ min-width:180px; flex:1 1 180px; }
+  .kv .k{ font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft); opacity:0.8; }
+  .kv .v{ font-size:13px; margin-top:3px; line-height:1.5; }
+
+  /* Localization callout */
+  .callout{
+    background:linear-gradient(160deg, rgba(139,63,242,0.16), rgba(255,46,154,0.10));
+    border:1px dashed var(--fridgie); border-radius:var(--radius);
+    padding:22px 24px; margin-bottom:16px;
+  }
+  .callout h3{ font-family:'Baloo 2',sans-serif; font-size:18px; margin:0 0 8px; color:var(--fridgie-text); }
+  .callout p{ font-size:13.5px; line-height:1.6; margin:0 0 8px; color:var(--line-white); opacity:0.9; }
+  .callout p:last-child{ margin-bottom:0; }
+
+  /* Roles table */
+  table.roles{ width:100%; border-collapse:collapse; }
+  table.roles th{
+    text-align:left; font-family:'JetBrains Mono',monospace; font-size:10.5px;
+    text-transform:uppercase; letter-spacing:0.06em; color:var(--mustard); opacity:0.85;
+    padding:8px 10px; border-bottom:1px solid var(--grid-line);
+  }
+  table.roles td{ padding:10px 10px; border-bottom:1px dashed var(--grid-line); font-size:13px; vertical-align:top; }
+  table.roles tr:last-child td{ border-bottom:none; }
+  table.roles td.role{ font-weight:700; color:var(--fridgie-text); white-space:nowrap; }
+
+  /* Technical production additions */
+  .tech-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+  .tech-card{
+    background:var(--paper); border:1px solid var(--grid-line); border-radius:var(--radius);
+    padding:20px; box-shadow:0 6px 18px var(--paper-shadow);
+  }
+  .tech-card h3{ font-family:'Baloo 2',sans-serif; font-size:17px; margin:0 0 7px; color:var(--fridgie-text); }
+  .tech-card p,.tech-card li{ font-size:13px; line-height:1.55; color:var(--ink-soft); }
+  .tech-card ul,.tech-card ol{ margin:10px 0 0; padding-left:20px; }
+  .tech-card li+li{ margin-top:7px; }
+  .pipeline{ display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-top:16px; }
+  .pipe-step{
+    min-width:0; padding:13px 8px; text-align:center; border-radius:10px;
+    background:rgba(33,230,193,.07); border:1px solid rgba(33,230,193,.28);
+  }
+  .pipe-step b{ display:block; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--mustard); }
+  .pipe-step span{ display:block; margin-top:5px; font-size:11.5px; line-height:1.3; }
+  .spec-wrap{ overflow-x:auto; border-radius:var(--radius); background:var(--paper); padding:12px; }
+  table.tech{ width:100%; min-width:700px; border-collapse:collapse; }
+  table.tech th{
+    text-align:left; padding:9px; font-family:'JetBrains Mono',monospace; font-size:10px;
+    color:var(--mustard); text-transform:uppercase; border-bottom:1px solid var(--grid-line);
+  }
+  table.tech td{ padding:10px 9px; border-bottom:1px dashed var(--grid-line); font-size:12.5px; vertical-align:top; line-height:1.45; }
+  table.tech tr:last-child td{ border-bottom:0; }
+  .recommend{
+    background:linear-gradient(145deg,rgba(33,230,193,.12),rgba(139,63,242,.12));
+    border:1px solid rgba(33,230,193,.45); border-radius:var(--radius); padding:22px;
+  }
+  .recommend h3{ margin:0 0 8px; font-family:'Baloo 2',sans-serif; color:var(--yellow); }
+  .recommend p{ margin:5px 0; font-size:13.5px; line-height:1.6; }
+  .prompt-box{
+    margin-top:14px; background:#090A0E; border:1px solid var(--grid-line); border-radius:10px;
+    padding:15px; color:#D9D2EA; font:11.5px/1.65 'JetBrains Mono',monospace; white-space:pre-wrap;
+  }
+  .warning{ color:var(--yellow)!important; }
+
+
+  @media (max-width:640px){
+    .diagram{ height:190px; }
+    .node{ width:28px; height:28px; font-size:10.5px; }
+    .node-label{ font-size:11px; width:80px; }
+    .kv-row{ gap:14px; }
+    .tech-grid{ grid-template-columns:1fr; }
+    .pipeline{ grid-template-columns:repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div>
+    <div class="wordmark-row">
+      <div class="wordmark">FRIDGIE</div>
+      <div class="co-name">W/ Scraps the Raccoon<span class="asterisk">*</span></div>
+    </div>
+    <div class="footnote"><span class="asterisk">*</span>Food Scavenger Extraordinaire</div>
+    <div class="tagline">Channel strategy, production workflow, and AI pipeline — one interactive master document.</div>
+  </div>
+  <div class="title-block">
+    SCRAPPY MEALS ORIGINAL SERIES<br>
+    <b>MASTER BLUEPRINT</b> · Strategy + Workflow + AI Pipeline<br>
+    Prepared July 2026 · Brooklyn, NY
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="side" id="sideNav">
+    <button type="button" data-target="overview" class="active"><span class="num">01</span> Overview</button>
+    <button type="button" data-target="characters"><span class="num">02</span> Characters</button>
+    <button type="button" data-target="anatomy"><span class="num">03</span> Episode Anatomy</button>
+    <button type="button" data-target="slate"><span class="num">04</span> Season One</button>
+    <button type="button" data-target="cadence"><span class="num">05</span> Publishing</button>
+    <button type="button" data-target="money"><span class="num">06</span> Monetization</button>
+    <button type="button" data-target="plan"><span class="num">07</span> 90-Day Plan</button>
+    <button type="button" data-target="workflow"><span class="num">08</span> Workflow</button>
+    <button type="button" data-target="aipipeline"><span class="num">09</span> AI Pipeline</button>
+  </nav>
+
+  <main>
+
+    <!-- 01 OVERVIEW -->
+    <section class="panel active" id="overview">
+      <h2 class="section-title">The Channel in One Page</h2>
+      <p class="section-sub">Fridgie and Scraps turn everyday food problems into funny musical adventures that help children appreciate ingredients, explore new foods, and participate in the kitchen.</p>
+
+      <div class="grid2">
+        <div class="paper">
+          <h3>Child promise</h3>
+          <p>Food is funny, surprising, musical, and worth exploring.</p>
+        </div>
+        <div class="paper">
+          <h3>Parent promise</h3>
+          <p>Constructive entertainment that creates useful family conversations about food.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="font-size:19px;">Operating standard</h2>
+      <table class="spec">
+        <tr><td class="k">Primary audience</td><td class="v">Children ages 3–7</td></tr>
+        <tr><td class="k">Flagship runtime</td><td class="v">2:25 – 2:45</td></tr>
+        <tr><td class="k">Release</td><td class="v">Saturday, 11:00 a.m. ET</td></tr>
+        <tr><td class="k">Frequency</td><td class="v">One flagship episode weekly</td></tr>
+        <tr><td class="k">Core cast</td><td class="v">Fridgie + Scraps</td></tr>
+        <tr><td class="k">Dialogue model</td><td class="v">No character dialogue — narrator-driven, non-verbal cast</td></tr>
+        <tr><td class="k">Music</td><td class="v">One original song per episode</td></tr>
+        <tr><td class="k">Format</td><td class="v">16:9 · Master 4K · 1080p delivery min.</td></tr>
+        <tr><td class="k">Classification</td><td class="v">Made for kids when child-directed</td></tr>
+        <tr><td class="k">Primary engine</td><td class="v">YouTube + YouTube Kids</td></tr>
+      </table>
+
+      <h2 class="section-title" style="font-size:19px;">Strategic hierarchy</h2>
+      <div class="hierarchy">
+        <div class="hlink"><span class="tag" style="background:var(--mustard);">GATEWAY</span> fridgiesmalls.app — the useful entry point</div>
+        <div class="harrow">↓</div>
+        <div class="hlink"><span class="tag" style="background:var(--scraps);">RELATIONSHIP</span> The Fridgie &amp; Scraps Show — builds the love</div>
+        <div class="harrow">↓</div>
+        <div class="hlink"><span class="tag" style="background:var(--fridgie);">WORLD</span> The Metacheese — expands into stories, games, education, products</div>
+      </div>
+    </section>
+
+    <!-- 02 CHARACTERS -->
+    <section class="panel" id="characters">
+      <h2 class="section-title">Character System</h2>
+      <p class="section-sub">Click either card to open their recurring behaviors. Scraps creates emotional energy — Fridgie gives that energy direction. Neither character speaks a language.</p>
+
+      <div class="paper rule-note" style="margin-bottom:20px;">
+        <h3>Voice &amp; language model</h3>
+        <p>No character dialogue, in any language. A single off-screen <b>narrator</b> carries the story ("Scraps couldn't resist just one more bite…"), while Fridgie and Scraps communicate entirely through sound, gesture, and expression — closer to <b>Wile E. Coyote and the Road Runner</b> than to a talking-animal sitcom. This makes the show translation-proof: swapping markets means recording one new narrator track, not re-casting and re-timing two characters' dialogue.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="char-card scraps" onclick="this.classList.toggle('open')">
+          <svg class="char-icon" viewBox="0 0 100 100">
+            <circle cx="50" cy="55" r="30" fill="#FF2E9A"/>
+            <path d="M25 35 Q20 15 35 22 Q30 32 25 35Z" fill="#FF2E9A"/>
+            <path d="M75 35 Q80 15 65 22 Q70 32 75 35Z" fill="#FF2E9A"/>
+            <path d="M30 48 Q50 40 70 48 L70 58 Q50 50 30 58 Z" fill="#2C0620"/>
+            <circle cx="42" cy="55" r="4" fill="#2C0620"/>
+            <circle cx="58" cy="55" r="4" fill="#2C0620"/>
+            <ellipse cx="50" cy="66" rx="6" ry="4" fill="#2C0620"/>
+          </svg>
+          <div class="role">Emotional engine · no dialogue</div>
+          <h3>Scraps</h3>
+          <div style="font-size:12.5px;opacity:0.75;">Curious, impulsive, hungry, expressive, physical, occasionally overconfident. Vocalizes like a mischievous little gremlin — babble, gasps, squeaks, hums — never real words.</div>
+          <div class="behaviors">
+            <b>Vocal identity</b> Minion-style gibberish and non-verbal sounds carry emotion in place of lines; pitch and rhythm do the acting.
+            <b>Physical comedy</b> Dramatic sniffing; hiding food; rushing; dancing badly; celebrating too early.
+            <b>Food behavior</b> Hesitates, investigates, grabs too much, changes his mind, discovers one small thing.
+          </div>
+          <div class="flip-hint">tap to flip ▾</div>
+        </div>
+
+        <div class="char-card fridgie" onclick="this.classList.toggle('open')">
+          <svg class="char-icon" viewBox="0 0 100 100">
+            <rect x="28" y="12" width="44" height="76" rx="10" fill="#8B3FF2"/>
+            <rect x="34" y="12" width="32" height="30" rx="6" fill="#180837" opacity="0.2"/>
+            <rect x="60" y="22" width="4" height="14" rx="2" fill="#180837"/>
+            <rect x="60" y="55" width="4" height="14" rx="2" fill="#180837"/>
+            <circle cx="42" cy="60" r="3.5" fill="#180837"/>
+            <circle cx="58" cy="60" r="3.5" fill="#180837"/>
+            <path d="M42 72 Q50 78 58 72" stroke="#180837" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="role">Possibility engine · no dialogue</div>
+          <h3>Fridgie</h3>
+          <div style="font-size:12.5px;opacity:0.75;">Warm, clever, playful, calm under pressure. Speaks through light patterns, chimes, and gesture — the narrator translates intent, Fridgie never lectures in words.</div>
+          <div class="behaviors">
+            <b>Signals</b> Door-glow pulses, chime tones, and door-swing gestures stand in for offering choices, giving a hint, or flagging a safety beat.
+            <b>Personality</b> Gentle teasing; confident but not perfect; occasionally surprised by Scraps.
+            <b>Story function</b> Turns kitchen reality into a game, song, visual transformation, or Metacheese doorway.
+          </div>
+          <div class="flip-hint">tap to flip ▾</div>
+        </div>
+      </div>
+
+      <div class="paper rule-note">
+        <h3>Relationship rule</h3>
+        <p>Play it like a chase-partnership, not a conversation: Scraps creates the problem through action, Fridgie complicates or redirects it through a visual gag or signal, and the narrator stitches the beats together the way a storybook narrator would over silent slapstick. Either one can solve the problem, they celebrate together, and no scene should ever depend on one character verbally explaining something to the other.</p>
+      </div>
+    </section>
+
+    <!-- 03 EPISODE ANATOMY -->
+    <section class="panel" id="anatomy">
+      <h2 class="section-title">Flagship Episode Anatomy</h2>
+      <p class="section-sub">2:25–2:45, always starting inside the problem. Click a segment on the timeline.</p>
+
+      <div class="timeline-wrap">
+        <div class="timeline-scroll">
+          <div class="timeline" id="timeline"></div>
+        </div>
+        <div class="paper tdetail" id="tdetail">
+          <div class="time">0:00 – 0:06</div>
+          <div class="fn">Visual hook</div>
+          <p>The food problem is already happening.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="font-size:19px;">Story test before production</h2>
+      <div class="checklist" id="checklist"></div>
+    </section>
+
+    <!-- 04 SEASON ONE -->
+    <section class="panel" id="slate">
+      <h2 class="section-title">Season One Content Slate</h2>
+      <p class="section-sub">Twelve episodes establish character, parent value, and musical range. Click a card to expand.</p>
+      <div class="ep-grid" id="epGrid"></div>
+
+      <h2 class="section-title" style="font-size:19px;">Content pillars</h2>
+      <div class="pillars" id="pillars"></div>
+    </section>
+
+    <!-- 05 CADENCE -->
+    <section class="panel" id="cadence">
+      <h2 class="section-title">Weekly Publishing Rhythm</h2>
+      <p class="section-sub">Saturday 11:00 a.m. ET is the initial operating standard — held for at least eight releases before it's revisited.</p>
+      <div class="week-strip" id="weekStrip"></div>
+
+      <h2 class="section-title" style="font-size:19px;">Launch sequence</h2>
+      <div class="launch-seq" id="launchSeq"></div>
+    </section>
+
+    <!-- 06 MONETIZATION -->
+    <section class="panel" id="money">
+      <h2 class="section-title">Monetization &amp; Franchise Expansion</h2>
+      <p class="section-sub">Attention → trust → repeat viewing → reusable IP → revenue. Click a phase to open it.</p>
+      <div class="ladder" id="ladder"></div>
+    </section>
+
+    <!-- 07 90-DAY PLAN -->
+    <section class="panel" id="plan">
+      <h2 class="section-title">Immediate 90-Day Action Plan</h2>
+      <p class="section-sub">Launch readiness is a gate, not a date.</p>
+      <div class="plan-grid" id="planGrid"></div>
+
+      <h2 class="section-title" style="font-size:19px;">First five decisions to lock</h2>
+      <div class="checklist" id="decisions"></div>
+    </section>
+
+    <!-- 08 PRODUCTION WORKFLOW -->
+    <section class="panel" id="workflow">
+      <h2 class="section-title">Production Workflow</h2>
+      <p class="section-sub">Script to delivery, built around one rule: no character dialogue in any language, so localization is a narrator swap — not a re-production.</p>
+
+  <section class="block">
+    <h2 class="section-title">The Spine &amp; The Stem</h2>
+    <p class="section-sub">Picture is locked once in Phase 04 and never touched again. The narrator track is the only thing that changes per market — it splits off in Phase 05 while everything else keeps flowing straight through.</p>
+
+    <div class="diagram-card">
+      <div class="legend">
+        <div class="item"><span class="swatch" style="background:var(--mustard)"></span> Picture — animated once, locked forever</div>
+        <div class="item"><span class="swatch" style="background:var(--scraps)"></span> Narrator VO — the only track that forks</div>
+      </div>
+      <div class="diagram" id="diagram">
+        <svg viewBox="0 0 1000 230" preserveAspectRatio="none">
+          <!-- spine: picture, straight through all 6 phases -->
+          <line x1="83" y1="52" x2="917" y2="52" stroke="var(--mustard)" stroke-width="3" />
+          <!-- narrator line up to phase 5 -->
+          <line x1="83" y1="118" x2="750" y2="118" stroke="var(--scraps)" stroke-width="3" />
+          <!-- narrator fans out into markets after phase 5 -->
+          <path d="M750,118 C 820,118 860,70 917,66"  stroke="var(--scraps)" stroke-width="2.5" fill="none" />
+          <path d="M750,118 C 830,118 870,118 917,118" stroke="var(--scraps)" stroke-width="2.5" fill="none" />
+          <path d="M750,118 C 820,118 860,168 917,172" stroke="var(--scraps)" stroke-width="2.5" fill="none" />
+        </svg>
+        <div class="fan-label" style="left:96%; top:29%;">EN</div>
+        <div class="fan-label" style="left:96%; top:51%;">ES</div>
+        <div class="fan-label" style="left:96%; top:75%;">+ each market</div>
+
+        <div class="node active" style="left:8.3%; top:22.6%;"  data-phase="1">01</div>
+        <div class="node"        style="left:25%; top:22.6%;"    data-phase="2">02</div>
+        <div class="node"        style="left:41.7%; top:22.6%;"  data-phase="3">03</div>
+        <div class="node"        style="left:58.3%; top:22.6%;"  data-phase="4">04</div>
+        <div class="node"        style="left:75%; top:51.3%;"    data-phase="5">05</div>
+        <div class="node"        style="left:91.7%; top:22.6%;"  data-phase="6">06</div>
+
+        <div class="node-label" style="left:8.3%; top:88%;">Development</div>
+        <div class="node-label" style="left:25%; top:88%;">Pre-Production</div>
+        <div class="node-label" style="left:41.7%; top:88%;">Production</div>
+        <div class="node-label" style="left:58.3%; top:88%;">Post</div>
+        <div class="node-label" style="left:75%; top:88%;">Localization</div>
+        <div class="node-label" style="left:91.7%; top:88%;">Delivery</div>
+      </div>
+    </div>
+
+    <div class="phase-detail" id="phaseDetail" style="--phasecolor:var(--scraps)"></div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">Why the Narrator Model Changes the Math</h2>
+    <p class="section-sub">The one architectural decision that makes everything downstream cheaper.</p>
+    <div class="callout">
+      <h3>Keep the M&amp;E stem clean, always</h3>
+      <p>Every episode ships with the narrator isolated from music and effects — a clean M&amp;E stem. That habit is what makes Phase 05 fast: a new market drops a new narrator recording into an already-final mix, instead of a full re-record and remix.</p>
+      <p>It also means animation is never touched for a new language. There's no lip sync to match, because Scraps and Fridgie never had any to begin with.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">Roles</h2>
+    <p class="section-sub">Who owns what across the pipeline — sized for a lean, mostly-freelance team.</p>
+    <table class="roles">
+      <tr><th>Role</th><th>Owns</th><th>Phases</th></tr>
+      <tr><td class="role">Showrunner</td><td>Story direction, final sign-off</td><td>01–06</td></tr>
+      <tr><td class="role">Story editor</td><td>Episode outlines, narrator scripts</td><td>01</td></tr>
+      <tr><td class="role">Composer / songwriter</td><td>Song briefs, demos, final score</td><td>01, 02, 04</td></tr>
+      <tr><td class="role">AI visual development / storyboard</td><td>Reference bible, keyframes, boards, staging, continuity</td><td>02</td></tr>
+      <tr><td class="role">Animatic editor</td><td>Timed animatic, scratch VO edit</td><td>02</td></tr>
+      <tr><td class="role">Narrator VO talent</td><td>Scratch + final narrator recordings</td><td>02, 03, 05</td></tr>
+      <tr><td class="role">AI video operator / animation vendor</td><td>Shot generation, prompt/version tracking, final animation pass</td><td>03</td></tr>
+      <tr><td class="role">Sound designer</td><td>Scraps/Fridgie vocalizations, SFX pass</td><td>03, 04</td></tr>
+      <tr><td class="role">Picture editor</td><td>Comp, picture lock</td><td>04</td></tr>
+      <tr><td class="role">QC reviewer</td><td>Story-test checklist, standards &amp; practices</td><td>04, 06</td></tr>
+      <tr><td class="role">Localization coordinator</td><td>Translated scripts, per-market narrator</td><td>05</td></tr>
+    </table>
+  </section>
+    </section>
+
+    <!-- 09 AI TECHNICAL PIPELINE -->
+    <section class="panel" id="aipipeline">
+      <h2 class="section-title">AI Technical Pipeline</h2>
+      <p class="section-sub">The working method for turning AI-generated keyframes and storyboards into a repeatable, cost-effective episode — plus the tool stack and budget guardrails that make it airtight.</p>
+
+  <section class="block">
+    <h2 class="section-title">Expert Take: The Keyframe → Video Stack</h2>
+    <p class="section-sub">You're generating keyframes/storyboards with AI, then animating them with an image-to-video model. Here's the one constraint that dominates every tool choice below: this is a <em>recurring series</em>, not a one-off clip — so cross-episode character and set consistency matters more than any single model's peak quality.</p>
+    <div class="recommend">
+      <h3>If you only read one box, read this one</h3>
+      <p><b>Keyframes:</b> Gemini "Nano Banana Pro" or Midjourney (with character reference) — both hold a locked character design across dozens of stills far better than ChatGPT's image tool, which drifts after a few edits. Use ChatGPT only for quick exploration, not final approved keyframes.</p>
+      <p><b>Image-to-video:</b> Luma Ray3 as the default — first/last-frame control and up to 16 keyframes per clip is built for exactly this "board → motion" handoff. Reach for Runway Gen-4/4.5 specifically for hero shots where a single reference image has to hold a character's look across multiple different setups. Reach for Kling 3.0 when you just need the cheapest possible photorealistic-motion pass on a simple shot.</p>
+      <p><b>Don't subscribe to three video tools.</b> A model-hub (Krea, Higgsfield, or fal) gives pay-as-you-go access to Luma, Runway, Kling, and Veo under one account — cheaper than three subscriptions if you're not generating daily, and it's the more cost-effective starting point for a lean team.</p>
+      <p><b>Voice:</b> ElevenLabs for narrator + Scraps/Fridgie vocalizations + SFX — unchanged from the stack below.</p>
+      <p class="warning"><b>Why not just pick the single "best" model:</b> the AI-video leaderboard reshuffles every few weeks. What doesn't change is your shot registry, your reference bible, and your edit timeline in Resolve — that's the IP you actually own. Treat the video model as a swappable vendor, not a foundation.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">AI-Native Technical Pipeline</h2>
+    <p class="section-sub">Use AI to create controlled shots, not complete scenes. Continuity is won before video generation: fixed character references, fixed locations, approved keyframes, and one simple action per shot.</p>
+
+    <div class="recommend">
+      <h3>Recommended lean stack</h3>
+      <p><b>Keyframes &amp; boards:</b> Gemini "Nano Banana Pro" or Midjourney (character reference) for approved final keyframes; ChatGPT image gen is fine for rough exploration only, plus optional Photoshop for surgical cleanup.</p>
+      <p><b>AI video:</b> A model-hub (Krea, Higgsfield, or fal) for pay-as-you-go access to Luma Ray3, Runway Gen-4, and Kling 3.0 under one account, or Luma Plus direct if you're generating enough to justify a dedicated subscription. Use Runway Gen-4 specifically when a shot needs the same character reference to hold across very different setups.</p>
+      <p><b>Voice &amp; sound:</b> ElevenLabs Starter for narrator scratch/final VO and sound effects; use a paid tier for commercial publishing.</p>
+      <p><b>Edit, conform &amp; delivery:</b> DaVinci Resolve Free. It is the permanent production backbone; subscriptions can change, but your edit timeline, masters, stems, captions, and archive remain under your control.</p>
+      <p class="warning"><b>Cost rule:</b> subscribe to video tools one production month at a time. Prepare scripts, boards, shot prompts, reference packs, and animatics before activating the paid month.</p>
+    </div>
+
+    <div class="pipeline" aria-label="AI production pipeline">
+      <div class="pipe-step"><b>01</b><span>Beat sheet</span></div>
+      <div class="pipe-step"><b>02</b><span>Shot registry</span></div>
+      <div class="pipe-step"><b>03</b><span>Keyframes</span></div>
+      <div class="pipe-step"><b>04</b><span>Animatic</span></div>
+      <div class="pipe-step"><b>05</b><span>Image-to-video</span></div>
+      <div class="pipe-step"><b>06</b><span>Edit + stems</span></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">Step-by-Step Technical Breakdown</h2>
+    <p class="section-sub">The actual working method for turning AI storyboards into a repeatable Fridgie &amp; Scraps episode.</p>
+    <div class="tech-grid">
+      <article class="tech-card">
+        <h3>1. Build the continuity bible once</h3>
+        <ul>
+          <li>Approved front, ¾, profile, back, expression, hand/paw, and scale references for Scraps and Fridgie.</li>
+          <li>Lock color values, materials, eye design, proportions, costume/accessories, and “never change” traits.</li>
+          <li>Create reusable location plates: fridge interior, kitchen counter, floor, pantry, and hero food close-up.</li>
+          <li>Store transparent PNG character cutouts and clean background plates separately.</li>
+        </ul>
+      </article>
+      <article class="tech-card">
+        <h3>2. Convert story beats into shots</h3>
+        <ul>
+          <li>Target 3–6 seconds per generated shot; never ask for multiple story beats in one generation.</li>
+          <li>Each shot gets an ID: <b>EP01_SC03_SH020</b>. Never rely on filenames such as “final-final-2.”</li>
+          <li>Define subject, action, camera, location, duration, start frame, end frame, and continuity dependencies.</li>
+          <li>Plan cuts around motion so small AI defects disappear at edit points.</li>
+        </ul>
+      </article>
+      <article class="tech-card">
+        <h3>3. Generate storyboard/keyframes</h3>
+        <ul>
+          <li>Generate the first frame for every shot from the same character and environment references.</li>
+          <li>Create a separate end frame when a shot changes pose, position, expression, or composition.</li>
+          <li>Approve boards for silhouette, eye-line, screen direction, prop placement, and character scale.</li>
+          <li>Do not move to video until the still frames cut together as a readable animatic.</li>
+        </ul>
+      </article>
+      <article class="tech-card">
+        <h3>4. Lock the animatic first</h3>
+        <ul>
+          <li>Edit stills at final shot durations with scratch narrator VO, temporary music, and essential SFX.</li>
+          <li>Use 24 fps for the master timeline; deliver 23.976 only when a platform or partner requires it.</li>
+          <li>Lock the runtime and shot order. AI video generation begins only after this gate.</li>
+          <li>Export a low-resolution reference movie with burned-in timecode and shot IDs.</li>
+        </ul>
+      </article>
+      <article class="tech-card">
+        <h3>5. Animate with image-to-video</h3>
+        <ul>
+          <li>Upload the approved first frame; use first/last-frame control where available.</li>
+          <li>Prompt motion only: actor action, camera movement, environmental motion, and timing.</li>
+          <li>Generate low-cost/draft passes first. Promote only approved takes to higher resolution.</li>
+          <li>Cap retries: three normal attempts, then simplify the shot, split it, or use a 2.5D camera move.</li>
+        </ul>
+      </article>
+      <article class="tech-card">
+        <h3>6. Finish outside the generator</h3>
+        <ul>
+          <li>Conform selected clips in Resolve; retime, stabilize, crop, mask, or freeze short problem areas.</li>
+          <li>Keep narrator, character vocalizations, SFX, music, and ambience on separate buses.</li>
+          <li>Export picture master, textless master, clean M&amp;E, narrator stem, captions, thumbnail, and archive.</li>
+          <li>Archive prompts, seeds when exposed, references, source frames, selected takes, and model/version used.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">Shot Registry — Required Fields</h2>
+    <p class="section-sub">This becomes the production database. A spreadsheet is enough at first; one row equals one shot.</p>
+    <div class="spec-wrap">
+      <table class="tech">
+        <tr><th>Field</th><th>Example</th><th>Why it matters</th></tr>
+        <tr><td>Shot ID</td><td>EP01_SC03_SH020</td><td>Connects boards, generated clips, edit, notes, and archive.</td></tr>
+        <tr><td>Beat / action</td><td>Scraps spots the lonely carrot and quietly leans closer.</td><td>One visible action prevents motion confusion.</td></tr>
+        <tr><td>Duration</td><td>4.0 sec</td><td>Stops paying for footage the edit will discard.</td></tr>
+        <tr><td>Framing / lens</td><td>Medium close-up, eye level, 50 mm feel</td><td>Keeps visual language consistent between models.</td></tr>
+        <tr><td>Camera motion</td><td>Very slow 5% push-in; no pan or roll</td><td>Explicit constraints reduce unwanted camera drift.</td></tr>
+        <tr><td>Start / end frame</td><td>SH020_A.png / SH020_B.png</td><td>Anchors character and composition continuity.</td></tr>
+        <tr><td>References</td><td>SCRAPS_v07 + KITCHEN_COUNTER_v03</td><td>Prevents accidental use of obsolete designs.</td></tr>
+        <tr><td>Model / settings</td><td>Model name, version, aspect, resolution, seed</td><td>Makes successful results reproducible.</td></tr>
+        <tr><td>Status / take</td><td>FINAL — take 04</td><td>Prevents the editor from using an unapproved render.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">Prompt Architecture</h2>
+    <p class="section-sub">The still-image prompt describes identity and composition. The video prompt assumes the approved frame already contains those facts and describes only motion.</p>
+    <div class="tech-grid">
+      <article class="tech-card">
+        <h3>Keyframe prompt</h3>
+        <div class="prompt-box">SHOT: EP01_SC03_SH020
+FORMAT: 16:9 storyboard keyframe, clean stylized 3D animation
+REFERENCES: preserve Scraps v07 and Kitchen Counter v03 exactly
+COMPOSITION: medium close-up, Scraps frame-left, lonely carrot frame-right
+ACTION STATE: Scraps has just noticed the carrot; curious, gentle expression
+CAMERA: eye level, 50 mm feel, shallow depth separation
+LIGHT: warm morning kitchen light, soft purple fridge spill
+CONTINUITY: carrot remains beside the blue bowl; Scraps wears no added clothing
+NEGATIVE: no text, no extra fingers, no duplicate props, no redesign, no open mouth dialogue pose</div>
+      </article>
+      <article class="tech-card">
+        <h3>Image-to-video motion prompt</h3>
+        <div class="prompt-box">Preserve the supplied image, character design, lighting, composition, and prop positions.
+
+Over four seconds, Scraps notices the carrot, blinks once, then leans forward slightly with gentle curiosity. His paws stay planted. The carrot and bowl do not move.
+
+Camera: extremely slow push-in only. No pan, tilt, roll, reframing, lens change, or cut.
+Motion: restrained feature-animation timing; subtle breathing and ear movement.
+Do not add objects, alter anatomy, change facial design, open the mouth for speech, or change the background.</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">Tool & Cost Decision Matrix</h2>
+    <p class="section-sub">Prices and credits change frequently; figures below are planning references checked July 28, 2026. Buy based on a short pilot, not promotional demo reels.</p>
+    <div class="spec-wrap">
+      <table class="tech">
+        <tr><th>Tool</th><th>Best use here</th><th>Current planning price</th><th>Decision</th></tr>
+        <tr><td>Nano Banana Pro (Gemini) / Midjourney</td><td>Approved final keyframes — the two strongest options for holding a locked character design across many stills.</td><td>Bundled into Gemini paid tiers or standalone; Midjourney from ~$10/month.</td><td><b>Use one as your keyframe source of truth.</b> Pick whichever your artist can iterate in fastest — quality is comparable.</td></tr>
+        <tr><td>Krea / Higgsfield / fal</td><td>Model-hub: pay-as-you-go access to Luma, Runway, Kling, and Veo without juggling separate subscriptions.</td><td>Credit-based, varies by model routed through.</td><td><b>Best starting point for a lean team.</b> Switch to a direct subscription only once one model is clearly your workhorse.</td></tr>
+        <tr><td>Luma Ray3</td><td>Image-to-video with first/last-frame control and up to 16 keyframes per clip — built for the board-to-motion handoff.</td><td>Plus: $30/month with 10,000 credits; Pro: $90/month with 40,000.</td><td><b>Best default video engine for this workflow.</b> Start with one Plus month after animatic lock.</td></tr>
+        <tr><td>Runway Gen-4 / 4.5</td><td>Reference-driven character consistency across different setups; strongest control surface (motion brush, scene consistency).</td><td>Annual billing shown from $12/month Standard; Gen-4.5 is roughly 12 credits/sec.</td><td>Reach for it on hero shots where consistency across setups matters more than motion realism.</td></tr>
+        <tr><td>Kling 3.0</td><td>Cheapest per-clip photorealistic motion; multi-shot storyboard mode with native audio sync.</td><td>Free tier + paid plans; credit cost varies by mode (e.g. ~30 credits for 5 sec at 720p on Video 3.0).</td><td>Use for simple, high-volume shots where cost per approved second matters most.</td></tr>
+        <tr><td>ElevenLabs</td><td>Narrator prototypes, localized VO, vocalizations, and sound effects.</td><td>Starter $6/month; Creator $22/month. Free output is not commercially licensed.</td><td><b>Start at Starter.</b> Record human final VO when performance or rights demand it.</td></tr>
+        <tr><td>DaVinci Resolve</td><td>Animatic, edit, color, audio buses, captions, masters, and archive.</td><td>Free edition.</td><td><b>Mandatory backbone.</b> Do not edit the series entirely inside an AI website.</td></tr>
+      </table>
+    </div>
+    <p class="section-sub" style="margin-top:14px;">Model rankings reshuffle every few weeks in this category — treat this table as a snapshot checked July 28, 2026, not a permanent answer. Re-verify pricing and rank before committing a production month's budget. Purely animated, stylized content like this series generally falls outside YouTube's "realistic synthetic media" disclosure requirement, but confirm current platform policy before publishing, since enforcement details continue to evolve.</p>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">Budget Targets & Guardrails</h2>
+    <p class="section-sub">The real metric is approved seconds per dollar—not generations, credits, or advertised maximum duration.</p>
+    <div class="tech-grid">
+      <article class="tech-card">
+        <h3>Prototype month — about $18–$40</h3>
+        <p>Runway Standard or Luma Plus + ElevenLabs Starter + Resolve Free. Produce a 20–30 second proof containing dialogue-free acting, prop interaction, a camera move, and one continuity cut. This exposes the actual hard parts before committing to an episode.</p>
+      </article>
+      <article class="tech-card">
+        <h3>Episode production month — about $36–$120+</h3>
+        <p>Luma Plus or higher, ElevenLabs Starter/Creator, plus a reserve for a second model on failed hero shots. The range depends less on final runtime than shot difficulty and retry rate.</p>
+      </article>
+      <article class="tech-card">
+        <h3>Green-light metrics</h3>
+        <ul>
+          <li>At least 60% of simple shots approved within three generations.</li>
+          <li>No more than 15% of shots require paint fixes or replacement inserts.</li>
+          <li>Characters remain recognizable across five consecutive cuts.</li>
+          <li>Cost and labor per approved second are recorded after every batch.</li>
+        </ul>
+      </article>
+      <article class="tech-card">
+        <h3>When not to regenerate</h3>
+        <ul>
+          <li>Use a hold, crop, reaction insert, cutaway, mask, or 2.5D parallax when story clarity is intact.</li>
+          <li>Split complex action into anticipation / action / reaction shots.</li>
+          <li>Reserve premium generations for food beauty shots, emotional close-ups, and signature gags.</li>
+          <li>Never upscale rejected motion; resolution cannot repair bad acting or continuity.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+    </section>
+
+    <footer class="close">
+      <div class="lines">
+        <span>The app opens the door.</span>
+        <span>The show builds the love.</span>
+        <span>The Metacheese makes the world bigger.</span>
+      </div>
+      <div class="northstar">Working north star: one polished, musical, emotionally clear food adventure every Saturday at 11:00 a.m. Eastern — built around exact character fidelity, parent trust, and a repeatable reason for children to return.</div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+// ---- NAV ----
+const navButtons = document.querySelectorAll('#sideNav button');
+navButtons.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    navButtons.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('section.panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById(btn.dataset.target).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+// ---- EPISODE ANATOMY TIMELINE ----
+const beats = [
+  {t:"0:00–0:06", fn:"Visual hook", ac:"The food problem is already happening.", w:6, c:"#FF2E9A"},
+  {t:"0:06–0:18", fn:"Scraps reacts", ac:"Resistance, panic, misunderstanding, appetite, or trouble.", w:12, c:"#FF6BBE"},
+  {t:"0:18–0:32", fn:"Problem definition", ac:"The viewer understands exactly what must be solved.", w:14, c:"#21E6C1"},
+  {t:"0:32–0:42", fn:"Fridgie reframes", ac:"The situation becomes a game or imaginative adventure.", w:10, c:"#B98CFF"},
+  {t:"0:42–0:55", fn:"Song setup", ac:"Beat, phrase, movement, or call-and-response begins.", w:13, c:"#8B3FF2"},
+  {t:"0:55–1:50", fn:"Musical adventure", ac:"Repetition, participation, escalation, and discovery.", w:55, c:"#5B1FC7"},
+  {t:"1:50–2:10", fn:"Practical resolution", ac:"Scraps tries, transforms, saves, sorts, or helps.", w:20, c:"#8B3FF2"},
+  {t:"2:10–2:25", fn:"Emotional payoff", ac:"Scraps recognizes what changed.", w:15, c:"#21E6C1"},
+  {t:"2:25–2:38", fn:"Final refrain", ac:"The memorable musical phrase returns.", w:13, c:"#FF6BBE"},
+  {t:"2:38–2:43", fn:"Character button", ac:"One short joke, reaction, or surprise.", w:5, c:"#FF2E9A"},
+  {t:"2:43–2:45", fn:"Sonic sting", ac:"Extremely short brand identity — only if it earns its time.", w:2, c:"#C4127A"},
+];
+const timelineEl = document.getElementById('timeline');
+const tdetail = document.getElementById('tdetail');
+beats.forEach((b,i)=>{
+  const seg = document.createElement('div');
+  seg.className = 'tseg';
+  seg.style.width = b.w+'%';
+  seg.style.background = b.c;
+  seg.title = b.fn;
+  seg.addEventListener('click', ()=>{
+    document.querySelectorAll('.tseg').forEach(s=>s.classList.remove('active'));
+    seg.classList.add('active');
+    tdetail.innerHTML = `<div class="time">${b.t}</div><div class="fn">${b.fn}</div><p>${b.ac}</p>`;
+  });
+  timelineEl.appendChild(seg);
+});
+
+const storyTest = [
+  "Can a child understand the problem with the sound off in ten seconds?",
+  "Does Scraps want something specific?",
+  "Does Fridgie transform the situation instead of lecture?",
+  "Can a viewer copy a sound, movement, phrase, or choice?",
+  "Does the ending show a real change, however small?",
+  "Can the song and final payoff stand alone as short-form clips?"
+];
+const checklistEl = document.getElementById('checklist');
+storyTest.forEach(q=>{
+  const row = document.createElement('div');
+  row.className = 'check-item';
+  row.innerHTML = `<div class="box">✓</div><div>${q}</div>`;
+  row.addEventListener('click', ()=>row.classList.toggle('checked'));
+  checklistEl.appendChild(row);
+});
+
+// ---- SEASON SLATE ----
+const episodes = [
+  {n:1, title:"Don't Throw That Away", prob:"Usable food is headed for the trash", song:"Leftover Rescue Song", val:"Positive leftovers"},
+  {n:2, title:"Take One Tiny Bite", prob:"Scraps refuses an unfamiliar food", song:"Tiny Bite Game", val:"Low-pressure exploration"},
+  {n:3, title:"What's Hiding in the Fridge?", prob:"Ingredients appear boring", song:"Fridge Treasure Hunt", val:"Family participation"},
+  {n:4, title:"The Funny-Looking Vegetable", prob:"Produce looks strange", song:"Silly Veggie Parade", val:"Reduce food anxiety"},
+  {n:5, title:"Wash Those Paws, Scraps!", prob:"Scraps starts cooking with dirty paws", song:"Bubble Beat", val:"Kitchen hygiene"},
+  {n:6, title:"The Leftover Shuffle", prob:"No one knows what leftovers can become", song:"Mix-and-Match Dance", val:"Food transformation"},
+  {n:7, title:"The Bruised Banana", prob:"Scraps thinks imperfect food is bad", song:"Spotty Banana Boogie", val:"Appearance vs. quality"},
+  {n:8, title:"Too Much on the Plate", prob:"Scraps takes more than he can eat", song:"Scoop a Little Song", val:"Portions without shame"},
+  {n:9, title:"Where Did My Carrot Come From?", prob:"Food origin is a mystery", song:"Farm-to-Fridge Rhythm", val:"Food systems awareness"},
+  {n:10, title:"The Crunchy, Squishy Game", prob:"Textures feel unfamiliar", song:"Texture Call-and-Response", val:"Sensory vocabulary"},
+  {n:11, title:"Three Colors for Dinner", prob:"The plate feels dull", song:"Rainbow Food Game", val:"Variety through play"},
+  {n:12, title:"The Metacheese Door Opens", prob:"A recipe needs one final idea", song:"Season Motif Medley", val:"World expansion"},
+];
+const epGrid = document.getElementById('epGrid');
+episodes.forEach(e=>{
+  const card = document.createElement('div');
+  card.className = 'ep-card';
+  card.innerHTML = `
+    <div class="ep-num">EP ${String(e.n).padStart(2,'0')}</div>
+    <div class="ep-title">${e.title}</div>
+    <div class="ep-more">
+      <div class="ep-row-label">Problem</div>${e.prob}
+      <div class="ep-row-label">Musical device</div>${e.song}
+      <div class="ep-row-label">Parent value</div>${e.val}
+    </div>`;
+  card.addEventListener('click', ()=>card.classList.toggle('open'));
+  epGrid.appendChild(card);
+});
+
+const pillarData = [
+  {label:"Food exploration", pct:30, c:"#FF2E9A"},
+  {label:"Food rescue", pct:25, c:"#21E6C1"},
+  {label:"Kitchen participation", pct:20, c:"#8B3FF2"},
+  {label:"Food origins & appreciation", pct:15, c:"#B98CFF"},
+  {label:"Metacheese world-building", pct:10, c:"#C4127A"},
+];
+const pillarsEl = document.getElementById('pillars');
+pillarData.forEach(p=>{
+  const row = document.createElement('div');
+  row.className = 'pillar-row';
+  row.innerHTML = `
+    <div class="pillar-label">${p.label}</div>
+    <div class="pillar-bar-bg"><div class="pillar-bar" style="width:${p.pct}%; background:${p.c};"></div></div>
+    <div class="pillar-pct">${p.pct}%</div>`;
+  pillarsEl.appendChild(row);
+});
+
+// ---- CADENCE ----
+const week = [
+  {d:"MON", label:"Problem clip", sub:"15–25 sec hook", cls:""},
+  {d:"TUE", label:"—", sub:"", cls:""},
+  {d:"WED", label:"Song clip", sub:"15–30 sec", cls:"mid"},
+  {d:"THU", label:"—", sub:"", cls:""},
+  {d:"FRI", label:"Parent teaser", sub:"IG / TikTok", cls:""},
+  {d:"SAT", label:"Flagship episode", sub:"11:00a ET", cls:"hot"},
+  {d:"SUN", label:"Best payoff clip", sub:"recapture", cls:"mid"},
+];
+const weekStrip = document.getElementById('weekStrip');
+week.forEach(w=>{
+  const c = document.createElement('div');
+  c.className = 'day-card ' + w.cls;
+  c.innerHTML = `<div class="d">${w.d}</div><div>${w.label}</div><div style="opacity:0.55;font-size:10px;margin-top:2px;">${w.sub}</div>`;
+  weekStrip.appendChild(c);
+});
+
+const launch = [
+  {day:"Tuesday, 10:00a", ev:"Official 30–40 second channel trailer"},
+  {day:"Wednesday, 11:00a", ev:"Flagship Episode 1"},
+  {day:"Wednesday, 11:00a", ev:"Flagship Episode 2"},
+  {day:"Saturday, 11:00a", ev:"Song clip or character introduction"},
+  {day:"Following Sat.", ev:"Flagship Episode 3"},
+  {day:"Every Saturday", ev:"One new 2:25–2:45 flagship episode"},
+];
+const launchSeq = document.getElementById('launchSeq');
+launch.forEach(l=>{
+  const row = document.createElement('div');
+  row.className = 'launch-row';
+  row.innerHTML = `<div class="day">${l.day}</div><div>${l.ev}</div>`;
+  launchSeq.appendChild(row);
+});
+
+// ---- MONETIZATION ----
+const phases = [
+  {n:1, title:"Prove attention", obj:"A repeatable show format and recognizable songs.", prod:"YouTube revenue when eligible; platform distribution."},
+  {n:2, title:"Build parent trust", obj:"Demonstrate practical family value.", prod:"Aligned sponsorships; grants; education partnerships."},
+  {n:3, title:"Reuse the IP", obj:"Turn episodes into durable assets.", prod:"Music streaming; compilations; books; activity kits; licensing."},
+  {n:4, title:"Connect utility", obj:"Move families between entertainment and action.", prod:"Fridgie subscriptions; recipe features; partner ingredients."},
+  {n:5, title:"Expand the world", obj:"Make the Metacheese explorable.", prod:"Games; live events; classroom products; merchandise; immersive experiences."},
+];
+const ladder = document.getElementById('ladder');
+phases.forEach(p=>{
+  const el = document.createElement('div');
+  el.className = 'phase';
+  el.innerHTML = `
+    <div class="phase-head">
+      <div class="phase-num">${p.n}</div>
+      <div class="phase-title">${p.title}</div>
+      <div class="phase-arrow">▸</div>
+    </div>
+    <div class="phase-body">
+      <div><b style="color:var(--mustard);font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;">Objective</b><br>${p.obj}</div>
+      <div style="margin-top:8px;"><b style="color:var(--fridgie-text);font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;">Potential products</b><br>${p.prod}</div>
+    </div>`;
+  el.addEventListener('click', ()=>el.classList.toggle('open'));
+  ladder.appendChild(el);
+});
+
+// ---- 90 DAY PLAN ----
+const planData = [
+  {win:"Weeks 1–2", h:"Lock the system", p:"Channel name, premise, audience, character bible, visual rules, sonic identity, 12-episode slate."},
+  {win:"Weeks 3–4", h:"Build the launch slate", p:"Scripts and songs for Episodes 1–4; trailer; thumbnail system; production schedule."},
+  {win:"Weeks 5–8", h:"Produce ahead", p:"Episodes 1–4 complete; 5–6 in pipeline; captions, stems, clips, metadata."},
+  {win:"Week 9", h:"Package and test", p:"Channel art, trailer, playlists; private reviews with parents; final corrections."},
+  {win:"Week 10", h:"Launch", p:"Trailer Tuesday; Episodes 1 & 2 Wednesday; supporting clip Saturday."},
+  {win:"Weeks 11–12", h:"Establish habit", p:"Episode 3 & 4 on Saturdays; weekly clips; 24h/7d performance reviews."},
+];
+const planGrid = document.getElementById('planGrid');
+planData.forEach(pl=>{
+  const c = document.createElement('div');
+  c.className = 'plan-card';
+  c.innerHTML = `<div class="win">${pl.win}</div><h4>${pl.h}</h4><p>${pl.p}</p>`;
+  planGrid.appendChild(c);
+});
+
+const decisions = [
+  "Final channel and flagship-series naming",
+  "Exact approved character assets, voices, and animation method",
+  "Episode 1–4 concepts and song hooks",
+  "The sustainable production budget and weekly capacity",
+  "Who owns final approval for story, character, music, and publish"
+];
+const decisionsEl = document.getElementById('decisions');
+decisions.forEach(d=>{
+  const row = document.createElement('div');
+  row.className = 'check-item';
+  row.innerHTML = `<div class="box">✓</div><div>${d}</div>`;
+  row.addEventListener('click', ()=>row.classList.toggle('checked'));
+  decisionsEl.appendChild(row);
+});
+
+// ---- PRODUCTION WORKFLOW / AI PIPELINE PANEL ----
+const wfPhases = {
+  1: {
+    color: "var(--scraps)",
+    tag: "Phase 01 · Development",
+    title: "Story & Song",
+    desc: "Lock the episode's problem, reframe, and resolution beats before anyone draws a frame. With no dialogue, the narrator script is the spine — it carries every plot beat a normal script would put in characters' mouths.",
+    deliverables: "Episode outline · song brief &amp; lyric draft · narrator VO script",
+    owner: "Showrunner + story editor",
+    gate: "Outline + narrator script approved"
+  },
+  2: {
+    color: "var(--yellow)",
+    tag: "Phase 02 · Pre-Production",
+    title: "Storyboard & Animatic",
+    desc: "Every gag, chime, and glance has to read with no dialogue to lean on. Scratch narrator VO and a rough song demo go in early so timing is tested against picture, not a script on paper.",
+    deliverables: "Storyboard · timed animatic · scratch VO · song demo · model sheets",
+    owner: "Storyboard artist + animatic editor",
+    gate: "Animatic timed and approved against scratch VO"
+  },
+  3: {
+    color: "var(--mustard)",
+    tag: "Phase 03 · Production",
+    title: "Animation & Final VO",
+    desc: "Final narrator VO is recorded and locked to picture. Animation carries the acting load Scraps and Fridgie can't do with words — expression and physical comedy do what dialogue would elsewhere.",
+    deliverables: "Final animation pass · backgrounds/props · final narrator VO · SFX pass",
+    owner: "Animation studio/vendor + sound designer",
+    gate: "Animation complete, VO locked"
+  },
+  4: {
+    color: "var(--fridgie)",
+    tag: "Phase 04 · Post-Production",
+    title: "Comp, Score & QC",
+    desc: "Compositing, music scoring, and the mix come together, then the episode runs the story-test checklist before picture lock — the point after which nothing visual changes again.",
+    deliverables: "Composited picture · full music score &amp; mix · picture lock · QC pass",
+    owner: "Picture editor + composer + QC reviewer",
+    gate: "Picture locked, story-test checklist passed"
+  },
+  5: {
+    color: "var(--scraps)",
+    tag: "Phase 05 · Localization",
+    title: "Narrator Swap, Not Re-Production",
+    desc: "Because Scraps and Fridgie never speak, a new market only needs a new narrator recording, retimed against the already-locked picture. No re-animation, no dialogue re-cast, no lip-sync rework.",
+    deliverables: "Localized narrator script · new narrator VO recording per market",
+    owner: "Localization coordinator",
+    gate: "Narrator track approved per market"
+  },
+  6: {
+    color: "var(--yellow)",
+    tag: "Phase 06 · Delivery",
+    title: "Masters & Stems",
+    desc: "Final masters ship with the narrator kept fully separate from music and effects, so any future market is a stem swap, not a remix.",
+    deliverables: "Video masters · clean M&amp;E stems · narrator stems · captions · metadata",
+    owner: "Delivery/QC lead",
+    gate: "n/a — episode delivered"
+  }
+};
+
+const wfDetailEl = document.getElementById('phaseDetail');
+function renderWfPhase(n){
+  const p = wfPhases[n];
+  wfDetailEl.style.setProperty('--phasecolor', p.color);
+  wfDetailEl.innerHTML = `
+    <div class="tag">${p.tag}</div>
+    <h3>${p.title}</h3>
+    <p class="desc">${p.desc}</p>
+    <div class="kv-row">
+      <div class="kv"><div class="k">Deliverables</div><div class="v">${p.deliverables}</div></div>
+      <div class="kv"><div class="k">Owner</div><div class="v">${p.owner}</div></div>
+      <div class="kv"><div class="k">Gate to next phase</div><div class="v">${p.gate}</div></div>
+    </div>`;
+}
+document.querySelectorAll('.node').forEach(node=>{
+  node.addEventListener('click', ()=>{
+    document.querySelectorAll('.node').forEach(n=>n.classList.remove('active'));
+    node.classList.add('active');
+    renderWfPhase(node.dataset.phase);
+  });
+});
+renderWfPhase(1);
+</script>
+
+</body>
+</html>
