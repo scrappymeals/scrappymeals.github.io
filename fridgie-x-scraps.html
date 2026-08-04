@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rescue Mission — Fridgie & Scraps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF7EA;
+    --cream2:#FFEFD3;
+    --paper:#FFFFFF;
+    --ink:#2B1A4A;
+    --ink-soft:#6C5B95;
+
+    --purple:#7C4DFF;
+    --purple-dark:#5A2FD9;
+    --purple-pale:#EFE7FF;
+
+    --pink:#FF4FAE;
+    --pink-dark:#DB2A8E;
+    --pink-pale:#FFE3F2;
+
+    --sun:#FFC93C;
+    --sun-dark:#F0A800;
+    --sun-pale:#FFF3CE;
+
+    --mint:#1FD1A5;
+    --mint-dark:#0EAF87;
+    --mint-pale:#DEFBF3;
+
+    --sky:#43BCEE;
+    --sky-dark:#1E96C9;
+    --sky-pale:#E2F6FE;
+
+    --radius-lg:26px;
+    --radius-md:18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;overflow-x:hidden;width:100%;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Quicksand', sans-serif;
+    font-weight:500;
+    min-height:100vh; min-height:100dvh;
+    -webkit-text-size-adjust:100%;
+    touch-action:manipulation;
+  }
+  button,[onclick],.char-card,.ep-card,.phase,.check-item,nav.tabs button{
+    touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+  }
+  ::selection{ background:var(--sun); color:var(--ink); }
+
+  /* ===== HEADER ===== */
+  header.top{
+    display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
+    padding:36px clamp(18px,4vw,48px) 32px;
+    background:linear-gradient(120deg, var(--purple) 0%, #9B6BFF 50%, var(--pink) 100%);
+    position:relative; overflow:hidden;
+  }
+  .badge-row{
+    font-family:'Baloo 2', sans-serif; font-weight:700; font-size:11px; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--purple-dark); background:#fff; padding:6px 14px;
+    border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,0.12);
+  }
+  .title-wrap{ display:flex; flex-direction:column; align-items:center; gap:0; }
+  .wordmark{
+    font-family:'Baloo 2', sans-serif; font-weight:800; font-size:clamp(30px,6vw,50px);
+    line-height:1.05; color:#fff; letter-spacing:0.01em;
+    text-shadow:0 3px 0 rgba(90,47,217,0.35);
+  }
+  .wordmark span.amp{ color:var(--sun); }
+  .wordmark-footnote{
+    font-family:'Baloo 2', sans-serif; font-weight:600; font-size:12.5px; color:var(--sun);
+    margin-top:-4px; letter-spacing:0.02em;
+  }
+  .co-name{
+    font-family:'Baloo 2', sans-serif; font-weight:700; font-size:clamp(15px,2.2vw,20px);
+    color:var(--sun); margin-top:2px;
+  }
+  .tagline{ font-size:14px; color:#fff; opacity:0.92; margin-top:8px; max-width:460px; font-weight:600; }
+
+  /* ===== NAV ===== */
+  nav.tabs{
+    position:sticky; top:0; z-index:5; display:flex; flex-direction:row; flex-wrap:wrap;
+    align-items:center; justify-content:center; gap:8px; padding:14px clamp(10px,2.5vw,24px);
+    background:var(--cream); border-bottom:2px solid var(--purple-pale);
+  }
+  nav.tabs button{
+    -webkit-appearance:none; appearance:none; border:2px solid var(--purple-pale); font:inherit; margin:0;
+    cursor:pointer; font-family:'Baloo 2', sans-serif; font-weight:700; font-size:12.5px;
+    color:var(--ink-soft); background:#fff; padding:9px 14px; border-radius:999px; white-space:nowrap;
+    display:flex; align-items:center; gap:6px; transition:all .15s;
+  }
+  nav.tabs button:hover{ border-color:var(--purple); color:var(--ink); }
+  nav.tabs button.active{
+    color:#fff; border-color:transparent;
+  }
+  .nav-icon{ color:inherit; }
+  nav.tabs button[data-i="0"].active{ background:var(--sun); color:var(--ink); }
+  nav.tabs button[data-i="1"].active{ background:var(--purple); }
+  nav.tabs button[data-i="2"].active{ background:var(--mint); color:var(--ink); }
+  nav.tabs button[data-i="3"].active{ background:var(--pink); }
+  nav.tabs button[data-i="4"].active{ background:var(--sky); color:var(--ink); }
+  nav.tabs button[data-i="5"].active{ background:var(--purple); }
+  nav.tabs button[data-i="6"].active{ background:var(--mint); color:var(--ink); }
+  nav.tabs button[data-i="7"].active{ background:var(--sun); color:var(--ink); }
+
+  .layout{ max-width:1160px; margin:0 auto; }
+  main{ padding:10px clamp(18px,4vw,48px) 90px; min-width:0; }
+  section.panel{ display:none; animation:fade .35s ease; }
+  section.panel.active{ display:block; }
+  @keyframes fade{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
+
+  h2.section-title{
+    font-family:'Baloo 2', sans-serif; font-weight:700; font-size:clamp(22px,3vw,30px); margin:34px 0 6px; color:var(--ink);
+    display:flex; align-items:center; gap:10px;
+  }
+  h2.section-title .dot{ width:14px; height:14px; border-radius:50%; display:inline-block; flex:none; }
+  p.section-sub{ font-size:14.5px; opacity:0.75; max-width:640px; margin:0 0 22px; line-height:1.6; font-weight:600; }
+
+  /* ===== STICKER CARD ===== */
+  .paper{
+    background:var(--paper); color:var(--ink); border-radius:var(--radius-lg);
+    border:3px solid var(--purple-pale);
+    box-shadow:0 6px 0 var(--purple-pale), 0 10px 22px rgba(90,47,217,0.08);
+    padding:20px 22px;
+  }
+  .paper h3{ font-family:'Baloo 2',sans-serif; margin:2px 0 8px; font-size:17px; color:var(--purple-dark); }
+  .paper p{ font-size:13.5px; line-height:1.65; margin:0; color:var(--ink-soft); font-weight:600; }
+  .paper.pink{ border-color:var(--pink-pale); box-shadow:0 6px 0 var(--pink-pale), 0 10px 22px rgba(219,42,142,0.08); }
+  .paper.pink h3{ color:var(--pink-dark); }
+  .paper.mint{ border-color:var(--mint-pale); box-shadow:0 6px 0 var(--mint-pale), 0 10px 22px rgba(14,175,135,0.08); }
+  .paper.mint h3{ color:var(--mint-dark); }
+  .paper.sun{ border-color:var(--sun-pale); box-shadow:0 6px 0 var(--sun-pale), 0 10px 22px rgba(240,168,0,0.1); }
+  .paper.sun h3{ color:var(--sun-dark); }
+  .paper.sky{ border-color:var(--sky-pale); box-shadow:0 6px 0 var(--sky-pale), 0 10px 22px rgba(30,150,201,0.1); }
+  .paper.sky h3{ color:var(--sky-dark); }
+
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:760px){ .grid2,.grid3{ grid-template-columns:1fr; } }
+
+  /* ===== SPEECH BUBBLE CALLOUTS ===== */
+  .callout{
+    display:flex; gap:14px; align-items:flex-start; margin:18px 0;
+    background:var(--paper); border-radius:var(--radius-md); padding:14px 18px;
+    border:3px solid var(--mint-pale); box-shadow:0 5px 0 var(--mint-pale);
+  }
+  .callout .avatar{
+    flex:none; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:20px; background:var(--mint-pale);
+  }
+  .callout .say{ font-family:'Baloo 2',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.04em; color:var(--mint-dark); margin-bottom:2px; }
+  .callout p{ margin:0; font-size:14px; line-height:1.6; font-weight:600; color:var(--ink); }
+  .callout.pink{ border-color:var(--pink-pale); box-shadow:0 5px 0 var(--pink-pale); }
+  .callout.pink .avatar{ background:var(--pink-pale); }
+  .callout.pink .say{ color:var(--pink-dark); }
+  .callout.purple{ border-color:var(--purple-pale); box-shadow:0 5px 0 var(--purple-pale); }
+  .callout.purple .avatar{ background:var(--purple-pale); }
+  .callout.purple .say{ color:var(--purple-dark); }
+
+  .pill{
+    display:inline-block; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:0.03em;
+    text-transform:uppercase; padding:5px 12px; border-radius:999px; margin-bottom:8px; color:#fff;
+  }
+  .pill.sun{ background:var(--sun-dark); }
+  .pill.fridgie{ background:var(--purple); }
+  .pill.scraps{ background:var(--pink); }
+
+  table.spec{ width:100%; border-collapse:collapse; margin-top:6px; font-size:13.5px; }
+  table.spec td{ padding:12px 10px; border-bottom:2px dashed var(--purple-pale); vertical-align:top; word-break:break-word; font-weight:600; }
+  table.spec td.k{
+    font-family:'Baloo 2',sans-serif; font-size:13px; color:var(--purple-dark); width:30%;
+  }
+  table.spec td.v{ color:var(--ink-soft); }
+  table.spec td.v b{ color:var(--mint-dark); }
+  @media (max-width:640px){
+    table.spec, table.spec tbody, table.spec tr{ display:block; }
+    table.spec tr{ padding:10px 0; border-bottom:2px dashed var(--purple-pale); }
+    table.spec td{ display:block; width:100% !important; border-bottom:none; padding:3px 0; }
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    margin-top:14px; border-radius:var(--radius-lg); padding:clamp(24px,5vw,44px);
+    background:linear-gradient(150deg, var(--purple-pale) 0%, var(--pink-pale) 100%);
+    border:3px solid #fff; box-shadow:0 8px 0 var(--purple-pale);
+    position:relative; overflow:hidden;
+  }
+  .hero::after{ content:'🧊'; position:absolute; right:24px; top:20px; font-size:60px; opacity:0.5; transform:rotate(8deg); }
+  .hero .eyebrow{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:12px; letter-spacing:0.05em; color:var(--pink-dark); text-transform:uppercase; }
+  .hero h1{
+    font-family:'Baloo 2',sans-serif; font-size:clamp(26px,4.6vw,40px); line-height:1.14; margin:10px 0 14px;
+    color:var(--ink); max-width:640px;
+  }
+  .hero h1 em{ font-style:normal; color:var(--pink-dark); }
+  .hero p.lede{ font-size:15px; line-height:1.7; color:var(--ink-soft); max-width:560px; margin:0 0 18px; font-weight:600; }
+  .hero .promise{
+    font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(16px,2.2vw,20px); color:var(--purple-dark);
+    background:#fff; display:inline-block; padding:12px 20px; border-radius:16px; box-shadow:0 4px 0 var(--purple-pale);
+    margin-top:6px; max-width:90%;
+  }
+
+  /* ===== FIX ROW ===== */
+  .fix{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:14px; margin-top:18px; }
+  @media (max-width:640px){ .fix{ grid-template-columns:1fr; } .fix .arrow{ transform:rotate(90deg); text-align:center;} }
+  .fix .col{ padding:16px 18px; border-radius:var(--radius-md); font-size:13.5px; line-height:1.6; font-weight:600; }
+  .fix .no{ background:var(--pink-pale); color:var(--pink-dark); text-decoration:line-through; border:2px solid #fff; }
+  .fix .yes{ background:var(--mint-pale); color:var(--mint-dark); font-weight:700; border:2px solid #fff; }
+  .fix .arrow{ font-size:22px; color:var(--sun-dark); text-align:center; }
+
+  /* ===== CHARACTER CARDS ===== */
+  .char-card{
+    border-radius:var(--radius-lg); padding:24px; position:relative; overflow:hidden; min-height:200px;
+    cursor:pointer; transition:transform .2s; border:3px solid #fff;
+  }
+  .char-card:hover{ transform:translateY(-3px) rotate(-0.3deg); }
+  .char-card.scraps{ background:linear-gradient(160deg, var(--pink-pale), #fff); box-shadow:0 7px 0 var(--pink); }
+  .char-card.fridgie{ background:linear-gradient(160deg, var(--purple-pale), #fff); box-shadow:0 7px 0 var(--purple); }
+  .char-card .avatar-big{ font-size:38px; }
+  .char-card h3{ font-family:'Baloo 2',sans-serif; font-size:24px; margin:8px 0 2px; color:var(--ink); }
+  .char-card .role{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:0.04em; }
+  .char-card.scraps .role{ color:var(--pink-dark); }
+  .char-card.fridgie .role{ color:var(--purple-dark); }
+  .char-card .job{ margin-top:10px; font-size:13.5px; color:var(--ink-soft); line-height:1.55; font-weight:600; }
+  .behaviors{ margin-top:14px; display:none; font-size:13px; line-height:1.75; color:var(--ink); font-weight:600; }
+  .char-card.open .behaviors{ display:block; }
+  .behaviors ul{ margin:4px 0 0; padding-left:20px; }
+  .behaviors b{ font-family:'Baloo 2',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.03em; }
+  .char-card.scraps .behaviors b{ color:var(--pink-dark); }
+  .char-card.fridgie .behaviors b{ color:var(--purple-dark); }
+  .flip-hint{ position:absolute; bottom:14px; right:18px; font-size:11px; opacity:0.55; font-family:'Baloo 2',sans-serif; font-weight:700; }
+
+  /* ===== RESCUE MISSION PATH ===== */
+  .flow{ position:relative; margin-top:22px; padding-left:44px; }
+  .flow::before{
+    content:''; position:absolute; left:20px; top:6px; bottom:6px; width:5px; border-radius:6px;
+    background:repeating-linear-gradient(180deg, var(--mint) 0 10px, transparent 10px 18px);
+  }
+  .flow-step{
+    position:relative; display:flex; gap:16px; align-items:flex-start; padding:14px 0 22px; cursor:pointer;
+  }
+  .flow-num{
+    position:absolute; left:-44px; top:0;
+    font-family:'Baloo 2',sans-serif; font-weight:800; font-size:14px; color:#fff;
+    background:var(--mint); width:38px; height:38px; border-radius:50%; flex:none; border:3px solid #fff;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 3px 0 var(--mint-dark);
+  }
+  .flow-body{ background:#fff; border-radius:16px; padding:14px 18px; border:2px solid var(--mint-pale); flex:1; }
+  .flow-body h4{ font-family:'Baloo 2',sans-serif; font-size:16px; margin:0 0 5px; color:var(--ink); }
+  .flow-body p{ font-size:13.5px; opacity:0.85; margin:0; line-height:1.6; max-width:600px; font-weight:600; color:var(--ink-soft); }
+  .flow-tag{
+    font-family:'Baloo 2',sans-serif; font-weight:700; font-size:11px; color:var(--pink-dark);
+    background:var(--pink-pale); padding:3px 10px; border-radius:999px; margin-top:6px; display:inline-block;
+  }
+
+  /* ===== RECEIPT ===== */
+  .receipt{
+    background:#fff; border-radius:var(--radius-lg); padding:22px 24px;
+    max-width:340px; border:3px solid var(--sun-pale); box-shadow:0 7px 0 var(--sun-pale); position:relative;
+  }
+  .receipt .rtitle{ font-family:'Baloo 2',sans-serif; font-size:18px; color:var(--sun-dark); margin-bottom:12px; }
+  .receipt .rline{ display:flex; justify-content:space-between; font-size:13px; padding:7px 0; border-bottom:2px dashed var(--cream2); color:var(--ink-soft); font-weight:600; }
+  .receipt .rline b{ color:var(--ink); font-weight:700; }
+  .receipt .rtotal{ margin-top:10px; font-size:14px; color:var(--mint-dark); display:flex; justify-content:space-between; font-family:'Baloo 2',sans-serif; font-weight:700; }
+  .btn{
+    font-family:'Baloo 2',sans-serif; font-weight:700; font-size:13px; letter-spacing:0.02em;
+    background:var(--pink); color:#fff; border:none; padding:12px 20px; border-radius:999px; cursor:pointer;
+    margin-top:16px; box-shadow:0 4px 0 var(--pink-dark); transition:transform .1s;
+  }
+  .btn:hover{ background:var(--pink); filter:brightness(1.04); }
+  .btn:active{ transform:translateY(3px); box-shadow:0 1px 0 var(--pink-dark); }
+
+  /* ===== REMIX LINEAGE ===== */
+  .lineage{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:16px; }
+  .lin-node{
+    font-family:'Baloo 2',sans-serif; font-weight:700; font-size:12px; padding:9px 14px; border-radius:999px;
+    background:var(--purple-pale); border:2px solid #fff; color:var(--purple-dark);
+  }
+  .lin-arrow{ color:var(--sun-dark); font-size:16px; }
+
+  /* ===== CHALLENGE GRID ===== */
+  .ep-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin-top:8px; }
+  .ep-card{
+    background:#fff; border:3px solid var(--pink-pale); border-radius:var(--radius-md);
+    padding:14px 16px; cursor:pointer; transition:transform .15s; box-shadow:0 5px 0 var(--pink-pale);
+  }
+  .ep-card:hover{ transform:translateY(-2px); }
+  .ep-num{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:11px; color:var(--pink-dark); }
+  .ep-title{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:15px; margin:4px 0 8px; color:var(--ink); }
+  .ep-more{ display:none; font-size:12.5px; opacity:0.85; line-height:1.6; font-weight:600; color:var(--ink-soft); }
+  .ep-card.open .ep-more{ display:block; }
+
+  /* ===== PHASES / LEVELS ===== */
+  .ladder{ display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+  .phase{
+    border:3px solid var(--purple-pale); border-radius:var(--radius-md); padding:16px 18px; cursor:pointer;
+    background:#fff; box-shadow:0 5px 0 var(--purple-pale);
+  }
+  .phase-head{ display:flex; align-items:center; gap:12px; justify-content:space-between; }
+  .phase-num{
+    font-family:'Baloo 2',sans-serif; font-weight:800; font-size:13px; color:#fff; background:var(--purple);
+    border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; flex:none;
+  }
+  .phase-title{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:15.5px; flex:1; color:var(--ink); }
+  .phase-arrow{ font-size:16px; opacity:0.6; transition:transform .2s; color:var(--purple-dark); }
+  .phase.open .phase-arrow{ transform:rotate(90deg); }
+  .phase-body{ display:none; margin-top:12px; font-size:13px; line-height:1.75; font-weight:600; color:var(--ink-soft); }
+  .phase.open .phase-body{ display:block; }
+  .phase-body ul{ margin:6px 0 0; padding-left:20px; }
+
+  .check-item{
+    display:flex; align-items:center; gap:10px; padding:12px 14px; border:2px solid var(--mint-pale);
+    border-radius:14px; font-size:13.5px; cursor:pointer; user-select:none; font-weight:600; background:#fff;
+  }
+  .check-item .box{
+    width:20px; height:20px; border-radius:7px; border:2px solid var(--mint); flex:none;
+    display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--mint);
+  }
+  .check-item.checked .box{ background:var(--mint); color:#fff; }
+  .check-item.checked{ opacity:0.55; text-decoration:line-through; }
+
+  /* ===== FLYWHEEL ===== */
+  .wheel-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:18px; }
+  @media (max-width:900px){ .wheel-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:480px){ .wheel-grid{ grid-template-columns:1fr; } }
+  .wcard{ border-radius:var(--radius-md); padding:18px; border:3px solid #fff; }
+  .wcard .wn{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:0.04em; opacity:0.85; }
+  .wcard .we{ font-size:26px; margin:4px 0; }
+  .wcard h4{ font-family:'Baloo 2',sans-serif; font-size:15px; margin:4px 0; color:var(--ink); }
+  .wcard p{ font-size:12.5px; opacity:0.85; line-height:1.6; margin:0; font-weight:600; color:var(--ink-soft); }
+  .wcard.c1{ background:var(--sun-pale); box-shadow:0 5px 0 #F7DE93; }
+  .wcard.c2{ background:var(--pink-pale); box-shadow:0 5px 0 #FFC1E3; }
+  .wcard.c3{ background:var(--purple-pale); box-shadow:0 5px 0 #D6C4FF; }
+  .wcard.c4{ background:var(--mint-pale); box-shadow:0 5px 0 #A6F0DC; }
+
+  /* ===== FOOTER ===== */
+  footer.close{
+    text-align:center; margin-top:60px; padding:44px 20px 34px;
+    background:linear-gradient(120deg, var(--purple) 0%, #9B6BFF 50%, var(--pink) 100%);
+  }
+  footer.close .lines{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:clamp(16px,2.6vw,22px); line-height:1.7; color:#fff; }
+  footer.close .lines span{ display:block; }
+  footer.close .lines span:nth-child(1){ color:var(--sun); }
+  footer.close .lines span:nth-child(2){ color:#fff; }
+  footer.close .lines span:nth-child(3){ color:var(--cream); }
+  footer.close .northstar{ margin-top:18px; font-size:13px; color:#fff; opacity:0.9; max-width:480px; margin-left:auto; margin-right:auto; font-weight:600; line-height:1.6; }
+  footer.close .credit{ margin-top:24px; font-family:'Baloo 2',sans-serif; font-size:11px; color:#fff; opacity:0.65; }
+
+  @media (max-width:480px){ header.top{ padding-top:32px; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="badge-row">Fridgie Smalls · Scrappy Meals XR</div>
+  <div class="title-wrap">
+    <div class="wordmark">Fridgie x Scraps<span class="amp">*</span></div>
+    <div class="wordmark-footnote">*Food Scavenger Extraordinaire</div>
+  </div>
+  <p class="tagline">One doc, one big idea: own the empty-fridge emergency, then turn it into a whole world to explore.</p>
+</header>
+
+<div class="layout">
+  <nav class="tabs" id="tabs">
+    <button class="active" data-i="0"><span class="nav-icon">★</span> Big Idea</button>
+    <button data-i="1">🗺️ World Map</button>
+    <button data-i="2">✅ Rescue Mission</button>
+    <button data-i="3">💌 Community</button>
+    <button data-i="4">📺 Show ↔ App</button>
+    <button data-i="5">🧠 Kitchen Brain</button>
+    <button data-i="6">🔄 Flywheel</button>
+    <button data-i="7">🚀 Roadmap</button>
+  </nav>
+
+  <main>
+
+    <!-- PANEL 0: BIG IDEA -->
+    <section class="panel active" data-p="0">
+      <div class="hero">
+        <div class="eyebrow">The correction that unlocks everything else</div>
+        <h1>Fridgie doesn't sell a WebXR recipe app. Fridgie owns <em>the empty-fridge emergency.</em></h1>
+        <p class="lede">Nobody wakes up wanting an "interactive WebXR recipe assistant" — they want dinner, right now, out of whatever's left in the fridge. That's the door. Everything we've been building — Scraps, the show, the Metacheese, the restaurants — is the house behind it.</p>
+        <div class="promise">"Tell Fridgie what you have. Get something worth making."</div>
+      </div>
+
+      <h2 class="section-title"><span class="dot" style="background:var(--mint)"></span>The repositioning</h2>
+      <p class="section-sub">Same product, same universe — the lead message just changes.</p>
+      <div class="fix">
+        <div class="col no">Fridgie Smalls: an interactive WebXR recipe assistant</div>
+        <div class="arrow">→</div>
+        <div class="col yes">Fridgie Smalls: tell it what you've got, get something worth making — right now</div>
+      </div>
+
+      <div class="callout purple" style="margin-top:28px">
+        <div class="avatar">🧊</div>
+        <div>
+          <div class="say">Fridgie says</div>
+          <p><b>The unifying object:</b> the <b style="color:var(--sun-dark)">Rescue Mission</b> — it starts when someone tells Fridgie what food they have, and ends with a meal, a story, a challenge, or a piece of shareable content. It's the basic unit of the entire ecosystem: app, characters, show, community, and world.</p>
+        </div>
+      </div>
+
+      <div class="grid3" style="margin-top:26px">
+        <div class="paper sun"><span class="pill sun">The problem</span><h3>A sharp consumer moment</h3><p>Beachhead market, sharing loops, personalization, and quantifiable impact — the growth mechanics that were missing.</p></div>
+        <div class="paper"><span class="pill fridgie">The universe</span><h3>Everything already built</h3><p>Fridgie &amp; Scraps, the show, the Metacheese, production pipeline, restaurants, classrooms, merch, events.</p></div>
+        <div class="paper pink"><span class="pill scraps">Combined</span><h3>One coherent platform</h3><p>The Rescue Mission connects app usage, characters, content, community, and world-building into a single loop.</p></div>
+      </div>
+    </section>
+
+    <!-- PANEL 1: WORLD MAP -->
+    <section class="panel" data-p="1">
+      <h2 class="section-title"><span class="dot" style="background:var(--purple)"></span>The brand architecture</h2>
+      <p class="section-sub">Same hierarchy you had — now every layer has a clear job and ties back to one behavior: rescuing, transforming, and appreciating food.</p>
+
+      <div class="paper">
+        <table class="spec">
+          <tr><td class="k">FridgieSmalls.app</td><td class="v">Solve the immediate food problem — <b>"tell Fridgie what you have, get something worth making."</b></td></tr>
+          <tr><td class="k">Rescue Missions</td><td class="v">Turn one-time app use into a repeatable behavior — save food, save money, complete a mission.</td></tr>
+          <tr><td class="k">Fridgie w/ Scraps</td><td class="v">Build affection and repeat attention — watch Fridgie &amp; Scraps turn food problems into adventures.</td></tr>
+          <tr><td class="k">Community Remixes</td><td class="v">Convert successful meals into discovery — see what real people made from what they had.</td></tr>
+          <tr><td class="k">The Metacheese</td><td class="v">Turn learning &amp; cooking into an explorable world — every rescue unlocks a bigger adventure.</td></tr>
+          <tr><td class="k">Scrappy Meals XR</td><td class="v">Hold the platform — production, partnerships, education, branded experiences, immersive tech.</td></tr>
+        </table>
+      </div>
+
+      <h2 class="section-title" style="margin-top:40px"><span class="dot" style="background:var(--pink)"></span>Fridgie &amp; Scraps get jobs, not just screen time</h2>
+      <p class="section-sub">Tap a card to see how each character actually functions inside the product.</p>
+      <div class="grid2">
+        <div class="char-card fridgie" onclick="this.classList.toggle('open')">
+          <div class="avatar-big">🧊</div>
+          <div class="role">The Kitchen Intelligence</div>
+          <h3>Fridgie</h3>
+          <div class="job">The possibility engine. Sees what the user has, reveals what it could become.</div>
+          <div class="behaviors">
+            <b>Functions as</b>
+            <ul>
+              <li>Inventory understanding &amp; recipe generation</li>
+              <li>Personalization, substitutions, equipment awareness</li>
+              <li>Dietary restrictions &amp; Recipe Remix</li>
+              <li>Safety, storage guidance, progress tracking</li>
+              <li>The bridge into The Metacheese</li>
+            </ul>
+          </div>
+          <div class="flip-hint">tap to expand ↺</div>
+        </div>
+        <div class="char-card scraps" onclick="this.classList.toggle('open')">
+          <div class="avatar-big">🍬</div>
+          <div class="role">The Participation Engine</div>
+          <h3>Scraps</h3>
+          <div class="job">The emotional engine. Turns a functional recipe into something playful and repeatable.</div>
+          <div class="behaviors">
+            <b>Functions as</b>
+            <ul>
+              <li>Rescue Missions &amp; challenges</li>
+              <li>Streaks, badges, collectibles</li>
+              <li>Food discovery &amp; imperfect-produce hype</li>
+              <li>Funny reactions to leftovers</li>
+              <li>Nudges to photograph / share the result</li>
+            </ul>
+          </div>
+          <div class="flip-hint">tap to expand ↺</div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:22px">
+        <div class="avatar">✨</div>
+        <div>
+          <div class="say">Together</div>
+          <p>User enters chicken, half an onion, rice, cheddar → Fridgie offers three real recipes → Scraps drops a challenge ("rescue the rice before midnight") → user cooks → app logs ingredients used, leftovers rescued, money saved, streak extended. That's a full product loop, not a one-off AI reply.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL 2: RESCUE MISSION -->
+    <section class="panel" data-p="2">
+      <h2 class="section-title"><span class="dot" style="background:var(--mint)"></span>The Rescue Mission, step by step</h2>
+      <p class="section-sub">This is the atomic loop everything else plugs into. Tap a step for detail.</p>
+
+      <div class="flow" id="flow">
+        <div class="flow-step" onclick="this.classList.toggle('open')">
+          <div class="flow-num">1</div>
+          <div class="flow-body">
+            <h4>🥕 Tell Fridgie what you have</h4>
+            <p>Fast ingredient entry — type or speak. No planning, no shopping list. Whatever's actually in the fridge right now.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div class="flow-body">
+            <h4>🧊 Fridgie generates real options</h4>
+            <p>Three practical recipes, tuned to equipment, diet, and household size — not a generic AI wall of text.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div class="flow-body">
+            <h4>🍬 Scraps issues the challenge</h4>
+            <p><span class="flow-tag">"Rescue the rice before midnight"</span></p>
+            <p style="margin-top:6px">Turns the recipe choice into a game, not a chore.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div class="flow-body">
+            <h4>🍳 User cooks, taps "I Made This"</h4>
+            <p>Confirms completion — the moment the app learns what actually got cooked, not just browsed.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <div class="flow-body">
+            <h4>🧾 Rescue Receipt + optional Remix</h4>
+            <p>Ingredients used, leftovers rescued, estimated money saved, streak extended, recipe saved to Cookbook — and a shareable card is born.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top:44px"><span class="dot" style="background:var(--sun)"></span>Sample Rescue Receipt</h2>
+      <p class="section-sub">Credible numbers, not fake gamification — exact counts where confirmed, clearly-labeled estimates elsewhere.</p>
+      <div class="receipt">
+        <div class="rtitle">🧊 Rescue Complete!</div>
+        <div class="rline"><span>Ingredients used</span><b id="c1">0</b></div>
+        <div class="rline"><span>Leftovers rescued</span><b id="c2">0</b></div>
+        <div class="rline"><span>Est. food value retained</span><b id="c3">$0</b></div>
+        <div class="rline"><span>New Remix added</span><b>1</b></div>
+        <div class="rtotal"><span>Scraps streak</span><span id="c4">0 days 🔥</span></div>
+        <button class="btn" onclick="runReceipt()">Run it! 🎉</button>
+      </div>
+    </section>
+
+    <!-- PANEL 3: COMMUNITY -->
+    <section class="panel" data-p="3">
+      <h2 class="section-title"><span class="dot" style="background:var(--pink)"></span>Recipe Remix, upgraded</h2>
+      <p class="section-sub">Not just "regenerate another recipe" — a structured, reusable content object. This is the dataset generic recipe sites don't have: what people actually made from incomplete, real-life ingredients.</p>
+      <div class="grid2">
+        <div class="paper pink">
+          <h3>A Remix contains</h3>
+          <p>Original ingredients · Fridgie's generated recipe · user substitutions · equipment used · dietary adaptation · prep time · photo or short video · rating · "would I make this again?" · ingredients rescued · estimated cost · optional story · attribution to the original Remix.</p>
+        </div>
+        <div class="paper pink">
+          <h3>Remix lineage</h3>
+          <p>Every variation links back — this is what makes it a network, not a publishing feed.</p>
+          <div class="lineage">
+            <div class="lin-node">Fridgie's recipe</div>
+            <span class="lin-arrow">→</span>
+            <div class="lin-node">Damon's Remix</div>
+            <span class="lin-arrow">→</span>
+            <div class="lin-node">dairy-free</div>
+            <span class="lin-arrow">→</span>
+            <div class="lin-node">air-fryer</div>
+            <span class="lin-arrow">→</span>
+            <div class="lin-node">dorm-kitchen</div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top:40px"><span class="dot" style="background:var(--pink)"></span>Pass the Fridge</h2>
+      <p class="section-sub">The share loop, evolved from a generic share button into named challenges. Tap a card to open it.</p>
+      <div class="ep-grid">
+        <div class="ep-card" onclick="this.classList.toggle('open')"><div class="ep-num">01</div><div class="ep-title">🧺 Pass the Fridge</div><div class="ep-more">"I rescued chicken, rice &amp; cheddar with Fridgie. Now show me what's hiding in your fridge." No account needed to try it.</div></div>
+        <div class="ep-card" onclick="this.classList.toggle('open')"><div class="ep-num">02</div><div class="ep-title">3️⃣ 3-Ingredient Rescue</div><div class="ep-more">Make something real from exactly three things. Brutal, fun, highly shareable.</div></div>
+        <div class="ep-card" onclick="this.classList.toggle('open')"><div class="ep-num">03</div><div class="ep-title">🚨 Empty-Fridge Emergency</div><div class="ep-more">The near-nothing challenge — for the "there's genuinely nothing to eat" moment.</div></div>
+        <div class="ep-card" onclick="this.classList.toggle('open')"><div class="ep-num">04</div><div class="ep-title">🔥 No-Oven Mission</div><div class="ep-more">Dorm rooms, hotel rooms, broken ovens — cook without one.</div></div>
+        <div class="ep-card" onclick="this.classList.toggle('open')"><div class="ep-num">05</div><div class="ep-title">🍌 Bruised Produce Rescue</div><div class="ep-more">The spotty banana, the wilted spinach — give the ugly stuff a win.</div></div>
+        <div class="ep-card" onclick="this.classList.toggle('open')"><div class="ep-num">06</div><div class="ep-title">🏆 Beat My Fridge</div><div class="ep-more">Head-to-head: two users, same mystery ingredient list, community votes on the better Remix.</div></div>
+      </div>
+      <div class="callout pink" style="margin-top:20px">
+        <div class="avatar">🍬</div>
+        <div>
+          <div class="say">Scraps says</div>
+          <p>Key rule: the shared experience shows Fridgie's magic <b>before</b> asking for signup. Require an account too early and the loop dies.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL 4: SHOW <-> APP -->
+    <section class="panel" data-p="4">
+      <h2 class="section-title"><span class="dot" style="background:var(--sky)"></span>Show ↔ App: one circular system</h2>
+      <p class="section-sub">App activity feeds the media slate. Episodes dramatize the same behavior the app asks families to do.</p>
+      <div class="paper sky">
+        <table class="spec">
+          <tr><td class="k">"Don't Throw That Away"</td><td class="v">→ Leftover Rescue Mission</td></tr>
+          <tr><td class="k">"What's Hiding in the Fridge?"</td><td class="v">→ Inventory hunt / ingredient entry</td></tr>
+          <tr><td class="k">"The Funny-Looking Vegetable"</td><td class="v">→ Imperfect Produce Challenge</td></tr>
+          <tr><td class="k">"The Leftover Shuffle"</td><td class="v">→ Recipe Remix</td></tr>
+          <tr><td class="k">"The Bruised Banana"</td><td class="v">→ Bruised Produce Rescue</td></tr>
+          <tr><td class="k">"Three Colors for Dinner"</td><td class="v">→ Color-based ingredient challenge</td></tr>
+          <tr><td class="k">"The Metacheese Door Opens"</td><td class="v">→ First world unlock</td></tr>
+        </table>
+      </div>
+
+      <div class="grid2" style="margin-top:24px">
+        <div class="paper sky"><h3>The loop</h3><p>App use → content intelligence → new episode ideas → audience interest → new Rescue Missions → community content and retention → back into the app. Search patterns (bruised bananas, one egg, no-oven) literally become the writers' room.</p></div>
+        <div class="paper sky"><h3>Why it matters</h3><p>The show stops merely advertising Fridgie — it dramatizes the exact behavior the app is asking families to perform. That's a much stronger episode-to-product loop than a generic tie-in.</p></div>
+      </div>
+    </section>
+
+    <!-- PANEL 5: KITCHEN BRAIN -->
+    <section class="panel" data-p="5">
+      <h2 class="section-title"><span class="dot" style="background:var(--purple)"></span>The Fridgie Kitchen Brain</h2>
+      <p class="section-sub">Not "switching costs" as the pitch — the real benefit is that Fridgie progressively understands your actual kitchen. The key distinction: what you <b>cooked</b>, not just what you saved.</p>
+      <div class="grid3">
+        <div class="paper"><h3>Household</h3><p>People &amp; ages, serving sizes, allergies &amp; dietary restrictions, disliked ingredients, cuisine preference, budget sensitivity, typical cook time.</p></div>
+        <div class="paper"><h3>Kitchen</h3><p>Oven, air fryer, microwave, blender, slow cooker, grill, pans &amp; tools on hand, comfort level in the kitchen.</p></div>
+        <div class="paper"><h3>Behavior</h3><p>Frequent ingredients, common leftovers, saved vs. actually cooked recipes, preferred substitutions, weeknight vs. weekend patterns.</p></div>
+      </div>
+      <div class="callout purple" style="margin-top:20px">
+        <div class="avatar">🧊</div>
+        <div>
+          <div class="say">Fridgie says</div>
+          <p>"You usually prefer quick skillet meals on Tuesdays, you have an air fryer, your household avoids mushrooms, and leftover rice tends to appear every week." — that's a real kitchen assistant, not a form.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top:40px"><span class="dot" style="background:var(--sun)"></span>The Metacheese: earned, not just entered</h2>
+      <p class="section-sub">Real kitchen action unlocks the world — the virtual world becomes a reward and narrative extension of real food behavior. Tap to expand each unlock.</p>
+      <div class="ladder">
+        <div class="phase" onclick="this.classList.toggle('open')">
+          <div class="phase-head"><div class="phase-num">1</div><div class="phase-title">🍌 Rescue 3 bruised fruits</div><div class="phase-arrow">›</div></div>
+          <div class="phase-body">Unlocks <b>the Spotty Orchard</b> — a Metacheese location built entirely around imperfect produce.</div>
+        </div>
+        <div class="phase" onclick="this.classList.toggle('open')">
+          <div class="phase-head"><div class="phase-num">2</div><div class="phase-title">🍚 Complete 5 leftover meals</div><div class="phase-arrow">›</div></div>
+          <div class="phase-body">Unlocks <b>Leftover Lane</b>, plus a new Scraps outfit for hitting a leftover streak.</div>
+        </div>
+        <div class="phase" onclick="this.classList.toggle('open')">
+          <div class="phase-head"><div class="phase-num">3</div><div class="phase-title">🥦 Try 3 unfamiliar vegetables</div><div class="phase-arrow">›</div></div>
+          <div class="phase-body">Unlocks <b>the Curious Garden</b> — food-education content tied to each new vegetable tried.</div>
+        </div>
+        <div class="phase" onclick="this.classList.toggle('open')">
+          <div class="phase-head"><div class="phase-num">4</div><div class="phase-title">🌈 Complete a family color challenge</div><div class="phase-arrow">›</div></div>
+          <div class="phase-body">Unlocks <b>the Rainbow Market</b>, a mini-game location for younger users.</div>
+        </div>
+        <div class="phase" onclick="this.classList.toggle('open')">
+          <div class="phase-head"><div class="phase-num">5</div><div class="phase-title">🥪 Make a restaurant partner Remix</div><div class="phase-arrow">›</div></div>
+          <div class="phase-body">Unlocks that <b>restaurant's own Metacheese portal</b> — e.g. Regina's Grocery sponsors a "Leftover Hero" challenge that unlocks a 3D sandwich build.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL 6: FLYWHEEL -->
+    <section class="panel" data-p="6">
+      <h2 class="section-title"><span class="dot" style="background:var(--mint)"></span>The full ecosystem flywheel</h2>
+      <p class="section-sub">Most food apps run one or two of these loops. The opportunity is running all four, connected.</p>
+      <div class="wheel-grid">
+        <div class="wcard c1"><div class="wn">Acquisition</div><div class="we">🔍</div><h4>Search / content → app visit</h4><p>Hyper-specific search intent and Scrappy Hour clips → instant recipe value, no signup wall.</p></div>
+        <div class="wcard c2"><div class="wn">Sharing</div><div class="we">🧺</div><h4>Rescue Receipt → Pass the Fridge</h4><p>Completed meal becomes a challenge card sent to a friend → new user, before they ever create an account.</p></div>
+        <div class="wcard c3"><div class="wn">Retention</div><div class="we">💜</div><h4>Kitchen history → better recs</h4><p>Inventory and cooking history compound into recommendations only Fridgie can make for that household.</p></div>
+        <div class="wcard c4"><div class="wn">IP</div><div class="we">🎬</div><h4>App behavior → show ideas</h4><p>Real search patterns become episodes and challenges → audience participation → more app behavior.</p></div>
+      </div>
+      <div class="callout" style="margin-top:22px">
+        <div class="avatar">✨</div>
+        <div>
+          <div class="say">The moats</div>
+          <p>Four connected moats power it: <b>personalization</b> (Fridgie learns the kitchen), <b>inventory</b> (the pantry record itself), <b>content</b> (the proprietary Remix library), and <b>network</b> (every share, challenge, and micro-cookbook pulling in more users and data).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL 7: ROADMAP -->
+    <section class="panel" data-p="7">
+      <h2 class="section-title"><span class="dot" style="background:var(--sun)"></span>What to build first</h2>
+      <p class="section-sub">The full vision is big — discipline matters. Tap each level to expand.</p>
+      <div class="ladder">
+        <div class="phase open" onclick="this.classList.toggle('open')">
+          <div class="phase-head"><div class="phase-num">1</div><div class="phase-title">Make the rescue loop work</div><div class="phase-arrow">›</div></div>
+          <div class="phase-body">
+            <ul><li>Rescue Mission framing &amp; ingredient input</li><li>Three recipe choices + Recipe Remix</li><li>"I Made This" completion</li><li>Rescue Receipt + shareable result page</li><li>Cookbook saving + basic Kitchen Profile</li></ul>
+            No full social network or virtual world yet.
+          </div>
+        </div>
+        <div class="phase" onclick="this.classList.toggle('open')">
+          <div class="phase-head"><div class="phase-num">2</div><div class="phase-title">Lightweight community value</div><div class="phase-arrow">›</div></div>
+          <div class="phase-body">
+            <ul><li>Public Remixes + search by ingredient combo</li><li>Remix lineage</li><li>Pass the Fridge challenges</li><li>User-controlled public profiles</li><li>Likes / "I'd make this" + moderation</li></ul>
+            Goal: real evidence from real cooks, not follower counts.
+          </div>
+        </div>
+        <div class="phase" onclick="this.classList.toggle('open')">
+          <div class="phase-head"><div class="phase-num">3</div><div class="phase-title">Connect Fridgie w/ Scraps</div><div class="phase-arrow">›</div></div>
+          <div class="phase-body">
+            <ul><li>Episode-specific Rescue Missions</li><li>Scraps challenge cards</li><li>Family mode</li><li>Song / episode embeds + deep links</li><li>Featured community results, character-driven onboarding</li></ul>
+          </div>
+        </div>
+        <div class="phase" onclick="this.classList.toggle('open')">
+          <div class="phase-head"><div class="phase-num">4</div><div class="phase-title">Add impact &amp; progression</div><div class="phase-arrow">›</div></div>
+          <div class="phase-body">
+            <ul><li>Rescue history, ingredients used</li><li>Estimated money retained (clearly labeled ranges)</li><li>Streaks + achievement collections</li><li>Metacheese unlock system</li></ul>
+          </div>
+        </div>
+        <div class="phase" onclick="this.classList.toggle('open')">
+          <div class="phase-head"><div class="phase-num">5</div><div class="phase-title">Expand commercially</div><div class="phase-arrow">›</div></div>
+          <div class="phase-body">
+            <ul><li>Restaurant Rescue Missions + chef Remixes</li><li>Sponsored ingredient challenges</li><li>3D menu content + branded Metacheese locations</li><li>Classroom packages</li><li>Smart-kitchen integrations, live interactive cooking events</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top:40px"><span class="dot" style="background:var(--mint)"></span>Quick gut-check before kickoff</h2>
+      <div class="paper mint">
+        <div style="display:grid; gap:10px;">
+          <div class="check-item" onclick="this.classList.toggle('checked')"><div class="box">✓</div>Positioning leads with "tell Fridgie what you have," not WebXR</div>
+          <div class="check-item" onclick="this.classList.toggle('checked')"><div class="box">✓</div>Rescue Mission is the single unit every feature ties back to</div>
+          <div class="check-item" onclick="this.classList.toggle('checked')"><div class="box">✓</div>Sharing loop delivers value before requiring signup</div>
+          <div class="check-item" onclick="this.classList.toggle('checked')"><div class="box">✓</div>Impact numbers are honest — exact counts vs. labeled estimates</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="close">
+  <div class="lines">
+    <span>Scraps brings the curiosity.</span>
+    <span>Fridgie brings the intelligence.</span>
+    <span>The Rescue Mission brings it all home.</span>
+  </div>
+  <p class="northstar">Fridgie Smalls turns what people already have into something worth making, sharing, learning from, and exploring — one Rescue Mission at a time.</p>
+  <div class="credit">Growth strategy + the existing Fridgie x Scraps universe, combined · for internal review</div>
+</footer>
+
+<script>
+  // Tabs
+  const tabBtns = document.querySelectorAll('nav.tabs button');
+  const panels = document.querySelectorAll('section.panel');
+  tabBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      tabBtns.forEach(b=>b.classList.remove('active'));
+      panels.forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      panels[+btn.dataset.i].classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+
+  // Rescue receipt animated counters
+  function animateCount(el, target, prefix, suffix, duration){
+    let start = 0;
+    const stepTime = Math.max(Math.floor(duration/target), 16);
+    const timer = setInterval(()=>{
+      start++;
+      el.textContent = (prefix||'') + start + (suffix||'');
+      if(start >= target){ clearInterval(timer); el.textContent = (prefix||'') + target + (suffix||''); }
+    }, stepTime);
+  }
+  function runReceipt(){
+    animateCount(document.getElementById('c1'), 4, '', '', 500);
+    animateCount(document.getElementById('c2'), 2, '', '', 500);
+    animateCount(document.getElementById('c3'), 7, '$', '', 600);
+    let s = 0;
+    const el = document.getElementById('c4');
+    const t = setInterval(()=>{ s++; el.textContent = s + ' days 🔥'; if(s>=3){ clearInterval(t); } }, 220);
+  }
+</script>
+
+</body>
+</html>
