@@ -309,7 +309,14 @@ details[open] .plus{transform:rotate(45deg);background:var(--gold)}
   .split-media{height:220px}
   .split-copy{min-height:0}
   .hrow,.srow{grid-template-columns:1fr;gap:5px}
-  details.clean summary{grid-template-columns:1fr 22px}
+  details.clean summary{
+    grid-template-columns:1fr 22px !important;
+    grid-template-areas:"key plus" "title title" !important;
+    row-gap:4px !important;
+  }
+  details.clean .sumkey{grid-area:key !important;align-self:center !important;}
+  details.clean .sumtitle{grid-area:title !important;}
+  details.clean .plus{grid-area:plus !important;align-self:start !important;}
   .detailbody{padding-left:0}
   .beats{grid-template-columns:repeat(2,1fr)}
   .animatic{grid-template-columns:1fr}
@@ -2574,9 +2581,9 @@ h1,h2,h3,h4{
 <div class="section lab-shell">
 <div class="head lab-head">
 <div class="head-copy">
-<div class="label">08 · INTERACTIVE PRODUCTION LAB</div>
-<h2>Explore the production system as a working interface.</h2>
-<p>This embeds the interactive standalone system inside the existing Fridgie x Scraps* site without replacing the current production architecture.</p>
+<div class="label">08 · DETAILED PRODUCTION BREAKDOWN</div>
+<h2>Every stage, gate and metric in one working view.</h2>
+<p>Step through the full production pipeline, hard gates, character vault, app loop and live KPIs exactly as the team runs them.</p>
 </div>
 <button class="lab-audio" id="labSoundToggle" type="button">🔊 Audio ON</button>
 </div>
