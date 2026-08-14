@@ -365,7 +365,9 @@ p{margin:0;color:var(--muted);font-size:15px;line-height:1.65}
 }
 
 /* Production Control Room: scoped to protect the master design system. */
-#production-control-room .section{border-color:rgba(108,244,231,.38);background:#35108f;box-shadow:none}
+#production-control-room .section{border-color:rgba(108,244,231,.38);background:#35108f;box-shadow:0 18px 46px rgba(15,0,58,.42),0 0 24px rgba(108,244,231,.16);animation:pcr-ambient-glow 4.8s ease-in-out infinite}
+@keyframes pcr-ambient-glow{0%,100%{box-shadow:0 18px 46px rgba(15,0,58,.42),0 0 24px rgba(108,244,231,.16)}50%{box-shadow:0 22px 54px rgba(15,0,58,.48),0 0 42px rgba(108,244,231,.28),0 0 72px rgba(255,45,150,.1)}}
+@media(prefers-reduced-motion:reduce){#production-control-room .section{animation:none !important}}
 #production-control-room label{display:block;margin-bottom:9px;font-size:20px;font-weight:800}
 #production-control-room input{width:100%;min-width:0;min-height:54px;padding:0 16px;border:1px solid var(--line);border-radius:14px;outline:0;background:rgba(28,0,88,.2);color:var(--ink);font:700 20px "Space Grotesk",sans-serif}
 #production-control-room input::placeholder{color:rgba(230,224,245,.55)}
@@ -418,6 +420,16 @@ p{margin:0;color:var(--muted);font-size:15px;line-height:1.65}
 #production-control-room .pcr-close{border:1px solid var(--line);background:transparent;color:var(--ink)}
 #production-control-room .pcr-export-status{min-height:18px;margin-top:8px;color:var(--teal);font-size:11px;font-weight:700;text-align:right}
 #production-control-room .pcr-package-grid{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:10px;margin-top:14px;align-items:start}
+#production-control-room .pcr-costume{grid-column:1/-1;overflow:hidden;border:0;border-radius:14px;background:rgba(23,0,78,.32)}
+#production-control-room .pcr-costume summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;list-style:none;cursor:pointer}
+#production-control-room .pcr-costume summary::-webkit-details-marker{display:none}
+#production-control-room .pcr-costume summary b,#production-control-room .pcr-costume summary small{display:block}
+#production-control-room .pcr-costume summary b{font-size:13px}
+#production-control-room .pcr-costume summary small{margin-top:3px;color:var(--muted);font-size:11px}
+#production-control-room .pcr-costume summary i{color:var(--yellow);font-size:18px;font-style:normal;font-weight:800}
+#production-control-room .pcr-costume[open] summary i{font-size:0}
+#production-control-room .pcr-costume[open] summary i::after{content:'−';font-size:18px}
+#production-control-room .pcr-costume-body{margin:0 13px;padding:13px 0;border-top:1px solid rgba(123,239,232,.16)}
 #production-control-room .pcr-box{padding:12px 0;background:transparent;border:0}
 #production-control-room .pcr-box h4{margin:0 0 13px;color:var(--yellow);font-size:12px;letter-spacing:.07em;text-transform:uppercase}
 #production-control-room .pcr-box-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -551,6 +563,7 @@ p{margin:0;color:var(--muted);font-size:15px;line-height:1.65}
         <header class="pcr-package-head"><div><h3 id="pcr-package-title">Full Production Package</h3><p>The creative idea stays simple. The production details live here.</p></div><div class="pcr-package-actions"><button class="pcr-export" id="pcr-export-prompts" type="button">Export All Prompts</button><button class="pcr-close" id="pcr-close-package" type="button">Close Package</button></div></header>
         <p class="pcr-export-status" id="pcr-export-status" role="status" aria-live="polite"></p>
         <div class="pcr-package-grid">
+          <details class="pcr-costume"><summary><span><b>Scraps* Episode Costume Model Sheet</b><small id="pcr-costume-name">Ingredient-inspired episode costume</small></span><i aria-hidden="true">+</i></summary><div class="pcr-costume-body"><p class="pcr-prompt" id="pcr-costume-prompt"></p></div></details>
           <div class="pcr-box pcr-shot-plan"><div class="pcr-box-head"><h4>12-shot production plan</h4><span>12 × 5 sec = 60 sec</span></div><p class="pcr-plan-help">Open a shot to use its storyboard, key pose and video prompt.</p><div class="pcr-shots" id="pcr-shots"></div></div>
           <div class="pcr-box pcr-locks"><h4>Continuity locks</h4><ul class="pcr-list"><li>Use only the approved Fridgie and Scraps* designs</li><li>No character voices; use action, music and sound</li><li>Keep ingredient count, condition and position consistent</li><li>Preserve kitchen geography, screen direction and lighting</li><li>Use one song sequence in SH007 and SH008</li><li>End with the FridgieSmalls.app Rescue Mission</li></ul></div>
         </div>
@@ -736,6 +749,13 @@ p{margin:0;color:var(--muted);font-size:15px;line-height:1.65}
     cheese:{title:'The Case of the Missing Cheese Moon',problem:'A little cheese wedge is drying out at the back of the fridge.',mission:'Rescue the cheese and make a melty moon-shaped snack.',dish:'a melty cheese moon snack',motion:'glows behind a storage container'}
   };
   const funWords = ['Bouncy','Wiggly','Twisty','Silly','Sparkly','Tiny'];
+  const costumeDirections = {
+    tomato:'a tomato-red rescue explorer vest with leaf-green piping, a small round tomato badge and a removable green neckerchief',
+    banana:'a warm yellow rescue scout vest with soft brown trim, a curved banana badge and a removable yellow neckerchief',
+    carrot:'an orange field-explorer vest with leafy green trim, a carrot compass badge and a removable green neckerchief',
+    broccoli:'a forest-green treehouse explorer vest with darker floret-shaped shoulder panels, a broccoli-tree badge and a removable green neckerchief',
+    cheese:'a golden-yellow moon explorer vest with cream trim, a crescent cheese badge and a removable midnight-blue neckerchief'
+  };
   const titleCase = value => value.toLocaleLowerCase().replace(/\b\p{L}/gu, character => character.toLocaleUpperCase());
   const makeProfile = food => profiles[food.toLocaleLowerCase()] || {title:'The ' + funWords[Array.from(food).length % funWords.length] + ' ' + food + ' Rescue',problem:'A lonely ' + food.toLocaleLowerCase() + ' is nearly forgotten at the back of the fridge.',mission:'Help Scraps* rescue the ' + food.toLocaleLowerCase() + ' and turn it into a playful snack.',dish:'a colorful ' + food.toLocaleLowerCase() + ' rescue snack',motion:'wiggles at the back of the fridge'};
   const replaceChildren = (element, children) => { if(element) element.replaceChildren(...children); };
@@ -774,6 +794,10 @@ p{margin:0;color:var(--muted);font-size:15px;line-height:1.65}
     return core+continuity+' Also attach the approved '+current+' keyshot and use it as the exact first frame, identity reference, composition reference and lighting reference. If the approved keyshot or any required reference is missing, stop and request it rather than generating.';
   };
   const continuityLocks = 'REFERENCE PRIORITY: approved character model sheets first, approved environment and ingredient sheets second, approved current-shot storyboard or keyshot third, written prompt last. Preserve exact character identity, proportions, facial structure, green eyes, fur markings, wardrobe, hat, jacket, satchel, striped tail, materials and colors. Preserve exact kitchen geometry, object placement, camera height, lens, lighting direction, shadows, screen direction, ingredient count, ingredient condition and scale. Match all visible details from the approved references. No character voices or lip sync. Do not add, remove, redesign or reinterpret characters, limbs, fingers, props, food, wardrobe, patterns, materials, text or background elements. No morphing, flicker, warping, duplicate objects, sliding feet, floating objects, anatomy changes, camera-axis changes, background drift, lighting shifts, texture crawl or continuity errors.';
+  const costumePrompt = (food,profile) => {
+    const lower=food.toLocaleLowerCase();const concept=costumeDirections[lower]||'a removable '+lower+'-inspired rescue explorer costume using the ingredient’s recognizable colors and shapes as restrained accents';
+    return 'SCRAPS* EPISODE COSTUME MODEL SHEET PROMPT\n\nEpisode: '+profile.title+'.\nHero ingredient: '+food+'.\nCostume concept: '+concept+'.\n\nREQUIRED REFERENCE IMAGES: (1) approved Scraps* front, three-quarter, side and back character model sheets; (2) approved close-up facial and paw references; (3) approved base explorer wardrobe reference showing the exact hat, jacket and satchel; (4) approved striped-tail reference; (5) approved '+lower+' reference showing the exact episode color and shape language. Use every approved reference as a binding production constraint, not loose inspiration. If any required reference is missing, stop and request it. Do not invent, approximate or substitute a generic raccoon.\n\nCreate one clean professional 16:9 animation costume model sheet for Scraps* showing the exact same episode costume in: full-body front view, front three-quarter view, exact side profile and full back view. Add one neutral construction pose, one clear episode action pose and a small expression row showing curious, determined and delighted. Keep all views at matching scale with consistent head height and a shared ground line.\n\nCOSTUME DESIGN: '+concept+'. The costume is a removable episode layer fitted over the approved Scraps* design. Preserve the approved hat, jacket and satchel unless the concept explicitly adds a removable accent over them. Keep the striped tail fully visible and unobstructed. Show exact seams, closures, pockets, trim widths, badge placement, material transitions and attachment points. Include a small flat color-and-material swatch strip outside the character views. Keep the silhouette simple, readable and practical for animation.\n\nSTRICT CHARACTER LOCK: Preserve Scraps*’ exact species, age, body proportions, head shape, muzzle, nose, ear size and placement, green-eye shape and placement, facial structure, paw anatomy, finger count, leg length, foot shape, fur pattern, fur colors, striped-tail length and markings, established posture and personality. The costume must fit the approved body. Never change the body to fit the costume.\n\nVIEW CONSISTENCY: Every turnaround view must depict the identical costume with the same colors, materials, seams, trim, closures, pocket dimensions, badge size and placement, accessory count and attachment points. Front, side, back, three-quarter, action and expression views must all remain the same character and same costume. Maintain accurate construction, alignment and scale between views.\n\nPRESENTATION: Use a clean neutral model-sheet background with restrained labels outside the character silhouettes. Keep all notes, arrows and callouts away from the face, paws, feet, costume edges and tail. No environment, dramatic camera angle, cinematic lighting or action scene. This is a production turnaround sheet, not concept art or a finished illustration.\n\nDO NOT: redesign Scraps*, replace him with a generic raccoon, alter anatomy, change facial features, move the eyes, change fur markings, shorten or recolor the tail, remove the hat, jacket or satchel, merge costume pieces into the body, create asymmetry that is not documented, add unapproved weapons or tools, duplicate accessories, create floating costume pieces, hide construction details, change colors between views or introduce any character, costume or proportion drift.';
+  };
   const promptText = (type,shot,index,food,profile) => {
     const id=shotId(index);
     const common='Episode: '+profile.title+'. Shot ID: '+id+'. Duration: 5 seconds. Story beat: '+shot.beat+'. Location: '+shot.location+'. Hero ingredient: '+food+'. Ingredient state: '+shot.food;
@@ -814,7 +838,7 @@ p{margin:0;color:var(--muted);font-size:15px;line-height:1.65}
     const status=byId('pcr-export-status');
     if(!currentEpisode){if(status)status.textContent='Build an episode before exporting.';return;}
     const {food,profile,synopsis}=currentEpisode;
-    let body=wordParagraph('FRIDGIE x SCRAPS*','title')+wordParagraph(profile.title,'heading')+wordParagraph('Ingredient: '+food+'  |  Runtime: 60 seconds  |  Shots: 12 × 5 seconds')+wordParagraph('Synopsis','subheading')+wordParagraph(synopsis)+wordParagraph('Food Problem','subheading')+wordParagraph(profile.problem)+wordParagraph('Rescue Mission','subheading')+wordParagraph(profile.mission)+wordParagraph('12-Shot Production Prompts','heading');
+    let body=wordParagraph('FRIDGIE x SCRAPS*','title')+wordParagraph(profile.title,'heading')+wordParagraph('Ingredient: '+food+'  |  Runtime: 60 seconds  |  Shots: 12 × 5 seconds')+wordParagraph('Synopsis','subheading')+wordParagraph(synopsis)+wordParagraph('Food Problem','subheading')+wordParagraph(profile.problem)+wordParagraph('Rescue Mission','subheading')+wordParagraph(profile.mission)+wordParagraph('Scraps* Episode Costume Model Sheet','heading')+wordParagraph(costumePrompt(food,profile))+wordParagraph('12-Shot Production Prompts','heading');
     shotBlueprints.forEach((shot,index)=>{const id=shotId(index);body+=wordParagraph(id+' · '+shot.name+' · 5 seconds','heading')+wordParagraph(shot.purpose)+wordParagraph('Storyboard Prompt','subheading')+wordParagraph(promptText('storyboard',shot,index,food,profile))+wordParagraph('Keyshot / Key Pose Prompt','subheading')+wordParagraph(promptText('keypose',shot,index,food,profile))+wordParagraph('Video Prompt','subheading')+wordParagraph(promptText('video',shot,index,food,profile));});
     body+=wordParagraph('Continuity Locks','heading')+wordParagraph('• Use only the approved Fridgie and Scraps* designs\n• No character voices; use action, music and sound\n• Keep ingredient count, condition and position consistent\n• Preserve kitchen geography, screen direction and lighting\n• Use one song sequence in SH007 and SH008\n• End with the FridgieSmalls.app Rescue Mission');
     const documentXml='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+body+'<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1080" w:right="1080" w:bottom="1080" w:left="1080"/></w:sectPr></w:body></w:document>';
@@ -833,6 +857,8 @@ p{margin:0;color:var(--muted);font-size:15px;line-height:1.65}
     Object.entries(values).forEach(([id,value]) => { const element=byId(id); if(element) element.textContent=value; });
     const beats=[['0–10 sec','Uh-oh! Discovery','Scraps* spots the '+lower+' '+profile.motion+'.'],['10–20 sec','The Food Problem',profile.problem],['20–30 sec','Rescue Adventure','Fridgie reveals a bright clue and Scraps* springs into action.'],['30–40 sec','Song & Movement','The kitchen becomes a playful '+lower+' rescue dance.'],['40–50 sec','Food Payoff','The rescue transforms the ingredient into '+profile.dish+'.'],['50–60 sec','Rescue Mission','Kids are invited to find one food at home and rescue it with a grown-up.']];
     replaceChildren(byId('pcr-beats'),beats.map(createBeat));
+    const costumeName=byId('pcr-costume-name');if(costumeName)costumeName.textContent=food+' episode costume';
+    const costumeOutput=byId('pcr-costume-prompt');if(costumeOutput)costumeOutput.textContent=costumePrompt(food,profile);
     replaceChildren(byId('pcr-shots'),shotBlueprints.map((shot,index)=>createShot(shot,index,food,profile)));
     currentEpisode={food,profile,synopsis};
     ingredient.value=food; safeStorage.set(food); result.classList.add('is-visible');
