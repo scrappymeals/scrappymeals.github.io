@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Damon Versaggi — Sports Graphic Designer | Motion Design, Social Creative &amp; Design Systems</title>
+<meta name="description" content="Damon Versaggi is a visually versatile sports graphic designer and motion designer creating social-first creative, design toolkits, brand systems, print assets, live graphics, and youth-facing experiences. Work spans ESPN, Amazon Sports, SNY, YES Network, ABC, Fridgie Smalls, and Scrappy Meals XR.">
+<meta name="keywords" content="Sports Graphic Designer, Motion Graphic Design, Social-First Creative, Youth Sports, Design Toolkits, Existing Design Systems, Asset Kits, TikTok Creative, Print Assets, One-Sheets, Leave-Behinds, Adobe Creative Suite, After Effects, Photoshop, Illustrator, InDesign, Figma, Canva, Sports Culture, Heritage Brand, Joyful Brand, Brand Design, Visual Storytelling, Real-Time 3D, Live Broadcast, Amazon Sports, ESPN, MLB, YES Network, SNY, ABC, New Year's Rockin' Eve">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Damon Versaggi",
+  "jobTitle": "Sports Graphic Designer and Motion Designer",
+  "url": "https://scrappymeals.com/damo",
+  "email": "mailto:damon@scrappymeals.com",
+  "telephone": "718.541.9062",
+  "sameAs": [
+    "https://www.linkedin.com/in/damonversaggi",
+    "https://fridgiesmalls.app",
+    "https://scrappymeals.com",
+    "https://metacheese.scrappymeals.com",
+    "https://opensea.io/collection/damonversaggi"
+  ],
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "School of Visual Arts"
+  },
+  "knowsAbout": ["Sports Graphic Design", "Motion Graphic Design", "Social-First Creative", "Youth Sports", "Sports Culture", "Design Toolkits", "Design Systems", "Asset Kits", "Adobe Creative Suite", "After Effects", "Photoshop", "Illustrator", "InDesign", "Figma", "Canva", "Real-Time 3D Graphics", "Live Broadcast Production", "Brand Design", "Visual Storytelling"],
+  "hasOccupation": [
+    {
+      "@type": "Occupation",
+      "name": "Founder, Brand and Product Design Lead",
+      "occupationLocation": { "@type": "City", "name": "Brooklyn, NY" },
+      "hiringOrganization": { "@type": "Organization", "name": "Scrappy Meals XR / Fridgie Smalls" },
+      "startDate": "2016"
+    },
+    {
+      "@type": "Occupation",
+      "name": "Senior Graphic Designer, Motion and Creative Systems Consultant",
+      "hiringOrganization": { "@type": "Organization", "name": "Independent / Girraphic" },
+      "startDate": "2015"
+    },
+    {
+      "@type": "Occupation",
+      "name": "Live Graphics Operations Lead",
+      "hiringOrganization": { "@type": "Organization", "name": "Dick Clark Productions — New Year's Rockin' Eve" },
+      "startDate": "2011"
+    },
+    {
+      "@type": "Occupation",
+      "name": "Real-Time 3D Graphics & Broadcast Product Lead",
+      "hiringOrganization": { "@type": "Organization", "name": "Vizrt / SportsNet New York / Tribune-PIX11" },
+      "startDate": "2004",
+      "endDate": "2015"
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --bg-2: #FFF7F7;
+    --bg-3: #F7E8E9;
+    --ink: #171717;
+    --ink-mid: #525252;
+    --ink-dim: #858585;
+    --signal: #D71920;
+    --signal-soft: #B50F18;
+    --signal-dim: rgba(215,25,32,0.08);
+    --signal-line: rgba(215,25,32,0.30);
+    --tally: #D71920;
+    --line: rgba(23,23,23,0.09);
+    --line-bright: rgba(23,23,23,0.18);
+    --radius: 3px;
+    --max: 1180px;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --serif: 'Fraunces', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--signal); color: #FFFFFF; }
+
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--signal);
+    transform: scaleX(0); transform-origin: left; z-index: 3000;
+    box-shadow: 0 0 24px rgba(215,25,32,0.32);
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 62px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    gap: 12px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex-shrink: 1; }
+  .nav-logo .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 10px rgba(215,25,32,0.48); flex-shrink: 0; animation: pulse-dot 2.6s ease-in-out infinite; }
+  @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+  .nav-logo span.role { color: var(--ink-dim); font-weight: 500; overflow: hidden; text-overflow: ellipsis; }
+
+  .nav-links { display: flex; gap: 26px; list-style: none; align-items: center; }
+  .nav-links a { font-size: 11.5px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-mid); transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+  .nav-cta { color: var(--signal) !important; border: 1px solid var(--signal-line) !important; padding: 7px 15px; border-radius: var(--radius); transition: background 0.2s, border-color 0.2s !important; }
+  .nav-cta:hover { background: var(--signal-dim); border-color: var(--signal) !important; }
+  .nav-toggle { display: none; background: none; border: none; color: var(--ink-mid); font-size: 20px; cursor: pointer; padding: 8px; flex-shrink: 0; }
+
+  /* ---------- HERO ---------- */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 150px 40px 60px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  #hero3d-wrap {
+    position: absolute; inset: 0;
+    z-index: 0;
+    -webkit-mask-image: radial-gradient(ellipse 65% 80% at 68% 42%, #000 40%, transparent 78%);
+    mask-image: radial-gradient(ellipse 65% 80% at 68% 42%, #000 40%, transparent 78%);
+    transition: opacity 0.4s ease;
+  }
+  #hero3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .hero3d-labels { position: absolute; inset: 0; pointer-events: none; }
+  .h3-label {
+    position: absolute; transform: translate(-50%, -50%);
+    font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--signal-soft);
+    background: rgba(255,255,255,0.62);
+    padding: 3px 8px; border: 1px solid var(--signal-line);
+    border-radius: 2px; white-space: nowrap;
+    opacity: 0; transition: opacity 0.6s ease;
+  }
+  .h3-label.visible { opacity: 1; }
+
+  #hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(100deg, var(--bg) 0%, rgba(255,255,255,0.96) 38%, rgba(255,255,255,0.62) 62%, transparent 85%);
+    z-index: 1; pointer-events: none;
+  }
+
+  .hero-inner { position: relative; z-index: 2; width: 100%; max-width: var(--max); margin: 0 auto; }
+  .hero-left { max-width: 660px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid);
+    margin-bottom: 26px;
+  }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--signal); }
+
+  h1 {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300; line-height: 1.08; letter-spacing: -0.03em;
+    color: var(--ink); margin-bottom: 22px;
+  }
+  h1 em, h2 em { font-family: var(--serif); font-style: italic; font-weight: 300; }
+  .hero-sub { font-size: 16px; line-height: 1.75; color: var(--ink-mid); margin-bottom: 36px; max-width: 560px; }
+  .hero-sub strong { color: var(--ink); font-weight: 500; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 11px 21px; border-radius: var(--radius);
+    font-size: 12.5px; font-weight: 500; letter-spacing: 0.04em;
+    transition: all 0.2s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--signal); color: #FFFFFF; }
+  .btn-primary:hover { background: var(--signal-soft); transform: translateY(-1px); box-shadow: 0 0 26px rgba(215,25,32,0.22); }
+  .btn-ghost { background: #FFFFFF; color: var(--ink-mid); border: 1px solid var(--line-bright); }
+  .btn-ghost:hover { color: var(--signal); border-color: var(--signal-line); background: var(--bg-2); transform: translateY(-1px); }
+
+  /* stat readout strip */
+  .stat-strip {
+    position: relative; z-index: 2;
+    width: 100%; max-width: var(--max); margin: 56px auto 0;
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+  }
+  .stat-cell { padding: 18px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,247,247,0.72); }
+  .stat-num { font-family: var(--mono); font-size: 19px; font-weight: 600; color: var(--signal-soft); letter-spacing: -0.01em; }
+  .stat-label { font-size: 10.5px; color: var(--ink-dim); letter-spacing: 0.05em; text-transform: uppercase; margin-top: 5px; line-height: 1.4; }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 100px 40px; border-top: 1px solid var(--line); position: relative; }
+  .section-inner { max-width: var(--max); margin: 0 auto; }
+  .section-eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal); margin-bottom: 16px; }
+  h2 { font-size: clamp(28px, 3.2vw, 44px); font-weight: 300; line-height: 1.14; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px; }
+  .section-lead { font-size: 16.5px; line-height: 1.7; color: var(--ink-mid); max-width: 720px; margin-bottom: 56px; }
+
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px; }
+  .fit-card {
+    padding: 30px 26px; background: var(--bg-2); border: 1px solid var(--line);
+    cursor: pointer; transition: background 0.25s, border-color 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .fit-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--signal); transform: scaleX(0); transition: transform 0.3s; transform-origin: left; }
+  .fit-card:hover, .fit-card.active { background: var(--bg-3); border-color: var(--signal-line); }
+  .fit-card:hover::after, .fit-card.active::after { transform: scaleX(1); }
+  .card-num { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 16px; }
+  .card-title { font-size: 15.5px; font-weight: 600; color: var(--ink); margin-bottom: 12px; line-height: 1.32; }
+  .card-body { font-size: 13.5px; line-height: 1.65; color: var(--ink-mid); max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s; opacity: 0; }
+  .fit-card.active .card-body, .fit-card:hover .card-body { max-height: 260px; opacity: 1; }
+  .card-arrow { margin-top: 16px; font-family: var(--mono); font-size: 11px; color: var(--signal); font-weight: 500; opacity: 0; transition: opacity 0.2s; }
+  .fit-card.active .card-arrow, .fit-card:hover .card-arrow { opacity: 1; }
+
+  #proof { background: var(--bg-2); }
+  .split-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: start; }
+  .proof-list { list-style: none; display: flex; flex-direction: column; }
+  .proof-list li { padding: 17px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; color: var(--ink-mid); display: flex; align-items: flex-start; gap: 14px; line-height: 1.55; }
+  .proof-list li::before { content: ''; flex-shrink: 0; margin-top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--signal); }
+  .pull-panel { padding: 34px; border: 1px solid var(--line-bright); border-left: 3px solid var(--signal); background: var(--bg); }
+  .pull-panel p { font-family: var(--serif); font-style: italic; font-size: 19px; font-weight: 300; line-height: 1.55; color: var(--ink); letter-spacing: -0.005em; margin-bottom: 20px; }
+  .pull-panel-meta { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim); }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .tag { padding: 6px 12px; font-size: 11.5px; font-weight: 500; border-radius: 2px; letter-spacing: 0.03em; background: var(--bg-3); color: var(--ink-mid); border: 1px solid var(--line); }
+  .tag.hot { background: var(--signal-dim); color: var(--signal-soft); border-color: var(--signal-line); }
+
+  .edge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 2px; margin-top: 48px; }
+  .edge-item { padding: 26px; border: 1px solid var(--line); background: var(--bg-2); opacity: 0; transform: translateY(14px); transition: opacity 0.5s, transform 0.5s, background 0.2s, border-color 0.2s; }
+  .edge-item.visible { opacity: 1; transform: translateY(0); }
+  .edge-item:hover { background: var(--bg-3); border-color: var(--line-bright); }
+  .edge-label { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--signal); margin-bottom: 10px; }
+  .edge-text { font-size: 14px; line-height: 1.65; color: var(--ink-mid); }
+  .edge-text strong { color: var(--ink); font-weight: 500; }
+
+  .timeline-track { position: relative; margin-top: 48px; }
+  .timeline-track::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--line-bright); }
+  .timeline-item { display: grid; grid-template-columns: 168px 1fr; gap: 36px; padding: 0 0 44px 0; position: relative; opacity: 0; transform: translateX(-10px); transition: opacity 0.5s, transform 0.5s; }
+  .timeline-item.visible { opacity: 1; transform: translateX(0); }
+  .timeline-item::before { content: ''; position: absolute; left: -4px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg-2); border: 2px solid var(--line-bright); transition: border-color 0.2s, background 0.2s; }
+  .timeline-item:hover::before { border-color: var(--signal); background: var(--signal-dim); }
+  .timeline-year { padding-left: 24px; font-family: var(--mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.06em; color: var(--ink-dim); padding-top: 3px; text-transform: uppercase; }
+  .timeline-content h3 { font-size: 15.5px; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.3; }
+  .timeline-content p { font-size: 13.5px; line-height: 1.65; color: var(--ink-mid); }
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .mini-tag { font-family: var(--mono); font-size: 10.5px; font-weight: 500; padding: 3px 9px; background: var(--bg-3); border: 1px solid var(--line); color: var(--ink-dim); border-radius: 2px; letter-spacing: 0.03em; }
+
+  .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2px; margin-top: 48px; }
+  .work-card { padding: 28px 26px; background: var(--bg-2); border: 1px solid var(--line); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; transition: background 0.22s, border-color 0.22s, transform 0.22s; opacity: 0; transform: translateY(14px); }
+  .work-card.visible { opacity: 1; transform: translateY(0); }
+  .work-card:hover { background: var(--bg-3); border-color: var(--line-bright); transform: translateY(-3px); }
+  .work-num { font-family: var(--mono); font-size: 10px; color: var(--ink-dim); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 14px; }
+  .work-title { font-size: 16.5px; color: var(--ink); font-weight: 600; margin-bottom: 10px; }
+  .work-copy { font-size: 13.5px; color: var(--ink-mid); line-height: 1.65; margin-bottom: 20px; }
+  .work-link { font-family: var(--mono); font-size: 11px; color: var(--signal); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .work-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .case-btn {
+    font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink-mid); background: transparent; border: 1px solid var(--line-bright);
+    border-radius: var(--radius); padding: 6px 12px; cursor: pointer; transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .case-btn:hover, .case-btn:focus-visible { color: var(--signal-soft); border-color: var(--signal-line); background: var(--signal-dim); }
+
+  /* ---------- CASE STUDY MODAL ---------- */
+  .case-overlay {
+    position: fixed; inset: 0; z-index: 4000;
+    background: rgba(6,7,10,0.72); backdrop-filter: blur(3px);
+    display: none; align-items: flex-start; justify-content: center;
+    padding: 90px 20px 40px; overflow-y: auto;
+  }
+  .case-overlay.show { display: flex; }
+  .case-panel {
+    width: 100%; max-width: 660px; background: var(--bg-2);
+    border: 1px solid var(--line-bright); border-top: 3px solid var(--signal);
+    border-radius: var(--radius); padding: 40px 40px 34px; position: relative;
+    max-height: calc(100vh - 130px); overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .case-close {
+    position: absolute; top: 18px; right: 18px; background: none; border: 1px solid var(--line-bright);
+    color: var(--ink-mid); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 15px;
+    line-height: 1; transition: color 0.2s, border-color 0.2s;
+  }
+  .case-close:hover { color: var(--ink); border-color: var(--signal-line); }
+  .case-eyebrow { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--signal); margin-bottom: 12px; }
+  .case-title { font-size: clamp(20px, 3vw, 26px); font-weight: 300; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 24px; line-height: 1.25; }
+  .case-block { margin-bottom: 20px; }
+  .case-label { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 6px; }
+  .case-text { font-size: 14.5px; line-height: 1.68; color: var(--ink-mid); }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+  @media (max-width: 620px) {
+    .case-overlay { padding: 70px 14px 30px; }
+    .case-panel { padding: 30px 22px 26px; }
+  }
+
+  #contact { background: var(--bg-2); text-align: center; padding: 116px 40px; }
+  #contact h2 { max-width: 740px; margin: 0 auto 16px; }
+  #contact .section-lead { max-width: 620px; margin: 0 auto 48px; font-size: 15.5px; }
+  #contact .btn-row { justify-content: center; }
+  .footer-meta { margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--ink-dim); letter-spacing: 0.05em; }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    #hero { padding: 118px 22px 48px; min-height: auto; }
+    #hero3d-wrap { -webkit-mask-image: radial-gradient(ellipse 100% 55% at 50% 30%, #000 40%, transparent 82%); mask-image: radial-gradient(ellipse 100% 55% at 50% 30%, #000 40%, transparent 82%); }
+    #hero::before { background: linear-gradient(180deg, rgba(255,255,255,0.62) 0%, var(--bg) 72%); }
+    section { padding: 66px 22px; }
+    .split-grid { grid-template-columns: 1fr; gap: 40px; }
+    .timeline-item { grid-template-columns: 104px 1fr; gap: 20px; }
+    #contact { padding: 78px 22px; }
+    .stat-strip { grid-template-columns: repeat(3, 1fr); }
+    .work-grid { grid-template-columns: repeat(2, 1fr); }
+    .case-overlay { padding: 80px 24px 30px; }
+    .case-panel { max-width: 560px; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo .role { display: none; }
+    nav { padding: 0 16px; }
+  }
+  @media (max-width: 620px) {
+    .btn-row { flex-direction: column; }
+    .btn { width: 100%; }
+    .timeline-item { grid-template-columns: 1fr; gap: 8px; padding-left: 24px; }
+    .timeline-year { padding-left: 0; }
+    .timeline-track::before { left: 0; }
+    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .h3-label { font-size: 9px; padding: 2px 6px; }
+    #hero { min-height: 92vh; }
+    .work-actions { flex-direction: column; align-items: stretch; }
+    .work-link { padding: 4px 0; }
+    .case-btn { width: 100%; padding: 12px 14px; text-align: center; }
+    .case-close { width: 38px; height: 38px; font-size: 16px; }
+  }
+
+  @media print {
+    nav, .scroll-progress, .nav-toggle, #hero3d-wrap, .hero3d-labels, .case-overlay, .case-btn, .work-actions .case-btn { display: none !important; }
+    body { background: #fff; color: #111; }
+    section, #hero, #proof, #contact { background: #fff; color: #111; padding: 34px 0; border-top: 1px solid #ddd; }
+    .section-inner, .hero-inner { max-width: none; }
+    h1, h2, .timeline-content h3, .work-title, .card-title { color: #111; }
+    .hero-sub, .section-lead, .edge-text, .timeline-content p, .work-copy, .proof-list li { color: #333; }
+    .stat-strip { display: none; }
+    .fit-card, .edge-item, .work-card, .pull-panel { break-inside: avoid; background: #fff; border-color: #ddd; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+
+  /* Standard-convention resume block for parsers/screen readers.
+     Visually hidden (not display:none) — mirrors on-page content in
+     literal Experience/Skills/Education headers and Title|Company|Dates
+     format, for machine parseability without altering the visual design. */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+</style>
+</head>
+<body>
+<div class="sr-only">
+  <h2>Summary</h2>
+  <p>Damon Versaggi is a visually versatile sports graphic designer and motion designer with 20+ years creating social-first creative, sports graphics, design toolkits, print assets, brand systems, live graphics, and youth-facing consumer experiences across Amazon Sports, ESPN, MLB, YES Network, SNY, ABC, Fridgie Smalls, and Scrappy Meals XR.</p>
+
+  <h2>Skills</h2>
+  <ul>
+    <li>Creative Solutions Architecture</li>
+    <li>Sports Graphic Design</li>
+    <li>Motion Graphic Design</li>
+    <li>Social-First Creative and TikTok</li>
+    <li>Youth Sports and Family Engagement</li>
+    <li>Design Toolkits and Asset Kits</li>
+    <li>Existing Design Systems</li>
+    <li>Print Assets, One-Sheets, and Leave-Behinds</li>
+    <li>Adobe Creative Suite, After Effects, Photoshop, Illustrator, InDesign, Figma, and Canva</li>
+    <li>Heritage and Joyful Brand Design</li>
+    <li>Creative Technology</li>
+    <li>AI Product Architecture</li>
+    <li>Real-Time Media Systems</li>
+    <li>Content Platforms</li>
+    <li>Creator &amp; Fan Engagement</li>
+    <li>Cross-Functional Product Execution</li>
+    <li>Real-Time 3D Systems</li>
+    <li>Live Broadcast Production</li>
+    <li>AI Workflow Automation</li>
+    <li>Product Strategy and Operations</li>
+    <li>StratOps</li>
+    <li>Subscriptions</li>
+    <li>Subscriber Forecasting</li>
+    <li>Sports Engagement</li>
+    <li>Media Engagement</li>
+    <li>Primetime Channels</li>
+    <li>Product Health</li>
+    <li>KPI Definition</li>
+    <li>SQL</li>
+    <li>Advanced Spreadsheets</li>
+    <li>Data Visualization</li>
+    <li>Goal Definition</li>
+    <li>Success Metric Design</li>
+    <li>Root Cause Analysis</li>
+    <li>Ideation &amp; Prioritization</li>
+    <li>Decisive Execution</li>
+    <li>Iterative Learning &amp; Adjustment</li>
+  </ul>
+
+  <h2>Experience</h2>
+
+  <h3>Founder &amp; Product Strategy Lead | Scrappy Meals XR / Fridgie Smalls | 2016–Present</h3>
+  <ul>
+    <li>Owned roadmap, subscription packaging, pricing logic, and growth modeling across Basic, Premium, and Business tiers.</li>
+    <li>Defined product-health metrics spanning activation, retention, and conversion for an OpenAI API-powered subscription product.</li>
+    <li>Scaled Fridgie Smalls and related Scrappy Meals experiences to nearly 20,000 unique visitors / users.</li>
+    <li>Case study: in a focused sprint, cut OpenAI input tokens 72% (860 to 240 per call), improved recipe-generation speed by roughly 2 seconds, and reached about 4,000 AI recipe generations per $1 by redesigning voice input, tightening prompt structure, and capping the Recipe Remix output mode.</li>
+  </ul>
+
+  <h3>Product Strategy Consultant | Independent / Girraphic — Sports Media Product Operations | 2015–Present</h3>
+  <ul>
+    <li>Led cross-functional sports and media technology programs for Amazon Prime Yankees baseball, ESPN, Marquee Sports Network / Cubs, YES Network, and NBC News.</li>
+    <li>Translated live data and audience behavior into product-ready systems and subscriber/engagement forecasting models.</li>
+  </ul>
+
+  <h3>Live Graphics Operations Lead | Dick Clark Productions — New Year's Rockin' Eve | 2011–Present</h3>
+  <ul>
+    <li>Lead annual live graphics operations: real-time countdown systems, sponsor-driven updates, and run-of-show execution for a national live broadcast audience.</li>
+    <li>Diagnosed and resolved a broadcast-critical hardware failure minutes before an NBA Finals tip-off, protecting an estimated $500K in advertising value under live pressure.</li>
+  </ul>
+
+  <h3>Real-Time 3D Graphics &amp; Broadcast Product Lead | Vizrt · SportsNet New York · Tribune / PIX11 | 2004–2015</h3>
+  <ul>
+    <li>Led real-time 3D graphics systems and broadcast product work for SNY / NY Mets, Tribune / PIX11 / WGN / KTLA, and enterprise clients including Fox, Bloomberg, CNN, Turner Sports, CBS, HBO, BBC, and TV2 Norway.</li>
+    <li>Trained close to 1,000 artists and operators across a distributed production organization.</li>
+    <li>Case study: diagnosed a week-long on-air graphics crash at SNY that internal and overseas support had failed to resolve, tracing the fault to a KVM machine between the server room and control room; the fix preserved the deployment and led SNY to create a dedicated role.</li>
+    <li>Case study: rebuilt a rejected countdown-to-midnight graphics package in approximately 45 minutes during first year on Dick Clark's New Year's Rockin' Eve, under direct executive observation, converting a junior role into a long-term recurring consultant relationship.</li>
+  </ul>
+
+  <h2>Education</h2>
+  <h3>BFA, Computer Art | School of Visual Arts | 1999–2003</h3>
+  <p>Senior thesis The Night Light won Best Production Design recognition and was submitted for Student Oscars consideration.</p>
+
+  <h2>Contact</h2>
+  <p>Damon Versaggi | damon@scrappymeals.com | 718.541.9062 | linkedin.com/in/damonversaggi</p>
+</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav>
+  <a href="#hero" class="nav-logo"><span class="dot"></span>Damon Versaggi <span class="role">— Sports Graphic Designer + Motion</span></a>
+  <ul class="nav-links">
+    <li><a href="#positioning">Role Fit</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#approach">Creative System</a></li>
+    <li><a href="#proof">Experience</a></li>
+    <li><a href="mailto:damon@scrappymeals.com" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+</nav>
+
+<section id="hero">
+  <div id="hero3d-wrap">
+    <canvas id="hero3d-canvas"></canvas>
+    <div class="hero3d-labels" id="hero3dLabels"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Built for Unrivaled Sports · Contract Graphic Designer</div>
+      <h1>Sports design that moves — <em>from the feed to the venue to the final frame</em>.</h1>
+      <p class="hero-sub">
+        I am a <strong>visually versatile, self-motivated, hands-on sports graphic designer and motion designer</strong> with 20+ years turning live moments, brand stories, scores, sponsors, characters, and community narratives into engaging creative. I understand the design language of sports culture from ESPN, Amazon Sports, SNY, YES Network, and national live events — and I know how to carry that rigor into youth sports, social-first content, print assets, design toolkits, and joyful family-facing brands.
+      </p>
+      <div class="btn-row">
+        <a href="mailto:damon@scrappymeals.com" class="btn btn-primary">Email Damon</a>
+        <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <div class="stat-strip">
+    <div class="stat-cell"><div class="stat-num">20+</div><div class="stat-label">Years in Sports, Motion &amp; Live Creative</div></div>
+    <div class="stat-cell"><div class="stat-num">ESPN</div><div class="stat-label">NBA, MLB &amp; Around the Horn</div></div>
+    <div class="stat-cell"><div class="stat-num">SNY</div><div class="stat-label">Mets Brand Systems, Templates &amp; Toolkits</div></div>
+    <div class="stat-cell"><div class="stat-num">1,000</div><div class="stat-label">Artists &amp; Operators Trained</div></div>
+    <div class="stat-cell"><div class="stat-num">~20K</div><div class="stat-label">Users — Family-Facing Brand</div></div>
+    <div class="stat-cell"><div class="stat-num">40 HR</div><div class="stat-label">Hands-On, Remote &amp; Ready to Execute</div></div>
+  </div>
+</section>
+
+<section id="positioning">
+  <div class="section-inner">
+    <div class="section-eyebrow">Why I Fit Unrivaled</div>
+    <h2>A sports designer who can <em>execute the asset and strengthen the system behind it</em>.</h2>
+    <p class="section-lead">Unrivaled needs daily creative velocity without brand drift. My background connects professional sports craft, social and motion execution, existing design systems, operator-ready templates, print collateral, and playful youth-facing brand work.</p>
+    <div class="cards-grid">
+      <div class="fit-card active" onclick="toggleCard(this)">
+        <div class="card-num">01</div>
+        <div class="card-title">Social-First Sports Creative</div>
+        <div class="card-body">Fast, engaging assets built for feeds, video, TikTok, score updates, quotes, athletes, families, sponsors, and always-on tournament storytelling.</div>
+        <div class="card-arrow">View detail →</div>
+      </div>
+      <div class="fit-card" onclick="toggleCard(this)">
+        <div class="card-num">02</div>
+        <div class="card-title">Motion That Feels Native to Sports</div>
+        <div class="card-body">After Effects, animation, real-time 3D, live data, broadcast timing, and simple high-impact motion built to stop the scroll without losing the brand.</div>
+        <div class="card-arrow">View detail →</div>
+      </div>
+      <div class="fit-card" onclick="toggleCard(this)">
+        <div class="card-num">03</div>
+        <div class="card-title">Design Toolkits That Scale</div>
+        <div class="card-body">Branded frames, score and quote templates, asset kits, Canva templatization, and operator-ready systems that let venue teams move quickly and stay consistent.</div>
+        <div class="card-arrow">View detail →</div>
+      </div>
+      <div class="fit-card" onclick="toggleCard(this)">
+        <div class="card-num">04</div>
+        <div class="card-title">Heritage Brand to Joyful Brand</div>
+        <div class="card-body">I can protect the authority of a legacy sports identity and pivot into playful, colorful, youth-facing character work without lowering the design standard.</div>
+        <div class="card-arrow">View detail →</div>
+      </div>
+      <div class="fit-card" onclick="toggleCard(this)">
+        <div class="card-num">05</div>
+        <div class="card-title">The Ultimate Collaborator</div>
+        <div class="card-body">Comfortable with creative directors, PR specialists, marketers, venue operators, producers, designers, executives, and technical teams — treating feedback as a creative tool, not friction.</div>
+        <div class="card-arrow">View detail →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="section-inner">
+    <div class="section-eyebrow">The Creative System</div>
+    <h2>Build the headline asset. <em>Then make the quality repeatable</em>.</h2>
+    <p class="section-lead">The best sports creative has to feel immediate, but the operation behind it cannot be improvised. I design the hero frame, motion behavior, template logic, handoff rules, and QA standard together.</p>
+    <div class="split-grid">
+      <div>
+        <ul class="proof-list">
+          <li>Translate a brief into social assets, motion elements, print collateral, one-sheets, leave-behinds, venue graphics, and production-ready files.</li>
+          <li>Utilize and expand existing design systems while creating new components for one-off campaigns and product launches.</li>
+          <li>Build design toolkits and Canva-ready asset kits so local teams can update scores, quotes, dates, and calls to action without brand drift.</li>
+          <li>Move comfortably between Adobe Creative Suite, After Effects, Figma, Canva, real-time 3D, live production, and final delivery.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag hot">Social-First Creative</span>
+          <span class="tag hot">Motion Design</span>
+          <span class="tag hot">Design Toolkits</span>
+          <span class="tag">Print Assets</span>
+          <span class="tag">Figma + Canva</span>
+          <span class="tag">Production QA</span>
+        </div>
+      </div>
+      <div class="pull-panel reveal">
+        <p>"A great tournament graphic should look premium in the feed, update cleanly at the venue, move naturally in video, and still feel unmistakably like the same brand."</p>
+        <div class="pull-panel-meta">Damon Versaggi · Sports Graphic Designer + Motion</div>
+      </div>
+    </div>
+    <div class="edge-grid">
+      <div class="edge-item"><div class="edge-label">Design for Both Audiences</div><div class="edge-text">Parents need trust and clarity. Young athletes need energy, identity, aspiration, and something worth sharing.</div></div>
+      <div class="edge-item"><div class="edge-label">Make Motion Earn Its Place</div><div class="edge-text">Animation should sharpen hierarchy, emotion, and momentum — not decorate a weak composition.</div></div>
+      <div class="edge-item"><div class="edge-label">Template the Repetition</div><div class="edge-text">If a score, quote, date, sponsor, or venue name changes repeatedly, I build a controlled system instead of recreating the asset.</div></div>
+      <div class="edge-item"><div class="edge-label">Design for Live Pressure</div><div class="edge-text">Broadcast trained me to anticipate what breaks, simplify the handoff, and protect quality when the deadline cannot move.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="section-inner">
+    <div class="section-eyebrow">Proof</div>
+    <h2>The range is the advantage.</h2>
+    <div class="split-grid">
+      <div>
+        <p class="section-lead" style="margin-bottom: 24px;">The proof spans professional sports, national live entertainment, motion design, reusable graphics systems, founder-led brand building, and youth-facing character experiences — the exact range needed across Unrivaled's portfolio.</p>
+        <ul class="proof-list">
+          <li>Built and launched audience-facing systems for Amazon Prime Yankees baseball, ESPN Around the Horn, MLB Digital K-Zone prototypes, SNY / NY Mets, YES Network, and Marquee Sports Network / Chicago Cubs.</li>
+          <li>Owned live graphics operations for Dick Clark's New Year's Rockin' Eve since 2011 — real-time countdown systems, sponsor-driven updates, and run-of-show execution watched by a national audience.</li>
+          <li>Built Fridgie Smalls and Scrappy Meals XR as joyful, character-led consumer brand worlds spanning visual identity, social concepts, motion, interactive product design, 3D, partner materials, and family-facing food education.</li>
+          <li>Diagnosed and resolved a broadcast-critical hardware failure minutes before an NBA Finals tip-off, protecting an estimated $500K in advertising value under live pressure.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag hot">Sports Graphic Design</span>
+          <span class="tag hot">Motion Systems</span>
+          <span class="tag hot">Design Toolkits</span>
+          <span class="tag">Live Broadcast</span>
+          <span class="tag">Social Creative</span>
+          <span class="tag">Youth-Facing Brands</span>
+          <span class="tag">Founder-Led</span>
+        </div>
+      </div>
+      <div class="pull-panel reveal">
+        <p>"I don't just make the first asset look good. I build the visual logic, motion behavior, template structure, and production discipline that keep the next hundred assets on brand."</p>
+        <div class="pull-panel-meta">Damon Versaggi · Sports Graphic Designer + Motion</div>
+      </div>
+    </div>
+
+    <div class="timeline-track">
+      <div class="timeline-item">
+        <div class="timeline-year">2016–Present</div>
+        <div class="timeline-content">
+          <h3>Scrappy Meals XR / Fridgie Smalls</h3>
+          <p>Founder, Brand &amp; Product Design Lead. Built visual identity, character systems, social concepts, interactive experiences, partner materials, reusable design frameworks, and youth-facing food-education storytelling.</p>
+          <div class="timeline-tags"><span class="mini-tag">Brand Systems</span><span class="mini-tag">Youth + Family</span><span class="mini-tag">Social Creative</span><span class="mini-tag">Interactive Design</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2015–Present</div>
+        <div class="timeline-content">
+          <h3>Independent — Sports Graphics, Motion &amp; Creative Systems</h3>
+          <p>Delivered sports graphics, AR/MR, motion, live-production systems, design implementation, and team enablement for Amazon Sports, ESPN, Marquee Sports Network / Cubs, YES Network, PIX11, and other media clients.</p>
+          <div class="timeline-tags"><span class="mini-tag">Amazon Prime Sports</span><span class="mini-tag">ESPN</span><span class="mini-tag">YES Network</span><span class="mini-tag">MLB Digital</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2011–Present</div>
+        <div class="timeline-content">
+          <h3>Dick Clark Productions — New Year's Rockin' Eve</h3>
+          <p>Lead annual live graphics operations: real-time countdown systems, sponsor-driven updates, operator coordination, and run-of-show execution for a national live broadcast event.</p>
+          <div class="timeline-tags"><span class="mini-tag">Live Broadcast</span><span class="mini-tag">Run-of-Show</span><span class="mini-tag">National Audience</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2004–2015</div>
+        <div class="timeline-content">
+          <h3>Vizrt · SNY · Tribune / PIX11</h3>
+          <p>Real-time 3D graphics systems and broadcast product leadership for SNY / NY Mets, Tribune / PIX11 / WGN / KTLA, and enterprise clients including Fox, Bloomberg, CNN, Turner Sports, CBS, HBO, BBC, and TV2 Norway. Trained close to 1,000 artists and operators.</p>
+          <div class="timeline-tags"><span class="mini-tag">Vizrt</span><span class="mini-tag">SNY / Mets</span><span class="mini-tag">Election Graphics</span><span class="mini-tag">Client Training</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1999–2003</div>
+        <div class="timeline-content">
+          <h3>School of Visual Arts — BFA, Computer Art</h3>
+          <p>Senior thesis The Night Light won Best Production Design recognition and was submitted for Student Oscars consideration — the production-design foundation underneath every system built since.</p>
+          <div class="timeline-tags"><span class="mini-tag">BFA Computer Art</span><span class="mini-tag">Best Production Design</span><span class="mini-tag">Student Oscars Submission</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="capabilities">
+  <div class="section-inner">
+    <div class="section-eyebrow">Capabilities</div>
+    <h2>The exact creative range <em>the role calls for</em>.</h2>
+    <p class="section-lead">From daily social production to reusable tournament systems, every capability below maps directly to the work Unrivaled needs shipped.</p>
+    <div class="tag-row" style="margin-top: -28px; margin-bottom: 48px;">
+      <span class="tag hot">Adobe Creative Suite</span>
+      <span class="tag hot">After Effects</span>
+      <span class="tag hot">Figma</span>
+      <span class="tag">Canva</span>
+      <span class="tag">Sports Culture</span>
+      <span class="tag">Youth + Family Audiences</span>
+    </div>
+    <div class="edge-grid">
+      <div class="edge-item"><div class="edge-label">Social-First Creative</div><div class="edge-text">Engaging feed assets, score graphics, quote cards, athlete moments, campaign systems, and TikTok-ready visual thinking.</div></div>
+      <div class="edge-item"><div class="edge-label">Motion Graphic Design</div><div class="edge-text">Simple high-impact motion, branded video elements, animation systems, live graphics, and real-time 3D built for attention and clarity.</div></div>
+      <div class="edge-item"><div class="edge-label">Design Toolkits</div><div class="edge-text">Asset kits, branded frames, editable templates, seasonal systems, and Canva templatization for venue and tournament operations.</div></div>
+      <div class="edge-item"><div class="edge-label">Print + High-Stakes Communications</div><div class="edge-text">One-sheets, leave-behinds, sponsor materials, presentations, event graphics, and production-ready files with disciplined polish.</div></div>
+      <div class="edge-item"><div class="edge-label">Existing Design Systems</div><div class="edge-text">Uses and expands established systems while building new components for one-off campaigns, launches, and portfolio brands.</div></div>
+      <div class="edge-item"><div class="edge-label">Sports Culture Fluency</div><div class="edge-text">Deep experience across ESPN, MLB, SNY, Amazon Sports, YES Network, live events, fans, sponsors, and control-room realities.</div></div>
+      <div class="edge-item"><div class="edge-label">Youth-Facing Brand Worlds</div><div class="edge-text">Fridgie Smalls and Scrappy Meals connect joyful character design, food education, interactive experiences, and family engagement.</div></div>
+      <div class="edge-item"><div class="edge-label">Cross-Functional Collaboration</div><div class="edge-text">Comfortable with creative directors, PR specialists, marketers, producers, venue operators, executives, vendors, and technical teams.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-inner">
+    <div class="section-eyebrow">Selected Work</div>
+    <h2>Role-relevant work. <em>No filler</em>.</h2>
+    <p class="section-lead">The work is framed for Unrivaled: youth-facing brand worlds, sports graphics and motion, scalable design systems, and the broader visual range required across a multi-brand portfolio.</p>
+    <div class="work-grid">
+      <div class="work-card">
+        <div><div class="work-num">01 · YOUTH-FACING BRAND</div><div class="work-title">Fridgie Smalls</div><div class="work-copy">A joyful character-led consumer experience built for food education, family engagement, social storytelling, mobile interaction, and sponsor-ready creative.</div></div>
+        <div class="work-actions">
+          <a class="work-link" href="https://fridgiesmalls.app" target="_blank" rel="noopener">Open App ↗</a>
+          <button class="case-btn" onclick="openCase('fridgie')" type="button">Case Study →</button>
+        </div>
+      </div>
+      <a class="work-card" href="https://scrappymeals.com" target="_blank" rel="noopener">
+        <div><div class="work-num">02 · BRAND WORLD</div><div class="work-title">Scrappy Meals</div><div class="work-copy">The playful food, sustainability, education, character, event, and immersive storytelling ecosystem behind Fridgie Smalls and The Metacheese.</div></div>
+        <div class="work-link">Open Site ↗</div>
+      </a>
+      <a class="work-card" href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener">
+        <div><div class="work-num">03 · IMMERSIVE EDUCATION</div><div class="work-title">Metacheese</div><div class="work-copy">An interactive culinary education world showing how a visual system can stretch across 3D, learning, characters, events, and emerging platforms.</div></div>
+        <div class="work-link">Open Metacheese ↗</div>
+      </a>
+      <div class="work-card">
+        <div><div class="work-num">04 · SPORTS DESIGN SYSTEM</div><div class="work-title">SNY / NY Mets</div><div class="work-copy">Live sports graphics, motion behavior, sponsor packages, information design, branded templates, and operator-ready systems for the regional home of the Mets.</div></div>
+        <div class="work-actions">
+          <a class="work-link" href="https://www.youtube.com/watch?v=nL_4DAY7ABU&" target="_blank" rel="noopener">Watch Sample ↗</a>
+          <button class="case-btn" onclick="openCase('sny')" type="button">Case Study →</button>
+        </div>
+      </div>
+      <div class="work-card">
+        <div><div class="work-num">05 · MOTION UNDER PRESSURE</div><div class="work-title">New Year's Rockin' Eve</div><div class="work-copy">High-impact motion graphics, sponsor-driven visual updates, and countdown systems delivered annually since 2011 under national live-broadcast pressure.</div></div>
+        <div class="work-actions">
+          <a class="work-link" href="https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13" target="_blank" rel="noopener">Watch Live ↗</a>
+          <button class="case-btn" onclick="openCase('nye')" type="button">Case Study →</button>
+        </div>
+      </div>
+      <a class="work-card" href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener">
+        <div><div class="work-num">06 · VISUAL RANGE</div><div class="work-title">Digital Assets</div><div class="work-copy">Selected character, 3D, motion, brand, and visual-systems work demonstrating versatility across heritage, experimental, and joyful creative styles.</div></div>
+        <div class="work-link">Open Digital Assets ↗</div>
+      </a>
+      <a class="work-card" href="https://opensea.io/item/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/109208400969062635290625311071503353448562745337013885995367713339183061794817" target="_blank" rel="noopener">
+        <div><div class="work-num">07 · PRODUCTION DESIGN</div><div class="work-title">The Night Light</div><div class="work-copy">SVA senior thesis animation, Best Production Design recognition and Student Oscars submission — the cinematic craft foundation underneath the systems work.</div></div>
+        <div class="work-link">Open The Night Light ↗</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-eyebrow">Contact</div>
+    <h2>Sports Graphic Designer + Motion · Damon Versaggi</h2>
+    <p class="section-lead">Available for the 40-hour remote contract: social-first creative, design toolkits, motion graphics, print assets, design-system implementation, and hands-on support across Unrivaled's portfolio brands.</p>
+    <div class="btn-row">
+      <a href="mailto:damon@scrappymeals.com" class="btn btn-primary">Email Damon</a>
+      <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+    </div>
+    <div class="footer-meta">DAMON VERSAGGI · DAMON@SCRAPPYMEALS.COM · LINKEDIN.COM/IN/DAMONVERSAGGI · 718.541.9062</div>
+  </div>
+</section>
+
+<div class="case-overlay" id="caseOverlay" role="dialog" aria-modal="true" aria-labelledby="caseTitle" onclick="if(event.target===this) closeCase()">
+  <div class="case-panel">
+    <button class="case-close" onclick="closeCase()" aria-label="Close case study">✕</button>
+    <div class="case-eyebrow" id="caseEyebrow">Case Study</div>
+    <h3 class="case-title" id="caseTitle"></h3>
+    <div class="case-block"><div class="case-label">Situation</div><div class="case-text" id="caseSituation"></div></div>
+    <div class="case-block"><div class="case-label">Task</div><div class="case-text" id="caseTask"></div></div>
+    <div class="case-block"><div class="case-label">Action</div><div class="case-text" id="caseAction"></div></div>
+    <div class="case-block"><div class="case-label">Result</div><div class="case-text" id="caseResult"></div></div>
+    <div class="case-tags" id="caseTags"></div>
+  </div>
+</div>
+
+<script type="module">
+  /* ---------------- UI: progress bar, reveals, nav, mobile menu ---------------- */
+  const progress = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${height > 0 ? scrollTop / height : 0})`;
+  }, { passive: true });
+
+  window.toggleCard = function(card) {
+    const isActive = card.classList.contains('active');
+    document.querySelectorAll('.fit-card').forEach(c => c.classList.remove('active'));
+    if (!isActive) card.classList.add('active');
+  };
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.16 });
+  document.querySelectorAll('.reveal, .edge-item, .timeline-item, .work-card').forEach(el => revealObserver.observe(el));
+
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(section => navObserver.observe(section));
+
+  /* ---------------- CASE STUDIES ---------------- */
+  const CASE_STUDIES = {
+    fridgie: {
+      eyebrow: 'Fridgie Smalls · AI Product Architecture',
+      title: 'Shipping speed and quality under a hard cost ceiling',
+      situation: 'The AI recipe experience already worked, but input was static text entry and GPT-4o-mini prompts ran heavier than they needed to — around 860 tokens per call — which capped both response speed and how far the product could scale on cost.',
+      task: 'In a focused sprint, redesign the core generation flow to be faster, cheaper, and more engaging without losing recipe quality or shipping something that felt like a downgrade.',
+      action: 'Redesigned the core input as a voice-first animated pill, tightened the GPT-4o-mini prompt structure, capped the viral "Recipe Remix" mode at 450 tokens / 5 ingredients / 4 steps, and rebuilt the recipe modal for mobile and tablet.',
+      result: 'Cut input tokens 72% (860 → 240 per call), shaved roughly 2 seconds off generation time, and pushed the cost structure to about 4,000 recipe generations per $1 — turning a feature that worked into one that could actually scale.',
+      tags: ['AI Product Architecture', 'Prompt Optimization', 'Cost & Latency Tradeoffs', 'Mobile UX']
+    },
+    sny: {
+      eyebrow: 'SportsNet New York · Real-Time Systems',
+      title: 'Diagnosing what a week of prior support missed',
+      situation: "SNY's on-air graphics machines were crashing for about a week during live sports production. Sponsored segments were being lost, internal and overseas support hadn't found the cause, and SNY was close to sending the deployed systems back entirely.",
+      task: "As the Vizrt-side technical resource on the account, find the actual root cause before the client relationship — and the broader Comcast station opportunity — took real damage.",
+      action: "Instead of assuming the fault lived inside the graphics software, traced the full signal path from the server room to the control room and isolated a faulty KVM machine as the real point of failure.",
+      result: "The crashes stopped, the deployment stayed in place, and the client relationship was preserved. SNY created a dedicated role specifically off the strength of that fix, leading to four years running real-time graphics operations there.",
+      tags: ['Root Cause Diagnosis', 'Systems Thinking', 'Client Trust Recovery', 'Live Production Reliability']
+    },
+    nye: {
+      eyebrow: "New Year's Rockin' Eve · Live Broadcast",
+      title: '45 minutes to rebuild what got rejected, on air, with the executive watching',
+      situation: "Late on December 30 of Damon's first year on the show as a junior graphics operator, the final executive approver rejected the countdown-to-midnight graphics package outright — with the crew believing there wasn't enough time or staff left to rebuild it properly before air.",
+      task: 'Deliver a new, executive-approved countdown-to-midnight package fast enough to still hit air-ready deadlines, with the executive watching the rebuild happen in real time.',
+      action: 'Volunteered to rebuild the graphic from scratch, using real-time graphics fluency to move through iteration quickly under direct observation instead of escalating or waiting for more staff.',
+      result: 'Delivered a production-ready replacement in about 45 minutes. The moment reset how the team saw Damon\'s reliability and turned a first-year junior role into a long-term, recurring consultant relationship on the franchise that continues today.',
+      tags: ['Decisive Execution Under Pressure', 'Real-Time Graphics', 'Executive Communication', 'Live-Show Reliability']
+    }
+  };
+
+  let lastFocused = null;
+  window.openCase = function(id) {
+    const c = CASE_STUDIES[id];
+    if (!c) return;
+    document.getElementById('caseEyebrow').textContent = c.eyebrow;
+    document.getElementById('caseTitle').textContent = c.title;
+    document.getElementById('caseSituation').textContent = c.situation;
+    document.getElementById('caseTask').textContent = c.task;
+    document.getElementById('caseAction').textContent = c.action;
+    document.getElementById('caseResult').textContent = c.result;
+    const tagsEl = document.getElementById('caseTags');
+    tagsEl.innerHTML = '';
+    c.tags.forEach(t => {
+      const span = document.createElement('span');
+      span.className = 'tag hot';
+      span.textContent = t;
+      tagsEl.appendChild(span);
+    });
+    lastFocused = document.activeElement;
+    const overlay = document.getElementById('caseOverlay');
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    overlay.querySelector('.case-close').focus();
+  };
+  window.closeCase = function() {
+    document.getElementById('caseOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  };
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeCase();
+  });
+
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.querySelector('.nav-links');
+  let mobileNavOpen = false;
+  navToggle.addEventListener('click', () => {
+    mobileNavOpen = !mobileNavOpen;
+    if (mobileNavOpen) {
+      Object.assign(navList.style, { display: 'flex', flexDirection: 'column', position: 'fixed', top: '62px', left: '0', right: '0', background: 'rgba(255,255,255,0.98)', padding: '22px 22px 30px', gap: '18px', borderBottom: '1px solid var(--line)' });
+    } else {
+      navList.style.display = 'none';
+    }
+  });
+  navList.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 980) { navList.style.display = 'none'; mobileNavOpen = false; }
+    });
+  });
+
+  /* ---------------- 3D HERO SIGNATURE: "The Signal" ---------------- */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const NODES = [
+    { label: 'SOCIAL',    phi: 0.9,  theta: 0.4  },
+    { label: 'MOTION',    phi: 1.9,  theta: 1.15 },
+    { label: 'TOOLKITS',  phi: 2.7,  theta: 2.05 },
+    { label: 'PRINT',     phi: 3.6,  theta: 0.75 },
+    { label: 'SPORTS',    phi: 4.6,  theta: 1.65 },
+    { label: 'YOUTH',     phi: 5.5,  theta: 2.35 }
+  ];
+
+  async function initHero3D() {
+    let THREE;
+    try {
+      THREE = await import('three');
+    } catch (e) {
+      return; // CDN unavailable — hero text still stands on its own.
+    }
+
+    const wrap = document.getElementById('hero3d-wrap');
+    const canvas = document.getElementById('hero3d-canvas');
+    const labelLayer = document.getElementById('hero3dLabels');
+    if (!wrap || !canvas) return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 100);
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    } catch (e) {
+      return;
+    }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+    const signalColor = 0xD71920;
+    const signalSoft = 0xFFFFFF;
+    const dimColor = 0xD9AEB0;
+
+    const group = new THREE.Group();
+    scene.add(group);
+
+    // Central wireframe core
+    const coreGeo = new THREE.IcosahedronGeometry(1.55, 1);
+    const coreMat = new THREE.MeshBasicMaterial({ color: signalColor, wireframe: true, transparent: true, opacity: 0.45 });
+    const core = new THREE.Mesh(coreGeo, coreMat);
+    group.add(core);
+
+    const innerGeo = new THREE.IcosahedronGeometry(0.9, 0);
+    const innerMat = new THREE.MeshBasicMaterial({ color: 0xF7E8E9, transparent: true, opacity: 0.72 });
+    group.add(new THREE.Mesh(innerGeo, innerMat));
+
+    // Orbit nodes + connecting lines + traveling packets
+    const orbitRadius = 3.35;
+    const nodeObjs = [];
+    const packetObjs = [];
+
+    NODES.forEach((n, i) => {
+      const pos = new THREE.Vector3().setFromSphericalCoords(orbitRadius, n.theta, n.phi);
+
+      const nodeGeo = new THREE.SphereGeometry(0.075, 16, 16);
+      const nodeMat = new THREE.MeshBasicMaterial({ color: signalColor });
+      const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
+      nodeMesh.position.copy(pos);
+      group.add(nodeMesh);
+      nodeObjs.push({ mesh: nodeMesh, data: n });
+
+      const lineGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), pos]);
+      const lineMat = new THREE.LineBasicMaterial({ color: dimColor, transparent: true, opacity: 0.45 });
+      group.add(new THREE.Line(lineGeo, lineMat));
+
+      const packetGeo = new THREE.SphereGeometry(0.04, 8, 8);
+      const packetMat = new THREE.MeshBasicMaterial({ color: signalSoft, transparent: true, opacity: 0.9 });
+      const packet = new THREE.Mesh(packetGeo, packetMat);
+      group.add(packet);
+      packetObjs.push({ mesh: packet, target: pos, t: Math.random(), speed: 0.18 + Math.random() * 0.12 });
+    });
+
+    // Ambient scatter points for depth
+    const scatterCount = window.innerWidth < 620 ? 60 : 130;
+    const scatterGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(scatterCount * 3);
+    for (let i = 0; i < scatterCount; i++) {
+      const r = 4.2 + Math.random() * 3.5;
+      const v = new THREE.Vector3().setFromSphericalCoords(r, Math.random() * Math.PI, Math.random() * Math.PI * 2);
+      positions[i * 3] = v.x; positions[i * 3 + 1] = v.y; positions[i * 3 + 2] = v.z;
+    }
+    scatterGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const scatterMat = new THREE.PointsMaterial({ color: 0x4A5240, size: 0.028, transparent: true, opacity: 0.55 });
+    scene.add(new THREE.Points(scatterGeo, scatterMat));
+
+    // Label DOM elements
+    const labelEls = nodeObjs.map(n => {
+      const el = document.createElement('div');
+      el.className = 'h3-label';
+      el.textContent = n.data.label;
+      labelLayer.appendChild(el);
+      return el;
+    });
+
+    // Sizing
+    function getSize() {
+      const rect = wrap.getBoundingClientRect();
+      return { w: Math.max(rect.width, 1), h: Math.max(rect.height, 1) };
+    }
+    function resize() {
+      const { w, h } = getSize();
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      const narrow = w < 720;
+      camera.position.z = narrow ? 11.5 : 8.6;
+      camera.position.x = narrow ? 0 : 1.4;
+      camera.position.y = narrow ? 1.2 : 0.3;
+      camera.lookAt(0, 0, 0);
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(wrap);
+
+    // Mouse parallax
+    let mouseX = 0, mouseY = 0, targetRotX = 0, targetRotY = 0;
+    window.addEventListener('pointermove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    }, { passive: true });
+
+    // Pause rendering when hero is offscreen
+    let isVisible = true;
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { isVisible = entry.isIntersecting; });
+    }, { threshold: 0.02 });
+    heroObserver.observe(document.getElementById('hero'));
+
+    // Fade the 3D backdrop slightly as user scrolls past hero
+    window.addEventListener('scroll', () => {
+      const heroH = document.getElementById('hero').offsetHeight;
+      const p = Math.min(Math.max(window.scrollY / heroH, 0), 1);
+      wrap.style.opacity = String(1 - p * 0.85);
+    }, { passive: true });
+
+    const projected = new THREE.Vector3();
+    const clock = new THREE.Clock();
+
+    function frame() {
+      requestAnimationFrame(frame);
+      if (!isVisible) return;
+      const dt = Math.min(clock.getDelta(), 0.05);
+
+      if (!reduceMotion) {
+        group.rotation.y += dt * 0.10;
+        group.rotation.x = Math.sin(clock.elapsedTime * 0.15) * 0.08;
+        core.rotation.y -= dt * 0.14;
+        core.rotation.x += dt * 0.05;
+
+        targetRotY += (mouseX * 0.35 - targetRotY) * 0.04;
+        targetRotX += (mouseY * 0.2 - targetRotX) * 0.04;
+        group.rotation.y += targetRotY * dt * 0.4;
+        group.rotation.x += targetRotX * dt * 0.4;
+
+        packetObjs.forEach(p => {
+          p.t += dt * p.speed;
+          if (p.t > 1) p.t -= 1;
+          p.mesh.position.lerpVectors(new THREE.Vector3(0, 0, 0), p.target, p.t);
+        });
+      }
+
+      renderer.render(scene, camera);
+
+      // Update label screen positions
+      const { w, h } = getSize();
+      nodeObjs.forEach((n, i) => {
+        n.mesh.getWorldPosition(projected);
+        const clip = projected.clone().project(camera);
+        const visible = clip.z < 1;
+        const x = (clip.x * 0.5 + 0.5) * w;
+        const y = (-clip.y * 0.5 + 0.5) * h;
+        const el = labelEls[i];
+        el.style.left = x + 'px';
+        el.style.top = y + 'px';
+        el.classList.toggle('visible', visible && clip.z > -1);
+      });
+    }
+    frame();
+  }
+
+  initHero3D();
+</script>
+</body>
+</html>
