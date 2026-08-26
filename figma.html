@@ -1,448 +1,649 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Damon Versaggi | Figma</title>
-  <meta name="description" content="Damon Versaggi interactive candidate packet for Figma: product design craft, design principles and heuristics, AI model evaluation quality, design systems, Figma workflows, cross-functional collaboration, and design-to-code fluency." />
-  <meta name="keywords" content="Damon Versaggi, Figma, Product Design, Design Systems, Design Principles, Design Heuristics, AI Models, AI-Generated Outputs, Evaluation Quality, Craft and Taste, Figma, FigJam, Dev Mode, AI workflows, design collaboration, cross-functional collaboration, interaction design, visual design" />
-  <meta name="author" content="Damon Versaggi" />
-  <script>document.documentElement.classList.add('js');</script>
-  <style>
-    :root{
-      --figma-black:#050505;
-      --figma-ink:#111217;
-      --figma-purple:#7b61ff;
-      --figma-blue:#0acf83;
-      --figma-red:#ff7262;
-      --figma-orange:#f24e1e;
-      --figma-soft:#f7f5ff;
-      --paper:#ffffff;
-      --mist:#f5f6f8;
-      --line:#e3e5ea;
-      --muted:#6a7280;
-      --shadow:0 28px 90px rgba(10,12,20,.12);
-      --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-      --serif:Georgia,"Times New Roman",serif;
-      --max:1180px;
-    }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Damon Versaggi — Product Designer, AI Models</title>
+<meta content="Damon Versaggi — candidate portfolio for Product Designer, AI Models: design heuristics, AI model evaluation, generative design systems, and product craft." name="description"/>
+<meta content="Damon Versaggi, Figma, Product Design, Design Systems, Design Principles, Design Heuristics, AI Models, AI-Generated Outputs, Evaluation Quality, Craft and Taste, Figma, FigJam, Dev Mode, AI workflows, design collaboration, cross-functional collaboration, interaction design, visual design" name="keywords"/>
+<meta content="Damon Versaggi" name="author"/>
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+  --ink:#000;
+  --figma-red:#f24e1e;
+  --figma-coral:#ff7262;
+  --figma-purple:#a259ff;
+  --figma-blue:#1abcfe;
+  --figma-green:#0acf83;
+  --text:#1f1f1f;
+  --muted:#707070;
+  --line:#dddddd;
+  --soft:#f7f7f7;
+  --max:1500px;
+  --content:1160px;
+  --radius:10px;
+  --sans:Inter,Arial,Helvetica,sans-serif;
+}
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:var(--sans);
-      color:var(--figma-ink);
-      background:
-        radial-gradient(circle at 10% 8%, rgba(242,78,30,.16), transparent 30%),
-        radial-gradient(circle at 86% 12%, rgba(123,97,255,.16), transparent 30%),
-        radial-gradient(circle at 80% 82%, rgba(10,207,131,.12), transparent 32%),
-        linear-gradient(135deg,#fff 0%,#f7f8fb 48%,#fff 100%);
-      line-height:1.55;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-      overflow-x:hidden;
-    }
-    a{color:inherit;text-decoration-color:var(--figma-purple);text-underline-offset:3px}
-    button,a{-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:#fff;
+  color:var(--text);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.ats-block{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,var(--figma-red) 0 20%,var(--figma-coral) 20% 40%,var(--figma-purple) 40% 60%,var(--figma-blue) 60% 80%,var(--figma-green) 80% 100%);transform:scaleX(0);transform-origin:left;z-index:3000}
 
-    .ats-block{
-      position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);
-      white-space:nowrap;font-size:10px;color:transparent;
-    }
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,.98);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  max-width:var(--max);
+  margin:0 auto;
+  min-height:74px;
+  display:flex;
+  align-items:center;
+  gap:34px;
+  padding:0 42px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:15px;
+  font-weight:600;
+  white-space:nowrap;
+}
+.figma-mark{
+  width:18px;
+  height:27px;
+  display:grid;
+  grid-template-columns:9px 9px;
+  grid-template-rows:9px 9px 9px;
+  flex:0 0 auto;
+}
+.figma-mark span{display:block}
+.figma-mark span:nth-child(1){background:var(--figma-red);border-radius:5px 0 0 5px}
+.figma-mark span:nth-child(2){background:var(--figma-coral);border-radius:0 5px 5px 0}
+.figma-mark span:nth-child(3){background:var(--figma-purple);border-radius:5px 0 0 5px}
+.figma-mark span:nth-child(4){background:var(--figma-blue);border-radius:50%}
+.figma-mark span:nth-child(5){background:var(--figma-green);border-radius:5px 0 5px 5px}
+.figma-mark span:nth-child(6){background:transparent}
+.nav{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  flex:1;
+  font-size:14px;
+}
+.nav a{
+  position:relative;
+  padding:27px 0 23px;
+  white-space:nowrap;
+}
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:-1px;
+  height:2px;
+  background:#000;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .15s ease;
+}
+.nav a:hover::after,.nav a.active::after{transform:scaleX(1)}
+.role-pill{
+  margin-left:auto;
+  border:1px solid rgba(162,89,255,.28);
+  border-radius:9px;
+  padding:11px 16px;
+  font-size:13px;
+  background:rgba(162,89,255,.06);
+  color:#5b2ebd;
+  white-space:nowrap;
+}
+.menu{
+  display:none;
+  margin-left:auto;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:9px;
+  padding:10px 14px;
+  cursor:pointer;
+}
 
-    .progress{
-      position:fixed;inset:0 auto auto 0;width:100%;height:4px;
-      background:linear-gradient(90deg,var(--figma-orange),var(--figma-purple),var(--figma-blue));
-      transform:scaleX(0);transform-origin:left center;z-index:500;pointer-events:none;
-      box-shadow:0 0 18px rgba(123,97,255,.24);
-    }
+main{width:100%}
+section{background:#fff;border-bottom:1px solid var(--line)}
 
-    .site-header{
-      position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);
-      backdrop-filter:blur(16px);border-bottom:1px solid rgba(17,18,23,.08);
-    }
-    .header-inner{
-      max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:260px 1fr 286px;
-      gap:18px;align-items:center;padding:15px 22px;
-    }
-    .brand{
-      display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--figma-black);
-      font-weight:950;letter-spacing:.075em;text-transform:uppercase;font-size:11px;white-space:nowrap;
-    }
-    .brand-mark{
-      width:34px;height:34px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 1fr;
-      gap:2px;flex:0 0 auto;
-    }
-    .brand-mark span{border-radius:50% 50% 50% 50%}
-    .brand-mark span:nth-child(1){background:var(--figma-orange);border-radius:12px 0 0 12px}
-    .brand-mark span:nth-child(2){background:var(--figma-red);border-radius:0 12px 12px 0}
-    .brand-mark span:nth-child(3){background:var(--figma-purple);border-radius:12px 0 0 12px}
-    .brand-mark span:nth-child(4){background:var(--figma-blue);border-radius:50%}
-    .brand-mark span:nth-child(5){background:#1abcfe;border-radius:12px 0 12px 12px}
-    .brand-mark span:nth-child(6){background:transparent}
-    .nav{
-      display:flex;justify-content:center;gap:18px;align-items:center;
-      font-size:10px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);white-space:nowrap;
-    }
-    .nav a{text-decoration:none;border-bottom:2px solid transparent;padding:6px 0;transition:.16s ease}
-    .nav a:hover,.nav a.active{color:var(--figma-black);border-bottom-color:var(--figma-purple)}
-    .role-pill{
-      justify-self:end;border:1px solid var(--line);border-radius:999px;padding:9px 14px;
-      font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--figma-black);
-      background:#fff;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.04);
-    }
-    .menu{
-      display:none;appearance:none;border:1px solid var(--line);background:#fff;border-radius:999px;
-      padding:9px 13px;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--figma-black);
-    }
+#hero{
+  max-width:var(--content);
+  margin:0 auto;
+  padding:112px 34px 104px;
+  min-height:auto;
+}
+.hero-copy{width:100%;max-width:980px}
+#hero .label{
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:20px;
+  color:var(--figma-purple);
+}
+h1{
+  font-size:clamp(64px,7vw,104px);
+  line-height:.96;
+  letter-spacing:-.055em;
+  font-weight:500;
+  color:#000;
+  max-width:980px;
+}
+h1 span{font-family:inherit;font-weight:500}
+.role{
+  margin-top:32px;
+  max-width:820px;
+  font-size:clamp(22px,2vw,30px);
+  line-height:1.42;
+  color:#202020;
+  font-weight:400;
+}
+.contact{
+  margin-top:18px;
+  color:var(--muted);
+  font-size:13px;
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:34px;
+}
+.btn{
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #000;
+  border-radius:9px;
+  padding:0 20px;
+  background:#fff;
+  color:#000;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:background .12s ease,color .12s ease,transform .12s ease;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:#000;color:#fff}
+.btn.signal{
+  border-color:var(--figma-blue);
+  color:#057aa3;
+}
+.btn.signal:hover{
+  border-color:var(--figma-blue);
+  background:rgba(26,188,254,.08);
+}
 
-    main{
-      max-width:var(--max);margin:28px auto 80px;background:rgba(255,255,255,.82);
-      box-shadow:var(--shadow);border:1px solid rgba(17,18,23,.08);overflow:hidden;
-    }
-    section{position:relative;padding:74px 72px;border-bottom:1px solid rgba(17,18,23,.08);background:#fff}
-    section:last-child{border-bottom:none}
-    .soft{background:linear-gradient(135deg,#ffffff,#f7f5ff)}
-    .dark{
-      background:var(--figma-black);color:#f7f8fb;
-      background-image:
-        linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
-      background-size:34px 34px;
-    }
-    .label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:950;color:var(--muted);margin-bottom:16px}
-    .dark .label{color:#b9a7ff}
-    h1{
-      font-size:clamp(42px,6.2vw,82px);line-height:.94;letter-spacing:-.055em;
-      color:var(--figma-black);max-width:1040px;font-weight:950;
-    }
-    h1 span{font-family:var(--serif);font-weight:400;letter-spacing:-.075em}
-    .dark h1,.dark h2,.dark h3{color:#fff}
-    .role{
-      margin-top:22px;max-width:910px;font-size:clamp(15px,1.7vw,21px);
-      line-height:1.45;color:#333b46;font-weight:650;
-    }
-    .dark .role,.dark p,.dark li{color:#d8dde6}
-    .contact{margin-top:15px;color:var(--muted);font-size:13px;overflow-wrap:anywhere}
-    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:22px;margin-top:34px;align-items:stretch}
-    .statement{
-      border-left:5px solid var(--figma-black);background:var(--figma-soft);
-      padding:20px 22px;font-size:16px;line-height:1.62;
-    }
-    .statement strong,.fit-box strong{color:var(--figma-black)}
-    .fit-box{
-      border:1px solid var(--line);background:#fff;padding:20px 22px;
-      box-shadow:0 10px 30px rgba(10,12,18,.06);font-size:14px;color:#4b5563;
-    }
-    .actions{display:flex;gap:9px;flex-wrap:nowrap;margin-top:25px;width:100%}
-    .btn{
-      appearance:none;border:1px solid var(--figma-black);background:#fff;color:var(--figma-black);
-      min-height:46px;padding:12px 14px;display:inline-flex;align-items:center;justify-content:center;
-      text-decoration:none;font-size:10px;font-weight:950;letter-spacing:.09em;text-transform:uppercase;
-      cursor:pointer;transition:.18s ease;flex:1 1 0;white-space:nowrap;
-    }
-    .btn:hover,.btn:focus-visible{
-      transform:translateY(-2px);outline:none;box-shadow:0 12px 28px rgba(7,8,10,.12);
-      background:var(--figma-black);color:#fff;
-    }
-    .btn.primary{background:var(--figma-black);color:#fff}
-    .btn.primary:hover{background:#25262e;border-color:#25262e}
-    .btn.signal{border-color:var(--figma-purple);color:#4b35c7}
-    .btn.signal:hover{background:var(--figma-purple);color:#fff;border-color:var(--figma-purple)}
+.section-wrap{
+  max-width:var(--content);
+  margin:0 auto;
+  padding:94px 34px;
+}
+.section-head{
+  display:grid;
+  grid-template-columns:170px 1fr;
+  gap:38px;
+  align-items:start;
+  margin-bottom:42px;
+}
+.label{
+  font-size:13px;
+  font-weight:600;
+  color:var(--figma-purple);
+}
+h2{
+  font-size:clamp(44px,5vw,68px);
+  line-height:1.03;
+  letter-spacing:-.05em;
+  font-weight:500;
+  color:#000;
+  max-width:880px;
+}
+h2 span{font-family:inherit;font-weight:500}
+.section-copy{
+  margin-top:18px;
+  font-size:19px;
+  line-height:1.5;
+  max-width:820px;
+  color:#333;
+}
 
-    h2{
-      font-size:clamp(30px,4vw,52px);font-weight:900;letter-spacing:-.045em;
-      line-height:1.04;color:var(--figma-black);max-width:880px;
-    }
-    h2 span{font-family:var(--serif);font-weight:400;letter-spacing:-.06em}
-    .section-head{display:grid;grid-template-columns:230px 1fr;gap:40px;align-items:start;margin-bottom:34px}
-    .section-copy{font-size:16px;color:#515b67;max-width:800px;margin-top:14px}
-    .dark .section-copy{color:#cfd4dc}
-    p{font-size:14px;margin-bottom:12px;color:#4d5663}
-    ul{padding-left:18px;margin:10px 0 0}
-    li{font-size:14px;line-height:1.6;margin-bottom:8px;color:#4d5663}
+.soft{background:#fafafa}
+.dark{background:#fff;color:var(--text)}
+.dark .label,.dark h2,.dark h3{color:#000}
+.dark .section-copy,.dark p,.dark li{color:#444}
 
-    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-    .card{
-      border:1px solid var(--line);background:#fff;padding:22px;min-height:230px;
-      position:relative;overflow:hidden;transition:.18s ease;
-    }
-    .card:before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--figma-orange),var(--figma-purple),var(--figma-blue))}
-    .card:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(8,10,14,.10);border-color:#cfd2d8}
-    .card-num{font-size:11px;font-weight:950;letter-spacing:.14em;color:#684ee8;margin-bottom:26px}
-    .card h3,.panel h3,.proof h3,.phase h3,.stat h3{
-      font-size:13px;font-weight:950;letter-spacing:.08em;text-transform:uppercase;color:var(--figma-black);margin-bottom:10px;
-    }
-    .card p,.proof p{font-size:13px;color:#5f6874;margin:0}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+.card,.panel,.phase,.proof,.stat,.tab-panel{
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+}
+.card{
+  padding:26px;
+  min-height:210px;
+}
+.card-num{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:38px;
+}
+.card h3,.panel h3,.proof h3,.phase h3,.stat h3{
+  font-size:19px;
+  color:#000;
+  margin-bottom:10px;
+  font-weight:600;
+}
+.card p,.proof p,p,li{
+  font-size:15px;
+  color:#444;
+}
+.card:hover,.proof:hover,.phase:hover,.panel:hover,.stat:hover{
+  border-color:#bdbdbd;
+}
 
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
-    .stat{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);padding:20px;min-height:150px;transition:.18s ease}
-    .stat:hover{transform:translateY(-3px);background:rgba(255,255,255,.1);border-color:rgba(123,97,255,.55)}
-    .num{font-size:35px;font-weight:950;line-height:1;color:#fff;margin-bottom:10px}
-    .stat h3{color:#fff}.stat p{color:#cfd5df;font-size:12px;margin:0}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:28px;
+}
+.stat{
+  padding:22px;
+  min-height:145px;
+}
+.num{
+  font-size:42px;
+  line-height:1;
+  color:#000;
+  font-weight:600;
+  margin-bottom:14px;
+}
+.stat p{font-size:13px}
 
-    .tabs{margin-top:24px}
-    .tab-buttons{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:15px}
-    .tab-btn{
-      appearance:none;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);
-      color:#eef1f5;padding:11px 14px;font-size:10px;font-weight:950;letter-spacing:.08em;
-      text-transform:uppercase;cursor:pointer;transition:.16s ease;
-    }
-    .tab-btn.active,.tab-btn:hover{background:#fff;color:#111;border-color:#fff}
-    .tab-panel{display:none;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);padding:22px}
-    .tab-panel.active{display:block}
-    .tab-panel h3{color:#fff;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-    .tab-panel p{color:#d8dde6;max-width:880px;margin:0}
+.tabs{margin-top:24px}
+.tab-buttons{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.tab-btn{
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#fff;
+  color:#000;
+  padding:10px 14px;
+  cursor:pointer;
+}
+.tab-btn.active,.tab-btn:hover{
+  background:#000;
+  color:#fff;
+  border-color:#000;
+}
+.tab-panel{
+  display:none;
+  padding:24px;
+}
+.tab-panel.active{display:block}
 
-    .split{display:grid;grid-template-columns:.92fr 1.08fr;gap:22px;align-items:start}
-    .panel{border:1px solid var(--line);background:#fff;padding:25px;box-shadow:0 12px 30px rgba(8,10,14,.05)}
-    .panel.dark-panel{background:var(--figma-black);color:#fff;border-color:var(--figma-black)}
-    .panel.dark-panel p,.panel.dark-panel li{color:#dce1e9}.panel.dark-panel h3{color:#fff}
-    .timeline{display:grid;gap:12px}
-    .step{
-      border:1px solid var(--line);background:#fff;padding:16px 17px;display:grid;
-      grid-template-columns:62px 1fr;gap:12px;align-items:start;transition:.18s ease;
-    }
-    .step:hover{border-color:#c9ccd3;transform:translateX(3px)}
-    .step-num{font-size:11px;font-weight:950;letter-spacing:.12em;color:#684ee8}
-    .step p{font-size:13px;color:#5b6570;margin:0}
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.panel{padding:26px}
+.panel.dark-panel{
+  background:#fff;
+  border-color:var(--line);
+}
+.panel.dark-panel h3{color:#000}
+.panel.dark-panel p,.panel.dark-panel li{color:#444}
+.timeline{display:grid;gap:10px}
+.step{
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:16px;
+  display:grid;
+  grid-template-columns:48px 1fr;
+  gap:12px;
+}
+.step-num{font-size:12px;color:var(--muted)}
 
-    .plan{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .phase{border:1px solid var(--line);background:#fff;padding:24px;min-height:410px;transition:.18s ease}
-    .phase:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(8,10,14,.10);border-color:#cfd2d8}
-    .badge{display:inline-flex;background:var(--figma-black);color:#fff;font-size:10px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;padding:7px 10px;margin-bottom:15px}
-    .phase h3{font-size:19px;letter-spacing:.03em}.phase li{font-size:13px}
+.plan{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.phase{
+  padding:24px;
+  min-height:370px;
+}
+.badge{
+  display:inline-flex;
+  background:#000;
+  color:#fff;
+  border-radius:7px;
+  padding:7px 10px;
+  font-size:11px;
+  margin-bottom:18px;
+}
+.phase li{margin-bottom:10px}
 
-    .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .proof{
-      display:block;text-decoration:none;color:inherit;border:1px solid var(--line);
-      background:#fff;padding:23px;min-height:210px;position:relative;transition:.18s ease;overflow:hidden;
-    }
-    .proof:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:3px;background:linear-gradient(90deg,var(--figma-orange),var(--figma-purple),var(--figma-blue));transform:scaleX(0);transform-origin:left;transition:.18s ease}
-    .proof:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(8,10,14,.10)}
-    .proof:hover:after{transform:scaleX(1)}
-    .tag{font-size:10px;font-weight:950;letter-spacing:.11em;text-transform:uppercase;color:#684ee8;margin-bottom:14px}
-    .arrow{display:inline-block;margin-top:12px;font-size:12px;font-weight:950;color:#111}
+.proof-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.proof{
+  padding:24px;
+  min-height:205px;
+  transition:border-color .15s ease,transform .15s ease;
+}
+.proof:hover{transform:translateY(-2px)}
+.tag{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:32px;
+}
+.arrow{
+  display:inline-block;
+  margin-top:16px;
+  font-weight:600;
+}
 
-    .letter{max-width:900px}
-    .letter p{font-family:var(--serif);font-size:18px;line-height:1.68;color:#28303a;margin-bottom:18px}
-    .sig{margin-top:24px;line-height:1.7;font-size:14px;color:#111}
-    .foot{
-      border-top:1px solid var(--line);background:#f5f6f8;padding:28px 72px;
-      display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:#626b76;font-size:12px;
-    }
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
-    .reveal.visible{opacity:1;transform:translateY(0)}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-    .a1{animation:fadeUp .56s ease forwards}.a2{animation:fadeUp .56s .08s ease forwards;opacity:0}.a3{animation:fadeUp .56s .16s ease forwards;opacity:0}.a4{animation:fadeUp .56s .24s ease forwards;opacity:0}
+.letter{max-width:900px}
+.letter p{
+  font-size:19px;
+  line-height:1.65;
+  color:#222;
+  margin-bottom:18px;
+}
+.sig{margin-top:26px}
 
-    @media print{
-      body{background:#fff}.site-header,.progress,.actions{display:none!important}
-      main{box-shadow:none;border:none;margin:0;max-width:100%}
-      section{padding:38px 50px;break-inside:avoid}
-      .reveal{opacity:1!important;transform:none!important}.foot{padding:24px 50px}
-    }
-    @media(max-width:1080px){
-      main{margin-top:0;margin-bottom:0;border-left:none;border-right:none}
-      .header-inner{grid-template-columns:1fr auto;padding:14px 18px}
-      .nav,.role-pill{display:none}.menu{display:inline-flex}
-      .hero-grid,.section-head,.split{grid-template-columns:1fr}
-      section{padding:52px 26px}
-      .cards,.stats,.proof-grid{grid-template-columns:repeat(2,1fr)}
-      .plan{grid-template-columns:1fr}
-      .actions{display:grid;grid-template-columns:repeat(2,1fr)}
-      .btn{white-space:normal}.foot{padding:24px 26px}
-    }
-    @media(max-width:620px){
-      section{padding:42px 17px}
-      h1{font-size:clamp(38px,13vw,54px)}
-      .role{font-size:15px}
-      .cards,.stats,.proof-grid{grid-template-columns:1fr}
-      .actions{grid-template-columns:1fr}
-      .statement,.fit-box,.panel,.phase,.proof,.card{padding:20px 17px}
-      .step{grid-template-columns:1fr}
-      .letter p{font-size:16px}
-      .brand{font-size:10px;white-space:normal}
-      .foot{display:block}.foot div+div{margin-top:8px}
-    }
-    @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-  </style>
+.foot{
+  border-top:1px solid var(--line);
+  padding:26px 34px;
+  max-width:var(--content);
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .4s ease,transform .4s ease;
+}
+.reveal.visible{opacity:1;transform:none}
+.a1,.a2,.a3,.a4{animation:fade .4s ease both}
+.a2{animation-delay:.05s}.a3{animation-delay:.1s}.a4{animation-delay:.15s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+@media(max-width:1050px){
+  .header-inner{padding:0 22px}
+  .nav,.role-pill{display:none}
+  .menu{display:inline-flex}
+  #hero{padding:80px 22px 74px}
+  .section-wrap{padding:72px 22px}
+  .section-head,.split{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .plan,.proof-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .brand{font-size:14px}
+  h1{font-size:54px}
+  .role{font-size:20px}
+  .cards,.stats{grid-template-columns:1fr}
+  .section-head{gap:16px}
+  h2{font-size:44px}
+  .section-copy{font-size:18px}
+  .actions{flex-direction:column}
+  .btn{width:100%}
+  .foot{display:block}
+  .foot div+div{margin-top:8px}
+}
+@media print{
+  .site-header,.progress,.actions{display:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+.card,.proof,.phase,.stat{position:relative;overflow:hidden}
+.card::before,.proof::before,.phase::before,.stat::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:var(--figma-purple);
+}
+.card:nth-child(2n)::before{background:var(--figma-blue)}
+.card:nth-child(3n)::before{background:var(--figma-green)}
+.card:nth-child(4n)::before{background:var(--figma-red)}
+.proof:nth-child(2n)::before{background:var(--figma-blue)}
+.proof:nth-child(3n)::before{background:var(--figma-green)}
+.proof:nth-child(4n)::before{background:var(--figma-coral)}
+.proof:nth-child(5n)::before{background:var(--figma-purple)}
+.phase:nth-child(1)::before{background:var(--figma-purple)}
+.phase:nth-child(2)::before{background:var(--figma-blue)}
+.phase:nth-child(3)::before{background:var(--figma-green)}
+.stat:nth-child(1)::before{background:var(--figma-red)}
+.stat:nth-child(2)::before{background:var(--figma-purple)}
+.stat:nth-child(3)::before{background:var(--figma-blue)}
+.stat:nth-child(4)::before{background:var(--figma-green)}
+
+.card-num{color:var(--figma-purple)}
+.card:nth-child(2n) .card-num{color:#087fa8}
+.card:nth-child(3n) .card-num{color:#078c5b}
+.card:nth-child(4n) .card-num{color:var(--figma-red)}
+
+.num{color:#000}
+.stat:nth-child(1) .num{color:var(--figma-red)}
+.stat:nth-child(2) .num{color:var(--figma-purple)}
+.stat:nth-child(3) .num{color:#087fa8}
+.stat:nth-child(4) .num{color:#078c5b}
+
+.tag{color:var(--figma-purple)}
+.proof:nth-child(2n) .tag{color:#087fa8}
+.proof:nth-child(3n) .tag{color:#078c5b}
+
+.step-num{color:var(--figma-purple)}
+.step:nth-child(2n) .step-num{color:#087fa8}
+.step:nth-child(3n) .step-num{color:#078c5b}
+.step:nth-child(4n) .step-num{color:var(--figma-red)}
+
+a:hover{color:#000}
+.contact a,.sig a,.foot a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.contact a:hover,.sig a:hover,.foot a:hover{color:var(--figma-purple)}
+</style>
 </head>
 <body>
-<div class="ats-block" aria-hidden="true">
+<div aria-hidden="true" class="ats-block">
 Damon Versaggi Figma Product Designer design principles design heuristics evaluation quality AI models AI-generated outputs AI/ML concepts model performance craft and taste attention to detail visual design interaction design information architecture typography layout hierarchy accessibility responsive product interfaces design systems reusable components Figma FigJam Dev Mode prototyping design-to-code React TypeScript OpenAI API workflows structured outputs output validation cross-functional collaboration suite of products multiple product lines external partners process improvement workflow documentation ambiguity to clear goals operational mindset.
 </div>
 <div class="progress" id="progress"></div>
-
-<header class="site-header" aria-label="Packet navigation">
-  <div class="header-inner">
-    <a class="brand" href="#hero">
-      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></span>
-      <span>Damon Versaggi · Figma</span>
-    </a>
-    <nav class="nav" id="nav">
-      <a href="#hero">Overview</a>
-      <a href="#fit">Fit</a>
-      <a href="#engine">Craft + AI</a>
-      <a href="#experience">Experience</a>
-      <a href="#plan">90 Days</a>
-      <a href="#proof">Proof</a>
-      <a href="#pitch">Pitch</a>
-    </nav>
-    <div class="role-pill">Figma Packet</div>
-    <button class="menu" onclick="document.getElementById('fit').scrollIntoView({behavior:'smooth'})">Menu</button>
-  </div>
+<header aria-label="Packet navigation" class="site-header">
+<div class="header-inner">
+<a aria-label="Damon Versaggi candidate portfolio" class="brand" href="#hero"><span aria-hidden="true" class="figma-mark"><span></span><span></span><span></span><span></span><span></span><span></span></span><span>Damon Versaggi</span></a>
+<nav class="nav" id="nav">
+<a href="#fit">Role fit</a>
+<a href="#engine">AI + Craft</a>
+<a href="#experience">Experience</a>
+<a href="#plan">90 days</a>
+<a href="#proof">Proof</a>
+<a href="#pitch">Pitch</a>
+</nav>
+<div class="role-pill">Product Designer, AI Models</div>
+<button class="menu" onclick="document.getElementById('fit').scrollIntoView({behavior:'smooth'})" type="button">Menu</button>
+</div>
 </header>
-
 <main>
-  <section id="hero">
-    <div class="label a1">Figma</div>
-    <h1 class="a1"><span>Design craft</span><br>that teaches AI good taste.</h1>
-    <p class="role a2">A product designer and design technologist positioned to help Figma turn visual craft into documented design principles, testable evaluation criteria, and more reliable, better-designed product experiences.</p>
-    <p class="contact a3">New York / New Jersey Area · <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> · <a href="https://linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a> · <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a> · <a href="https://fridgiesmalls.app" target="_blank" rel="noopener">fridgiesmalls.app</a></p>
-    <div class="hero-grid a4">
-      <div class="statement"><strong>Target fit:</strong> a product designer who can connect design principles, AI systems, engineering, and cross-functional partners through clear craft and clear thinking. The value is not just knowing Figma. It is showing what becomes possible when design heuristics, AI-generated outputs, design systems, and cross-functional collaboration move together.</div>
-      <div class="fit-box"><strong>Immediate value:</strong> design principles and heuristics, evaluation quality for AI-generated outputs, high-fidelity UI and prototyping, design systems thinking, design-to-code fluency, and an operational mindset for turning ambiguity into clear, shippable direction. Yes, the job is basically “make good taste teachable,” because apparently that is still a rare human sport.</div>
-    </div>
-    <div class="actions a4">
-      <button class="btn primary" id="emailBtn" onclick="copyEmail()">Email Damon</button>
-      <a class="btn" href="damon_versaggi_figma_ATS_resume.pdf" target="_blank" rel="noopener">Resume PDF</a>
-      <a class="btn" href="https://scrappymeals.com/damo" target="_blank" rel="noopener">Portfolio</a>
-      <a class="btn" href="https://fridgiesmalls.app" target="_blank" rel="noopener">AI Product</a>
-      <a class="btn signal" href="#plan">90-Day Plan</a>
-    </div>
-  </section>
-
-  <section id="fit" class="soft reveal">
-    <div class="section-head">
-      <div class="label">Role Fit</div>
-      <div>
-        <h2>Built around Figma’s <span>design + AI mandate.</span></h2>
-        <p class="section-copy">This is targeted to the actual ask: strong design craft and taste, documented design principles and heuristics, hands-on experience evaluating and improving AI-generated outputs, comfort across a suite of products, and the ability to bridge design and technical teams.</p>
-      </div>
-    </div>
-    <div class="cards">
-      <article class="card"><div class="card-num">01</div><h3>Design Craft</h3><p>Built career credibility translating visual craft into documented design principles, heuristics, interaction standards, and implementation-ready direction.</p></article>
-      <article class="card"><div class="card-num">02</div><h3>AI Evaluation Quality</h3><p>Hands-on experience building evaluation methods, structured outputs, output validation, and retry/fallback behavior for AI-generated product experiences.</p></article>
-      <article class="card"><div class="card-num">03</div><h3>Systems + Operations</h3><p>Can help standardize design documentation, evaluation criteria, cross-functional handoffs, and process across multiple product lines.</p></article>
-      <article class="card"><div class="card-num">04</div><h3>Design + AI Fluency</h3><p>Hands-on background across Figma, design systems, prototyping, AI/ML workflows, design-to-code, and cross-functional collaboration.</p></article>
-    </div>
-  </section>
-
-  <section id="engine" class="dark reveal">
-    <div class="section-head">
-      <div class="label">SC Engine</div>
-      <div>
-        <h2>One operating model from <span>craft to evaluation.</span></h2>
-        <p class="section-copy">A practical system for design work at Figma: sharpen design principles, raise AI output quality, standardize evaluation criteria, bridge design and technical teams, and turn ambiguity into shippable direction.</p>
-      </div>
-    </div>
-    <div class="stats">
-      <div class="stat"><div class="num" data-count="20">0</div><h3>Years</h3><p>Product design, design systems, and creative technology experience.</p></div>
-      <div class="stat"><div class="num" data-count="72">0</div><h3>% Token Reduction</h3><p>Improved AI model performance and product economics on a shipped OpenAI-powered product.</p></div>
-      <div class="stat"><div class="num" data-count="1000">0</div><h3>Users Trained</h3><p>Experience training and supporting artists, operators, and creative production teams.</p></div>
-      <div class="stat"><div class="num" data-count="90">0</div><h3>Day Plan</h3><p>Learn, contribute, and lead within Figma’s design and AI craft.</p></div>
-    </div>
-    <div class="tabs">
-      <div class="tab-buttons" role="tablist">
-        <button class="tab-btn active" data-tab="discovery">Design Principles</button>
-        <button class="tab-btn" data-tab="demo">Evaluation Quality</button>
-        <button class="tab-btn" data-tab="poc">Design Systems</button>
-        <button class="tab-btn" data-tab="sales">Cross-Functional</button>
-        <button class="tab-btn" data-tab="product">AI Fluency</button>
-      </div>
-      <div class="tab-panel active" id="discovery"><h3>Design Principles + Heuristics</h3><p>Document reusable design principles and heuristics that translate craft and taste into standards other designers and AI systems can actually use — for input modes, output variability, responsive behavior, and brand moments that don’t compromise performance.</p></div>
-      <div class="tab-panel" id="demo"><h3>AI Output Evaluation</h3><p>Build thorough methods to test and enhance the quality of AI-generated outputs: structured response requirements, output validation, anti-repeat behavior, retry and fallback states, and clear success criteria.</p></div>
-      <div class="tab-panel" id="poc"><h3>Design Systems + Prototyping</h3><p>Prototype in Figma and build reusable components, interaction patterns, and content schemas that scale across a suite of products and multiple product lines.</p></div>
-      <div class="tab-panel" id="sales"><h3>Cross-Functional Bridge</h3><p>Translate technical constraints into usable design and design concepts into implementation-ready direction across product, engineering, and external partners.</p></div>
-      <div class="tab-panel" id="product"><h3>AI/ML Fluency</h3><p>Comfort navigating ambiguity in AI/ML product work — using AI models for design tasks, understanding model behavior, and shaping open-ended challenges into clear, testable goals.</p></div>
-    </div>
-  </section>
-
-  <section id="experience" class="reveal">
-    <div class="section-head">
-      <div class="label">Experience</div>
-      <div>
-        <h2>Product design craft with <span>AI/ML gravity.</span></h2>
-        <p class="section-copy">Damon’s most relevant bridge is the blend of design craft, design systems fluency, AI evaluation experience, cross-functional translation, and founder-level product ownership built across Fridgie Smalls, broadcast/live production client work, and real-time 3D product development.</p>
-      </div>
-    </div>
-    <div class="split">
-      <div class="panel dark-panel">
-        <h3>Operating Advantage</h3>
-        <p>Good AI-assisted design succeeds when craft and evaluation discipline occupy the same room. Damon’s background is built around exactly that: documenting design principles, testing and validating AI-generated outputs, and turning ambiguous, cross-functional needs into usable systems.</p>
-        <ul>
-          <li>Built and launched Fridgie Smalls, an OpenAI-powered consumer product combining structured outputs, output validation, and responsive product interfaces.</li>
-          <li>Reduced OpenAI input tokens 72% while improving recipe generation speed and output reliability — direct hands-on experience improving model performance from a design perspective.</li>
-          <li>Delivered production-critical design and visual systems for clients including ESPN, Amazon Sports, YES Network, and Lockheed Martin, bridging designers, engineers, and executives across complex projects.</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <h3>Execution Range</h3>
-        <div class="timeline">
-          <div class="step"><div class="step-num">01</div><p><strong>Design principles + heuristics:</strong> documented standards for input modes, output variability, responsive behavior, and brand consistency.</p></div>
-          <div class="step"><div class="step-num">02</div><p><strong>Design systems fluency:</strong> Figma prototyping, reusable components, high-fidelity UI, content schemas, and design-to-code collaboration.</p></div>
-          <div class="step"><div class="step-num">03</div><p><strong>AI evaluation quality:</strong> structured outputs, output validation, anti-repeat behavior, retry/fallback states, and testable success criteria.</p></div>
-          <div class="step"><div class="step-num">04</div><p><strong>Cross-functional bridge:</strong> translating technical constraints into usable design and design concepts into implementation-ready direction.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="plan" class="soft reveal">
-    <div class="section-head">
-      <div class="label">First 90 Days</div>
-      <div>
-        <h2>Learn the systems. <span>Document the craft.</span> Raise the bar.</h2>
-        <p class="section-copy">A role-appropriate plan for stepping into a design role at Figma: understand the product suite and design systems, contribute craft and evaluation discipline, and help raise design quality across products.</p>
-      </div>
-    </div>
-    <div class="plan">
-      <article class="phase"><span class="badge">Days 1-30</span><h3>Map + Listen</h3><ul><li>Meet design, product, and engineering partners across the products and teams this role touches.</li><li>Audit existing design principles, heuristics, design systems, and evaluation criteria already in place.</li><li>Review current AI-generated output quality, known failure modes, and existing evaluation methods.</li><li>Identify the biggest gaps in documentation, consistency, and craft standards.</li></ul></article>
-      <article class="phase"><span class="badge">Days 31-60</span><h3>Document + Contribute</h3><ul><li>Draft and socialize documented design principles and heuristics for priority product areas.</li><li>Build or refine evaluation methods for AI-generated outputs: structured criteria, output validation, and test cases.</li><li>Partner with engineering and AI/ML teams to translate design intent into technical requirements.</li><li>Ship first design contributions across the products in scope.</li></ul></article>
-      <article class="phase"><span class="badge">Days 61-90</span><h3>Raise the Bar</h3><ul><li>Establish repeatable evaluation quality standards for AI-generated design outputs.</li><li>Build stronger design-to-code and cross-functional handoff practices.</li><li>Share design principles and heuristics as reusable, documented standards for the broader team.</li><li>Identify the next set of ambiguous, open-ended design challenges worth tackling.</li></ul></article>
-    </div>
-  </section>
-
-  <section id="proof" class="reveal">
-    <div class="section-head">
-      <div class="label">Proof</div>
-      <div>
-        <h2>Selected work mapped to <span>solutions leadership.</span></h2>
-        <p class="section-copy">The proof is framed around what Figma needs: technical product storytelling, design workflow fluency, cross-functional enablement, customer-facing communication, AI/product execution, and credible leadership across creative and technical teams.</p>
-      </div>
-    </div>
-    <div class="proof-grid">
-      <a class="proof" href="https://scrappymeals.com/damo" target="_blank" rel="noopener"><div class="tag">Portfolio</div><h3>Selected Work</h3><p>Creative technology, product storytelling, real-time 3D, digital systems, prototypes, brand systems, and high-pressure delivery.</p><span class="arrow">Visit ↗</span></a>
-      <a class="proof" href="https://fridgiesmalls.app" target="_blank" rel="noopener"><div class="tag">AI Product</div><h3>Fridgie Smalls</h3><p>AI-powered product experience using structured recipe logic, user inputs, branded flows, OpenAI API thinking, and interactive customer value.</p><span class="arrow">Visit ↗</span></a>
-      <a class="proof" href="https://scrappymeals.com" target="_blank" rel="noopener"><div class="tag">Founder GTM</div><h3>Scrappy Meals XR</h3><p>Founder-led product and brand ecosystem requiring positioning, product demos, partner conversations, sponsor concepts, and go-to-market storytelling.</p><span class="arrow">Visit ↗</span></a>
-      <a class="proof" href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener"><div class="tag">3D / WebXR</div><h3>The Metacheese</h3><p>Immersive food education platform demonstrating 3D systems, interactive product thinking, content architecture, and technical creative execution.</p><span class="arrow">Visit ↗</span></a>
-      <a class="proof" href="https://youtu.be/517urSyUBL4?si=J_7ID2OtMYRbSCtj&amp;t=214" target="_blank" rel="noopener"><div class="tag">Real-Time Systems</div><h3>Broadcast Graphics</h3><p>Real-time visual systems experience across sports, entertainment, news, sponsor deliverables, technical support, and live production workflows.</p><span class="arrow">View ↗</span></a>
-      <article class="proof"><div class="tag">Enablement</div><h3>Training + Adoption</h3><p>Supported and trained large groups of artists, operators, and production users, building fluency around complex creative technology workflows.</p></article>
-    </div>
-  </section>
-
-  <section id="pitch" class="soft reveal">
-    <div class="section-head">
-      <div class="label">Direct Pitch</div>
-      <div><h2>Why this role fits.</h2></div>
-    </div>
-    <div class="letter">
-      <p>To the Figma team,</p>
-      <p>I’m interested in Figma because it sits at the intersection of design craft, design systems, AI, and cross-functional collaboration. That is where much of my career has operated, even when the title on the door was not the neat little SaaS version of it.</p>
-      <p>I have spent 20+ years translating visual craft into usable systems — from real-time graphics and broadcast production design to AI product development and founder-led product design. Through Scrappy Meals XR and Fridgie Smalls, an OpenAI-powered consumer product I built and launched solo, I documented design principles and heuristics, built evaluation methods for AI-generated outputs, and improved model performance from a design perspective, cutting input tokens 72% while speeding up generation and improving reliability.</p>
-      <p>For Figma, I would bring a designer who can document design principles and heuristics, build and oversee evaluation quality for AI-generated outputs, and bridge design and technical teams by translating technical details for designers and design concepts for AI/ML experts. I understand how design, product, and engineering teams think differently, and how to create the shared language that gets them moving in the same direction.</p>
-      <p>The opportunity is to help raise the ceiling for what’s possible with AI-assisted design at Figma — bringing strong craft and taste, an operational mindset, and a proven ability to turn ambiguous, open-ended challenges into clear, testable design standards.</p>
-      <div class="sig">Damon Versaggi<br><a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> · <a href="https://linkedin.com/in/damonversaggi" target="_blank" rel="noopener">linkedin.com/in/damonversaggi</a> · <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a></div>
-    </div>
-  </section>
-
-  <div class="foot">
-    <div>Damon Versaggi · Figma Interactive Packet</div>
-    <div><a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> · <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">Portfolio</a></div>
-  </div>
+<section id="hero">
+<div class="hero-copy">
+<div class="label a1">Product Designer, AI Models</div>
+<h1 class="a1">Design craft<br/>that teaches AI <span>good taste.</span></h1>
+<p class="role a2">I turn design principles, heuristics, and visual judgment into systems that make AI-generated outputs more useful, consistent, and production-ready.</p>
+<p class="contact a3">Brooklyn, NY · <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> · <a href="https://linkedin.com/in/damonversaggi" rel="noopener" target="_blank">LinkedIn</a> · <a href="https://scrappymeals.com/damo" rel="noopener" target="_blank">Portfolio</a></p>
+<div class="actions a4">
+<a class="btn primary" href="https://fridgiesmalls.app" rel="noopener" target="_blank">View AI product</a>
+<a class="btn" href="https://scrappymeals.com/damo" rel="noopener" target="_blank">Portfolio</a>
+<button class="btn" id="emailBtn" onclick="copyEmail()" type="button">Email Damon</button>
+<a class="btn signal" href="#fit">See role fit</a>
+</div>
+</div>
+</section>
+<section class="soft reveal" id="fit"><div class="section-wrap">
+<div class="section-head">
+<div class="label">Role Fit</div>
+<div>
+<h2>Built around Figma’s <span>design + AI mandate.</span></h2>
+<p class="section-copy">This is targeted to the actual ask: strong design craft and taste, documented design principles and heuristics, hands-on experience evaluating and improving AI-generated outputs, comfort across a suite of products, and the ability to bridge design and technical teams.</p>
+</div>
+</div>
+<div class="cards">
+<article class="card"><div class="card-num">01</div><h3>Design Craft</h3><p>Built career credibility translating visual craft into documented design principles, heuristics, interaction standards, and implementation-ready direction.</p></article>
+<article class="card"><div class="card-num">02</div><h3>AI Evaluation Quality</h3><p>Hands-on experience building evaluation methods, structured outputs, output validation, and retry/fallback behavior for AI-generated product experiences.</p></article>
+<article class="card"><div class="card-num">03</div><h3>Systems + Operations</h3><p>Can help standardize design documentation, evaluation criteria, cross-functional handoffs, and process across multiple product lines.</p></article>
+<article class="card"><div class="card-num">04</div><h3>Design + AI Fluency</h3><p>Hands-on background across Figma, design systems, prototyping, AI/ML workflows, design-to-code, and cross-functional collaboration.</p></article>
+</div>
+</div></section>
+<section class="dark reveal" id="engine"><div class="section-wrap">
+<div class="section-head">
+<div class="label">Design + AI</div>
+<div>
+<h2>One operating model from <span>craft to evaluation.</span></h2>
+<p class="section-copy">A practical system for design work at Figma: sharpen design principles, raise AI output quality, standardize evaluation criteria, bridge design and technical teams, and turn ambiguity into shippable direction.</p>
+</div>
+</div>
+<div class="stats">
+<div class="stat"><div class="num" data-count="20">0</div><h3>Years</h3><p>Product design, design systems, and creative technology experience.</p></div>
+<div class="stat"><div class="num" data-count="72">0</div><h3>% Token Reduction</h3><p>Improved AI model performance and product economics on a shipped OpenAI-powered product.</p></div>
+<div class="stat"><div class="num" data-count="1000">0</div><h3>Users Trained</h3><p>Experience training and supporting artists, operators, and creative production teams.</p></div>
+<div class="stat"><div class="num" data-count="90">0</div><h3>Day Plan</h3><p>Learn, contribute, and lead within Figma’s design and AI craft.</p></div>
+</div>
+<div class="tabs">
+<div class="tab-buttons" role="tablist">
+<button class="tab-btn active" data-tab="discovery">Design Principles</button>
+<button class="tab-btn" data-tab="demo">Evaluation Quality</button>
+<button class="tab-btn" data-tab="poc">Design Systems</button>
+<button class="tab-btn" data-tab="sales">Cross-Functional</button>
+<button class="tab-btn" data-tab="product">AI Fluency</button>
+</div>
+<div class="tab-panel active" id="discovery"><h3>Design Principles + Heuristics</h3><p>Document reusable design principles and heuristics that translate craft and taste into standards other designers and AI systems can actually use — for input modes, output variability, responsive behavior, and brand moments that don’t compromise performance.</p></div>
+<div class="tab-panel" id="demo"><h3>AI Output Evaluation</h3><p>Build thorough methods to test and enhance the quality of AI-generated outputs: structured response requirements, output validation, anti-repeat behavior, retry and fallback states, and clear success criteria.</p></div>
+<div class="tab-panel" id="poc"><h3>Design Systems + Prototyping</h3><p>Prototype in Figma and build reusable components, interaction patterns, and content schemas that scale across a suite of products and multiple product lines.</p></div>
+<div class="tab-panel" id="sales"><h3>Cross-Functional Bridge</h3><p>Translate technical constraints into usable design and design concepts into implementation-ready direction across product, engineering, and external partners.</p></div>
+<div class="tab-panel" id="product"><h3>AI/ML Fluency</h3><p>Comfort navigating ambiguity in AI/ML product work — using AI models for design tasks, understanding model behavior, and shaping open-ended challenges into clear, testable goals.</p></div>
+</div>
+</div></section>
+<section class="reveal" id="experience"><div class="section-wrap">
+<div class="section-head">
+<div class="label">Experience</div>
+<div>
+<h2>Product design craft with <span>AI/ML gravity.</span></h2>
+<p class="section-copy">Damon’s most relevant bridge is the blend of design craft, design systems fluency, AI evaluation experience, cross-functional translation, and founder-level product ownership built across Fridgie Smalls, broadcast/live production client work, and real-time 3D product development.</p>
+</div>
+</div>
+<div class="split">
+<div class="panel dark-panel">
+<h3>Operating Advantage</h3>
+<p>Good AI-assisted design succeeds when craft and evaluation discipline occupy the same room. Damon’s background is built around exactly that: documenting design principles, testing and validating AI-generated outputs, and turning ambiguous, cross-functional needs into usable systems.</p>
+<ul>
+<li>Built and launched Fridgie Smalls, an OpenAI-powered consumer product combining structured outputs, output validation, and responsive product interfaces.</li>
+<li>Reduced OpenAI input tokens 72% while improving recipe generation speed and output reliability — direct hands-on experience improving model performance from a design perspective.</li>
+<li>Delivered production-critical design and visual systems for clients including ESPN, Amazon Sports, YES Network, and Lockheed Martin, bridging designers, engineers, and executives across complex projects.</li>
+</ul>
+</div>
+<div class="panel">
+<h3>Execution Range</h3>
+<div class="timeline">
+<div class="step"><div class="step-num">01</div><p><strong>Design principles + heuristics:</strong> documented standards for input modes, output variability, responsive behavior, and brand consistency.</p></div>
+<div class="step"><div class="step-num">02</div><p><strong>Design systems fluency:</strong> Figma prototyping, reusable components, high-fidelity UI, content schemas, and design-to-code collaboration.</p></div>
+<div class="step"><div class="step-num">03</div><p><strong>AI evaluation quality:</strong> structured outputs, output validation, anti-repeat behavior, retry/fallback states, and testable success criteria.</p></div>
+<div class="step"><div class="step-num">04</div><p><strong>Cross-functional bridge:</strong> translating technical constraints into usable design and design concepts into implementation-ready direction.</p></div>
+</div>
+</div>
+</div>
+</div></section>
+<section class="soft reveal" id="plan"><div class="section-wrap">
+<div class="section-head">
+<div class="label">90 Days</div>
+<div>
+<h2>Learn the systems. <span>Document the craft.</span> Raise the bar.</h2>
+<p class="section-copy">A role-appropriate plan for stepping into a design role at Figma: understand the product suite and design systems, contribute craft and evaluation discipline, and help raise design quality across products.</p>
+</div>
+</div>
+<div class="plan">
+<article class="phase"><span class="badge">Days 1-30</span><h3>Map + Listen</h3><ul><li>Meet design, product, and engineering partners across the products and teams this role touches.</li><li>Audit existing design principles, heuristics, design systems, and evaluation criteria already in place.</li><li>Review current AI-generated output quality, known failure modes, and existing evaluation methods.</li><li>Identify the biggest gaps in documentation, consistency, and craft standards.</li></ul></article>
+<article class="phase"><span class="badge">Days 31-60</span><h3>Document + Contribute</h3><ul><li>Draft and socialize documented design principles and heuristics for priority product areas.</li><li>Build or refine evaluation methods for AI-generated outputs: structured criteria, output validation, and test cases.</li><li>Partner with engineering and AI/ML teams to translate design intent into technical requirements.</li><li>Ship first design contributions across the products in scope.</li></ul></article>
+<article class="phase"><span class="badge">Days 61-90</span><h3>Raise the Bar</h3><ul><li>Establish repeatable evaluation quality standards for AI-generated design outputs.</li><li>Build stronger design-to-code and cross-functional handoff practices.</li><li>Share design principles and heuristics as reusable, documented standards for the broader team.</li><li>Identify the next set of ambiguous, open-ended design challenges worth tackling.</li></ul></article>
+</div>
+</div></section>
+<section class="reveal" id="proof"><div class="section-wrap">
+<div class="section-head">
+<div class="label">Proof</div>
+<div>
+<h2>Selected work mapped to <span>solutions leadership.</span></h2>
+<p class="section-copy">The proof is framed around the role: design craft, AI evaluation quality, cross-functional translation, generative workflows, and production-ready systems.</p>
+</div>
+</div>
+<div class="proof-grid">
+<a class="proof" href="https://scrappymeals.com/damo" rel="noopener" target="_blank"><div class="tag">Portfolio</div><h3>Selected Work</h3><p>Creative technology, product storytelling, real-time 3D, digital systems, prototypes, brand systems, and high-pressure delivery.</p><span class="arrow">Visit ↗</span></a>
+<a class="proof" href="https://fridgiesmalls.app" rel="noopener" target="_blank"><div class="tag">AI Product</div><h3>Fridgie Smalls</h3><p>AI-powered product experience using structured recipe logic, user inputs, branded flows, OpenAI API thinking, and interactive customer value.</p><span class="arrow">Visit ↗</span></a>
+<a class="proof" href="https://scrappymeals.com" rel="noopener" target="_blank"><div class="tag">Founder GTM</div><h3>Scrappy Meals XR</h3><p>Founder-led product and brand ecosystem requiring positioning, product demos, partner conversations, sponsor concepts, and go-to-market storytelling.</p><span class="arrow">Visit ↗</span></a>
+<a class="proof" href="https://metacheese.scrappymeals.com" rel="noopener" target="_blank"><div class="tag">3D / WebXR</div><h3>The Metacheese</h3><p>Immersive food education platform demonstrating 3D systems, interactive product thinking, content architecture, and technical creative execution.</p><span class="arrow">Visit ↗</span></a>
+<a class="proof" href="https://youtu.be/517urSyUBL4?si=J_7ID2OtMYRbSCtj&amp;t=214" rel="noopener" target="_blank"><div class="tag">Real-Time Systems</div><h3>Broadcast Graphics</h3><p>Real-time visual systems experience across sports, entertainment, news, sponsor deliverables, technical support, and live production workflows.</p><span class="arrow">View ↗</span></a>
+<article class="proof"><div class="tag">Enablement</div><h3>Training + Adoption</h3><p>Supported and trained large groups of artists, operators, and production users, building fluency around complex creative technology workflows.</p></article>
+</div>
+</div></section>
+<section class="soft reveal" id="pitch"><div class="section-wrap">
+<div class="section-head">
+<div class="label">Why Figma</div>
+<div><h2>Why this role fits.</h2></div>
+</div>
+<div class="letter">
+<p>To the Figma team,</p>
+<p>I’m interested in Figma because it sits at the intersection of design craft, design systems, AI, and cross-functional collaboration. That is where much of my career has operated, even when the title on the door was not the neat little SaaS version of it.</p>
+<p>I have spent 20+ years translating visual craft into usable systems — from real-time graphics and broadcast production design to AI product development and founder-led product design. Through Scrappy Meals XR and Fridgie Smalls, an OpenAI-powered consumer product I built and launched solo, I documented design principles and heuristics, built evaluation methods for AI-generated outputs, and improved model performance from a design perspective, cutting input tokens 72% while speeding up generation and improving reliability.</p>
+<p>For Figma, I would bring a designer who can document design principles and heuristics, build and oversee evaluation quality for AI-generated outputs, and bridge design and technical teams by translating technical details for designers and design concepts for AI/ML experts. I understand how design, product, and engineering teams think differently, and how to create the shared language that gets them moving in the same direction.</p>
+<p>The opportunity is to help raise the ceiling for what’s possible with AI-assisted design at Figma — bringing strong craft and taste, an operational mindset, and a proven ability to turn ambiguous, open-ended challenges into clear, testable design standards.</p>
+<div class="sig">Damon Versaggi<br/><a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> · <a href="https://linkedin.com/in/damonversaggi" rel="noopener" target="_blank">linkedin.com/in/damonversaggi</a> · <a href="https://scrappymeals.com/damo" rel="noopener" target="_blank">scrappymeals.com/damo</a></div>
+</div>
+</div></section>
+<div class="foot">
+<div>Damon Versaggi · Figma Interactive Packet</div>
+<div><a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> · <a href="https://scrappymeals.com/damo" rel="noopener" target="_blank">Portfolio</a></div>
+</div>
 </main>
-
 <script>
 (function(){
   const progress=document.getElementById('progress');
