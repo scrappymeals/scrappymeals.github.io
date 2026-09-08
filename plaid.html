@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="plaid-inspired">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damon Versaggi | Senior Social Brand Designer | Plaid Application</title>
+<meta name="description" content="Damon Versaggi | Senior Social Brand Designer. Fintech, brand systems, social-first creative, motion, Figma, Adobe Creative Cloud, art direction, and 10 years of eFundex fintech experience.">
+<style>
+:root{
+  --paper:#f7f4ec;
+  --paper-2:#eee9dd;
+  --paper-3:#e6dfd0;
+  --ink:#0a0a0b;
+  --muted:#68665f;
+  --line:rgba(10,10,11,.18);
+  --line-soft:rgba(10,10,11,.10);
+  --white:#fffefa;
+  --blue:#5067ff;
+  --cyan:#36e6d0;
+  --lime:#c5ef3f;
+  --pink:#ff6fcf;
+  --violet:#9b7cff;
+  --orange:#ff9b59;
+  --max:1520px;
+  --gutter:clamp(20px,4vw,68px);
+  --header:72px;
+  --radius:26px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header) + 20px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,"Helvetica Neue",Helvetica,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}h1,h2,h3,p,ul{margin:0}ul{padding:0}::selection{background:var(--ink);color:var(--paper)}
+.skip-link{position:fixed;top:10px;left:10px;transform:translateY(-180%);z-index:2000;background:#000;color:#fff;padding:10px 14px;border-radius:999px}.skip-link:focus{transform:none}
+.scroll-progress{position:fixed;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--pink),var(--lime),var(--orange));transform:scaleX(0);transform-origin:left;z-index:2000}
+
+/* Plaid-inspired holographic security strip */
+.holo-strip{height:10px;background:linear-gradient(90deg,var(--cyan) 0%,var(--blue) 21%,var(--violet) 39%,var(--pink) 58%,var(--orange) 77%,var(--lime) 100%);position:relative;overflow:hidden}
+.holo-strip::after{content:"";position:absolute;inset:-200% -20%;background:repeating-linear-gradient(115deg,transparent 0 18px,rgba(255,255,255,.42) 18px 21px,transparent 21px 38px);transform:translateX(-12%);animation:holo 8s linear infinite}
+@keyframes holo{to{transform:translateX(12%)}}
+
+nav{height:var(--header);position:fixed;inset:0 0 auto;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);background:rgba(247,244,236,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line-soft)}
+.brand-lockup{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:650;letter-spacing:-.02em}
+.brand-mark{width:31px;height:31px;border:1.5px solid var(--ink);display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:5px;gap:2px;transform:rotate(45deg);border-radius:3px;background:var(--white)}
+.brand-mark i{background:var(--ink);display:block;border-radius:1px}.brand-mark i:nth-child(2),.brand-mark i:nth-child(4),.brand-mark i:nth-child(6),.brand-mark i:nth-child(8){opacity:.12}
+.brand-lockup small{display:block;font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}.nav-links a{font-size:13px}.nav-links a:hover,.nav-links a.active{opacity:.48}.nav-cta{border:1px solid var(--ink);border-radius:999px;padding:10px 15px!important;background:var(--ink);color:#fff}
+.nav-toggle{display:none;border:1px solid var(--line);background:var(--white);padding:9px 12px;border-radius:999px}
+
+main{max-width:var(--max);margin:0 auto;padding:calc(var(--header) + 34px) var(--gutter) 70px}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(390px,.9fr);gap:18px;min-height:calc(100vh - var(--header) - 64px);align-items:stretch}
+.hero-left,.hero-right{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--white);position:relative}
+.hero-left{padding:clamp(30px,4.5vw,70px);display:flex;flex-direction:column;justify-content:space-between;min-height:690px}
+.hero-left::before{content:"";position:absolute;width:600px;height:600px;right:-220px;top:-220px;border-radius:50%;background:
+  repeating-radial-gradient(circle at center, transparent 0 9px, rgba(10,10,11,.13) 10px 11px, transparent 12px 20px);
+  opacity:.52;pointer-events:none}
+.hero-left::after{content:"";position:absolute;right:34px;bottom:32px;width:190px;height:190px;border-radius:50%;border:1px solid rgba(10,10,11,.22);background:
+  repeating-conic-gradient(from 20deg,rgba(80,103,255,.18) 0 2deg,transparent 2deg 8deg);opacity:.7;pointer-events:none}
+.hero-meta{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;position:relative;z-index:2}
+.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:var(--muted)}
+.target-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:8px 11px;border-radius:999px;font-size:12px;background:rgba(255,255,255,.74)}
+.target-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);border:1px solid var(--ink)}
+.hero-title-wrap{position:relative;z-index:2;padding:80px 0 58px}
+h1{font-size:clamp(54px,7vw,112px);line-height:.88;letter-spacing:-.072em;font-weight:520;max-width:940px}
+h1 .accent{display:block;color:var(--blue)}
+.hero-lead{font-size:clamp(18px,1.55vw,25px);line-height:1.42;max-width:860px;margin-top:32px;color:#32312e}.hero-lead strong{font-weight:650;color:var(--ink)}
+.hero-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;z-index:2;border-top:1px solid var(--line);padding-top:24px}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:12px 16px;font-size:13px;transition:transform .18s,background .18s}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--ink);border-color:var(--ink);color:#fff}.btn-holo{position:relative;overflow:hidden;background:#fff}.btn-holo::after{content:"";position:absolute;height:3px;left:10px;right:10px;bottom:5px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--pink),var(--lime));border-radius:9px}
+
+.hero-right{display:grid;grid-template-rows:auto 1fr auto;background:var(--ink);color:#fff;min-height:690px}
+.hero-right .holo-strip{height:12px}.stats-wrap{padding:clamp(28px,3.5vw,52px);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.stats-wrap::before{content:"";position:absolute;inset:auto -120px -220px auto;width:560px;height:560px;border-radius:50%;background:repeating-radial-gradient(circle at center,transparent 0 14px,rgba(255,255,255,.11) 15px 16px,transparent 17px 28px);opacity:.8}
+.stats-kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#bdbdbd;position:relative;z-index:2}
+.stat-stack{position:relative;z-index:2;display:grid;gap:0;margin-top:44px}
+.stat{border-top:1px solid rgba(255,255,255,.23);padding:23px 0;display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:baseline}.stat strong{font-size:clamp(42px,4.2vw,74px);line-height:.9;letter-spacing:-.065em;font-weight:520}.stat span{font-size:14px;color:#bfbfbf;line-height:1.45}.stat.feature strong{color:var(--lime)}
+.fit-note{border-top:1px solid rgba(255,255,255,.24);padding:20px clamp(28px,3.5vw,52px);font-size:13px;color:#d3d3d3;display:flex;justify-content:space-between;gap:20px;align-items:center}.fit-note b{color:#fff;font-weight:600}
+
+.section{display:grid;grid-template-columns:240px minmax(0,1fr);gap:18px;padding-top:84px;scroll-margin-top:12px}.section-rail{padding:12px 8px}.section-index{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}.section-rail h2{font-size:clamp(28px,3vw,48px);line-height:1;letter-spacing:-.05em;font-weight:520;margin-top:20px}.section-rail p{font-size:13px;color:var(--muted);margin-top:18px;max-width:210px}
+.panel{border:1px solid var(--line);border-radius:var(--radius);background:var(--white);overflow:hidden}.panel-head{padding:clamp(28px,3.5vw,54px);border-bottom:1px solid var(--line)}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:20px}.panel-head h3{font-size:clamp(34px,4.2vw,68px);line-height:.98;letter-spacing:-.06em;font-weight:520;max-width:1040px}.panel-head .lead{font-size:18px;color:#45433f;line-height:1.65;margin-top:25px;max-width:980px}
+
+.fit-grid{display:grid;grid-template-columns:repeat(3,1fr)}.fit-card{padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:230px;display:flex;flex-direction:column}.fit-card:nth-child(3n){border-right:0}.fit-card:nth-last-child(-n+3){border-bottom:0}.fit-num{font-size:12px;color:var(--muted);letter-spacing:.08em}.fit-card h4{font-size:23px;line-height:1.08;letter-spacing:-.04em;font-weight:550;margin:50px 0 15px}.fit-card p{font-size:14px;color:#57534c;line-height:1.66}.fit-card.highlight{background:var(--ink);color:#fff}.fit-card.highlight p,.fit-card.highlight .fit-num{color:#b9b9b9}.fit-card.highlight h4{color:var(--lime)}
+
+.efundex-band{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr)}.efundex-copy{padding:clamp(30px,4vw,62px);border-right:1px solid var(--line)}.efundex-copy .big-ten{font-size:clamp(90px,13vw,190px);line-height:.75;letter-spacing:-.09em;font-weight:520;color:var(--blue);margin:35px 0 30px}.efundex-copy h3{font-size:clamp(30px,3.3vw,52px);line-height:1.02;letter-spacing:-.05em;font-weight:520}.efundex-copy p{font-size:17px;color:#494640;line-height:1.72;margin-top:22px;max-width:740px}.efundex-list{padding:clamp(30px,3.7vw,54px);background:var(--paper-2);display:flex;flex-direction:column;justify-content:center}.efundex-list ul{list-style:none}.efundex-list li{padding:18px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.65}.efundex-list li:first-child{border-top:1px solid var(--line)}.efundex-list b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:4px}
+
+.social-shell{display:grid;grid-template-columns:260px 1fr;min-height:540px}.channel-nav{background:var(--ink);color:#fff;padding:28px;display:flex;flex-direction:column;gap:8px}.channel-nav .label{font-size:12px;color:#aaa;text-transform:uppercase;letter-spacing:.11em;margin-bottom:16px}.channel-btn{border:1px solid rgba(255,255,255,.18);background:transparent;color:#fff;text-align:left;border-radius:999px;padding:12px 14px;font-size:14px}.channel-btn.active{background:#fff;color:#000;border-color:#fff}.channel-btn:hover{border-color:#fff}.channel-note{font-size:12px;color:#8f8f8f;line-height:1.5;margin-top:auto;padding-top:20px}
+.social-stage{padding:clamp(28px,3.5vw,52px);position:relative;overflow:hidden}.social-stage::after{content:"";position:absolute;width:390px;height:390px;right:-180px;top:-120px;border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 9px,rgba(80,103,255,.17) 10px 11px,transparent 12px 20px)}
+.social-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;position:relative;z-index:2}.social-top h3{font-size:clamp(34px,4vw,60px);letter-spacing:-.055em;line-height:1;font-weight:520}.social-top p{max-width:520px;font-size:15px;color:#57524c;line-height:1.65}.social-preview{position:relative;z-index:2;margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:14px}.post-card{border:1px solid var(--line);background:var(--white);border-radius:18px;padding:20px;min-height:180px}.post-card .type{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}.post-card h4{font-size:23px;line-height:1.08;letter-spacing:-.04em;margin-top:34px;font-weight:540}.post-card p{font-size:13px;color:#5a564f;line-height:1.55;margin-top:12px}.post-card.motion{background:var(--blue);color:#fff;border-color:var(--blue)}.post-card.motion .type,.post-card.motion p{color:#dfe3ff}.post-card.motion::after{content:"";display:block;height:6px;margin-top:24px;border-radius:999px;background:linear-gradient(90deg,var(--cyan),var(--lime),var(--pink))}
+
+.craft-grid{display:grid;grid-template-columns:repeat(2,1fr)}.craft-item{padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:230px}.craft-item:nth-child(even){border-right:0}.craft-item:nth-last-child(-n+2){border-bottom:0}.craft-item .tag{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.09em;border:1px solid var(--line);border-radius:999px;padding:7px 9px}.craft-item h4{font-size:27px;line-height:1.05;letter-spacing:-.045em;font-weight:540;margin-top:52px}.craft-item p{font-size:14px;color:#57534d;line-height:1.7;margin-top:14px;max-width:620px}
+
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:12px}.work-card{min-height:330px;border-radius:20px;padding:24px;background:var(--paper-2);border:1px solid transparent;display:flex;flex-direction:column;justify-content:space-between;transition:transform .18s,border-color .18s,background .18s}.work-card:hover{transform:translateY(-3px);border-color:var(--line);background:#fff}.work-card:nth-child(2){background:#dfe5ff}.work-card:nth-child(3){background:#e8f4d0}.work-card:nth-child(5){background:#f6dff0}.work-num{font-size:12px;color:var(--muted)}.work-card h4{font-size:29px;line-height:1.02;letter-spacing:-.045em;font-weight:540;margin-top:60px}.work-card p{font-size:14px;color:#4f4b45;line-height:1.62;margin-top:15px}.work-link{border-top:1px solid var(--line);padding-top:16px;margin-top:28px;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+
+.process{display:grid;grid-template-columns:repeat(6,1fr)}.step{padding:26px 20px;min-height:255px;border-right:1px solid var(--line)}.step:last-child{border-right:0}.step-num{font-size:12px;color:var(--muted)}.step h4{font-size:22px;line-height:1.05;letter-spacing:-.04em;font-weight:540;margin-top:55px}.step p{font-size:13px;color:#58544d;line-height:1.63;margin-top:14px}
+
+.contact-panel{background:var(--ink);color:#fff;position:relative;overflow:hidden}.contact-panel::before{content:"";position:absolute;left:-160px;bottom:-240px;width:620px;height:620px;border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 10px,rgba(255,255,255,.10) 11px 12px,transparent 13px 22px)}.contact-inner{padding:clamp(34px,5vw,78px);position:relative;z-index:2}.contact-inner .eyebrow{color:#a5a5a5}.contact-inner h3{font-size:clamp(48px,7vw,100px);line-height:.9;letter-spacing:-.07em;font-weight:520;max-width:1100px}.contact-inner h3 span{color:var(--lime)}.contact-inner p{font-size:18px;color:#bbb;line-height:1.65;max-width:820px;margin-top:28px}.contact-inner .btn-row{margin-top:34px}.contact-inner .btn{background:transparent;border-color:#404040;color:#fff}.contact-inner .btn-primary{background:#fff;color:#000;border-color:#fff}.footer-meta{margin-top:70px;border-top:1px solid #373737;padding-top:18px;font-size:12px;color:#929292}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,12px);background:var(--ink);color:#fff;border:1px solid #333;border-radius:999px;padding:12px 18px;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:1200}.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:1160px){
+  .hero{grid-template-columns:1fr}.hero-left,.hero-right{min-height:auto}.hero-left{min-height:660px}.hero-right{min-height:580px}.section{grid-template-columns:190px 1fr}.fit-grid{grid-template-columns:repeat(2,1fr)}.fit-card:nth-child(3n){border-right:1px solid var(--line)}.fit-card:nth-child(even){border-right:0}.fit-card:nth-last-child(-n+3){border-bottom:1px solid var(--line)}.fit-card:nth-last-child(-n+2){border-bottom:0}.process{grid-template-columns:repeat(3,1fr)}.step:nth-child(3){border-right:0}.step:nth-child(-n+3){border-bottom:1px solid var(--line)}.work-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:820px){
+  :root{--header:66px;--radius:20px}.nav-toggle{display:block}.nav-links{display:none;position:absolute;top:100%;left:14px;right:14px;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:0 20px 50px rgba(0,0,0,.12)}.nav-links.is-open{display:grid}.nav-links a{padding:12px}.nav-cta{border-radius:12px}
+  main{padding-top:calc(var(--header) + 18px)}.hero-left{padding:26px;min-height:620px}.hero-title-wrap{padding:65px 0 44px}h1{font-size:clamp(52px,13vw,82px)}.hero-meta{flex-direction:column}.stat{grid-template-columns:120px 1fr}.section{grid-template-columns:1fr;padding-top:58px}.section-rail{display:grid;grid-template-columns:80px 1fr;align-items:end}.section-rail h2{margin:0}.section-rail p{display:none}.fit-grid,.craft-grid,.work-grid{grid-template-columns:1fr}.fit-card,.fit-card:nth-child(3n),.fit-card:nth-child(even),.craft-item,.craft-item:nth-child(even){border-right:0}.fit-card:nth-last-child(-n+2),.craft-item:nth-last-child(-n+2){border-bottom:1px solid var(--line)}.fit-card:last-child,.craft-item:last-child{border-bottom:0}.efundex-band{grid-template-columns:1fr}.efundex-copy{border-right:0;border-bottom:1px solid var(--line)}.social-shell{grid-template-columns:1fr}.channel-nav{display:grid;grid-template-columns:repeat(2,1fr)}.channel-nav .label,.channel-note{grid-column:1/-1}.social-preview{grid-template-columns:1fr}.process{grid-template-columns:repeat(2,1fr)}.step:nth-child(3){border-right:1px solid var(--line)}.step:nth-child(even){border-right:0}.step:nth-child(-n+4){border-bottom:1px solid var(--line)}
+}
+@media(max-width:560px){
+  :root{--gutter:14px}.brand-lockup span{display:none}.hero-left{min-height:570px}.hero-lead{font-size:17px}.stats-wrap{padding:26px}.stat{grid-template-columns:100px 1fr}.stat strong{font-size:44px}.fit-note{padding:18px 26px;align-items:flex-start;flex-direction:column}.panel-head{padding:26px}.fit-card,.craft-item{padding:24px}.social-stage{padding:24px}.channel-nav{padding:20px}.work-grid{padding:8px}.process{grid-template-columns:1fr}.step,.step:nth-child(3){border-right:0}.step{border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}.section-rail{grid-template-columns:60px 1fr}.section-rail h2{font-size:32px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+@media print{@page{margin:12mm}nav,.scroll-progress,.skip-link,.toast,.btn-row,.channel-nav{display:none!important}body{background:#fff;color:#111}.holo-strip{height:4px}main{max-width:none;padding:0}.hero,.section,.efundex-band,.social-shell{display:block}.hero-left,.hero-right,.panel,.contact-panel{border:1px solid #ccc;border-radius:0;margin:0 0 14px;background:#fff!important;color:#111!important;min-height:0}.hero-left{padding:24px}.hero-title-wrap{padding:30px 0}.hero-left::before,.hero-left::after,.stats-wrap::before,.social-stage::after,.contact-panel::before{display:none}.hero-right{display:block}.stats-wrap{padding:24px}.stat span,.fit-note,.stats-kicker,.contact-inner p,.footer-meta{color:#444!important}.stat strong,.stat.feature strong,.contact-inner h3 span{color:#111!important}.section{padding-top:20px}.section-rail{padding:0 0 10px}.section-rail p{display:none}.panel-head,.efundex-copy,.efundex-list,.social-stage,.contact-inner{padding:24px}.fit-grid,.craft-grid,.work-grid,.process,.social-preview{display:block}.fit-card,.craft-item,.work-card,.step,.post-card{break-inside:avoid;border:1px solid #ccc!important;margin:8px 0;background:#fff!important;color:#111!important;min-height:0}.fit-card p,.craft-item p,.work-card p,.step p,.post-card p{color:#444!important}.work-card h4,.fit-card h4{margin-top:12px}.contact-inner h3{font-size:42pt}.efundex-copy .big-ten{font-size:80pt;color:#111}.section-rail h2{font-size:24pt}}
+</style>
+</head>
+<body>
+<a href="#top" class="skip-link">Skip to content</a>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+<nav aria-label="Main navigation">
+  <a class="brand-lockup" href="#top" aria-label="Damon Versaggi Plaid application profile">
+    <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    <span>Damon Versaggi<small>Plaid application profile</small></span>
+  </a>
+  <ul class="nav-links" id="mainNavigation">
+    <li><a href="#fit">Fit</a></li>
+    <li><a href="#fintech">Fintech</a></li>
+    <li><a href="#social">Social System</a></li>
+    <li><a href="#craft">Craft</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="mailto:damon@scrappymeals.com" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNavigation" type="button">Menu</button>
+</nav>
+
+<main id="top" tabindex="-1">
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="hero-left">
+      <div class="hero-meta">
+        <div class="kicker">Senior Social Brand Designer · Fintech + Technology</div>
+        <div class="target-pill">Target: Plaid</div>
+      </div>
+      <div class="hero-title-wrap">
+        <h1 id="heroTitle">Make finance feel <span class="accent">alive.</span></h1>
+        <p class="hero-lead">Senior brand and visual designer bringing <strong>20+ years of design systems, motion, art direction, and high-pressure production</strong> plus <strong>10 years inside fintech at eFundex</strong>. The goal: social work that feels native to the platform, unmistakably on-brand, and built to scale.</p>
+      </div>
+      <div class="hero-actions">
+        <div class="btn-row">
+          <a class="btn btn-primary" href="mailto:damon@scrappymeals.com">Email Damon</a>
+          <button class="btn btn-holo" id="copyBtn" type="button">Copy Contact</button>
+          <a class="btn" href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">LinkedIn</a>
+          <button class="btn" id="printBtn" type="button">Print / PDF</button>
+        </div>
+        <div class="kicker">Brooklyn, NY · Remote / New York</div>
+      </div>
+    </div>
+
+    <aside class="hero-right" aria-label="Key proof points">
+      <div class="holo-strip" aria-hidden="true"></div>
+      <div class="stats-wrap">
+        <div class="stats-kicker">Proof, not positioning alone</div>
+        <div class="stat-stack">
+          <div class="stat feature"><strong>10 yrs</strong><span>eFundex fintech engagement across product, technology, growth, sales, financial product experience, customer communication, and workflow design.</span></div>
+          <div class="stat"><strong>20+</strong><span>years building visual systems, motion, brand production, real-time 3D, digital experiences, and multidisciplinary creative work.</span></div>
+          <div class="stat"><strong>~20K</strong><span>users for Fridgie Smalls, an AI-powered consumer food product with product identity, visual design, branded content, and ongoing experience design.</span></div>
+          <div class="stat"><strong>1K</strong><span>artists and operators trained across real-time 3D and broadcast graphics workflows.</span></div>
+        </div>
+      </div>
+      <div class="fit-note"><span><b>Role fit:</b> senior hands-on designer + systems thinker + fintech fluency</span><span>Figma · Adobe CC · Motion · Art Direction</span></div>
+    </aside>
+  </section>
+
+  <section class="section" id="fit">
+    <aside class="section-rail"><div class="section-index">01 / Fit</div><h2>Why this role lines up</h2><p>Direct match on autonomy, craft, fintech context, brand systems, production rigor, and creative direction.</p></aside>
+    <div class="panel">
+      <div class="panel-head">
+        <div class="eyebrow">Plaid-aligned capabilities</div>
+        <h3>Social-native thinking backed by systems-level craft.</h3>
+        <p class="lead">The strongest overlap is not just visual design. It is the ability to originate the idea, make it, systematize it, keep it recognizable across formats, and work directly with business, marketing, product, production, and technical partners without waiting for a perfect brief.</p>
+      </div>
+      <div class="fit-grid">
+        <article class="fit-card highlight"><div class="fit-num">01</div><h4>10 years of fintech context</h4><p>eFundex provides direct exposure to financial products, lending workflows, customer trust, product messaging, growth, sales enablement, and regulated financial-services communication.</p></article>
+        <article class="fit-card"><div class="fit-num">02</div><h4>Hands-on creative ownership</h4><p>Concept through execution in Figma and Adobe Creative Cloud, with typography, layout, composition, motion, brand systems, and final production QA kept under one owner.</p></article>
+        <article class="fit-card"><div class="fit-num">03</div><h4>Social-first system thinking</h4><p>Build channel-aware creative rather than simply resizing paid or campaign assets. Structure reusable components and templates so the work stays fast without becoming generic.</p></article>
+        <article class="fit-card"><div class="fit-num">04</div><h4>Motion under pressure</h4><p>Years of real-time graphics and live production sharpen judgment around timing, hierarchy, movement, visual clarity, and fast-turn delivery when deadlines are real.</p></article>
+        <article class="fit-card"><div class="fit-num">05</div><h4>Art direction + partner feedback</h4><p>Experience guiding collaborators, operators, designers, technical teams, external production partners, and client stakeholders while protecting execution quality.</p></article>
+        <article class="fit-card"><div class="fit-num">06</div><h4>Build the operating model</h4><p>Comfortable creating the templates, standards, handoff rules, briefing logic, review rhythm, and production process needed when a creative function is still scaling.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fintech">
+    <aside class="section-rail"><div class="section-index">02 / Fintech</div><h2>eFundex is the bridge</h2><p>The role asks for genuine curiosity about fintech. This is deeper than curiosity.</p></aside>
+    <div class="panel efundex-band">
+      <div class="efundex-copy">
+        <div class="eyebrow">2016 to present</div>
+        <div class="big-ten">10</div>
+        <h3>Years working inside financial-services problems, not adjacent to them.</h3>
+        <p>Across eFundex, the work has spanned product, technology, growth, sales, customer communication, financial product experience, qualification workflows, messaging, and operational improvement. That creates a practical understanding of how financial products need to communicate trust, clarity, action, and value at the same time.</p>
+      </div>
+      <div class="efundex-list">
+        <ul>
+          <li><b>Current role</b>VP, Sales &amp; Financial Product Experience · Jan 2024 to present</li>
+          <li><b>Prior engagement</b>Product, Technology &amp; Growth Advisor · 2016 to Dec 2023</li>
+          <li><b>Customer communication</b>Translate complex financing concepts into clearer customer- and sales-facing digital experiences.</li>
+          <li><b>Product workflows</b>Improve qualification, financial-product comparison, opportunity routing, and sales conversation systems.</li>
+          <li><b>Brand + growth</b>Support digital communications, social posts, sales materials, product messaging, and partner-facing touchpoints.</li>
+          <li><b>AI operations</b>Develop AI-assisted research and workflow automation for lead discovery, enrichment, and operational efficiency.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="social">
+    <aside class="section-rail"><div class="section-index">03 / Social</div><h2>A native system for every channel</h2><p>Interactive view of how one brand idea can behave differently without losing the brand.</p></aside>
+    <div class="panel social-shell">
+      <div class="channel-nav" aria-label="Social channel selector">
+        <div class="label">Select a channel</div>
+        <button class="channel-btn active" type="button" data-channel="linkedin">LinkedIn</button>
+        <button class="channel-btn" type="button" data-channel="x">X</button>
+        <button class="channel-btn" type="button" data-channel="instagram">Instagram</button>
+        <button class="channel-btn" type="button" data-channel="reddit">Reddit</button>
+        <div class="channel-note">Concept framework only. The purpose is to show a channel-native operating model, not to present speculative campaign work as shipped Plaid work.</div>
+      </div>
+      <div class="social-stage">
+        <div class="social-top">
+          <h3 id="channelTitle">LinkedIn</h3>
+          <p id="channelIntro">Lead with clarity, proof, and usefulness. Translate complex financial infrastructure into a strong point of view that rewards professional curiosity rather than reading like an ad.</p>
+        </div>
+        <div class="social-preview" id="socialPreview" aria-live="polite">
+          <article class="post-card"><div class="type">Carousel</div><h4>One financial behavior. Five signals.</h4><p>Editorial pacing, data clarity, strong typography, and a visual system that can become a recurring social series.</p></article>
+          <article class="post-card motion"><div class="type">Lightweight motion</div><h4>Make the network visible.</h4><p>Turn invisible financial infrastructure into a short, repeatable motion language for launches and always-on product storytelling.</p></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="craft">
+    <aside class="section-rail"><div class="section-index">04 / Craft</div><h2>Design that can survive volume</h2><p>The work needs energy, but it also needs a system strong enough to keep social from drifting.</p></aside>
+    <div class="panel">
+      <div class="panel-head"><div class="eyebrow">Craft + production</div><h3>Make the visual standard reusable without making the output repetitive.</h3><p class="lead">That means the typography, composition, motion, templates, review rules, and channel behavior are designed together. The objective is a recognizable social language that can move quickly and still feel authored.</p></div>
+      <div class="craft-grid">
+        <article class="craft-item"><span class="tag">Figma</span><h4>Reusable social components</h4><p>Flexible component families for recurring formats, launches, quote systems, data stories, carousels, and short-form series without forcing every post into one template.</p></article>
+        <article class="craft-item"><span class="tag">Adobe Creative Cloud</span><h4>Typography + composition</h4><p>Hands-on visual design across Photoshop, Illustrator, After Effects, motion graphics, and production polish with strong hierarchy and channel-appropriate density.</p></article>
+        <article class="craft-item"><span class="tag">Motion</span><h4>Movement with a job</h4><p>Use motion to reveal data, create emphasis, make product behavior legible, or add personality. Not motion simply because the format supports it.</p></article>
+        <article class="craft-item"><span class="tag">Art Direction</span><h4>One quality bar, many makers</h4><p>Set references, define what good looks like, give actionable feedback, and maintain consistency across internal teams, external partners, editors, operators, and production collaborators.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <aside class="section-rail"><div class="section-index">05 / Work</div><h2>Selected proof</h2><p>Technology, consumer product, motion, brand systems, and live production.</p></aside>
+    <div class="panel">
+      <div class="work-grid">
+        <a class="work-card" href="https://fridgiesmalls.app" target="_blank" rel="noopener"><div><div class="work-num">01</div><h4>Fridgie Smalls</h4><p>AI-powered consumer product with product identity, visual design, branded content, digital experience, partner storytelling, and a reusable design system.</p></div><div class="work-link">Open app ↗</div></a>
+        <a class="work-card" href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener"><div><div class="work-num">02</div><h4>Digital Assets</h4><p>Selected visual systems, 3D, character, interactive, and creative technology work demonstrating range across concept and execution.</p></div><div class="work-link">View work ↗</div></a>
+        <a class="work-card" href="https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13" target="_blank" rel="noopener"><div><div class="work-num">03</div><h4>Live + Motion</h4><p>Real-time broadcast production proof where typography, motion, timing, brand accuracy, and deadline control have to work simultaneously.</p></div><div class="work-link">Watch work ↗</div></a>
+        <a class="work-card" href="https://scrappymeals.com" target="_blank" rel="noopener"><div><div class="work-num">04</div><h4>Scrappy Meals</h4><p>Founder-led brand ecosystem spanning food, sustainability, education, characters, events, partnerships, and immersive storytelling.</p></div><div class="work-link">Open site ↗</div></a>
+        <a class="work-card" href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener"><div><div class="work-num">05</div><h4>Metacheese</h4><p>Virtual culinary education and internship environment extending one brand system into a different platform and interaction model.</p></div><div class="work-link">Open project ↗</div></a>
+        <a class="work-card" href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener"><div><div class="work-num">06</div><h4>Career Range</h4><p>Amazon Prime Sports, ESPN, NBC News, Marquee Sports Network, New Year's Rockin' Eve, Vizrt, and multidisciplinary creative technology leadership.</p></div><div class="work-link">Open LinkedIn ↗</div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process">
+    <aside class="section-rail"><div class="section-index">06 / Process</div><h2>How the system scales</h2><p>A simple production loop built for a growing social function.</p></aside>
+    <div class="panel process">
+      <article class="step"><div class="step-num">01</div><h4>Brief</h4><p>Clarify objective, audience, channel, urgency, source material, and the actual behavior the post should drive.</p></article>
+      <article class="step"><div class="step-num">02</div><h4>Concept</h4><p>Find the social-native idea first, then decide what format best expresses it instead of starting with an asset size.</p></article>
+      <article class="step"><div class="step-num">03</div><h4>Design</h4><p>Build in Figma and Adobe with strong type, composition, visual rhythm, motion logic, and a clear brand signature.</p></article>
+      <article class="step"><div class="step-num">04</div><h4>Adapt</h4><p>Translate the idea for LinkedIn, X, Instagram, Reddit, paid, OOH, or launch support without flattening every platform into one voice.</p></article>
+      <article class="step"><div class="step-num">05</div><h4>Review</h4><p>Get fast feedback from social and brand partners, resolve the important craft issues, and keep the work moving.</p></article>
+      <article class="step"><div class="step-num">06</div><h4>Systemize</h4><p>Capture what works as components, references, recurring series, motion rules, and briefing standards that increase speed over time.</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <aside class="section-rail"><div class="section-index">07 / Contact</div><h2>Senior Social Brand Designer</h2><p>Brooklyn-based. Hands-on. Fintech fluent. Built for autonomous execution.</p></aside>
+    <div class="panel contact-panel">
+      <div class="holo-strip" aria-hidden="true"></div>
+      <div class="contact-inner">
+        <div class="eyebrow">Damon Versaggi</div>
+        <h3>Brand craft with <span>financial fluency.</span></h3>
+        <p>20+ years across design, motion, visual systems, creative technology, and production. 10 years at eFundex across fintech product, technology, growth, sales, customer communication, and financial product experience.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a>
+          <a class="btn" href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://fridgiesmalls.app" target="_blank" rel="noopener">Fridgie Smalls</a>
+          <a class="btn" href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener">Digital Assets</a>
+        </div>
+        <div class="footer-meta">Plaid-inspired application microsite · Damon Versaggi · Brooklyn, NY</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">Copied</div>
+<script>
+(() => {
+  'use strict';
+  const progress = document.getElementById('scrollProgress');
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('mainNavigation');
+  const navLinks = Array.from(navList.querySelectorAll('a[href^="#"]'));
+  const sections = navLinks.map(a => document.querySelector(a.hash)).filter(Boolean);
+  let queued = false;
+
+  function updateScroll(){
+    const extent = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = extent > 0 ? Math.max(0, Math.min(1, window.scrollY / extent)) : 0;
+    progress.style.transform = `scaleX(${ratio})`;
+    const offset = document.querySelector('nav').getBoundingClientRect().height + 100;
+    let current = '';
+    sections.forEach(section => { if(section.getBoundingClientRect().top <= offset) current = section.id; });
+    navLinks.forEach(a => a.classList.toggle('active', a.hash === `#${current}`));
+    queued = false;
+  }
+  function requestScroll(){ if(!queued){ queued = true; requestAnimationFrame(updateScroll); } }
+  window.addEventListener('scroll', requestScroll, {passive:true});
+  window.addEventListener('resize', requestScroll);
+  updateScroll();
+
+  function setNav(open){
+    navList.classList.toggle('is-open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.textContent = open ? 'Close' : 'Menu';
+  }
+  navToggle.addEventListener('click', () => setNav(navToggle.getAttribute('aria-expanded') !== 'true'));
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNav(false)));
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') setNav(false); });
+  document.addEventListener('click', e => { if(!e.target.closest('nav')) setNav(false); });
+
+  const channelData = {
+    linkedin:{
+      title:'LinkedIn',
+      intro:'Lead with clarity, proof, and usefulness. Translate complex financial infrastructure into a strong point of view that rewards professional curiosity rather than reading like an ad.',
+      cards:[
+        ['Carousel','One financial behavior. Five signals.','Editorial pacing, data clarity, strong typography, and a visual system that can become a recurring social series.',''],
+        ['Lightweight motion','Make the network visible.','Turn invisible financial infrastructure into a short, repeatable motion language for launches and always-on product storytelling.','motion']
+      ]
+    },
+    x:{
+      title:'X',
+      intro:'Move faster, write tighter, and design for the feed. Use one sharp visual idea, one piece of proof, and enough personality to make technical finance feel current.',
+      cards:[
+        ['Static','A data point worth stopping for.','One decisive stat, one visual device, and a system designed to be understood before the next scroll.',''],
+        ['Series','Build in public, visually.','Short-form product, network, and market observations with a recognizable graphic signature that can ship at high cadence.','motion']
+      ]
+    },
+    instagram:{
+      title:'Instagram',
+      intro:'Let the brand become more visual and expressive. Use carousels, motion, close-up craft, dimensional type, and finance-inspired visual details that reward attention without losing clarity.',
+      cards:[
+        ['Carousel','The fabric behind the flow.','A more visual sequence that turns product infrastructure into layered, tactile storytelling with strong pacing.',''],
+        ['Motion','Signals in motion.','Short, loopable animation built around pattern, data, product behavior, and a strong opening frame.','motion']
+      ]
+    },
+    reddit:{
+      title:'Reddit',
+      intro:'Design should support credibility, not overpower it. Make the creative useful, specific, and conversation-aware so the brand enters a community with context rather than campaign language.',
+      cards:[
+        ['Explainer','What actually happens when you connect an account?','A clear, utility-first visual explainer designed to answer the question directly and invite discussion.',''],
+        ['AMA support','Give the expert something useful to point to.','Simple diagrams, product context, and modular visual assets that help technical or product experts participate naturally.','motion']
+      ]
+    }
+  };
+  const channelButtons = Array.from(document.querySelectorAll('.channel-btn'));
+  const titleEl = document.getElementById('channelTitle');
+  const introEl = document.getElementById('channelIntro');
+  const previewEl = document.getElementById('socialPreview');
+  function setChannel(key){
+    const data = channelData[key]; if(!data) return;
+    channelButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.channel === key));
+    titleEl.textContent = data.title;
+    introEl.textContent = data.intro;
+    previewEl.innerHTML = data.cards.map(card => `<article class="post-card ${card[3]}"><div class="type">${card[0]}</div><h4>${card[1]}</h4><p>${card[2]}</p></article>`).join('');
+  }
+  channelButtons.forEach(btn => btn.addEventListener('click', () => setChannel(btn.dataset.channel)));
+
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2400)}
+  const contactText = `Damon Versaggi\ndamon@scrappymeals.com\nBrooklyn, NY\nLinkedIn: https://www.linkedin.com/in/damonversaggi\nPortfolio: https://opensea.io/collection/damonversaggi\nFridgie Smalls: https://fridgiesmalls.app`;
+  document.getElementById('copyBtn').addEventListener('click', async () => {
+    try{await navigator.clipboard.writeText(contactText);showToast('Contact copied');}
+    catch{
+      const area=document.createElement('textarea');area.value=contactText;area.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(area);area.select();
+      let ok=false;try{ok=document.execCommand('copy')}catch{}area.remove();showToast(ok?'Contact copied':'Copy unavailable');
+    }
+  });
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+})();
+</script>
+</body>
+</html>
