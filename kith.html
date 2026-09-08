@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" data-design="editorial-monochrome">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damon Versaggi — Creative Solutions Architect</title>
+<meta name="description" content="Damon Versaggi — Creative Solutions Architect spanning real-time 3D, live broadcast, AI workflows, product storytelling, campaign systems, partnerships, and audience growth.">
+<style>/* Editorial portfolio. Kith-inspired visual direction; original Damon Versaggi identity. */
+:root{--bg:#faf9f6;--surface:#f0efeb;--surface2:#e7e5df;--ink:#171715;--muted:#62615b;--line:#d9d8d2;--paper:#fff;--max:1360px;--gutter:clamp(24px,5vw,88px);--header:116px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header) + 24px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:5px}::selection{background:#dad7ce;color:#171715}
+.skip-link{position:fixed;top:12px;left:12px;transform:translateY(-160%);z-index:5000;background:var(--ink);color:white;padding:10px 16px}.skip-link:focus{transform:none}
+.scroll-progress{position:fixed;inset:0 0 auto;height:2px;background:var(--ink);transform:scaleX(0);transform-origin:left;z-index:200}
+nav{height:var(--header);position:fixed;inset:0 0 auto;background:rgba(255,255,255,.98);border-bottom:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;z-index:100;padding:14px var(--gutter)}
+.nav-logo{display:block;font-size:25px;font-weight:800;letter-spacing:-1.2px;line-height:1.15;text-transform:uppercase}
+.nav-links{list-style:none;padding:0;display:flex;justify-content:center;align-items:center;gap:32px}
+.nav-links a{display:block;font-size:12px;letter-spacing:.065em;line-height:1.5;text-transform:uppercase;padding:4px 0;border-bottom:1px solid transparent}
+.nav-links a:hover,.nav-links a.active{border-color:var(--ink)}.nav-links .nav-cta{border-bottom:1px solid var(--ink)}
+.nav-toggle{display:none;background:none;border:0;padding:10px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;min-height:44px}
+section{padding:104px var(--gutter);border-top:1px solid var(--line);scroll-margin-top:16px}.section-inner{max-width:var(--max);margin:auto;min-width:0}
+#hero{padding-top:calc(var(--header) + 92px);padding-bottom:82px;border:0;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(260px,.7fr);gap:clamp(48px,6vw,108px);max-width:calc(var(--max) + 2 * var(--gutter));margin:auto;align-items:start}
+.hero-left,.hero-right{min-width:0}.hero-eyebrow,.section-eyebrow{font-size:12px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;line-height:1.7}
+.hero-eyebrow{color:var(--muted);max-width:440px;margin-bottom:32px}.section-eyebrow{margin-bottom:28px;color:var(--muted)}
+h1{font-size:clamp(42px,4.6vw,72px);font-weight:500;letter-spacing:-.045em;line-height:1.05;max-width:820px;margin-bottom:32px;text-wrap:balance}
+h1 em,h2 em{font-family:inherit;font-style:normal;font-weight:inherit}h1 em{color:#77746a}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.8;max-width:640px;margin-bottom:32px}.hero-sub strong{color:var(--ink);font-weight:500}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px}.btn{display:inline-flex;justify-content:center;align-items:center;padding:13px 19px;border:1px solid var(--line);border-radius:0;font-size:12px;letter-spacing:.065em;line-height:1.35;text-transform:uppercase;min-height:44px;background:transparent;transition:background .18s,color .18s,border-color .18s}
+.btn-primary{background:var(--ink);border-color:var(--ink);color:white}.btn-primary:hover{background:#393934}.btn-ghost:hover{background:var(--surface2);border-color:#aaa79c}
+.hero-right{padding-top:4px}.capability-matrix{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink);counter-reset:discipline}
+.cap-cell{counter-increment:discipline;padding:15px 10px 15px 0;border-bottom:1px solid var(--line);font-size:12px;line-height:1.4;letter-spacing:.025em;min-width:0;display:flex;flex-direction:column;gap:7px}
+.cap-cell::before{content:counter(discipline,decimal-leading-zero);font-size:11px;color:#77746a;font-weight:400;letter-spacing:.08em}.cap-cell:nth-child(even){padding-left:18px}.cap-cell.highlight{font-weight:600}.cap-cell:hover{background:var(--surface)}
+h2{font-size:clamp(32px,3.5vw,50px);font-weight:400;line-height:1.12;letter-spacing:-.035em;max-width:900px;margin-bottom:24px;text-wrap:balance}
+.section-lead{font-size:17px;color:var(--muted);max-width:780px;line-height:1.8;margin-bottom:48px}
+#positioning{background:var(--paper)}.cards-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--ink);gap:26px}
+.fit-card{padding:22px 0;border-bottom:1px solid var(--line);min-width:0}.card-trigger{display:block;text-align:left;padding:0;border:0;background:none;width:100%;line-height:1.4}.card-num{display:block;font-size:12px;color:var(--muted);letter-spacing:.1em;margin-bottom:26px}.card-title{display:block;font-size:18px;font-weight:500;letter-spacing:-.025em;line-height:1.3;min-height:72px}
+.card-body{font-size:15px;color:var(--muted);line-height:1.75;padding-top:18px}.card-body[hidden]{display:none}.card-arrow{display:block;font-size:12px;letter-spacing:.04em;margin-top:24px;color:var(--muted)}.fit-card.active{border-color:var(--ink)}.card-trigger:hover .card-arrow{color:var(--ink)}
+#proof{background:var(--surface)}.split-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(40px,7vw,110px);align-items:start}.proof-list{list-style:none;padding:0}.proof-list li{padding:19px 0;border-bottom:1px solid #cfcdc5;font-size:16px;color:var(--muted);line-height:1.8}
+.pull-panel{border-top:1px solid var(--ink);padding:27px 0;margin-top:6px}.pull-panel p{font-size:clamp(24px,2.4vw,34px);line-height:1.45;letter-spacing:-.025em;font-weight:400;margin-bottom:30px}.pull-panel-meta{font-size:12px;letter-spacing:.055em;text-transform:uppercase;color:var(--muted)}
+.tag-row,.timeline-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:25px}.tag,.mini-tag{font-size:12px;padding:5px 10px;border:1px solid #c9c7bf;line-height:1.45;color:#53524b}.tag.hot{color:var(--ink);border-color:#aaa79c}.timeline-tags{margin-top:16px}.mini-tag{font-size:12px;background:transparent}
+.timeline-track{margin-top:80px;border-top:1px solid var(--ink)}.timeline-item{display:grid;grid-template-columns:190px minmax(0,1fr);gap:48px;padding:30px 0;border-bottom:1px solid #cfcdc5}.timeline-year{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding-top:4px}.timeline-content h3{font-weight:500;font-size:21px;letter-spacing:-.025em;line-height:1.35;margin-bottom:12px}.timeline-content p{color:var(--muted);font-size:16px;line-height:1.8;max-width:940px}
+#capabilities{background:var(--paper)}.edge-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:32px;row-gap:44px;margin-top:52px}.edge-item{border-top:1px solid var(--ink);padding-top:23px}.edge-label{font-size:14px;font-weight:500;line-height:1.45;letter-spacing:.035em;text-transform:uppercase;margin-bottom:16px;min-height:42px}.edge-text{font-size:16px;line-height:1.8;color:var(--muted)}.edge-text strong{color:var(--ink);font-weight:500}
+#work{background:#eeece6}.work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:48px}.work-card{display:flex;flex-direction:column;justify-content:space-between;min-width:0;min-height:330px;padding:30px;background:var(--bg);border:1px solid transparent;transition:background .2s,border-color .2s}.work-card:hover{border-color:#aaa79c;background:white}.work-num{font-size:48px;font-weight:400;line-height:1;letter-spacing:-.06em;color:#aaa79e;margin-bottom:45px}.work-title{font-size:24px;letter-spacing:-.035em;font-weight:500;line-height:1.2;margin-bottom:16px}.work-copy{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:28px}.work-link{font-size:12px;letter-spacing:.045em;text-transform:uppercase;border-top:1px solid var(--line);padding-top:18px}
+#model{background:var(--bg)}.model-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:50px}.model-step{border-top:1px solid var(--ink);padding:24px 0 8px}.model-step-num{font-size:12px;letter-spacing:.07em;color:var(--muted);margin-bottom:28px}.model-step h3{font-weight:400;font-size:26px;letter-spacing:-.035em;margin-bottom:13px}.model-step p{font-size:16px;line-height:1.8;color:var(--muted)}
+#quotes{background:var(--paper)}.quotes-stack{margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}.quote-block{border-top:1px solid var(--ink);padding-top:28px}.quote-text{font-size:clamp(21px,1.85vw,28px);font-weight:400;line-height:1.55;letter-spacing:-.025em}
+#contact{background:#1d1e1a;color:#f8f7f2;padding:100px var(--gutter) 36px;text-align:left}#contact .section-eyebrow{color:#c4c4ba}#contact h2{max-width:820px}#contact .section-lead{color:#c4c4ba;max-width:760px;margin-bottom:36px}#contact .btn-primary{background:#f8f7f2;border-color:#f8f7f2;color:#1d1e1a}#contact .btn-primary:hover{background:#deddd6}#contact .btn-ghost{color:#f8f7f2;border-color:#62635a}#contact .btn-ghost:hover{background:#383a32}.footer-meta{margin-top:84px;padding-top:24px;border-top:1px solid #515249;font-size:12px;letter-spacing:.03em;color:#c4c4ba;overflow-wrap:anywhere}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,15px);background:var(--ink);color:white;padding:14px 22px;font-size:14px;max-width:calc(100vw - 32px);width:max-content;opacity:0;pointer-events:none;z-index:300;transition:opacity .2s,transform .2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:1500px){#hero{padding-top:calc(var(--header) + 110px);padding-bottom:104px}}
+@media(max-width:1100px){.cards-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.edge-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.quotes-stack{grid-template-columns:1fr;gap:30px}.quote-text{max-width:920px}.card-title{min-height:48px}}
+@media(max-width:980px){:root{--header:72px}nav{flex-direction:row;justify-content:space-between;padding:0 var(--gutter);gap:12px}.nav-logo{font-size:22px;letter-spacing:-1px}.nav-toggle{display:block}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:white;padding:20px var(--gutter) 28px;border-bottom:1px solid var(--line);margin:0;align-items:stretch;gap:0}.nav-links.is-open{display:flex;flex-direction:column}.nav-links a{font-size:14px;padding:13px 0}.nav-links .nav-cta{border:0}#hero{grid-template-columns:minmax(0,1fr);gap:48px;padding-top:calc(var(--header) + 64px)}h1{font-size:clamp(42px,7vw,66px);max-width:850px}.hero-eyebrow{max-width:none}.hero-sub{max-width:720px}.capability-matrix{grid-template-columns:repeat(3,minmax(0,1fr))}.cap-cell:nth-child(even){padding-left:0}.cap-cell{padding:14px 12px 14px 0}.split-grid{grid-template-columns:1fr;gap:42px}.pull-panel p{max-width:740px}.model-grid{grid-template-columns:repeat(2,minmax(0,1fr))}section{padding-top:76px;padding-bottom:76px}.timeline-item{grid-template-columns:150px minmax(0,1fr);gap:28px}}
+@media(max-width:620px){:root{--gutter:24px}.nav-logo{font-size:20px}#hero{padding-top:calc(var(--header) + 46px);padding-bottom:52px;gap:40px}h1{font-size:clamp(36px,9.5vw,54px);line-height:1.08;letter-spacing:-.04em}.hero-eyebrow{font-size:11px;margin-bottom:24px}.hero-sub{margin-bottom:26px}.btn-row{gap:8px}.btn{font-size:11px;padding:12px 14px}.capability-matrix{grid-template-columns:repeat(2,minmax(0,1fr))}.cap-cell{font-size:12px}.cards-grid{grid-template-columns:1fr;gap:0}.fit-card{padding:24px 0}.card-trigger{position:relative;padding-left:44px}.card-num{position:absolute;left:0;top:2px;margin:0}.card-title{min-height:0;font-size:20px;padding-right:16px}.card-arrow{margin-top:10px}.card-body{padding-left:44px}.edge-grid,.work-grid,.model-grid{grid-template-columns:1fr}.edge-grid{gap:30px}.edge-label{min-height:0}.work-card{min-height:300px}.work-num{margin-bottom:32px}.timeline-item{grid-template-columns:1fr;gap:13px}.timeline-track{margin-top:52px}.timeline-content h3{font-size:20px}.section-lead{font-size:16px;margin-bottom:34px}h2{font-size:34px}.section-eyebrow{margin-bottom:20px}section{padding-top:60px;padding-bottom:60px}#contact{padding-top:64px}.footer-meta{margin-top:52px}.model-grid{gap:24px}.model-step-num{margin-bottom:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+@media print{@page{margin:16mm}nav,.skip-link,.scroll-progress,.toast,.btn-row{display:none!important}html{scroll-behavior:auto}body{font-size:10pt;background:white;color:#111}section,#hero,#contact,#proof,#model,#quotes,#work,#positioning,#capabilities{display:block;background:white!important;color:#111!important;padding:22px 0!important;margin:0;border-color:#ddd;max-width:none}.section-inner{max-width:none}.hero-right{display:none}h1{font-size:30pt;max-width:none}h2{font-size:23pt;max-width:none}h1 em,.hero-sub,.section-lead,#contact .section-lead,#contact .section-eyebrow{color:#444}.cards-grid,.split-grid,.edge-grid,.work-grid,.model-grid,.quotes-stack{display:block}.fit-card,.edge-item,.work-card,.model-step,.quote-block,.pull-panel,.timeline-item{break-inside:avoid;margin:12px 0;min-height:0;padding:16px 0;background:white}.card-body[hidden]{display:block!important}.card-title{min-height:0}.card-arrow{display:none}.card-num,.work-num{font-size:12pt;margin-bottom:8px}.timeline-item{display:block}.footer-meta{color:#444;margin-top:24px}.work-grid,.edge-grid,.model-grid,.quotes-stack,.timeline-track{margin-top:22px}}
+</style>
+</head>
+<body>
+<a href="#hero" class="skip-link">Skip to content</a><div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<nav aria-label="Main navigation">
+  <a href="#hero" class="nav-logo" aria-label="Damon Versaggi, back to top">Damon Versaggi</a>
+  <ul class="nav-links" id="mainNavigation">
+    <li><a href="#positioning">Positioning</a></li>
+    <li><a href="#proof">Proof</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#model">Model</a></li>
+    <li><a href="mailto:damon@scrappymeals.com" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNavigation" type="button">Menu</button>
+</nav>
+
+<section id="hero" tabindex="-1">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Creative Solutions Architect · Real-Time 3D · AI Product Systems</div>
+    <h1>Creative technology translated into <em>systems people can use</em>.</h1>
+    <p class="hero-sub">
+      I operate where <strong>creative direction, technical architecture, product storytelling, and business execution</strong> collide. The value is not just making the work look good. It is building the structure underneath the idea so teams can explain it, produce it, sell it, launch it, and scale it.
+    </p>
+    <div class="btn-row">
+      <a href="mailto:damon@scrappymeals.com" class="btn btn-primary">Email Damon</a>
+      <button class="btn btn-ghost" id="copyBtn" type="button">Copy Contact</button>
+      <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener" class="btn btn-ghost">Digital Assets</a>
+      <a href="https://fridgiesmalls.app" target="_blank" rel="noopener" class="btn btn-ghost">Fridgie Smalls</a>
+      <a href="https://scrappymeals.com" target="_blank" rel="noopener" class="btn btn-ghost">Scrappy Meals</a>
+      <a href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener" class="btn btn-ghost">Metacheese</a>
+      <button class="btn btn-ghost" id="printBtn" type="button">Print / PDF</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="capability-matrix" id="capMatrix">
+      <div class="cap-cell highlight">Real-Time 3D</div>
+      <div class="cap-cell">Creative Direction</div>
+      <div class="cap-cell">AI Workflows</div>
+      <div class="cap-cell">Live Broadcast</div>
+      <div class="cap-cell highlight">Product Storytelling</div>
+      <div class="cap-cell">Campaign Systems</div>
+      <div class="cap-cell">WebXR</div>
+      <div class="cap-cell">Partner Demos</div>
+      <div class="cap-cell highlight">Brand Worlds</div>
+      <div class="cap-cell">GTM Strategy</div>
+      <div class="cap-cell">Sales Enablement</div>
+      <div class="cap-cell">Content Systems</div>
+      <div class="cap-cell highlight">Technical Leadership</div>
+      <div class="cap-cell">Audience Growth</div>
+      <div class="cap-cell">Pitch Narratives</div>
+      <div class="cap-cell">3D Production</div>
+      <div class="cap-cell">Founder-Led</div>
+      <div class="cap-cell highlight">Execution Standards</div>
+    </div>
+  </div>
+</section>
+
+<section id="positioning">
+  <div class="section-inner">
+    <div class="section-eyebrow">Positioning</div>
+    <h2>Solving high-stakes creative technology problems <em>without the fog</em>.</h2>
+    <p class="section-lead">My work sits across real-time graphics, live broadcast, 3D production, immersive content, AI product logic, brand storytelling, and technical creative leadership. The through-line is translation: turning complicated systems into clear experiences and usable operating models.</p>
+    <div class="cards-grid">
+      <div class="fit-card active">
+        <button type="button" class="card-trigger" aria-controls="cardDetail1" aria-expanded="true"><span class="card-num">01</span>
+        <span class="card-title">Creative Direction With Architecture</span>
+        <span class="card-arrow">View detail →</span>
+      </button><div class="card-body" id="cardDetail1">I build the narrative, design logic, content system, production rules, review standards, and execution path that allow ideas to survive actual deadlines and stakeholder gravity.</div>
+        </div>
+      <div class="fit-card">
+        <button type="button" class="card-trigger" aria-controls="cardDetail2" aria-expanded="true"><span class="card-num">02</span>
+        <span class="card-title">Technical Fluency Without Tech Fog</span>
+        <span class="card-arrow">View detail →</span>
+      </button><div class="card-body" id="cardDetail2">Real-time 3D, broadcast systems, interactive media, AI workflows, and product systems become useful only when people understand what they do, why they matter, and how they create value.</div>
+        </div>
+      <div class="fit-card">
+        <button type="button" class="card-trigger" aria-controls="cardDetail3" aria-expanded="true"><span class="card-num">03</span>
+        <span class="card-title">Business Logic Inside The Creative</span>
+        <span class="card-arrow">View detail →</span>
+      </button><div class="card-body" id="cardDetail3">Every creative system should know what it is trying to move: audience growth, partner trust, campaign performance, sales enablement, product adoption, sponsor value, cultural relevance, or internal speed.</div>
+        </div>
+      <div class="fit-card">
+        <button type="button" class="card-trigger" aria-controls="cardDetail4" aria-expanded="true"><span class="card-num">04</span>
+        <span class="card-title">AI As Production Layer</span>
+        <span class="card-arrow">View detail →</span>
+      </button><div class="card-body" id="cardDetail4">I use AI to compress strategy, product copy, campaign logic, workflow documentation, pitch structure, and product behavior into faster, sharper, repeatable outputs.</div>
+        </div>
+      <div class="fit-card">
+        <button type="button" class="card-trigger" aria-controls="cardDetail5" aria-expanded="true"><span class="card-num">05</span>
+        <span class="card-title">Cross-Discipline Leadership</span>
+        <span class="card-arrow">View detail →</span>
+      </button><div class="card-body" id="cardDetail5">I work between creative, technical, sales, product, production, vendors, interns, executives, and partners without collapsing the room into a jargon bonfire.</div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="section-inner">
+    <div class="section-eyebrow">Proof</div>
+    <h2>The range is the advantage.</h2>
+    <div class="split-grid">
+      <div>
+        <p class="section-lead" style="margin-bottom: 24px;">The portfolio is not one clean corporate lane. It spans live production pressure, founder-led product building, AI implementation, sales workflows, brand worlds, partner-facing storytelling, and creative technology systems.</p>
+        <ul class="proof-list">
+          <li>Built Scrappy Meals, Fridgie Smalls, and The Metacheese as a food-tech ecosystem connecting AI recipe generation, 3D storytelling, education, sustainability, partner concepts, and audience-facing experiences.</li>
+          <li>Worked across real-time graphics and live production environments for sports, news, broadcast, and major events where reliability, speed, taste, and technical accuracy have to show up at the same time.</li>
+          <li>Created AI-assisted outreach, sales narrative, lead workflow, pitch, and communication systems for a high-trust financial services environment through eFundex.</li>
+          <li>Turned complex product and technical ideas into sharper messaging, demos, pitch logic, content systems, and execution standards.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag hot">Creative Solutions Architect</span>
+          <span class="tag hot">Real-Time 3D</span>
+          <span class="tag hot">AI Product Logic</span>
+          <span class="tag">Live Broadcast</span>
+          <span class="tag">Food-Tech</span>
+          <span class="tag">WebXR</span>
+          <span class="tag">Partner Strategy</span>
+          <span class="tag">Campaign Logic</span>
+        </div>
+      </div>
+      <div class="pull-panel reveal">
+        <p>“I do not just make content. I build the systems that make content perform: creative direction, AI workflow design, production logic, brand storytelling, go-to-market structure, and execution standards.”</p>
+        <div class="pull-panel-meta">Damon Versaggi · Creative Solutions Architect</div>
+      </div>
+    </div>
+
+    <div class="timeline-track">
+      <div class="timeline-item">
+        <div class="timeline-year">Ongoing</div>
+        <div class="timeline-content">
+          <h3>Scrappy Meals / Fridgie Smalls / The Metacheese</h3>
+          <p>Founder, creative product architect, and brand world builder. Built a food-tech and character-driven product ecosystem connecting AI recipe generation, immersive storytelling, sponsor concepts, education, sustainability, and audience engagement.</p>
+          <div class="timeline-tags"><span class="mini-tag">OpenAI API</span><span class="mini-tag">Food-Tech</span><span class="mini-tag">WebXR</span><span class="mini-tag">Brand World</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2004–Present</div>
+        <div class="timeline-content">
+          <h3>Real-Time 3D / Broadcast / Live Production</h3>
+          <p>Designed, implemented, and supported high-pressure visual systems across sports, news, broadcast, AR, and events, including election coverage environments and New Year’s Rockin’ Eve Ball Drop work.</p>
+          <div class="timeline-tags"><span class="mini-tag">Vizrt</span><span class="mini-tag">ESPN</span><span class="mini-tag">CNN</span><span class="mini-tag">CBS</span><span class="mini-tag">MSNBC</span><span class="mini-tag">MLB Digital</span><span class="mini-tag">Amazon Prime Sports</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Sales + Systems</div>
+        <div class="timeline-content">
+          <h3>eFundex</h3>
+          <p>VP Sales &amp; Technology. Built AI-assisted outreach, sales narrative, lead workflow, pitch, and communication systems, translating complex funding products into clearer executive-facing value propositions and repeatable messaging.</p>
+          <div class="timeline-tags"><span class="mini-tag">Sales Enablement</span><span class="mini-tag">Workflow Systems</span><span class="mini-tag">Commercial Storytelling</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="capabilities">
+  <div class="section-inner">
+    <div class="section-eyebrow">Capabilities</div>
+    <h2>Core strengths mapped to <em>actual execution</em>.</h2>
+    <p class="section-lead">This is the working vocabulary: creative direction, real-time 3D, AI workflows, product storytelling, campaign systems, go-to-market strategy, partner demos, content systems, technical creative leadership, and execution standards.</p>
+    <div class="edge-grid">
+      <div class="edge-item"><div class="edge-label">Creative Solutions Architecture</div><div class="edge-text">Turns ambiguous goals into clear creative systems: message, audience, format, platform behavior, production model, stakeholder path, and measurable output.</div></div>
+      <div class="edge-item"><div class="edge-label">Real-Time 3D + Live Broadcast</div><div class="edge-text">Deep background in live graphics, real-time visual systems, motion logic, implementation, and pressure-tested production environments.</div></div>
+      <div class="edge-item"><div class="edge-label">AI Workflow Design</div><div class="edge-text">Builds practical AI-assisted systems for recipe generation, sales outreach, structured content, campaign thinking, ideation, workflow speed, and repeatable output.</div></div>
+      <div class="edge-item"><div class="edge-label">Product Storytelling</div><div class="edge-text">Explains what a product does, why it matters, how users move through it, and why partners, clients, or audiences should care before their eyes glaze over.</div></div>
+      <div class="edge-item"><div class="edge-label">Campaign Logic</div><div class="edge-text">Connects concept, audience, channel behavior, asset system, launch rhythm, content hierarchy, and performance goal into one usable operating structure.</div></div>
+      <div class="edge-item"><div class="edge-label">Partnership Strategy</div><div class="edge-text">Builds partner-facing narratives, sponsor activations, demos, pitch systems, and commercial framing that make unusual creative products easier to understand and buy into.</div></div>
+      <div class="edge-item"><div class="edge-label">Audience Growth</div><div class="edge-text">Shapes messaging, content pathways, platform-native hooks, social-first ideas, and product entry points around attention, retention, usefulness, and shareability.</div></div>
+      <div class="edge-item"><div class="edge-label">Leadership Across Disciplines</div><div class="edge-text">Works between creative, technical, sales, product, production, vendors, interns, executives, and partners while keeping ownership clear and momentum intact.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-inner">
+    <div class="section-eyebrow">Selected Work</div>
+    <h2>Clean entry points into the work.</h2>
+    <p class="section-lead">Digital asset proof, food agent proof, live production proof, founder proof, virtual education proof, and the broader Scrappy Meals / Metacheese ecosystem. No scavenger hunt, mercifully.</p>
+    <div class="work-grid">
+      <a class="work-card" href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener">
+        <div><div class="work-num">01</div><div class="work-title">Digital Assets</div><div class="work-copy">Selected creative technology, product, character, 3D, and visual systems work. Best first click for understanding the range.</div></div>
+        <div class="work-link">Open Digital Assets ↗</div>
+      </a>
+      <a class="work-card" href="https://fridgiesmalls.app" target="_blank" rel="noopener">
+        <div><div class="work-num">02</div><div class="work-title">Fridgie Smalls</div><div class="work-copy">AI-powered food agent built around ingredient input, recipe generation, 3D character interaction, product UX, and sponsor-ready storytelling.</div></div>
+        <div class="work-link">Open App ↗</div>
+      </a>
+      <a class="work-card" href="https://scrappymeals.com" target="_blank" rel="noopener">
+        <div><div class="work-num">03</div><div class="work-title">Scrappy Meals</div><div class="work-copy">The larger food, sustainability, education, character, events, and immersive storytelling ecosystem behind Fridgie Smalls and The Metacheese.</div></div>
+        <div class="work-link">Open Site ↗</div>
+      </a>
+      <a class="work-card" href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener">
+        <div><div class="work-num">04</div><div class="work-title">Metacheese</div><div class="work-copy">Virtual internship and culinary education world connected to the larger Scrappy Meals ecosystem.</div></div>
+        <div class="work-link">Open Metacheese ↗</div>
+      </a>
+      <a class="work-card" href="https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&amp;t=13" target="_blank" rel="noopener">
+        <div><div class="work-num">05</div><div class="work-title">Live</div><div class="work-copy">Live broadcast and real-time production proof showing the high-pressure creative systems background behind the portfolio.</div></div>
+        <div class="work-link">Watch Live Work ↗</div>
+      </a>
+      <a class="work-card" href="https://opensea.io/item/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/109208400969062635290625311071503353448562745337013885995367713339183061794817" target="_blank" rel="noopener">
+        <div><div class="work-num">06</div><div class="work-title">The Nightlight</div><div class="work-copy">SVA award-winning senior thesis submitted for Student Oscar consideration, showing early visual storytelling, production discipline, and cinematic execution.</div></div>
+        <div class="work-link">Open The Nightlight ↗</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="model">
+  <div class="section-inner">
+    <div class="section-eyebrow">Operating Model</div>
+    <h2>Build the engine, not just the artifact.</h2>
+    <p class="section-lead">The job is not to make a nice thing once. The job is to build a repeatable creative engine: fast diagnosis, clear strategy, sharp concepting, technical feasibility, production discipline, and enough business logic to keep the work from becoming decorative confetti.</p>
+    <div class="model-grid">
+      <div class="model-step"><div class="model-step-num">01</div><h3>Diagnose</h3><p>Clarify the audience, problem, cultural context, business goal, platform behavior, stakeholder tension, technical constraints, and success signal.</p></div>
+      <div class="model-step"><div class="model-step-num">02</div><h3>Architect</h3><p>Define the system: message hierarchy, experience flow, asset model, workflow, production path, approval path, and technical requirements.</p></div>
+      <div class="model-step"><div class="model-step-num">03</div><h3>Prototype</h3><p>Make the idea visible quickly through decks, demos, interactive pages, mockups, product flows, scripts, AI outputs, or visual systems.</p></div>
+      <div class="model-step"><div class="model-step-num">04</div><h3>Translate</h3><p>Turn technical complexity into language that executives, clients, partners, users, and creative teams can actually use without needing a decoder ring.</p></div>
+      <div class="model-step"><div class="model-step-num">05</div><h3>Ship</h3><p>Stay close to execution: creative QA, product behavior, production details, copy, design, motion, launch standards, and the tiny things that decide quality.</p></div>
+      <div class="model-step"><div class="model-step-num">06</div><h3>Scale</h3><p>Turn what works into repeatable playbooks, templates, component logic, pitch frameworks, content systems, and team habits that compound over time.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="quotes">
+  <div class="section-inner">
+    <div class="section-eyebrow">Thesis</div>
+    <h2>The short version, for people allergic to scrolling.</h2>
+    <div class="quotes-stack">
+      <div class="quote-block"><div class="quote-text">“I build systems that make creative work easier to understand, easier to sell, easier to produce, and harder to ignore.”</div></div>
+      <div class="quote-block"><div class="quote-text">“My strongest work happens where creative, technical, and business teams need one person who can understand the idea, shape the system, explain the value, and push the work across the finish line.”</div></div>
+      <div class="quote-block"><div class="quote-text">“High-stakes creative technology only matters when people can see it, use it, buy it, share it, and build on it.”</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-eyebrow">Contact</div>
+    <h2>Creative Solutions Architect · Damon Versaggi</h2>
+    <p class="section-lead">Real-time 3D, live broadcast, product storytelling, AI-assisted workflows, founder-led brand building, campaign systems, partner narratives, and business development. That range is not random. It is the pattern.</p>
+    <div class="btn-row">
+      <a href="mailto:damon@scrappymeals.com" class="btn btn-primary">Email Damon</a>
+      <a href="https://www.linkedin.com/in/damonversaggi" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener" class="btn btn-ghost">Digital Assets</a>
+      <a href="https://fridgiesmalls.app" target="_blank" rel="noopener" class="btn btn-ghost">Fridgie Smalls</a>
+      <a href="https://scrappymeals.com" target="_blank" rel="noopener" class="btn btn-ghost">Scrappy Meals</a>
+      <a href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener" class="btn btn-ghost">Metacheese</a>
+      <a href="https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&amp;t=13" target="_blank" rel="noopener" class="btn btn-ghost">Live</a>
+    </div>
+    <div class="footer-meta">Damon Versaggi · damon@scrappymeals.com · linkedin.com/in/damonversaggi</div>
+  </div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">Copied</div>
+
+<script>(() => {
+  'use strict';
+  const progress = document.getElementById('scrollProgress');
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.querySelector('.nav-links');
+  const mobileQuery = window.matchMedia('(max-width: 980px)');
+  const navLinks = Array.from(navList.querySelectorAll('a[href^="#"]'));
+  const sections = navLinks.map(link => document.querySelector(link.hash)).filter(Boolean);
+  let scrollQueued = false;
+  function updateScroll() {
+    const extent = document.documentElement.scrollHeight - window.innerHeight;
+    const fraction = extent > 0 ? Math.min(1, Math.max(0, window.scrollY / extent)) : 0;
+    progress.style.transform = `scaleX(${fraction})`;
+    const offset = document.querySelector('nav').getBoundingClientRect().height + 100;
+    let current = '';
+    sections.forEach(section => { if (section.getBoundingClientRect().top <= offset) current = section.id; });
+    navLinks.forEach(link => {
+      const active = link.hash === `#${current}`;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+    });
+    scrollQueued = false;
+  }
+  function queueScroll() { if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(updateScroll); } }
+  window.addEventListener('scroll', queueScroll, { passive: true });
+  window.addEventListener('resize', queueScroll);
+  updateScroll();
+  function setNav(open) {
+    navList.classList.toggle('is-open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.textContent = open ? 'Close' : 'Menu';
+  }
+  navToggle.addEventListener('click', () => setNav(navToggle.getAttribute('aria-expanded') !== 'true'));
+  navList.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setNav(false)));
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') { setNav(false); navToggle.focus(); } });
+  document.addEventListener('click', event => { if (!event.target.closest('nav')) setNav(false); });
+  mobileQuery.addEventListener('change', () => setNav(false));
+  const cards = Array.from(document.querySelectorAll('.fit-card'));
+  function setCard(card, open) {
+    card.classList.toggle('active', open);
+    card.querySelector('.card-trigger').setAttribute('aria-expanded', String(open));
+    card.querySelector('.card-body').hidden = !open;
+    card.querySelector('.card-arrow').textContent = open ? 'Close detail −' : 'View detail +';
+  }
+  cards.forEach(card => {
+    setCard(card, card.classList.contains('active'));
+    card.querySelector('.card-trigger').addEventListener('click', () => {
+      const shouldOpen = !card.classList.contains('active');
+      cards.forEach(other => setCard(other, other === card && shouldOpen));
+    });
+  });
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+  }
+  const contactText = `Damon Versaggi\ndamon@scrappymeals.com\nLinkedIn: https://www.linkedin.com/in/damonversaggi\nDigital Assets: https://opensea.io/collection/damonversaggi\nFridgie Smalls: https://fridgiesmalls.app\nScrappy Meals: https://scrappymeals.com\nMetacheese: https://metacheese.scrappymeals.com\nLive: https://youtu.be/aIsDH0iJunY?si=x1InWL4AMvFgUWup&t=13`;
+  document.getElementById('copyBtn').addEventListener('click', async () => {
+    const active = document.activeElement;
+    try {
+      if (!navigator.clipboard || !window.isSecureContext) throw new Error('Use local copy');
+      await navigator.clipboard.writeText(contactText);
+      showToast('Contact copied');
+    } catch {
+      const area = document.createElement('textarea');
+      area.value = contactText;
+      area.setAttribute('readonly', '');
+      area.style.cssText = 'position:fixed;top:0;left:-9999px;opacity:0';
+      document.body.appendChild(area);
+      area.select();
+      let copied = false;
+      try { copied = document.execCommand('copy'); } catch { /* Browser denied clipboard access. */ }
+      area.remove();
+      if (active) active.focus({ preventScroll:true });
+      showToast(copied ? 'Contact copied' : 'Copy unavailable. Email: damon@scrappymeals.com');
+    }
+  });
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+})();
+</script>
+</body>
+</html>
