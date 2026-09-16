@@ -3,201 +3,2171 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>1964½ Mustang D-Code Convertible — Provenance & Valuation</title>
+<title>Damon Versaggi — Creative Direction, Technology & Experience</title>
+<meta name="description" content="Damon Versaggi — creative direction, creative technology, product, immersive experiences, real-time 3D, AI, and interactive storytelling." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-  :root{--cream:#e7edf3;--paper:#f5f8fb;--ink:#0d1620;--muted:#62707e;--oxblood:#163e64;--green:#0a2137;--gold:#aeb8c2;--line:#bac4ce;--shadow:rgba(34,26,18,.18)}
-  *{box-sizing:border-box} html{scroll-behavior:smooth}
-  body{margin:0;color:var(--ink);background:radial-gradient(circle at 20% 10%,rgba(255,255,255,.48),transparent 28%),linear-gradient(135deg,#d8cfbc 0%,#efe5d1 45%,#d2c7b4 100%);font-family:Georgia,"Times New Roman",serif}
-  body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:repeating-linear-gradient(0deg,rgba(60,50,40,.04) 0px,rgba(60,50,40,.04) 1px,transparent 1px,transparent 3px);mix-blend-mode:multiply}
+:root{
+  --surface:#090909;
+  --surface-deep:#090909;
+  --ink:#FFFFFF;
+  --muted:rgba(255,255,255,.78);
+  --muted-dim:rgba(255,255,255,.6);
+  --accent:#0B0B0B;
+  --line:rgba(255,255,255,.30);
+  --line-soft:rgba(255,255,255,.20);
+  --display:'Poppins',sans-serif;
+  --body:'Poppins',sans-serif;
+}
 
-  .sketchfab-bg{
-    position:fixed;
-    inset:0;
-    z-index:0;
-    overflow:hidden;
-    background:#07111c;
-  }
-  .sketchfab-bg iframe{
-    position:absolute;
-    width:110vw;
-    height:110vh;
-    left:-5vw;
-    top:-5vh;
-    border:0;
-    opacity:.72;
-    filter:saturate(.82) contrast(1.08) brightness(.88);
-    pointer-events:none;
-  }
-  .sketchfab-bg:after{
-    content:"";
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    background:
-      radial-gradient(circle at 50% 38%, rgba(18,55,88,.02), rgba(4,13,22,.18) 62%, rgba(2,8,14,.42) 100%),
-      linear-gradient(180deg, rgba(5,15,25,.08), rgba(5,15,25,.28));
-  }
-  .shell{
-    backdrop-filter:blur(1.2px);
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+
+html,body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+body{
+  background:var(--surface);
+  color:var(--ink);
+  font-family:var(--body);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  touch-action:pan-y;
+  transition:background-color .12s ease-out;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 32px;
+}
+
+.eyebrow{
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.eyebrow::before{
+  content:"— ";
+  color:var(--ink);
+}
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:100;
+  background:var(--nav-bg,rgba(9,9,9,.92));
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line-soft);
+  transition:background-color .12s ease-out;
+}
+
+nav .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:64px;
+}
+
+.logo{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:14px;
+  line-height:1.15;
+  letter-spacing:.08em;
+}
+
+.navlinks{
+  display:flex;
+}
+
+.navlinks a{
+  margin-left:28px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  opacity:.78;
+  transition:opacity .18s ease,color .18s ease;
+}
+
+.navlinks a:hover,
+.navlinks a:focus-visible{
+  opacity:1;
+  color:var(--ink);
+}
+
+header.hero{
+  background:var(--surface-deep);
+  padding:168px 0 96px;
+  position:relative;
+  overflow:hidden;
+  transition:background-color .12s ease-out;
+}
+
+.hero-eyebrow{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:22px;
+  opacity:0;
+  animation:fadeUp .7s ease forwards .05s;
+}
+
+h1.name{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(48px,9vw,118px);
+  line-height:.94;
+  opacity:0;
+  animation:fadeUp .8s ease forwards .18s;
+}
+
+.hero-role{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(20px,2.6vw,32px);
+  margin-top:18px;
+  max-width:820px;
+  opacity:0;
+  animation:fadeUp .8s ease forwards .32s;
+}
+
+.hero-desc{
+  margin-top:28px;
+  max-width:660px;
+  font-size:16px;
+  color:var(--muted);
+  opacity:0;
+  animation:fadeUp .8s ease forwards .46s;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(16px);
   }
 
-  .shell{width:min(1220px,calc(100% - 28px));margin:18px auto 52px;background:var(--paper);border:1px solid #a99a82;box-shadow:0 18px 60px var(--shadow),inset 0 0 0 8px rgba(255,255,255,.28);position:relative;overflow:hidden}
-  .top-strip{background:linear-gradient(90deg,#172d25,#2c493d 55%,#172d25);color:#edf3f8;padding:8px 22px;display:flex;justify-content:space-between;gap:16px;align-items:center;font-family:"Courier New",monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border-bottom:3px double var(--gold)}
-  header{padding:42px 42px 28px;position:relative;background:linear-gradient(180deg,rgba(255,255,255,.36),rgba(255,255,255,0)),var(--paper)}
-  .kicker{color:var(--oxblood);font-family:"Courier New",monospace;text-transform:uppercase;letter-spacing:.22em;font-size:12px;font-weight:700}
-  h1{margin:8px 0 4px;font-size:clamp(40px,7vw,88px);line-height:.92;letter-spacing:-.035em;font-weight:700}
-  .script{font-family:"Brush Script MT","Segoe Script",cursive;color:var(--oxblood);font-size:clamp(26px,4vw,48px);transform:rotate(-2deg);display:inline-block;margin-top:4px}
-  .hero-grid{display:grid;grid-template-columns:1.55fr .85fr;gap:28px;align-items:stretch;margin-top:28px}
-  .hero-card{background:linear-gradient(145deg,#153a5b,#081b2d);color:#edf4fa;min-height:280px;border:6px solid #ccd4dc;outline:1px solid #70808f;padding:26px;position:relative;overflow:hidden}
-  .hero-card:after{content:"1964";position:absolute;right:-12px;bottom:-30px;font-family:"Arial Black",sans-serif;font-size:150px;color:rgba(255,255,255,.05);letter-spacing:-.08em}
-  .hero-card h2{margin:0 0 8px;font-size:28px;letter-spacing:.02em}.vin{font-family:"Courier New",monospace;font-weight:700;font-size:clamp(22px,3vw,34px);letter-spacing:.08em;color:#f7d992}.hero-card p{max-width:760px;line-height:1.6;color:#dbe5ee}
-  .badge-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.badge{border:1px solid rgba(255,255,255,.35);padding:7px 10px;font-family:"Courier New",monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.05)}
-  .plate{background:rgba(219,225,231,.90);border-radius:10px;border:2px solid #83909c;box-shadow:inset 0 0 0 3px #efeee8,inset 0 -8px 18px rgba(0,0,0,.08);padding:20px;font-family:"Courier New",monospace;display:grid;align-content:start}.plate .plate-title{text-align:center;font-weight:700;letter-spacing:.18em;font-size:12px;margin-bottom:15px}.plate dl{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin:0}.plate dt{font-size:10px;color:#555;text-transform:uppercase}.plate dd{margin:2px 0 8px;font-weight:700}
-  nav.tabs{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#e0e6ec;position:sticky;top:0;z-index:10}nav.tabs button{border:0;border-right:1px solid var(--line);background:transparent;padding:14px 18px;cursor:pointer;font-family:"Courier New",monospace;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#453e35}nav.tabs button:hover,nav.tabs button.active{background:var(--oxblood);color:#fff6e8}
-  main{padding:34px 42px 46px;background:rgba(245,248,251,.70)}.panel{display:none}.panel.active{display:block;animation:fade .25s ease}@keyframes fade{from{opacity:.15;transform:translateY(4px)}to{opacity:1;transform:none}}
-  .section-title{display:flex;align-items:center;gap:12px;margin:4px 0 22px}.section-title h2{margin:0;font-size:34px}.rule{height:2px;background:linear-gradient(90deg,var(--gold),transparent);flex:1}.lede{font-size:19px;line-height:1.65;max-width:960px}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stat{border:1px solid var(--line);background:rgba(248,251,253,.82);padding:20px;box-shadow:0 4px 14px rgba(50,40,20,.06)}.stat .n{font-size:38px;font-weight:700;color:var(--green)}.stat .label{font-family:"Courier New",monospace;text-transform:uppercase;font-size:11px;letter-spacing:.08em;color:var(--muted)}
-  .timeline{margin-top:28px;border-left:3px solid var(--gold);padding-left:24px}.event{position:relative;margin:0 0 24px}.event:before{content:"";position:absolute;left:-33px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--oxblood);border:3px solid var(--paper);box-shadow:0 0 0 1px var(--gold)}.event .date{font-family:"Courier New",monospace;font-size:12px;color:var(--oxblood);font-weight:700}.event h3{margin:3px 0 6px;font-size:20px}.event p{margin:0;color:#4c463e;line-height:1.55}
-  .calc-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}.calc-box,.result-box{border:1px solid var(--line);background:rgba(248,251,253,.82);padding:22px}.filter{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px dashed #cabba4}.filter:last-child{border-bottom:0}.filter label{display:flex;align-items:center;gap:10px;font-weight:700}.filter small{display:block;color:var(--muted);font-weight:400;margin-top:2px}input[type=checkbox]{accent-color:var(--oxblood);width:18px;height:18px}.result-big{font-size:64px;line-height:1;color:var(--oxblood);font-weight:700;margin:12px 0 6px}.range-note{padding:10px 12px;background:rgba(223,232,240,.86);border-left:4px solid var(--gold);line-height:1.45;margin-top:14px}.warning{margin-top:22px;border:1px solid #9fb0bf;background:rgba(234,241,247,.86);padding:14px 16px;font-size:14px;line-height:1.55}
-  .valuation-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.slider-card{background:#081b2d;color:#edf4fa;padding:24px;border:6px solid #ccd4dc;outline:1px solid #756c59}.slider-card h3{margin-top:0;font-size:26px}input[type=range]{width:100%;accent-color:#d8b96d}.value-readout{font-size:44px;font-weight:700;color:#d8e1ea;margin:10px 0 2px}.stage-label{font-family:"Courier New",monospace;text-transform:uppercase;letter-spacing:.08em;font-size:12px}.scenario-list{display:grid;gap:10px}.scenario{display:flex;justify-content:space-between;gap:18px;padding:14px 16px;border:1px solid var(--line);background:rgba(248,251,253,.82);cursor:pointer}.scenario strong{color:var(--green)}.scenario.active{border-color:var(--oxblood);box-shadow:inset 4px 0 0 var(--oxblood)}
-  .sources{display:grid;gap:12px}.source{border:1px solid var(--line);background:rgba(248,251,253,.82);padding:16px 18px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}.source h3{margin:0 0 5px;font-size:18px}.source p{margin:0;color:var(--muted);font-size:14px}.source a{color:#fff;background:var(--green);padding:9px 12px;text-decoration:none;font-family:"Courier New",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em}.source a:hover{background:var(--oxblood)}
-  .callout{margin-top:28px;padding:22px;border:2px solid var(--oxblood);background:#fff8e8}.callout h3{margin:0 0 8px;color:var(--oxblood);font-size:23px}
-  footer{border-top:3px double var(--gold);background:#071725;color:#e7eef5;padding:18px 42px;display:flex;justify-content:space-between;gap:20px;align-items:center;font-family:"Courier New",monospace;font-size:11px}.print-btn{border:1px solid #c4ced8;background:transparent;color:#eef4f8;padding:8px 11px;cursor:pointer;font-family:inherit;text-transform:uppercase;letter-spacing:.08em}
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
 
-  .model-window{
-    margin-top:22px;
-    border:1px solid #71808e;
-    background:rgba(7,23,37,.92);
-    box-shadow:0 12px 30px rgba(2,10,18,.28);
-  }
-  .model-window iframe{
-    display:block;
-    width:100%;
-    height:360px;
-    border:0;
-  }
-  .model-caption{
-    padding:9px 12px;
-    color:#dfe8ef;
-    font-family:"Courier New",monospace;
-    font-size:11px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
+section{
+  padding:96px 0;
+  transition:background-color .12s ease-out;
+}
+
+.section-head{
+  margin-bottom:56px;
+  max-width:760px;
+}
+
+.section-title{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(30px,4vw,48px);
+  margin-top:12px;
+}
+
+.pillars{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line-soft);
+  border:1px solid var(--line-soft);
+}
+
+.pillar{
+  background:var(--surface);
+  padding:40px 32px;
+  transition:
+    transform .2s ease,
+    background-color .12s ease-out;
+}
+
+.pillar:hover{
+  transform:translateY(-3px);
+}
+
+.pillar .num{
+  font-family:var(--display);
+  font-weight:900;
+  color:var(--accent);
+  background:var(--ink);
+  font-size:14px;
+  display:inline-block;
+  padding:4px 10px;
+}
+
+.pillar h3{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:23px;
+  margin:18px 0 14px;
+}
+
+.pillar p{
+  font-size:14.5px;
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+.pillar ul{
+  list-style:none;
+}
+
+.pillar li{
+  font-size:13.5px;
+  color:rgba(255,255,255,.85);
+  padding:7px 0;
+  border-top:1px solid var(--line-soft);
+}
+
+.spread{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+  align-items:start;
+  padding:72px 0;
+  border-bottom:1px solid var(--line-soft);
+}
+
+.x-label{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:13px;
+  letter-spacing:.12em;
+  color:var(--accent);
+  background:var(--ink);
+  display:inline-block;
+  padding:4px 10px;
+  margin-bottom:18px;
+}
+
+.spread h3{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:clamp(24px,3vw,34px);
+  line-height:1.08;
+  margin-bottom:18px;
+}
+
+.spread p{
+  font-size:15px;
+  color:var(--muted);
+  max-width:500px;
+}
+
+.taglist{
+  display:flex;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
+.tag{
+  font-size:12px;
+  font-weight:600;
+  padding:7px 13px;
+  margin:0 8px 8px 0;
+  border:1px solid rgba(255,255,255,.5);
+  border-radius:20px;
+}
+
+.ecosystem-flow{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--line-soft);
+  border:1px solid var(--line-soft);
+  margin:34px 0 54px;
+}
+
+.eco-card{
+  background:var(--surface-deep);
+  padding:30px 24px;
+  min-height:210px;
+  transition:
+    transform .2s ease,
+    background-color .12s ease-out;
+}
+
+.eco-card:hover{
+  transform:translateY(-3px);
+}
+
+.eco-year{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.eco-card h4{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:20px;
+  line-height:1.1;
+  margin:12px 0;
+}
+
+.eco-card p{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.eco-arrow{
+  font-family:var(--display);
+  font-size:12px;
+  font-weight:800;
+  margin-top:18px;
+}
+
+.story-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line-soft);
+  border:1px solid var(--line-soft);
+}
+
+.story-card{
+  background:var(--surface);
+  padding:30px 26px;
+  min-height:250px;
+  transition:
+    transform .2s ease,
+    background-color .12s ease-out;
+}
+
+.story-card:hover{
+  transform:translateY(-3px);
+}
+
+.story-kicker{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.story-card h4{
+  font-family:var(--display);
+  font-size:21px;
+  font-weight:800;
+  line-height:1.12;
+  margin:12px 0;
+}
+
+.story-card p{
+  font-size:13.5px;
+  color:var(--muted);
+}
+
+.social-art{
+  margin-top:64px;
+  padding:42px 0;
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
+}
+
+.social-art-grid{
+  display:grid;
+  grid-template-columns:.8fr 1.6fr;
+  gap:44px;
+}
+
+.social-art h3{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(26px,3.5vw,42px);
+  line-height:1.05;
+  margin-top:10px;
+}
+
+.social-art p{
+  font-size:14.5px;
+  color:var(--muted);
+  margin-bottom:22px;
+}
+
+.social-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.social-button{
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  padding:10px 15px;
+  border:1px solid rgba(255,255,255,.55);
+  font-size:12px;
+  font-weight:700;
+  transition:
+    background-color .15s ease,
+    color .15s ease,
+    border-color .15s ease,
+    transform .15s ease;
+}
+
+.social-button:hover{
+  background:var(--ink);
+  color:var(--surface-deep);
+  transform:translateY(-1px);
+}
+
+.work-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:20px;
+}
+
+.work-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.55);
+  font-size:11px;
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:.02em;
+  transition:
+    background-color .15s ease,
+    color .15s ease,
+    border-color .15s ease,
+    transform .15s ease;
+}
+
+.work-button:hover,
+.work-button:focus-visible{
+  background:var(--ink);
+  color:var(--surface-deep);
+  border-color:var(--ink);
+  transform:translateY(-1px);
+}
+
+.work-button:focus-visible{
+  outline:2px solid var(--ink);
+  outline-offset:2px;
+}
+
+.origin-strip{
+  margin-top:54px;
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
+  padding:34px 0;
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:30px;
+}
+
+.origin-strip strong{
+  font-family:var(--display);
+  font-size:18px;
+}
+
+.origin-strip p{
+  font-size:14px;
+  color:var(--muted);
+}
+
+.industries{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line-soft);
+  border:1px solid var(--line-soft);
+}
+
+.industry{
+  background:var(--surface-deep);
+  padding:34px 26px;
+  min-height:150px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:
+    transform .2s ease,
+    background-color .12s ease-out;
+}
+
+.industry:hover{
+  transform:translateY(-3px);
+}
+
+.industry h4{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:18px;
+}
+
+.industry span{
+  font-size:12.5px;
+  color:var(--muted);
+}
+
+.quote-block{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:36px;
+  align-items:center;
+}
+
+.avatar{
+  width:104px;
+  height:104px;
+  border-radius:50%;
+  background:var(--accent);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--display);
+  font-weight:900;
+  font-size:34px;
+  border:2px solid var(--ink);
+}
+
+blockquote{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(20px,2.6vw,30px);
+  line-height:1.3;
+}
+
+.quote-name{
+  margin-top:18px;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:600;
+}
+
+.process{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:32px;
+}
+
+.step-num{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:13px;
+}
+
+.step h4{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:19px;
+  margin:14px 0 10px;
+}
+
+.step p{
+  font-size:13.5px;
+  color:var(--muted);
+}
+
+.step hr{
+  border:none;
+  border-top:2px solid var(--line-soft);
+  margin-top:20px;
+}
+
+.tl-item{
+  display:grid;
+  grid-template-columns:140px 1fr auto;
+  gap:24px;
+  align-items:baseline;
+  padding:22px 0;
+  border-top:1px solid var(--line-soft);
+}
+
+.tl-item:last-child{
+  border-bottom:1px solid var(--line-soft);
+}
+
+.tl-date{
+  font-size:12.5px;
+  font-weight:600;
+  color:var(--muted);
+}
+
+.tl-role{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:18px;
+}
+
+.tl-role span{
+  display:block;
+  font-family:var(--body);
+  font-weight:500;
+  font-size:13.5px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+footer{
+  background:var(--surface-deep);
+  padding:96px 0 40px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr 1fr 1fr;
+  gap:40px;
+  padding-bottom:64px;
+  border-bottom:1px solid var(--line-soft);
+}
+
+footer h2{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(34px,5vw,58px);
+  line-height:1;
+}
+
+.footer-col h5{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+.footer-col a,
+.footer-col p{
+  font-size:15px;
+  font-weight:600;
+}
+
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  padding-top:28px;
+  font-size:12px;
+  color:var(--muted-dim);
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+::selection{
+  background:#F2D58A;
+  color:#0A0A0A;
+}
+
+@media(max-width:900px){
+  .ecosystem-flow{
+    grid-template-columns:1fr 1fr;
   }
 
-  @media(max-width:880px){.hero-grid,.calc-wrap,.valuation-grid,.grid-3{grid-template-columns:1fr}header,main{padding-left:22px;padding-right:22px}nav.tabs{position:relative}nav.tabs button{flex:1 1 50%}.source{grid-template-columns:1fr}}
-  @media print{body{background:#fff}.shell{width:100%;margin:0;box-shadow:none;border:0}nav.tabs,.print-btn{display:none!important}.panel{display:block!important}.panel:not(:first-of-type){page-break-before:always}.top-strip{background:#fff;color:#000;border-bottom:1px solid #000}footer{background:#fff;color:#000}}
+  .story-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .process{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:820px){
+  .pillars{
+    grid-template-columns:1fr;
+  }
+
+  .spread{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .industries{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:720px){
+  .navlinks{
+    display:none;
+  }
+
+  .social-art-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:580px){
+  .story-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:540px){
+  .ecosystem-flow{
+    grid-template-columns:1fr;
+  }
+
+  .industries{
+    grid-template-columns:1fr;
+  }
+
+  .process{
+    grid-template-columns:1fr;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .origin-strip{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<div class="sketchfab-bg" aria-hidden="true">
-  <iframe
-    title="1965 Ford Mustang Convertible 3D Background"
-    src="https://sketchfab.com/models/05f2a294087541ab82f681136d134344/embed?autostart=1&preload=1&ui_controls=0&ui_infos=0&ui_stop=0&ui_watermark=0&ui_watermark_link=0&ui_theme=dark"
-    allow="autoplay; fullscreen; xr-spatial-tracking"
-    allowfullscreen>
-  </iframe>
+<nav>
+<div class="wrap">
+
+  <div class="logo">
+    DAMON<br>
+    VERSAGGI.
+  </div>
+
+  <div class="navlinks">
+    <a href="#do">What I Do</a>
+    <a href="#work">Work</a>
+    <a href="#approach">Approach</a>
+    <a href="#experience">Experience</a>
+  </div>
+
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+
+  <div class="hero-eyebrow">
+    Creative Direction · Technology · Product · Experience
+  </div>
+
+  <h1 class="name">
+    Damon<br>
+    Versaggi.
+  </h1>
+
+  <div class="hero-role">
+    Creative leadership across brand, product, physical, digital,
+    immersive, real-time, and AI experiences.
+  </div>
+
+  <p class="hero-desc">
+    20+ years building creative systems and experiences across
+    entertainment, sports, broadcast, product, real-time 3D,
+    immersive media, AI, and emerging technology.
+  </p>
+
+</div>
+</header>
+
+<section id="do">
+<div class="wrap">
+
+<div class="section-head">
+  <div class="eyebrow">Core Practice</div>
+  <div class="section-title">What I do.</div>
 </div>
 
-<div class="shell">
-  <div class="top-strip"><span>Early Mustang Preservation File</span><span>VIN 5F08D118607</span></div>
-  <header>
-    <div class="kicker">Preliminary Provenance • Rarity • Market Assessment</div>
-    <h1>1964½ Mustang</h1>
-    <div class="script">D-Code Convertible</div>
+<div class="pillars">
 
-      <div class="model-window">
-        <iframe
-          title="1965 Ford Mustang Convertible"
-          src="https://sketchfab.com/models/05f2a294087541ab82f681136d134344/embed?autostart=1&preload=1&ui_controls=1&ui_infos=0&ui_stop=0&ui_theme=dark"
-          allow="autoplay; fullscreen; xr-spatial-tracking"
-          allowfullscreen>
-        </iframe>
-        <div class="model-caption">1965 Ford Mustang Convertible — interactive 3D reference</div>
-      </div>
+<div class="pillar">
+  <div class="num">01 — EXPERIENTIAL</div>
 
-    <div class="hero-grid">
-      <section class="hero-card">
-        <h2>Launch-period survivor candidate</h2>
-        <div class="vin">5F08D118607</div>
-        <p>Scheduled for April 23, 1964 — six days after the Mustang’s public debut. D-code 289 4V, convertible, 4-speed manual, Caspian Blue over blue, approximately 49,000 miles, two-owner history, and reportedly retaining its original drivetrain, body panels, and major factory components.</p>
-        <div class="badge-row"><span class="badge">April 23, 1964</span><span class="badge">D-Code 289 4V</span><span class="badge">4-Speed</span><span class="badge">Convertible</span><span class="badge">Caspian Blue</span><span class="badge">~49K Miles</span></div>
-      </section>
-      <aside class="plate">
-        <div class="plate-title">VEHICLE DATA — WORKING FILE</div>
-        <dl>
-          <div><dt>VIN</dt><dd>5F08D118607</dd></div><div><dt>Plant</dt><dd>Dearborn</dd></div><div><dt>Body</dt><dd>Convertible</dd></div><div><dt>Engine</dt><dd>D-code 289 4V</dd></div><div><dt>Transmission</dt><dd>4-speed manual</dd></div><div><dt>Exterior</dt><dd>Caspian Blue</dd></div><div><dt>Interior</dt><dd>Blue</dd></div><div><dt>Scheduled date</dt><dd>23D / Apr 23</dd></div><div><dt>Mileage</dt><dd>~49,000</dd></div><div><dt>Owners</dt><dd>Two</dd></div>
-        </dl>
-      </aside>
+  <h3>Interactive Experience Design</h3>
+
+  <p>
+    Spatial storytelling and real-time experiences for physical spaces,
+    live events, sports, broadcast, and immersive environments.
+  </p>
+
+  <ul>
+    <li>AR / real-time 3D / WebXR</li>
+    <li>Physical × digital experiences</li>
+    <li>Interactive storytelling & prototyping</li>
+  </ul>
+</div>
+
+<div class="pillar">
+  <div class="num">02 — PRODUCT</div>
+
+  <h3>AI-Assisted Product</h3>
+
+  <p>
+    Consumer AI products built end to end, from creative vision and
+    interaction design through working product experiences.
+  </p>
+
+  <ul>
+    <li>AI product experience</li>
+    <li>Generative concepting & prototyping</li>
+    <li>Character-consistent production</li>
+  </ul>
+</div>
+
+<div class="pillar">
+  <div class="num">03 — CREATIVE SYSTEMS</div>
+
+  <h3>Creative & Team Leadership</h3>
+
+  <p>
+    Ideas translated into systems that designers, technologists,
+    producers, clients, and audiences can actually use.
+  </p>
+
+  <ul>
+    <li>Creative direction & visual systems</li>
+    <li>Team leadership, critique & mentorship</li>
+    <li>Client pitches & executive presentations</li>
+  </ul>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="work">
+<div class="wrap">
+
+<div class="section-head">
+  <div class="eyebrow">Selected Work</div>
+  <div class="section-title">Creative ideas across mediums.</div>
+</div>
+
+<div class="spread">
+
+<div>
+
+  <div class="x-label">
+    ORIGINAL IP X EXPERIENCE DESIGN
+  </div>
+
+  <h3>
+    Scrappy Meals — A Creative Ecosystem
+  </h3>
+
+  <p>
+    What began as a sustainable catering company became a connected
+    creative world spanning live cooking experiences, original
+    characters, children's storytelling, WebXR, interactive 3D,
+    AI products, and entertainment.
+  </p>
+
+  <div class="taglist">
+    <span class="tag">Original IP</span>
+    <span class="tag">Experiential</span>
+    <span class="tag">World-building</span>
+    <span class="tag">XR</span>
+    <span class="tag">AI</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=xKWunsgSllA"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      SCRAPPY MEALS VIDEO
+    </a>
+
+    <a
+      class="work-button"
+      href="https://scrappymeals.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VISIT SCRAPPY MEALS
+    </a>
+
+    <a
+      class="work-button"
+      href="https://skfb.ly/pNLvO"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW 3D MENUS
+    </a>
+
+  </div>
+
+</div>
+
+<div>
+
+  <div class="x-label">
+    PHYSICAL X DIGITAL
+  </div>
+
+  <h3>
+    One idea. Many forms.
+  </h3>
+
+  <p>
+    Creative cooking classes combined chefs, projection, and audience
+    participation. Scraps the Raccoon grew from a logo into a
+    3D-printed event character and children's book. The Metacheese
+    became a virtual venue for interactive experiences and book readings.
+    Fridgie Smalls turned the mission into an AI product, and
+    FRIDGIE x SCRAPS* continues it as kids entertainment.
+  </p>
+
+</div>
+
+</div>
+
+<div class="ecosystem-flow">
+
+<div class="eco-card">
+
+  <div class="eco-year">
+    01 — Physical
+  </div>
+
+  <h4>
+    Catering + Cooking Experiences
+  </h4>
+
+  <p>
+    Sustainable food, live classes, chefs, projection,
+    hybrid demonstrations, and participatory events.
+  </p>
+
+  <div class="eco-arrow">
+    EXPERIENCE →
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=I0WRQA-kRBU"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      SCRAPPYHOUR: BROOKLYN × SWEDEN
+    </a>
+
+  </div>
+
+</div>
+
+<div class="eco-card">
+
+  <div class="eco-year">
+    02 — Character
+  </div>
+
+  <h4>
+    Scraps the Raccoon
+  </h4>
+
+  <p>
+    Logo and mascot → 3D-printed event character →
+    children's book → original IP.
+  </p>
+
+  <div class="eco-arrow">
+    CHARACTER →
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=LAe5S5BGBIk"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIRTUAL SCRAPS FOOD GUIDE
+    </a>
+
+    <a
+      class="work-button"
+      href="https://www.amazon.com/Scraps-Food-Guide-Damon-Versaggi/dp/1645843688"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      SCRAPS THE RACCOON BOOK
+    </a>
+
+  </div>
+
+</div>
+
+<div class="eco-card">
+
+  <div class="eco-year">
+    03 — World
+  </div>
+
+  <h4>
+    The Metacheese
+  </h4>
+
+  <p>
+    WebXR, interactive 3D, remote participation,
+    university interns, and virtual children's readings.
+  </p>
+
+  <div class="eco-arrow">
+    WORLD →
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://metacheese.scrappymeals.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      ENTER THE METACHEESE
+    </a>
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=swZlmsZX-uI"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      METACHEESE VIDEO
+    </a>
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=lT_IuQneWug"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      TOUR THE METACHEESE
+    </a>
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=TFd2AOVdWes"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      BRAND ACTIVATION
+    </a>
+
+  </div>
+
+</div>
+
+<div class="eco-card">
+
+  <div class="eco-year">
+    04 — Product + Story
+  </div>
+
+  <h4>
+    Fridgie → FRIDGIE x SCRAPS*
+  </h4>
+
+  <p>
+    AI cooking utility evolved into character-driven children's
+    entertainment and AI-assisted production.
+  </p>
+
+  <div class="eco-arrow">
+    PRODUCT → STORY
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://scrappymeals.com/fridgie-x-scraps-workflow"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW PRODUCTION WORKFLOW
+    </a>
+
+    <a
+      class="work-button"
+      href="https://fridgiesmalls.app"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      TRY FRIDGIE SMALLS — MOBILE ONLY
+    </a>
+
+  </div>
+
+</div>
+
+</div>
+
+<div class="section-head" style="margin-top:72px">
+
+  <div class="eyebrow">
+    Featured Experiences
+  </div>
+
+  <div class="section-title">
+    Different mediums. Same creative instinct.
+  </div>
+
+</div>
+
+<div class="story-grid">
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    IMMERSIVE X PHYSICAL
+  </div>
+
+  <h4>
+    SwivelMeta × Outernet
+  </h4>
+
+  <p>
+    Creative technology consulting for interactive Web3 experiences
+    connecting digital worlds with Outernet London's large-scale
+    physical and digital environment.
+  </p>
+
+  <div class="taglist">
+    <span class="tag">Immersive</span>
+    <span class="tag">Physical × Digital</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://www.outernet.com/news/outernet-and-swivelmeta-partner-to-deliver-web3-for-brands"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW PARTNERSHIP
+    </a>
+
+  </div>
+
+</div>
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    ART X EMERGING MEDIA
+  </div>
+
+  <h4>
+    FRIDA001 + 3D Crypto Art
+  </h4>
+
+  <p>
+    Early 3D crypto-art experimentation during the pandemic.
+    FRIDA001 connected physical installation, digital artwork,
+    NFC, and AR into one experience.
+  </p>
+
+  <div class="taglist">
+    <span class="tag">3D Art</span>
+    <span class="tag">NFC</span>
+    <span class="tag">AR</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://opensea.io/damonversaggi"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW CRYPTO ART
+    </a>
+
+  </div>
+
+</div>
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    LIVE X CREATIVE DIRECTION
+  </div>
+
+  <h4>
+    New Year's Rockin' Eve
+  </h4>
+
+  <p>
+    Fifteen years on one of television's largest live events,
+    growing from graphics operator to lead graphics and long-term
+    consultant. A 2011 redesign of the midnight countdown became
+    the foundation for the show's countdown treatment that followed.
+  </p>
+
+  <div class="taglist">
+    <span class="tag">Creative Direction</span>
+    <span class="tag">Live Design</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=S_cx6O3HN6s&amp;t=3093s"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW NEW YEAR'S ROCKIN' EVE
+    </a>
+
+  </div>
+
+</div>
+
+</div>
+
+<div class="section-head" style="margin-top:72px">
+
+  <div class="eyebrow">
+    Interactive Range
+  </div>
+
+  <div class="section-title">
+    Interaction has never meant just one thing.
+  </div>
+
+</div>
+
+<div class="story-grid">
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    DATA X STORYTELLING
+  </div>
+
+  <h4>
+    Interactive Elections — 2004–2020
+  </h4>
+
+  <p>
+    Sixteen years helping turn complex live election data
+    into real-time visual experiences presenters could explore
+    and audiences could understand.
+  </p>
+
+  <div class="taglist">
+    <span class="tag">Interactive Data</span>
+    <span class="tag">Real-Time 3D</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://youtu.be/r6bo6aF3r0A?si=2Uc5cBJ6TFRThi93&amp;t=6468s"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW INTERACTIVE ELECTIONS
+    </a>
+
+  </div>
+
+</div>
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    BROADCAST X STADIUM
+  </div>
+
+  <h4>
+    SNY / New York Mets
+  </h4>
+
+  <p>
+    Helped develop and pitch a new visual direction spanning
+    broadcast and stadium graphics, including presenting the
+    redesign directly to Mets owner Fred Wilpon.
+  </p>
+
+  <div class="taglist">
+    <span class="tag">Creative Pitch</span>
+    <span class="tag">Stadium Graphics</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://youtu.be/nL_4DAY7ABU?si=4WhPqzkBP-gzMpJh&amp;t=217s"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW SNY WORK
+    </a>
+
+  </div>
+
+</div>
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    REAL-TIME X REMOTE
+  </div>
+
+  <h4>
+    ESPN Around the Horn × Girraphic
+  </h4>
+
+  <p>
+    Helped build and install the graphics and the workflow
+    connecting ESPN's Seaport production in New York with
+    the host in Washington, D.C.
+  </p>
+
+  <div class="taglist">
+    <span class="tag">Real-Time Graphics</span>
+    <span class="tag">Remote Production</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://youtu.be/NKny5vp_Cz8?si=k2Kk0TSNJEgUvUWi&amp;t=740s"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW AROUND THE HORN
+    </a>
+
+  </div>
+
+</div>
+
+</div>
+
+<div class="social-art">
+
+<div class="social-art-grid">
+
+<div>
+
+  <div class="eyebrow">
+    Art Practice
+  </div>
+
+  <h3>
+    The art behind the technology.
+  </h3>
+
+</div>
+
+<div>
+
+  <p>
+    My personal and project feeds are a living archive of visual art,
+    3D experiments, characters, food culture, and creative exploration.
+    The creative practice came first. Technology expanded the palette.
+  </p>
+
+  <div class="social-buttons">
+
+    <a
+      class="social-button"
+      href="https://www.instagram.com/damonversaggi/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @damonversaggi
+    </a>
+
+    <a
+      class="social-button"
+      href="https://www.instagram.com/scrappymeals/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @scrappymeals
+    </a>
+
+    <a
+      class="social-button"
+      href="https://www.instagram.com/fridgiesmalls/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @fridgiesmalls
+    </a>
+
+    <a
+      class="social-button"
+      href="https://www.instagram.com/thescrapsintheback/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @thescrapsintheback
+    </a>
+
+    <a
+      class="social-button"
+      href="https://www.instagram.com/unknownsdreamscont/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @unknownsdreamscont
+    </a>
+
+  </div>
+
+</div>
+
+</div>
+</div>
+
+<div class="origin-strip">
+
+  <strong>
+    Where it started.
+  </strong>
+
+  <div>
+
+    <p>
+      My college thesis, <strong>The Nightlight</strong>,
+      won Best Production Value, earned a $1,000 award,
+      received festival recognition, and led directly to my
+      first professional job. The technology keeps changing.
+      The job does not: find the idea, understand the medium,
+      and make something people want to experience.
+    </p>
+
+    <div class="work-links">
+
+      <a
+        class="work-button"
+        href="https://www.youtube.com/watch?v=Uh0C-Amharo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        VIEW THE NIGHTLIGHT
+      </a>
+
     </div>
-  </header>
-  <nav class="tabs"><button class="active" data-panel="overview">Overview</button><button data-panel="rarity">Rarity</button><button data-panel="valuation">Valuation</button><button data-panel="sources">Sources</button></nav>
-  <main>
-    <section id="overview" class="panel active">
-      <div class="section-title"><h2>Why this car matters</h2><div class="rule"></div></div>
-      <p class="lede">The value proposition is not simply “an early Mustang.” It is the intersection of launch-period production, desirable D-code performance specification, convertible body style, 4-speed transmission, uncommon color, low mileage, limited ownership, and preservation. If independent inspection confirms the originality claims, this car belongs in a materially different category from a typical restored 1965 Mustang convertible.</p>
-      <div class="grid-3"><div class="stat"><div class="n">121,538</div><div class="label">Initial “1964½” production</div></div><div class="stat"><div class="n">28,833</div><div class="label">Early-production convertibles</div></div><div class="stat"><div class="n">~10,120</div><div class="label">Estimated D-code convertibles</div></div></div>
-      <div class="timeline">
-        <div class="event"><div class="date">MARCH 1964</div><h3>Dearborn early-production period begins</h3><p>Mustang production ramps ahead of the public launch.</p></div>
-        <div class="event"><div class="date">APRIL 17, 1964</div><h3>Mustang public debut</h3><p>Ford launches the Mustang to the public during the New York World’s Fair period.</p></div>
-        <div class="event"><div class="date">APRIL 23, 1964</div><h3>Scheduled production date for VIN 5F08D118607</h3><p>Only six days after the public introduction, placing the car squarely in the launch-period production window.</p></div>
-      </div>
-      <div class="callout"><h3>Best defensible characterization today</h3><p>A potentially exceptionally rare surviving April 1964 D-code four-speed Mustang convertible, produced only days after the Mustang’s public introduction and retaining a combination of specification, originality and preservation that may place it among the most significant surviving standard-production early Mustangs.</p></div>
-    </section>
 
-    <section id="rarity" class="panel">
-      <div class="section-title"><h2>Interactive rarity model</h2><div class="rule"></div></div>
-      <p class="lede">Toggle the historically sourced filters below. The resulting number is a statistical model, not a Ford-certified production count. It is useful for showing the order of magnitude of the configuration.</p>
-      <div class="calc-wrap">
-        <div class="calc-box">
-          <div class="filter"><label><input type="checkbox" data-rate="0.2372" checked><span>Convertible<small>23.72% of initial production</small></span></label></div>
-          <div class="filter"><label><input type="checkbox" data-rate="0.351" checked><span>D-code 289 4V<small>Approx. 35.1% of early production</small></span></label></div>
-          <div class="filter"><label><input type="checkbox" data-rate="0.145" checked><span>4-speed manual<small>Approx. 14.5% selection rate used as a proxy</small></span></label></div>
-          <div class="filter"><label><input type="checkbox" data-rate="0.074" checked><span>Caspian Blue<small>Approx. 7.4% historical color frequency</small></span></label></div>
-        </div>
-        <div class="result-box"><div class="kicker">Statistical population estimate</div><div class="result-big" id="rarityResult">109</div><div>cars out of 121,538 initial-production Mustangs</div><div class="range-note" id="percentileText">Approx. 0.09% of initial production — about the 99.91st percentile for factory-specification scarcity.</div><div class="warning">Do not advertise the car as “1 of 109.” Ford’s surviving pre-1967 records do not provide a certified body × engine × transmission × color cross-tab. The figure is a heuristic built from published percentages.</div></div>
-      </div>
-      <div class="callout"><h3>Why survivor rarity may be much stronger</h3><p>The model above does not yet filter for blue interior, April 23 launch-period scheduling, ~49,000 miles, two-owner provenance, original drivetrain, original sheet metal, original factory components, or unrestored preservation. Those variables could reduce the number of genuinely comparable surviving cars dramatically.</p></div>
-    </section>
+  </div>
 
-    <section id="valuation" class="panel">
-      <div class="section-title"><h2>Valuation ladder</h2><div class="rule"></div></div>
-      <p class="lede">The current market supports a strong premium only after the preservation story is documented. Use the slider to move from “as described” to fully authenticated provenance.</p>
-      <div class="valuation-grid">
-        <div class="slider-card"><h3>Documentation strength</h3><input id="valueSlider" type="range" min="0" max="3" value="2" step="1"><div class="stage-label" id="stageLabel">Exceptional preservation + mileage/provenance documented</div><div class="value-readout" id="valueReadout">$75K–$95K</div><p id="stageDescription">Originality confirmed, approximately 49K miles supported, two-owner provenance supported, strong preservation presentation.</p></div>
-        <div class="scenario-list" id="scenarioList"><div class="scenario" data-stage="0"><span>As described, before independent verification</span><strong>$50K–$65K</strong></div><div class="scenario" data-stage="1"><span>Original drivetrain/body/components authenticated</span><strong>$65K–$80K</strong></div><div class="scenario active" data-stage="2"><span>Exceptional preservation + 49K miles + provenance documented</span><strong>$75K–$95K</strong></div><div class="scenario" data-stage="3"><span>MCA-level authentication + rarity documentation</span><strong>$90K–$115K+</strong></div></div>
-      </div>
-      <div class="callout"><h3>Potential market strategy after authentication</h3><p>A carefully marketed asking price in the <strong>$110,000–$125,000</strong> range could be reasonable if the car’s originality, mileage, provenance and preservation are independently supported. A transaction around <strong>$85,000–$105,000</strong> would be a more conservative market-clearing expectation, with higher results possible if two serious preservation-focused collectors compete for the car.</p></div>
-    </section>
-
-    <section id="sources" class="panel">
-      <div class="section-title"><h2>Source file</h2><div class="rule"></div></div>
-      <div class="sources">
-        <div class="source"><div><h3>Early Mustang — Production Totals</h3><p>Initial-production total and 28,833 convertible count.</p></div><a target="_blank" rel="noopener" href="https://www.early-mustang.com/index.php/totals">Open source</a></div>
-        <div class="source"><div><h3>Early Mustang — Historical Production Data</h3><p>D-code share, color frequency, Dearborn production context.</p></div><a target="_blank" rel="noopener" href="https://www.early-mustang.com/index.php/29-data">Open source</a></div>
-        <div class="source"><div><h3>Ford Motor Company — Mustang World’s Fair</h3><p>Historical context for the April 1964 Mustang public debut.</p></div><a target="_blank" rel="noopener" href="https://corporate.ford.com/articles/history/mustang-worlds-fair/">Open source</a></div>
-        <div class="source"><div><h3>Marti Auto Works</h3><p>Explains why detailed Ford production reporting is available from 1967 forward, not for 1964½ cars.</p></div><a target="_blank" rel="noopener" href="https://www.martiauto.com/martireports.cfm">Open source</a></div>
-        <div class="source"><div><h3>Hagerty — 1965 Mustang Valuation Data</h3><p>Current valuation framework and transmission-selection context.</p></div><a target="_blank" rel="noopener" href="https://www.hagerty.com/valuation-tools/ford/mustang/1965/">Open source</a></div>
-        <div class="source"><div><h3>Bring a Trailer — April 1964 D-code 4-speed Comparable</h3><p>Restored D-code convertible market reference.</p></div><a target="_blank" rel="noopener" href="https://bringatrailer.com/listing/1965-ford-mustang-706/">Open source</a></div>
-        <div class="source"><div><h3>Hagerty — VIN 5F08D117357</h3><p>Close-sequence D-code convertible comparable.</p></div><a target="_blank" rel="noopener" href="https://www.hagerty.com/valuation-tools/past-sales/1965-ford-mustang/5F08D117357/09d406fa-e4a7-42a4-a383-abef7908d924">Open source</a></div>
-        <div class="source"><div><h3>Hagerty — K-code Convertible Comparable</h3><p>Useful upper-market context for a more valuable factory performance specification.</p></div><a target="_blank" rel="noopener" href="https://www.hagerty.com/valuation-tools/past-sales/1965-ford-mustang/5F08K158819/127e1d17-9bb0-4ca1-9b9c-fde43269add2">Open source</a></div>
-      </div>
-      <div class="warning">This presentation is a preliminary research and market-assessment file, not a certified appraisal. Mileage, ownership, originality, date codes, paint, drivetrain, and preservation claims should be independently authenticated before sale, insurance scheduling, museum submission, or definitive “one-of-X” marketing.</div>
-    </section>
-  </main>
-  <footer><span>1964½ MUSTANG • VIN 5F08D118607 • PRELIMINARY RESEARCH FILE</span><button class="print-btn" onclick="window.print()">Print / Save PDF</button></footer>
 </div>
+
+</div>
+</section>
+
+<section id="industries">
+
+<div class="wrap">
+
+<div class="section-head">
+
+  <div class="eyebrow">
+    Industries
+  </div>
+
+  <div class="section-title">
+    Industries and environments.
+  </div>
+
+</div>
+
+<div class="industries">
+
+<div class="industry">
+  <h4>Live Sports Broadcast</h4>
+  <span>ESPN, NBA, MLB, YES Network, SNY</span>
+</div>
+
+<div class="industry">
+  <h4>News & Elections</h4>
+  <span>CNN, CBS, MSNBC, Tribune, PIX11, WGN</span>
+</div>
+
+<div class="industry">
+  <h4>AI Products & Storytelling</h4>
+  <span>Fridgie Smalls, FRIDGIE x SCRAPS*</span>
+</div>
+
+<div class="industry">
+  <h4>XR, Web3 & Interactive Art</h4>
+  <span>The Metacheese, FRIDA001, SwivelMeta, Outernet</span>
+</div>
+
+<div class="industry">
+  <h4>Experiential & Hybrid Events</h4>
+  <span>Scrappyhour, The Metacheese, New Year's Rockin' Eve</span>
+</div>
+
+<div class="industry">
+  <h4>Enterprise Fintech UX</h4>
+  <span>eFundex</span>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section>
+
+<div class="wrap">
+
+<div class="quote-block">
+
+  <div class="avatar">
+    DV
+  </div>
+
+  <div>
+
+    <blockquote>
+      "I don't start with the technology. I start with what
+      I want someone to feel, do, or discover, then use the
+      medium that makes that experience possible."
+    </blockquote>
+
+    <div class="quote-name">
+      DAMON VERSAGGI — CREATIVE DIRECTION + TECHNOLOGY
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+</section>
+
+<section id="approach">
+
+<div class="wrap">
+
+<div class="section-head">
+
+  <div class="eyebrow">
+    Connected Process
+  </div>
+
+  <div class="section-title">
+    How I work.
+  </div>
+
+</div>
+
+<div class="process">
+
+<div class="step">
+
+  <div class="step-num">
+    01
+  </div>
+
+  <h4>
+    Discovery & Concept
+  </h4>
+
+  <p>
+    Start with the audience, desired feeling or behavior,
+    business goal, and possibilities of the medium.
+  </p>
+
+  <hr>
+
+</div>
+
+<div class="step">
+
+  <div class="step-num">
+    02
+  </div>
+
+  <h4>
+    Prototype & Test
+  </h4>
+
+  <p>
+    Move the idea quickly into something people can see,
+    touch, test, and react to.
+  </p>
+
+  <hr>
+
+</div>
+
+<div class="step">
+
+  <div class="step-num">
+    03
+  </div>
+
+  <h4>
+    Production & Build
+  </h4>
+
+  <p>
+    Bring creative and engineering together early enough
+    that technology expands the idea rather than constraining it.
+  </p>
+
+  <hr>
+
+</div>
+
+<div class="step">
+
+  <div class="step-num">
+    04
+  </div>
+
+  <h4>
+    Launch & Iterate
+  </h4>
+
+  <p>
+    Stay close through launch, watch how the experience behaves
+    in the real world, and improve it.
+  </p>
+
+  <hr>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section id="experience">
+
+<div class="wrap">
+
+<div class="section-head">
+
+  <div class="eyebrow">
+    Track Record
+  </div>
+
+  <div class="section-title">
+    Experience.
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2015 — Present
+  </div>
+
+  <div class="tl-role">
+    Independent Creative Director
+    <span>Damon Versaggi Consulting</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2016 — Present
+  </div>
+
+  <div class="tl-role">
+    Founder / Creative Director
+    <span>Scrappy Meals XR / Fridgie Smalls</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2024 — Present
+  </div>
+
+  <div class="tl-role">
+    VP, Sales & Technology
+    <span>eFundex</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2022
+  </div>
+
+  <div class="tl-role">
+    Creative Technology Consultant
+    <span>SwivelMeta</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2012 — 2015
+  </div>
+
+  <div class="tl-role">
+    Production Manager, Real-Time Systems
+    <span>Tribune Media / PIX11 / WGN</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2008 — 2012
+  </div>
+
+  <div class="tl-role">
+    Creative Systems / Real-Time Graphics Lead
+    <span>SportsNet New York</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2004 — 2008
+  </div>
+
+  <div class="tl-role">
+    Solutions Architect
+    <span>Vizrt</span>
+  </div>
+
+</div>
+
+<p style="margin-top:28px;font-size:13px;color:var(--muted)">
+  BFA, Computer Art — School of Visual Arts, New York, NY
+</p>
+
+</div>
+</section>
+
+<footer>
+
+<div class="wrap">
+
+<div class="footer-grid">
+
+<div class="footer-col">
+
+  <h5>
+    Connect
+  </h5>
+
+  <h2>
+    Let's build<br>
+    something.
+  </h2>
+
+</div>
+
+<div class="footer-col">
+
+  <h5>
+    Write Me
+  </h5>
+
+  <a href="mailto:damon@scrappymeals.com">
+    damon@scrappymeals.com
+  </a>
+
+</div>
+
+<div class="footer-col">
+
+  <h5>
+    Find Me
+  </h5>
+
+  <a
+    href="https://linkedin.com/in/damonversaggi"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    LinkedIn
+  </a>
+
+  <br><br>
+
+  <a
+    href="https://scrappymeals.com"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Scrappy Meals
+  </a>
+
+</div>
+
+<div class="footer-col">
+
+  <h5>
+    Based In
+  </h5>
+
+  <p>
+    Brooklyn, NY
+  </p>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+  <span>
+    DAMON VERSAGGI — CREATIVE DIRECTION + TECHNOLOGY + EXPERIENCE
+  </span>
+
+  <span>
+    BROOKLYN, NY
+  </span>
+
+</div>
+
+</div>
+</footer>
+
 <script>
-const tabButtons=[...document.querySelectorAll('nav.tabs button')],panels=[...document.querySelectorAll('.panel')];
-tabButtons.forEach(btn=>btn.addEventListener('click',()=>{tabButtons.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.panel).classList.add('active');window.scrollTo({top:document.querySelector('nav.tabs').offsetTop-8,behavior:'smooth'})}));
-const BASE=121538,rarityResult=document.getElementById('rarityResult'),percentileText=document.getElementById('percentileText'),checks=[...document.querySelectorAll('input[type=checkbox][data-rate]')];
-function updateRarity(){let n=BASE;checks.forEach(c=>{if(c.checked)n*=parseFloat(c.dataset.rate)});const rounded=Math.max(1,Math.round(n)),pct=(rounded/BASE)*100,scarcity=100-pct;rarityResult.textContent=rounded.toLocaleString();percentileText.textContent=`Approx. ${pct.toFixed(pct<1?2:1)}% of initial production — about the ${scarcity.toFixed(scarcity>99?2:1)}th percentile for factory-specification scarcity.`}
-checks.forEach(c=>c.addEventListener('change',updateRarity));updateRarity();
-const valuationStages=[{label:'As described, before independent verification',value:'$50K–$65K',desc:'Strong story, but originality, mileage and provenance remain represented rather than independently documented.'},{label:'Original drivetrain/body/components authenticated',value:'$65K–$80K',desc:'Independent inspection confirms the original drivetrain, body, sheet metal and major factory components.'},{label:'Exceptional preservation + mileage/provenance documented',value:'$75K–$95K',desc:'Originality confirmed, approximately 49K miles supported, two-owner provenance supported, strong preservation presentation.'},{label:'MCA-level authentication + rarity documentation',value:'$90K–$115K+',desc:'High-level Mustang authentication, coherent March–April date codes, strong provenance package, and compelling registry/survivor research.'}];
-const slider=document.getElementById('valueSlider'),stageLabel=document.getElementById('stageLabel'),valueReadout=document.getElementById('valueReadout'),stageDescription=document.getElementById('stageDescription'),scenarios=[...document.querySelectorAll('.scenario')];
-function updateValue(){const i=+slider.value,s=valuationStages[i];stageLabel.textContent=s.label;valueReadout.textContent=s.value;stageDescription.textContent=s.desc;scenarios.forEach(el=>el.classList.toggle('active',+el.dataset.stage===i))}
-slider.addEventListener('input',updateValue);scenarios.forEach(el=>el.addEventListener('click',()=>{slider.value=el.dataset.stage;updateValue()}));updateValue();
+(function(){
+
+  /*
+    Scroll palette:
+    Black → Graphite Grey → Gold
+  */
+
+  var stops = [
+    '#090909',
+    '#4A4D52',
+    '#9A7628'
+  ];
+
+  function hexToRgb(hex){
+
+    hex = hex.replace('#','');
+
+    var n = parseInt(hex,16);
+
+    return{
+      r:(n >> 16) & 255,
+      g:(n >> 8) & 255,
+      b:n & 255
+    };
+
+  }
+
+  function mix(a,b,t){
+
+    return{
+      r:Math.round(a.r + (b.r-a.r) * t),
+      g:Math.round(a.g + (b.g-a.g) * t),
+      b:Math.round(a.b + (b.b-a.b) * t)
+    };
+
+  }
+
+  function rgbStr(c){
+
+    return 'rgb(' +
+      c.r + ',' +
+      c.g + ',' +
+      c.b + ')';
+
+  }
+
+  function rgbaStr(c,a){
+
+    return 'rgba(' +
+      c.r + ',' +
+      c.g + ',' +
+      c.b + ',' +
+      a + ')';
+
+  }
+
+  var mainRgb = stops.map(hexToRgb);
+
+  var root = document.documentElement;
+
+  var ticking = false;
+
+  var FADE_PX = 140;
+
+  var blackEnd = 0;
+  var greyEnd = 0;
+  var goldEnd = 0;
+
+  function absoluteTop(el){
+
+    var rect = el.getBoundingClientRect();
+
+    var scrollTop =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+
+    return rect.top + scrollTop;
+
+  }
+
+  function measureBreakpoints(){
+
+    var nav =
+      document.querySelector('nav');
+
+    var navHeight =
+      nav ? nav.offsetHeight : 64;
+
+    var doHeading =
+      document.querySelector('#do .section-title');
+
+    var industriesHeading =
+      document.querySelector('#industries .section-title');
+
+    var experienceLabel =
+      document.querySelector('#experience .eyebrow');
+
+    blackEnd =
+      doHeading
+      ? absoluteTop(doHeading) - navHeight
+      : window.innerHeight;
+
+    greyEnd =
+      industriesHeading
+      ? absoluteTop(industriesHeading) - navHeight
+      : blackEnd + window.innerHeight;
+
+    if(greyEnd < blackEnd){
+      greyEnd = blackEnd;
+    }
+
+    goldEnd =
+      experienceLabel
+      ? absoluteTop(experienceLabel) - navHeight
+      : greyEnd + window.innerHeight;
+
+    if(goldEnd < greyEnd){
+      goldEnd = greyEnd;
+    }
+
+  }
+
+  function applyColors(){
+
+    var scrollTop =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+
+    var black = mainRgb[0];
+    var grey = mainRgb[1];
+    var gold = mainRgb[2];
+
+    var c;
+
+    if(scrollTop <= blackEnd){
+
+      c = black;
+
+    }
+
+    else if(scrollTop <= blackEnd + FADE_PX){
+
+      c = mix(
+        black,
+        grey,
+        (scrollTop-blackEnd) / FADE_PX
+      );
+
+    }
+
+    else if(scrollTop <= greyEnd){
+
+      c = grey;
+
+    }
+
+    else if(scrollTop <= greyEnd + FADE_PX){
+
+      c = mix(
+        grey,
+        gold,
+        (scrollTop-greyEnd) / FADE_PX
+      );
+
+    }
+
+    else{
+
+      c = gold;
+
+    }
+
+    var color = rgbStr(c);
+
+    root.style.setProperty(
+      '--surface',
+      color
+    );
+
+    root.style.setProperty(
+      '--surface-deep',
+      color
+    );
+
+    root.style.setProperty(
+      '--nav-bg',
+      rgbaStr(c,.92)
+    );
+
+    ticking = false;
+
+  }
+
+  function requestTick(){
+
+    if(!ticking){
+
+      window.requestAnimationFrame(
+        applyColors
+      );
+
+      ticking = true;
+
+    }
+
+  }
+
+  function remeasureAndApply(){
+
+    measureBreakpoints();
+
+    applyColors();
+
+  }
+
+  window.addEventListener(
+    'scroll',
+    requestTick,
+    {passive:true}
+  );
+
+  window.addEventListener(
+    'touchmove',
+    requestTick,
+    {passive:true}
+  );
+
+  window.addEventListener(
+    'resize',
+    remeasureAndApply
+  );
+
+  window.addEventListener(
+    'orientationchange',
+    remeasureAndApply
+  );
+
+  if(document.readyState === 'loading'){
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      remeasureAndApply
+    );
+
+  }
+
+  else{
+
+    remeasureAndApply();
+
+  }
+
+  window.addEventListener(
+    'load',
+    remeasureAndApply
+  );
+
+  window.addEventListener(
+    'load',
+    function(){
+
+      setTimeout(
+        remeasureAndApply,
+        300
+      );
+
+    }
+  );
+
+})();
 </script>
+
 </body>
 </html>
