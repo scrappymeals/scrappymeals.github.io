@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Damon Versaggi — Product Design, AI & 0→1 Systems</title>
+<meta name="description" content="Damon Versaggi — product design, AI systems, 0→1 consumer products, fintech workflows, prototyping, and creative technology." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --red:#FF3008;
+  --red-dark:#D92707;
+  --ink:#191919;
+  --muted:#5F5F5F;
+  --line:#E8E8E8;
+  --soft:#F7F7F7;
+  --soft-red:#FFF1ED;
+  --soft-blue:#EAF8FB;
+  --soft-green:#EDF8F1;
+  --soft-gold:#FFF7DF;
+  --white:#FFFFFF;
+  --max:1180px;
+  --radius:28px;
+  --shadow:0 18px 48px rgba(25,25,25,.08);
+  --font:'Manrope',Arial,sans-serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  background:var(--white);
+  font-family:var(--font);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(232,232,232,.85);
+}
+.nav-inner{
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  color:var(--red);
+  font-weight:800;
+  font-style:italic;
+  letter-spacing:-.03em;
+}
+.nav-links{display:flex;align-items:center;gap:24px;font-size:13px;font-weight:700}
+.nav-links a{opacity:.74;transition:.18s ease}
+.nav-links a:hover{opacity:1;color:var(--red)}
+.nav-cta{
+  opacity:1!important;
+  color:var(--white)!important;
+  background:var(--red);
+  padding:11px 16px;
+  border-radius:999px;
+}
+.nav-cta:hover{background:var(--red-dark)}
+
+.hero{
+  padding:90px 0 72px;
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:56px;
+  align-items:center;
+}
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--soft-red);
+  color:var(--red-dark);
+  border-radius:999px;
+  padding:9px 13px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.kicker-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--red)
+}
+h1{
+  margin:22px 0 18px;
+  font-size:clamp(46px,7vw,88px);
+  line-height:.98;
+  letter-spacing:-.06em;
+  font-weight:800;
+}
+.hero-copy{
+  max-width:720px;
+  font-size:18px;
+  color:var(--muted);
+}
+.hero-actions{
+  display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:48px;
+  padding:12px 20px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:800;
+  border:1px solid var(--line);
+  transition:.18s ease;
+}
+.btn.primary{background:var(--red);border-color:var(--red);color:var(--white)}
+.btn.primary:hover{background:var(--red-dark);transform:translateY(-1px)}
+.btn.secondary:hover{border-color:var(--ink);transform:translateY(-1px)}
+
+.hero-panel{
+  background:var(--soft);
+  border-radius:34px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+.hero-switches{
+  display:flex;
+  gap:8px;
+  background:var(--white);
+  padding:7px;
+  border-radius:999px;
+  border:1px solid var(--line);
+}
+.hero-switch{
+  border:0;
+  background:transparent;
+  border-radius:999px;
+  padding:10px 12px;
+  flex:1;
+  cursor:pointer;
+  font-weight:800;
+  font-size:12px;
+  color:var(--muted);
+}
+.hero-switch.active{
+  background:var(--ink);
+  color:var(--white);
+}
+.hero-card{
+  margin-top:16px;
+  background:var(--white);
+  border-radius:24px;
+  padding:26px;
+  min-height:330px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.hero-icon{
+  width:86px;height:86px;border-radius:24px;
+  display:grid;place-items:center;
+  background:var(--soft-blue);
+}
+.hero-icon svg{width:46px;height:46px}
+.hero-card h2{
+  margin:24px 0 10px;
+  font-size:28px;
+  line-height:1.08;
+  letter-spacing:-.035em;
+}
+.hero-card p{color:var(--muted);margin:0}
+.hero-mini{
+  margin-top:22px;
+  font-size:12px;
+  font-weight:800;
+  color:var(--red);
+}
+
+.metrics{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.metrics-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+.metric{
+  padding:30px 24px;
+  border-right:1px solid var(--line);
+}
+.metric:last-child{border-right:0}
+.metric strong{
+  display:block;
+  font-size:30px;
+  letter-spacing:-.04em;
+  line-height:1;
+}
+.metric span{
+  display:block;
+  margin-top:8px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+section{padding:92px 0}
+.section-head{
+  display:grid;
+  grid-template-columns:.65fr 1.35fr;
+  gap:40px;
+  align-items:end;
+  margin-bottom:42px;
+}
+.eyebrow{
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--red);
+}
+.section-head h2{
+  margin:0;
+  font-size:clamp(36px,5vw,58px);
+  line-height:1.02;
+  letter-spacing:-.05em;
+}
+.section-head p{
+  margin:16px 0 0;
+  color:var(--muted);
+  max-width:720px;
+}
+
+.cap-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.cap-card{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px;
+  min-height:330px;
+  transition:.18s ease;
+}
+.cap-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow);
+}
+.cap-icon{
+  width:74px;height:74px;border-radius:22px;
+  display:grid;place-items:center;
+  margin-bottom:52px;
+}
+.cap-icon.one{background:var(--soft-red)}
+.cap-icon.two{background:var(--soft-blue)}
+.cap-icon.three{background:var(--soft-green)}
+.cap-card h3{
+  margin:0 0 12px;
+  font-size:25px;
+  letter-spacing:-.035em;
+}
+.cap-card p{margin:0;color:var(--muted);font-size:14px}
+.cap-link{
+  display:inline-flex;
+  margin-top:22px;
+  color:var(--red);
+  font-size:13px;
+  font-weight:800;
+}
+
+.case-shell{
+  background:var(--soft);
+  border-radius:34px;
+  padding:20px;
+}
+.case-grid{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:18px;
+}
+.case-left,
+.case-right{
+  background:var(--white);
+  border-radius:24px;
+  padding:30px;
+}
+.case-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:28px;
+}
+.case-logo{
+  width:54px;height:54px;border-radius:16px;
+  display:grid;place-items:center;
+  background:var(--soft-red);
+  color:var(--red);
+  font-weight:800;
+  font-size:20px;
+}
+.case-left h3{
+  font-size:38px;
+  line-height:1;
+  margin:0 0 16px;
+  letter-spacing:-.05em;
+}
+.case-left p{color:var(--muted)}
+.case-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.badge{
+  border-radius:999px;
+  border:1px solid var(--line);
+  padding:8px 11px;
+  font-size:11px;
+  font-weight:800;
+}
+.tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+.tab-btn{
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--muted);
+  padding:10px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:800;
+  font-size:12px;
+}
+.tab-btn.active{
+  background:var(--ink);
+  color:var(--white);
+  border-color:var(--ink);
+}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.tab-panel h4{
+  font-size:27px;
+  margin:0 0 12px;
+  letter-spacing:-.035em;
+}
+.tab-panel p{color:var(--muted);margin:0}
+.fact-list{
+  margin-top:24px;
+  display:grid;
+  gap:10px;
+}
+.fact{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px 16px;
+  font-size:13px;
+}
+.fact strong{display:block;margin-bottom:3px}
+.case-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+
+.alt-case{margin-top:22px}
+
+.system-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.system-card{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px;
+}
+.system-card h3{
+  font-size:26px;
+  margin:0 0 10px;
+  letter-spacing:-.035em;
+}
+.system-card p{margin:0;color:var(--muted)}
+.system-list{display:grid;gap:10px;margin-top:22px}
+.system-row{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  padding:13px 0;
+  border-top:1px solid var(--line);
+  font-size:13px;
+}
+.system-row span:last-child{color:var(--muted);text-align:right}
+
+.process{
+  background:var(--ink);
+  color:var(--white);
+}
+.process .section-head h2{color:var(--white)}
+.process .section-head p{color:rgba(255,255,255,.65)}
+.process .eyebrow{color:#FF765A}
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.process-step{
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:24px;
+  padding:25px;
+  min-height:240px;
+}
+.process-step .num{
+  color:#FF765A;
+  font-weight:800;
+  font-size:12px;
+}
+.process-step h3{
+  font-size:22px;
+  margin:52px 0 10px;
+  letter-spacing:-.03em;
+}
+.process-step p{
+  margin:0;
+  color:rgba(255,255,255,.65);
+  font-size:13px;
+}
+
+.accordion{
+  display:grid;
+  gap:10px;
+}
+.acc-item{
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+}
+.acc-trigger{
+  width:100%;
+  border:0;
+  background:var(--white);
+  display:grid;
+  grid-template-columns:150px 1fr 32px;
+  gap:20px;
+  align-items:center;
+  text-align:left;
+  padding:22px 24px;
+  cursor:pointer;
+}
+.acc-date{font-size:12px;color:var(--muted);font-weight:700}
+.acc-role{font-weight:800}
+.acc-company{display:block;color:var(--muted);font-weight:600;font-size:13px;margin-top:3px}
+.acc-plus{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--soft);
+  display:grid;place-items:center;
+  font-weight:800;color:var(--red);
+  transition:.18s ease;
+}
+.acc-item.open .acc-plus{transform:rotate(45deg);background:var(--soft-red)}
+.acc-body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .28s ease;
+  background:var(--soft);
+}
+.acc-inner{
+  padding:0 24px 24px 194px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+footer{
+  padding:80px 0 34px;
+  border-top:1px solid var(--line);
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:40px;
+  align-items:end;
+}
+.footer-title{
+  font-size:clamp(42px,6vw,72px);
+  line-height:.95;
+  letter-spacing:-.055em;
+  margin:0;
+}
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:flex-end;
+}
+.footer-bottom{
+  margin-top:48px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  flex-wrap:wrap;
+  color:var(--muted);
+  font-size:12px;
+}
+
+@media(max-width:940px){
+  .hero-grid,.case-grid,.section-head,.footer-grid{grid-template-columns:1fr}
+  .metrics-grid,.process-grid{grid-template-columns:1fr 1fr}
+  .cap-grid{grid-template-columns:1fr}
+  .system-grid{grid-template-columns:1fr}
+  .footer-links{justify-content:flex-start}
+}
+@media(max-width:700px){
+  .nav-links a:not(.nav-cta){display:none}
+  .hero{padding-top:64px}
+  .metrics-grid,.process-grid{grid-template-columns:1fr}
+  .metric{border-right:0;border-bottom:1px solid var(--line)}
+  .metric:last-child{border-bottom:0}
+  .acc-trigger{grid-template-columns:1fr 32px}
+  .acc-date{grid-column:1}
+  .acc-role{grid-column:1}
+  .acc-plus{grid-column:2;grid-row:1/3}
+  .acc-inner{padding:0 24px 22px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Damon Versaggi home">
+      <span>DAMON VERSAGGI</span>
+    </a>
+    <div class="nav-links">
+      <a href="#capabilities">What I Build</a>
+      <a href="#work">Work</a>
+      <a href="#systems">Systems</a>
+      <a href="#experience">Experience</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker"><span class="kicker-dot"></span> Staff Product Design · AI · 0→1</div>
+      <h1>I design and build products that turn ambiguity into shipped experiences.</h1>
+      <p class="hero-copy">
+        Product design, AI systems, fintech workflows, interactive prototyping, and creative technology.
+        I move from problem framing to working product, then stay close enough to measure, optimize, and improve it.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#work">View product work →</a>
+        <a class="btn secondary" href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <div class="hero-switches" role="tablist" aria-label="Product focus">
+        <button class="hero-switch active" data-hero="consumer">Consumer</button>
+        <button class="hero-switch" data-hero="fintech">Fintech</button>
+        <button class="hero-switch" data-hero="ai">AI Systems</button>
+      </div>
+
+      <div class="hero-card">
+        <div>
+          <div class="hero-icon" id="heroIcon"></div>
+          <h2 id="heroTitle">Consumer product, built end to end.</h2>
+          <p id="heroCopy">
+            Fridgie Smalls combines ingredient input, AI generation, voice interaction,
+            substitutions, dietary constraints, saved recipes, and product optimization in one mobile-first experience.
+          </p>
+        </div>
+        <div class="hero-mini" id="heroMini">Nearly 20,000 users →</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<aside class="metrics" aria-label="Selected product outcomes">
+  <div class="wrap metrics-grid">
+    <div class="metric"><strong>~20K</strong><span>Fridgie Smalls users</span></div>
+    <div class="metric"><strong>72%</strong><span>reduction in input-token usage</span></div>
+    <div class="metric"><strong>~40%</strong><span>fewer tokens per request</span></div>
+    <div class="metric"><strong>~2s</strong><span>faster response time</span></div>
+  </div>
+</aside>
+
+<section id="capabilities">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">What I Build</div></div>
+      <div>
+        <h2>Products, workflows, and systems that people can actually use.</h2>
+        <p>I work where product design, technology, business constraints, and implementation meet.</p>
+      </div>
+    </div>
+
+    <div class="cap-grid">
+      <article class="cap-card">
+        <div class="cap-icon one">
+          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <rect x="7" y="8" width="34" height="32" rx="8" stroke="#FF3008" stroke-width="3"/>
+            <path d="M14 28l7-7 5 5 8-9" stroke="#FF3008" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>0→1 Consumer Product</h3>
+        <p>Problem framing, interaction design, AI integration, prototypes, launch, optimization, and measurable iteration.</p>
+        <a class="cap-link" href="#fridgie">See Fridgie →</a>
+      </article>
+
+      <article class="cap-card">
+        <div class="cap-icon two">
+          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path d="M8 15h32M11 15l3-6h20l3 6M12 21h24v17H12z" stroke="#1597B8" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M18 27h12M18 33h8" stroke="#1597B8" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Fintech & Growth Workflows</h3>
+        <p>Data-heavy financial workflows, customer acquisition, operational tooling, AI-assisted automation, and practical systems.</p>
+        <a class="cap-link" href="#efundex">See eFundex →</a>
+      </article>
+
+      <article class="cap-card">
+        <div class="cap-icon three">
+          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path d="M24 8v8M24 32v8M8 24h8M32 24h8" stroke="#2E8B57" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="24" cy="24" r="9" stroke="#2E8B57" stroke-width="3"/>
+            <path d="M17.5 17.5l-5-5M30.5 30.5l5 5M30.5 17.5l5-5M17.5 30.5l-5 5" stroke="#2E8B57" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>AI + Production Prototyping</h3>
+        <p>React, TypeScript, JavaScript, APIs, LLM workflows, voice interfaces, reusable prompt systems, and interactive prototypes.</p>
+        <a class="cap-link" href="#systems">See systems work →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">Selected Product Work</div></div>
+      <div>
+        <h2>Shipped artifacts, not slide decks.</h2>
+        <p>Two case studies that best demonstrate how I move from unclear problems to working systems.</p>
+      </div>
+    </div>
+
+    <div class="case-shell" id="fridgie">
+      <div class="case-grid">
+        <div class="case-left">
+          <div class="case-brand">
+            <div class="case-logo">FS</div>
+            <div>
+              <strong>Fridgie Smalls</strong><br>
+              <span style="color:var(--muted);font-size:13px">Consumer AI product</span>
+            </div>
+          </div>
+          <h3>Make dinner decisions easier.</h3>
+          <p>
+            A mobile-first AI cooking product that turns the ingredients people already have
+            into usable recipes, substitutions, saved content, and grocery support.
+          </p>
+          <div class="case-badges">
+            <span class="badge">0→1 Product</span>
+            <span class="badge">AI UX</span>
+            <span class="badge">Voice Input</span>
+            <span class="badge">React / TypeScript</span>
+          </div>
+          <div class="case-actions">
+            <a class="btn primary" href="https://fridgiesmalls.app" target="_blank" rel="noopener noreferrer">Try Fridgie →</a>
+            <a class="btn secondary" href="https://scrappymeals.com" target="_blank" rel="noopener noreferrer">Scrappy Meals</a>
+          </div>
+        </div>
+
+        <div class="case-right">
+          <div class="tabs" data-tabs="fridgie">
+            <button class="tab-btn active" data-tab="problem">Problem</button>
+            <button class="tab-btn" data-tab="build">Build</button>
+            <button class="tab-btn" data-tab="impact">Impact</button>
+          </div>
+
+          <div class="tab-panel active" data-panel="problem">
+            <h4>People have food. The hard part is deciding what to make.</h4>
+            <p>
+              The product begins with a practical behavioral problem: reduce the friction between
+              “what is in my kitchen?” and “what can I actually cook right now?”
+            </p>
+            <div class="fact-list">
+              <div class="fact"><strong>Inputs</strong>Ingredients, dietary needs, cuisine preferences, substitutions, budget, and time.</div>
+              <div class="fact"><strong>Interaction</strong>Typed or spoken input with mobile-first flows.</div>
+              <div class="fact"><strong>Output</strong>Actionable recipes, grocery support, and saved cookbook content.</div>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-panel="build">
+            <h4>Design + AI + implementation in one loop.</h4>
+            <p>
+              I owned the concept, product UX, prompt/workflow structure, APIs, voice interaction,
+              interactive content, implementation strategy, launch, and ongoing optimization.
+            </p>
+            <div class="fact-list">
+              <div class="fact"><strong>Product stack</strong>React, TypeScript, JavaScript, AI APIs, web app architecture, voice interfaces.</div>
+              <div class="fact"><strong>Design focus</strong>Reduce friction, make constraints explicit, keep outputs useful and easy to act on.</div>
+              <div class="fact"><strong>Operating model</strong>Prototype quickly, measure cost and latency, then improve both the UX and the underlying system.</div>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-panel="impact">
+            <h4>Product improvements tied to real operating metrics.</h4>
+            <p>
+              The work was not limited to interface design. Product decisions also addressed
+              latency, token usage, cost, reliability, and scale.
+            </p>
+            <div class="fact-list">
+              <div class="fact"><strong>Nearly 20,000 users</strong>Real consumer usage, not a speculative concept.</div>
+              <div class="fact"><strong>72% lower input-token usage</strong>System redesign reduced unnecessary model input.</div>
+              <div class="fact"><strong>~40% fewer tokens per request</strong>Improved efficiency and operating cost.</div>
+              <div class="fact"><strong>~2 seconds faster</strong>Meaningful response-time improvement to the user experience.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-shell alt-case" id="efundex">
+      <div class="case-grid">
+        <div class="case-left">
+          <div class="case-brand">
+            <div class="case-logo" style="background:var(--soft-blue);color:#1597B8">EF</div>
+            <div>
+              <strong>eFundex</strong><br>
+              <span style="color:var(--muted);font-size:13px">Financial products + workflow systems</span>
+            </div>
+          </div>
+          <h3>Turn a data-heavy lending process into clearer workflows.</h3>
+          <p>
+            Product, technology, growth, and AI-assisted operations inside a financial-services environment
+            where practical workflows matter as much as ideas.
+          </p>
+          <div class="case-badges">
+            <span class="badge">Fintech</span>
+            <span class="badge">Growth</span>
+            <span class="badge">Workflow Design</span>
+            <span class="badge">AI Automation</span>
+          </div>
+        </div>
+
+        <div class="case-right">
+          <div class="tabs" data-tabs="efundex">
+            <button class="tab-btn active" data-tab="workflow">Workflow</button>
+            <button class="tab-btn" data-tab="growth">Growth</button>
+            <button class="tab-btn" data-tab="automation">Automation</button>
+          </div>
+
+          <div class="tab-panel active" data-panel="workflow">
+            <h4>Map business requirements into repeatable systems.</h4>
+            <p>
+              Financial-services work spans customer acquisition, bank statements, underwriting inputs,
+              financing options, internal handoffs, and operational follow-through.
+            </p>
+            <div class="fact-list">
+              <div class="fact"><strong>Role</strong>VP, Sales & Technology; previously Product, Technology & Growth Advisor.</div>
+              <div class="fact"><strong>Environment</strong>Regulated, data-heavy, operationally complex lending workflows.</div>
+              <div class="fact"><strong>Design lens</strong>Reduce ambiguity, clarify the next action, and make information easier to move through the system.</div>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-panel="growth">
+            <h4>Connect acquisition strategy to the actual product workflow.</h4>
+            <p>
+              Growth is not treated as a separate marketing layer. The customer journey, qualifying information,
+              handoffs, and internal processes all affect conversion and user trust.
+            </p>
+            <div class="fact-list">
+              <div class="fact"><strong>Customer context</strong>Business owners seeking working capital and financing options.</div>
+              <div class="fact"><strong>Cross-functional scope</strong>Technology, users, sales, operations, and leadership.</div>
+              <div class="fact"><strong>Product thinking</strong>Prioritize high-leverage improvements based on business value and implementation reality.</div>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-panel="automation">
+            <h4>Use AI where it reduces manual work and improves consistency.</h4>
+            <p>
+              Internal tools and AI-assisted workflows support data-heavy sales and business processes
+              without requiring the entire operation to be rebuilt at once.
+            </p>
+            <div class="fact-list">
+              <div class="fact"><strong>Automation focus</strong>Repeatable processes, data enrichment, and internal operational support.</div>
+              <div class="fact"><strong>Method</strong>Start with the workflow pain point, then choose the smallest useful technical intervention.</div>
+              <div class="fact"><strong>Outcome</strong>More scalable processes with less repetitive manual effort.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="systems">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">Systems Thinking</div></div>
+      <div>
+        <h2>I work across the interface and the machinery behind it.</h2>
+        <p>The same habit shows up across consumer products, live systems, AI workflows, immersive experiences, and production technology.</p>
+      </div>
+    </div>
+
+    <div class="system-grid">
+      <article class="system-card">
+        <h3>Hands-on product stack</h3>
+        <p>Tools I use to move recommendations into working artifacts.</p>
+        <div class="system-list">
+          <div class="system-row"><span>Front end</span><span>React · TypeScript · JavaScript · HTML/CSS</span></div>
+          <div class="system-row"><span>AI</span><span>LLM workflows · AI APIs · prompt systems</span></div>
+          <div class="system-row"><span>Interaction</span><span>Voice interfaces · WebXR · real-time 3D</span></div>
+          <div class="system-row"><span>Prototype</span><span>Live builds · workflow tools · reusable systems</span></div>
+        </div>
+      </article>
+
+      <article class="system-card">
+        <h3>Leadership through working systems</h3>
+        <p>Influence comes from making the recommendation concrete.</p>
+        <div class="system-list">
+          <div class="system-row"><span>Managed</span><span>Distributed five-person technical team</span></div>
+          <div class="system-row"><span>Mentored</span><span>16-person internship cohort</span></div>
+          <div class="system-row"><span>Trained</span><span>~1,000 artists, operators, and users</span></div>
+          <div class="system-row"><span>Presented to</span><span>Clients · executives · ownership · production leads</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="approach">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">How I Work</div></div>
+      <div>
+        <h2>Move from ambiguity to something people can use.</h2>
+        <p>A practical loop built around evidence, working prototypes, and measurable behavior.</p>
+      </div>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="num">01</div>
+        <h3>Frame</h3>
+        <p>Clarify the customer problem, business objective, technical constraints, and what success should look like.</p>
+      </div>
+      <div class="process-step">
+        <div class="num">02</div>
+        <h3>Prototype</h3>
+        <p>Move quickly into flows, interfaces, code, or live artifacts that make the recommendation tangible.</p>
+      </div>
+      <div class="process-step">
+        <div class="num">03</div>
+        <h3>Ship</h3>
+        <p>Stay close enough to implementation to resolve issues, make tradeoffs, and protect the core experience.</p>
+      </div>
+      <div class="process-step">
+        <div class="num">04</div>
+        <h3>Improve</h3>
+        <p>Measure what happened, reduce friction, improve performance, and turn successful patterns into reusable systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">Experience</div></div>
+      <div>
+        <h2>Twenty years across product, real-time systems, design, and technology.</h2>
+        <p>Open a role to see the part of the experience most relevant to product design and technical leadership.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-item open">
+        <button class="acc-trigger">
+          <span class="acc-date">2016 — Present</span>
+          <span class="acc-role">Founder / Creative Director<span class="acc-company">Scrappy Meals XR / Fridgie Smalls</span></span>
+          <span class="acc-plus">+</span>
+        </button>
+        <div class="acc-body" style="max-height:260px">
+          <div class="acc-inner">0→1 consumer AI product, product UX, AI workflows, WebXR, interactive systems, technical architecture, prototypes, launch, optimization, and original IP.</div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-date">2024 — Present</span>
+          <span class="acc-role">VP, Sales & Technology<span class="acc-company">eFundex</span></span>
+          <span class="acc-plus">+</span>
+        </button>
+        <div class="acc-body"><div class="acc-inner">Financial-product workflows, customer acquisition, technology, AI-assisted automation, data-heavy processes, and cross-functional operating systems.</div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-date">2015 — Present</span>
+          <span class="acc-role">Independent Creative Director / Creative Technologist<span class="acc-company">Damon Versaggi Consulting</span></span>
+          <span class="acc-plus">+</span>
+        </button>
+        <div class="acc-body"><div class="acc-inner">Interactive, real-time, immersive, broadcast, and emerging-technology work from discovery and feasibility through prototype, production, launch, and live operation.</div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-date">2012 — 2015</span>
+          <span class="acc-role">Production Manager, Real-Time Systems<span class="acc-company">Tribune Media / PIX11 / WGN</span></span>
+          <span class="acc-plus">+</span>
+        </button>
+        <div class="acc-body"><div class="acc-inner">Real-time technology, interactive election systems, live data, control-room workflows, technical infrastructure, and production-critical problem solving.</div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-date">2008 — 2012</span>
+          <span class="acc-role">Creative Systems / Real-Time Graphics Lead<span class="acc-company">SportsNet New York</span></span>
+          <span class="acc-plus">+</span>
+        </button>
+        <div class="acc-body"><div class="acc-inner">Connected visual design with real-time broadcast, stadium systems, live sports storytelling, interfaces, production workflows, and executive presentation.</div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-date">2004 — 2008</span>
+          <span class="acc-role">Production Manager / Art Director<span class="acc-company">Vizrt</span></span>
+          <span class="acc-plus">+</span>
+        </button>
+        <div class="acc-body"><div class="acc-inner">Real-time 3D systems, software solutions, demos, installations, training, technical workflows, client delivery, and launch-critical work across major sports and news organizations.</div></div>
+      </div>
+    </div>
+
+    <p style="margin:24px 0 0;color:var(--muted);font-size:13px"><strong>Education:</strong> BFA, Computer Art — School of Visual Arts, New York, NY</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="eyebrow">Brooklyn, NY</div>
+        <h2 class="footer-title">Build something useful.</h2>
+      </div>
+      <div class="footer-links">
+        <a class="btn primary" href="mailto:damon@scrappymeals.com">Email Damon</a>
+        <a class="btn secondary" href="https://linkedin.com/in/damonversaggi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="btn secondary" href="https://scrappymeals.com" target="_blank" rel="noopener noreferrer">Portfolio</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>DAMON VERSAGGI — PRODUCT DESIGN + AI + SYSTEMS</span>
+      <span>20+ YEARS · BROOKLYN, NY</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const heroContent = {
+  consumer: {
+    title: 'Consumer product, built end to end.',
+    copy: 'Fridgie Smalls combines ingredient input, AI generation, voice interaction, substitutions, dietary constraints, saved recipes, and product optimization in one mobile-first experience.',
+    mini: 'Nearly 20,000 users →',
+    bg: '#EAF8FB',
+    icon: `<svg viewBox="0 0 48 48" fill="none"><rect x="10" y="8" width="28" height="32" rx="8" stroke="#1597B8" stroke-width="3"/><path d="M17 18h14M17 24h10M17 30h7" stroke="#1597B8" stroke-width="3" stroke-linecap="round"/></svg>`
+  },
+  fintech: {
+    title: 'Financial workflows made clearer.',
+    copy: 'At eFundex I connect customer acquisition, business data, technology, operational handoffs, and AI-assisted automation inside a real financial-services workflow.',
+    mini: 'Product + technology + growth →',
+    bg: '#FFF7DF',
+    icon: `<svg viewBox="0 0 48 48" fill="none"><path d="M8 17h32M12 17v20h24V17M15 12h18l3 5H12l3-5Z" stroke="#C58A00" stroke-width="3" stroke-linejoin="round"/><path d="M18 24h12M18 30h8" stroke="#C58A00" stroke-width="3" stroke-linecap="round"/></svg>`
+  },
+  ai: {
+    title: 'AI workflows that reduce friction.',
+    copy: 'I use LLMs, APIs, React, TypeScript, voice interfaces, and reusable workflow systems to move from idea to production artifact quickly, then optimize for cost, speed, and consistency.',
+    mini: '72% lower input-token usage →',
+    bg: '#EDF8F1',
+    icon: `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="9" stroke="#2E8B57" stroke-width="3"/><path d="M24 7v7M24 34v7M7 24h7M34 24h7M12 12l5 5M31 31l5 5M36 12l-5 5M17 31l-5 5" stroke="#2E8B57" stroke-width="3" stroke-linecap="round"/></svg>`
+  }
+};
+
+const heroButtons = document.querySelectorAll('.hero-switch');
+const heroIcon = document.getElementById('heroIcon');
+const heroTitle = document.getElementById('heroTitle');
+const heroCopy = document.getElementById('heroCopy');
+const heroMini = document.getElementById('heroMini');
+
+function setHero(key){
+  const item = heroContent[key];
+  heroIcon.innerHTML = item.icon;
+  heroIcon.style.background = item.bg;
+  heroTitle.textContent = item.title;
+  heroCopy.textContent = item.copy;
+  heroMini.textContent = item.mini;
+  heroButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.hero === key));
+}
+setHero('consumer');
+heroButtons.forEach(btn => btn.addEventListener('click', () => setHero(btn.dataset.hero)));
+
+document.querySelectorAll('.tabs').forEach(tabGroup => {
+  const shell = tabGroup.closest('.case-right');
+  const buttons = tabGroup.querySelectorAll('.tab-btn');
+  const panels = shell.querySelectorAll('.tab-panel');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const key = button.dataset.tab;
+      buttons.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      button.classList.add('active');
+      shell.querySelector(`[data-panel="${key}"]`).classList.add('active');
+    });
+  });
+});
+
+document.querySelectorAll('.acc-trigger').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const item = trigger.closest('.acc-item');
+    const body = item.querySelector('.acc-body');
+    const open = item.classList.contains('open');
+
+    document.querySelectorAll('.acc-item').forEach(other => {
+      other.classList.remove('open');
+      other.querySelector('.acc-body').style.maxHeight = null;
+    });
+
+    if(!open){
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  });
+});
+
+const sections = [...document.querySelectorAll('section[id], header[id]')];
+const links = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      links.forEach(link => {
+        const active = link.getAttribute('href') === '#' + entry.target.id;
+        link.style.color = active ? 'var(--red)' : '';
+        link.style.opacity = active ? '1' : '';
+      });
+    }
+  });
+},{rootMargin:'-40% 0px -50% 0px',threshold:0});
+
+sections.forEach(section => observer.observe(section));
+</script>
+</body>
+</html>
