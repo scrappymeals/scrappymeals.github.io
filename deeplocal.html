@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Damon Versaggi — Creative Technology Director</title>
+<meta name="description" content="Damon Versaggi — Creative Technology Director specializing in interactive systems, immersive experiences, real-time 3D, AI, live production, and physical-digital experiences." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Damon Versaggi — Creative Direction, Technology & Experience" />
+<meta property="og:description" content="Creative direction, interactive experience design, real-time 3D, AI products, immersive media, and live production across sports, broadcast, entertainment, and original IP." />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Damon Versaggi",
+  "jobTitle": "Creative Director and Creative Technologist",
+  "description": "Creative director and creative technologist with 20+ years of experience across interactive experiences, real-time 3D, broadcast, sports, immersive media, AI products, and original IP.",
+  "email": "mailto:damon@scrappymeals.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Brooklyn",
+    "addressRegion": "NY",
+    "addressCountry": "US"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "School of Visual Arts"
+  },
+  "sameAs": [
+    "https://linkedin.com/in/damonversaggi",
+    "https://www.instagram.com/damonversaggi/",
+    "https://scrappymeals.com"
+  ],
+  "knowsAbout": [
+    "Creative Direction",
+    "Creative Technology",
+    "Interactive Experience Design",
+    "Real-Time 3D",
+    "Broadcast Graphics",
+    "Immersive Media",
+    "WebXR",
+    "Artificial Intelligence",
+    "Product Design",
+    "Experiential Design"
+  ]
+}
+</script>
+
+<style>
+:root{
+  --black:#000000;
+  --ink:#ffffff;
+  --lavender:#9A7BFA;
+  --lavender-dark:#7D5FE8;
+  --paper:#F4F2EF;
+  --charcoal:#111111;
+  --grey:#A8A8A8;
+  --line:rgba(255,255,255,.22);
+  --line-dark:rgba(0,0,0,.18);
+  --display:'Roboto Condensed','Arial Narrow',Arial,sans-serif;
+  --body:'Inter',Arial,sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{max-width:100%;overflow-x:hidden}
+body{background:var(--black);color:var(--ink);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(100% - 64px,1440px);margin:0 auto}
+
+/* NAV — restrained, black, high contrast */
+nav{position:fixed;inset:0 0 auto 0;z-index:1000;background:rgba(0,0,0,.97);border-bottom:1px solid rgba(255,255,255,.08)}
+nav .wrap{height:96px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--display);font-weight:500;font-size:25px;line-height:1;letter-spacing:.015em;text-transform:uppercase;white-space:nowrap}
+.navlinks{display:flex;align-items:center;gap:52px}
+.navlinks a{position:relative;font-family:var(--body);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;padding:8px 0}
+.navlinks a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--lavender);transform:scaleX(0);transform-origin:left;transition:transform .2s ease}
+.navlinks a:hover::after,.navlinks a:focus-visible::after{transform:scaleX(1)}
+.navlinks a.active{color:var(--lavender)}
+
+/* HERO — large lavender field inspired by Deeplocal's visual language */
+header.hero{min-height:calc(100vh - 96px);padding:150px 0 92px;background:var(--lavender);display:flex;align-items:center;text-align:center;color:#fff;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:auto 0 0;height:1px;background:rgba(255,255,255,.45)}
+.hero .wrap{display:flex;flex-direction:column;align-items:center}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:30px;opacity:0;animation:fadeUp .55s ease forwards .05s}
+h1.name{font-family:var(--display);font-weight:400;font-size:clamp(48px,4.8vw,76px);line-height:1.04;letter-spacing:0;text-transform:uppercase;max-width:960px;text-wrap:balance;opacity:0;animation:fadeUp .7s ease forwards .14s}
+.hero-role{font-family:var(--body);font-size:clamp(12px,1.05vw,15px);font-weight:600;line-height:1.5;max-width:920px;margin-top:30px;text-transform:uppercase;letter-spacing:.11em;opacity:0;animation:fadeUp .65s ease forwards .24s}
+.hero-desc{max-width:760px;margin-top:22px;font-size:15px;line-height:1.65;color:rgba(255,255,255,.92);opacity:0;animation:fadeUp .65s ease forwards .34s}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:32px;opacity:0;animation:fadeUp .65s ease forwards .44s}
+.hero-cta{display:inline-flex;align-items:center;justify-content:center;min-width:210px;min-height:54px;padding:0 26px;border:2px solid #fff;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;transition:background .18s ease,color .18s ease,transform .18s ease}
+.hero-cta:hover,.hero-cta:focus-visible{background:#fff;color:var(--lavender-dark);transform:translateY(-2px)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* PROOF BAND */
+.proof-strip{background:var(--black);border-bottom:1px solid var(--line)}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.proof-item{min-height:188px;padding:38px 30px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-start}
+.proof-item:last-child{border-right:0}
+.proof-kicker{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--lavender)}
+.proof-item strong{font-family:var(--display);font-weight:500;font-size:26px;line-height:1.08;text-transform:uppercase;margin-top:13px}
+.proof-item span{font-size:13px;line-height:1.6;color:rgba(255,255,255,.68);margin-top:12px}
+
+/* SECTIONS */
+section{padding:116px 0;background:var(--black)}
+section:nth-of-type(even){background:var(--charcoal)}
+.section-head{margin-bottom:58px;max-width:980px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--lavender)}
+.eyebrow::before{content:""}
+.section-title{font-family:var(--display);font-size:clamp(42px,5vw,74px);font-weight:500;line-height:1;letter-spacing:0;text-transform:uppercase;margin-top:14px}
+
+/* CORE PRACTICE */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pillar{padding:40px 32px 36px;min-height:340px;transition:background .18s ease,color .18s ease}
+.pillar + .pillar{border-left:1px solid var(--line)}
+.pillar:hover{background:var(--lavender);color:#fff}
+.pillar .num{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--lavender);border:1px solid var(--lavender);border-radius:999px;padding:7px 12px}
+.pillar:hover .num{color:#fff;border-color:#fff}
+.pillar h3{font-family:var(--display);font-weight:500;font-size:30px;line-height:1.08;text-transform:uppercase;margin:24px 0 18px}
+.pillar p{font-size:14px;line-height:1.65;color:rgba(255,255,255,.7);max-width:390px}
+.pillar:hover p,.pillar:hover li{color:#fff}
+.pillar ul{list-style:none;margin-top:20px}
+.pillar li{padding:8px 0;border-top:1px solid rgba(255,255,255,.16);font-size:13px;color:rgba(255,255,255,.76)}
+
+/* TWO-COLUMN INTRO */
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:0 0 74px;border-bottom:1px solid var(--line);align-items:start}
+.x-label{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--lavender);border:1px solid var(--lavender);border-radius:999px;display:inline-block;padding:7px 12px;margin-bottom:20px}
+.spread h3{font-family:var(--display);font-size:clamp(34px,3.5vw,50px);font-weight:500;line-height:1.06;text-transform:uppercase;margin-bottom:20px}
+.spread p{font-size:15px;line-height:1.7;color:rgba(255,255,255,.7);max-width:600px}
+.taglist{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tag{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:7px 11px;border:1px solid rgba(255,255,255,.34);border-radius:999px}
+
+/* PROJECT GRIDS */
+.ecosystem-flow{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:50px 0 80px}
+.eco-card{padding:32px 26px;min-height:230px;transition:background .18s ease}
+.eco-card + .eco-card{border-left:1px solid var(--line)}
+.eco-card:hover{background:#151515}
+.eco-year,.story-kicker{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--lavender)}
+.eco-card h4,.story-card h4{font-family:var(--display);font-size:28px;line-height:1.08;font-weight:500;text-transform:uppercase;margin:14px 0}
+.eco-card p,.story-card p{font-size:13.5px;line-height:1.62;color:rgba(255,255,255,.68)}
+.eco-arrow{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.04em;margin-top:22px;color:#fff}
+
+.story-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.story-card{padding:34px 30px;min-height:310px;transition:background .18s ease}
+.story-card + .story-card{border-left:1px solid var(--line)}
+.story-card:hover{background:#151515}
+
+/* DETAILS / REVEALS */
+details.reveal{margin-top:24px;border-top:1px solid rgba(255,255,255,.16)}
+details.reveal summary{min-height:54px;display:flex;align-items:center;justify-content:space-between;gap:20px;list-style:none;cursor:pointer;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+details.reveal summary::-webkit-details-marker{display:none}
+details.reveal summary::after{content:"+";font-family:var(--display);font-size:27px;color:var(--lavender);transition:transform .2s ease}
+details.reveal[open] summary::after{transform:rotate(45deg)}
+.reveal-content{padding:0 0 20px;animation:revealIn .25s ease both}
+@keyframes revealIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+.work-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.work-button,.social-button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 15px;border:1px solid rgba(255,255,255,.5);border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;transition:background .17s ease,color .17s ease,border-color .17s ease,transform .17s ease}
+.work-button:hover,.work-button:focus-visible,.social-button:hover,.social-button:focus-visible{background:var(--lavender);border-color:var(--lavender);color:#fff;transform:translateY(-1px)}
+
+.case-study-notes{margin-top:20px;border-top:1px solid rgba(255,255,255,.14)}
+.case-study-row{display:grid;grid-template-columns:84px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.case-study-row:last-child{border-bottom:0}
+.case-study-label{font-size:9px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--lavender)}
+.case-study-copy{font-size:12.5px;line-height:1.55;color:rgba(255,255,255,.68)}
+
+.social-art{margin-top:80px;padding:56px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.social-art-grid{display:grid;grid-template-columns:.85fr 1.5fr;gap:70px}
+.social-art h3{font-family:var(--display);font-size:clamp(38px,4.3vw,62px);font-weight:500;line-height:1.02;text-transform:uppercase;margin-top:12px}
+.social-art p{font-size:15px;line-height:1.7;color:rgba(255,255,255,.7);margin-bottom:24px}
+.social-buttons{display:flex;flex-wrap:wrap;gap:10px}
+
+.origin-strip{margin-top:68px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:42px 0;display:grid;grid-template-columns:220px 1fr;gap:50px}
+.origin-strip strong{font-family:var(--display);font-size:27px;text-transform:uppercase;line-height:1}
+.origin-strip p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.72)}
+
+/* OPERATING RANGE */
+.industries{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.industry{padding:36px 28px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;transition:background .18s ease}
+.industry:not(:nth-child(3n + 1)){border-left:1px solid var(--line)}
+.industry:nth-child(-n + 3){border-bottom:1px solid var(--line)}
+.industry:hover{background:var(--lavender)}
+.industry h4{font-family:var(--display);font-size:26px;line-height:1.08;font-weight:500;text-transform:uppercase}
+.industry span{font-size:12px;line-height:1.5;color:rgba(255,255,255,.66)}
+.industry:hover span{color:#fff}
+
+/* QUOTE */
+.quote-block{display:grid;grid-template-columns:120px 1fr;gap:46px;align-items:center}
+.avatar{width:110px;height:110px;border-radius:50%;background:var(--lavender);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:38px;font-weight:900}
+blockquote{font-family:var(--display);font-size:clamp(32px,4vw,56px);font-weight:400;line-height:1.08;text-transform:uppercase;letter-spacing:0}
+.quote-name{margin-top:22px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--lavender);font-weight:800}
+
+/* PROCESS */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.step{padding:34px 28px;min-height:250px}
+.step + .step{border-left:1px solid var(--line)}
+.step-num{font-family:var(--display);font-size:14px;font-weight:900;color:var(--lavender)}
+.step h4{font-family:var(--display);font-size:26px;line-height:1.08;font-weight:500;text-transform:uppercase;margin:22px 0 12px}
+.step p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.68)}
+.step hr{display:none}
+
+/* TIMELINE */
+.tl-item{display:grid;grid-template-columns:150px 1fr;gap:30px;align-items:baseline;padding:27px 0;border-top:1px solid var(--line)}
+.tl-item:last-of-type{border-bottom:1px solid var(--line)}
+.tl-date{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--lavender)}
+.tl-role{font-family:var(--display);font-size:26px;font-weight:500;line-height:1.08;text-transform:uppercase}
+.tl-role span{display:block;font-family:var(--body);font-size:13px;font-weight:500;text-transform:none;line-height:1.4;color:rgba(255,255,255,.66);margin-top:7px}
+
+/* FOOTER */
+footer{background:var(--lavender);color:#fff;padding:110px 0 42px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:46px;padding-bottom:70px;border-bottom:1px solid rgba(255,255,255,.42)}
+footer h2{font-family:var(--display);font-size:clamp(48px,5.6vw,82px);font-weight:500;line-height:1;text-transform:uppercase;letter-spacing:0}
+.footer-col h5{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;color:rgba(255,255,255,.74)}
+.footer-col a,.footer-col p{font-size:14px;font-weight:700}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:28px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+
+::selection{background:#fff;color:var(--lavender-dark)}
+
+@media(max-width:1100px){
+  .proof-grid{grid-template-columns:1fr 1fr}.proof-item:nth-child(2){border-right:0}.proof-item:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .ecosystem-flow{grid-template-columns:1fr 1fr}.eco-card:nth-child(3){border-left:0;border-top:1px solid var(--line)}.eco-card:nth-child(4){border-top:1px solid var(--line)}
+  .process{grid-template-columns:1fr 1fr}.step:nth-child(3){border-left:0;border-top:1px solid var(--line)}.step:nth-child(4){border-top:1px solid var(--line)}
+}
+
+@media(max-width:860px){
+  .wrap{width:min(100% - 36px,1440px)}
+  nav .wrap{height:78px}.logo{font-size:25px}.navlinks{gap:22px}.navlinks a{font-size:10px}
+  header.hero{min-height:640px;padding:135px 0 82px}
+  .pillars,.story-grid,.industries{grid-template-columns:1fr}
+  .pillar + .pillar,.story-card + .story-card,.industry:not(:nth-child(3n + 1)){border-left:0;border-top:1px solid var(--line)}
+  .industry{border-bottom:1px solid var(--line)!important}.industry:last-child{border-bottom:0!important}
+  .spread,.social-art-grid{grid-template-columns:1fr;gap:34px}
+  .origin-strip{grid-template-columns:1fr;gap:20px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:650px){
+  nav .wrap{height:70px}.logo{font-size:23px}.navlinks a:not(:first-child):not(:last-child){display:none}.navlinks{gap:20px}
+  h1.name{font-size:clamp(38px,9vw,56px);line-height:1.06}.hero-role{font-size:12px;letter-spacing:.07em}.hero-desc{font-size:14px}
+  .proof-grid,.ecosystem-flow,.process{grid-template-columns:1fr}
+  .proof-item{border-right:0;border-bottom:1px solid var(--line)}.proof-item:last-child{border-bottom:0}
+  .eco-card + .eco-card{border-left:0;border-top:1px solid var(--line)}
+  .step + .step{border-left:0;border-top:1px solid var(--line)}
+  .quote-block{grid-template-columns:1fr}.avatar{width:84px;height:84px;font-size:30px}
+  .tl-item{grid-template-columns:1fr;gap:8px}
+  .footer-grid{grid-template-columns:1fr}
+  .case-study-row{grid-template-columns:1fr;gap:5px}
+}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="wrap">
+  <a class="logo" href="#top" aria-label="Damon Versaggi home">DAMON VERSAGGI</a>
+  <div class="navlinks">
+    <a href="#work">Work</a>
+    <a href="#do">Practice</a>
+    <a href="#approach">Process</a>
+    <a href="#experience">Experience</a>
+    <a href="mailto:damon@scrappymeals.com">Contact</a>
+  </div>
+</div>
+</nav>
+
+<header class="hero" id="top">
+<div class="wrap">
+  <div class="hero-eyebrow">Damon Versaggi · Creative Technology Director</div>
+  <h1 class="name">CREATIVE TECHNOLOGY<br>BUILT FOR THE REAL WORLD.</h1>
+  <div class="hero-role">Interactive systems · immersive experiences · real-time 3D · AI · live production</div>
+  <p class="hero-desc">20+ years turning ambitious creative ideas into technically feasible, production-ready experiences across entertainment, sports, broadcast, physical spaces, product, and emerging technology.</p>
+  <div class="hero-actions">
+    <a class="hero-cta" href="#work">View selected work</a>
+    <a class="hero-cta" href="mailto:damon@scrappymeals.com">Contact</a>
+  </div>
+</div>
+</header>
+
+<aside class="proof-strip" aria-label="Selected career proof">
+<div class="wrap proof-grid">
+
+  <div class="proof-item">
+    <div class="proof-kicker">Live Event Design</div>
+    <strong>New Year's Rockin' Eve</strong>
+    <span>15 years across graphics, creative direction, and the midnight countdown redesign.</span>
+  </div>
+
+  <div class="proof-item">
+    <div class="proof-kicker">Sports at Scale</div>
+    <strong>NBA Finals + ESPN</strong>
+    <span>Season packages, live game systems, operator training, and high-pressure broadcast execution.</span>
+  </div>
+
+  <div class="proof-item">
+    <div class="proof-kicker">Launch-Critical Systems</div>
+    <strong>Fox Business + CBS HD</strong>
+    <span>Real-time graphics platforms and broadcast launches where craft and reliability were inseparable.</span>
+  </div>
+
+  <div class="proof-item">
+    <div class="proof-kicker">Independent Work</div>
+    <strong>Scrappy Meals XR</strong>
+    <span>Original IP, interactive products, WebXR, AI, and physical-to-digital experiences built from the ground up.</span>
+  </div>
+
+</div>
+</aside>
+
+<section id="do">
+<div class="wrap">
+
+<div class="section-head">
+  <div class="eyebrow">Core Practice</div>
+  <div class="section-title">What I do.</div>
+</div>
+
+<div class="pillars">
+
+<div class="pillar">
+  <div class="num">01 — EXPERIENTIAL</div>
+
+  <h3>Interactive Experience Design</h3>
+
+  <p>
+    Spatial storytelling and real-time experiences for physical spaces,
+    live events, sports, broadcast, and immersive environments.
+  </p>
+
+  <ul>
+    <li>AR / real-time 3D / WebXR</li>
+    <li>Spatial + connected experiences</li>
+    <li>Interactive storytelling & prototyping</li>
+  </ul>
+</div>
+
+<div class="pillar">
+  <div class="num">02 — PRODUCT</div>
+
+  <h3>AI-Assisted Product</h3>
+
+  <p>
+    Consumer AI products built end to end, from creative vision and
+    interaction design through working product experiences.
+  </p>
+
+  <ul>
+    <li>AI product experience</li>
+    <li>Generative concepting & prototyping</li>
+    <li>Character-consistent production</li>
+  </ul>
+</div>
+
+<div class="pillar">
+  <div class="num">03 — CREATIVE SYSTEMS</div>
+
+  <h3>Creative & Team Leadership</h3>
+
+  <p>
+    Ideas translated into systems that designers, technologists,
+    producers, clients, and audiences can actually use.
+  </p>
+
+  <ul>
+    <li>Creative direction & visual systems</li>
+    <li>Team leadership, critique & mentorship</li>
+    <li>Client pitches & executive presentations</li>
+  </ul>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="work">
+<div class="wrap">
+
+<div class="section-head">
+  <div class="eyebrow">Selected Work</div>
+  <div class="section-title">Work built to perform in the real world.</div>
+</div>
+
+<div class="spread">
+
+<div>
+
+  <div class="x-label">
+    ORIGINAL IP X EXPERIENCE DESIGN
+  </div>
+
+  <h3>
+    Scrappy Meals — A Creative Ecosystem
+  </h3>
+
+  <p>
+    Founder-led creative ecosystem spanning live experiences, original
+    characters, children's storytelling, WebXR, interactive 3D, AI
+    products, and entertainment. One idea, built across every medium
+    needed to make it real.
+  </p>
+
+  <div class="taglist">
+    <span class="tag">Original IP</span>
+    <span class="tag">Experiential</span>
+    <span class="tag">World-building</span>
+    <span class="tag">XR</span>
+    <span class="tag">AI</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=xKWunsgSllA"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      SCRAPPY MEALS VIDEO
+    </a>
+
+    <a
+      class="work-button"
+      href="https://scrappymeals.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VISIT SCRAPPY MEALS
+    </a>
+
+    <a
+      class="work-button"
+      href="https://skfb.ly/pNLvO"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW 3D MENUS
+    </a>
+
+  </div>
+
+</div>
+
+<div>
+
+  <div class="x-label">
+    PHYSICAL X DIGITAL
+  </div>
+
+  <h3>
+    One idea. Many forms.
+  </h3>
+
+  <p>
+    I built the same core idea into a live-event format, a character
+    property, a virtual world, and a working AI product. The point was
+    never to chase formats. It was to use each one where it created a
+    better experience for people.
+  </p>
+
+</div>
+
+</div>
+
+<div class="ecosystem-flow">
+
+<div class="eco-card">
+
+  <div class="eco-year">
+    01 — Physical
+  </div>
+
+  <h4>
+    Catering + Cooking Experiences
+  </h4>
+
+  <p>
+    Sustainable food, live classes, chefs, projection,
+    hybrid demonstrations, and participatory events.
+  </p>
+
+  <div class="case-study-notes">
+    <div class="case-study-row">
+      <div class="case-study-label">Challenge</div>
+      <div class="case-study-copy">Turn food education into a participatory experience that could work across a physical venue and a remote audience.</div>
+    </div>
+    <div class="case-study-row">
+      <div class="case-study-label">Approach</div>
+      <div class="case-study-copy">Combined chefs, live instruction, projection, audience participation, and hybrid production into one event format.</div>
+    </div>
+    <div class="case-study-row">
+      <div class="case-study-label">Result</div>
+      <div class="case-study-copy">Established an early physical-to-digital format for Scrappy Meals that later expanded into XR, character IP, and interactive products.</div>
+    </div>
+  </div>
+
+  <div class="eco-arrow">
+    EXPERIENCE →
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=I0WRQA-kRBU"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      SCRAPPYHOUR: BROOKLYN × SWEDEN
+    </a>
+
+  </div>
+
+</div>
+
+<div class="eco-card">
+
+  <div class="eco-year">
+    02 — Character
+  </div>
+
+  <h4>
+    Scraps the Raccoon
+  </h4>
+
+  <p>
+    Logo and mascot → 3D-printed event character →
+    children's book → original IP.
+  </p>
+
+  <div class="eco-arrow">
+    CHARACTER →
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=LAe5S5BGBIk"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIRTUAL SCRAPS FOOD GUIDE
+    </a>
+
+    <a
+      class="work-button"
+      href="https://www.amazon.com/Scraps-Food-Guide-Damon-Versaggi/dp/1645843688"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      SCRAPS THE RACCOON BOOK
+    </a>
+
+  </div>
+
+</div>
+
+<div class="eco-card">
+
+  <div class="eco-year">
+    03 — World
+  </div>
+
+  <h4>
+    The Metacheese
+  </h4>
+
+  <p>
+    WebXR, interactive 3D, remote participation,
+    university interns, and virtual children's readings.
+  </p>
+
+  <div class="case-study-notes">
+    <div class="case-study-row">
+      <div class="case-study-label">Problem</div>
+      <div class="case-study-copy">Create a browser-based immersive world where food education, storytelling, live programming, and original characters could exist in the same experience.</div>
+    </div>
+    <div class="case-study-row">
+      <div class="case-study-label">Build</div>
+      <div class="case-study-copy">Developed The Metacheese as a WebXR environment using interactive 3D, remote participation, virtual readings, and intern-supported content production.</div>
+    </div>
+    <div class="case-study-row">
+      <div class="case-study-label">Role</div>
+      <div class="case-study-copy">Founder, creative director, world-builder, and creative technologist connecting concept, visual language, experience design, and production.</div>
+    </div>
+  </div>
+
+  <div class="eco-arrow">
+    WORLD →
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://metacheese.scrappymeals.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      ENTER THE METACHEESE
+    </a>
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=swZlmsZX-uI"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      METACHEESE VIDEO
+    </a>
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=lT_IuQneWug"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      TOUR THE METACHEESE
+    </a>
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=TFd2AOVdWes"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      BRAND ACTIVATION
+    </a>
+
+  </div>
+
+</div>
+
+<div class="eco-card">
+
+  <div class="eco-year">
+    04 — Product + Story
+  </div>
+
+  <h4>
+    Fridgie → FRIDGIE x SCRAPS*
+  </h4>
+
+  <p>
+    AI cooking utility evolved into character-driven children's
+    entertainment and AI-assisted production.
+  </p>
+
+  <div class="case-study-notes">
+    <div class="case-study-row">
+      <div class="case-study-label">Product</div>
+      <div class="case-study-copy">Built a mobile-first AI recipe experience that turns available fridge ingredients into practical recipes, substitutions, grocery support, and saved cookbook content.</div>
+    </div>
+    <div class="case-study-row">
+      <div class="case-study-label">Scale</div>
+      <div class="case-study-copy">Grew to nearly 20,000 users while reducing input-token usage by 72%, cutting tokens per call by roughly 40%, and improving response speed by about two seconds.</div>
+    </div>
+    <div class="case-study-row">
+      <div class="case-study-label">Evolution</div>
+      <div class="case-study-copy">Extended the product into FRIDGIE x SCRAPS*, a character-driven children's entertainment system with AI-assisted production, continuity controls, and reusable creative assets.</div>
+    </div>
+  </div>
+
+  <div class="eco-arrow">
+    PRODUCT → STORY
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://scrappymeals.com/fridgie-x-scraps-production"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW PRODUCTION WORKFLOW
+    </a>
+
+    <a
+      class="work-button"
+      href="https://fridgiesmalls.app"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      TRY FRIDGIE SMALLS — MOBILE ONLY
+    </a>
+
+  </div>
+
+</div>
+
+</div>
+
+<div class="section-head" style="margin-top:72px">
+
+  <div class="eyebrow">
+    Featured Experiences
+  </div>
+
+  <div class="section-title">
+    Different mediums. Same creative instinct.
+  </div>
+
+</div>
+
+<div class="story-grid">
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    IMMERSIVE X PHYSICAL
+  </div>
+
+  <h4>
+    SwivelMeta × Outernet
+  </h4>
+
+  <p>
+    Creative technology consulting for interactive Web3 experiences
+    connecting digital worlds with Outernet London's large-scale physical
+    and digital environment. The work connected concept, platform,
+    audience participation, and a public-facing destination.
+  </p>
+
+  <div class="taglist">
+    <span class="tag">Immersive</span>
+    <span class="tag">Connected Environments</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://www.outernet.com/news/outernet-and-swivelmeta-partner-to-deliver-web3-for-brands"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW PARTNERSHIP
+    </a>
+
+  </div>
+
+</div>
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    ART X EMERGING MEDIA
+  </div>
+
+  <h4>
+    FRIDA001 + 3D Crypto Art
+  </h4>
+
+  <p>
+    Early 3D crypto-art experimentation during the pandemic.
+    FRIDA001 connected physical installation, digital artwork,
+    NFC, and AR into one experience.
+  </p>
+
+  <div class="taglist">
+    <span class="tag">3D Art</span>
+    <span class="tag">NFC</span>
+    <span class="tag">AR</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://opensea.io/damonversaggi"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW CRYPTO ART
+    </a>
+
+  </div>
+
+</div>
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    LIVE X CREATIVE DIRECTION
+  </div>
+
+  <h4>
+    New Year's Rockin' Eve
+  </h4>
+
+  <p>
+    Fifteen years on one of television's largest live events, from
+    graphics operator to lead graphics and long-term consultant. In 2011,
+    I redesigned the midnight countdown treatment that became the visual
+    foundation for the show that followed.
+  </p>
+
+  <div class="case-study-notes">
+    <div class="case-study-row">
+      <div class="case-study-label">Context</div>
+      <div class="case-study-copy">A live national broadcast where timing, reliability, visual clarity, and sponsor integration have to work under absolute deadline pressure.</div>
+    </div>
+    <div class="case-study-row">
+      <div class="case-study-label">Contribution</div>
+      <div class="case-study-copy">Progressed from graphics operation into lead graphics and long-term consulting, working across creative direction, real-time systems, and show-critical execution.</div>
+    </div>
+    <div class="case-study-row">
+      <div class="case-study-label">Impact</div>
+      <div class="case-study-copy">Redesigned the midnight countdown treatment in 2011, creating the visual foundation that informed the show presentation that followed.</div>
+    </div>
+  </div>
+
+  <div class="taglist">
+    <span class="tag">Creative Direction</span>
+    <span class="tag">Live Design</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://www.youtube.com/watch?v=S_cx6O3HN6s&amp;t=3093s"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW NEW YEAR'S ROCKIN' EVE
+    </a>
+
+  </div>
+
+</div>
+
+</div>
+
+<div class="section-head" style="margin-top:72px">
+
+  <div class="eyebrow">
+    Interactive Range
+  </div>
+
+  <div class="section-title">
+    Real-time work. Real stakes.
+  </div>
+
+</div>
+
+<div class="story-grid">
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    DATA X STORYTELLING
+  </div>
+
+  <h4>
+    Interactive Elections — 2004–2020
+  </h4>
+
+  <p>
+    Sixteen years translating complex live election data into real-time
+    visual experiences presenters could explore and audiences could
+    understand, across major national broadcast environments.
+  </p>
+
+  <div class="case-study-notes">
+    <div class="case-study-row">
+      <div class="case-study-label">Problem</div>
+      <div class="case-study-copy">Turn fast-changing, high-volume election data into visual systems that presenters could navigate live and viewers could understand immediately.</div>
+    </div>
+    <div class="case-study-row">
+      <div class="case-study-label">Approach</div>
+      <div class="case-study-copy">Connected real-time data, 3D graphics, interaction design, presenter workflows, and control-room reliability across multiple election cycles.</div>
+    </div>
+  </div>
+
+  <div class="taglist">
+    <span class="tag">Interactive Data</span>
+    <span class="tag">Real-Time 3D</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://youtu.be/r6bo6aF3r0A?si=2Uc5cBJ6TFRThi93&amp;t=6468s"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW INTERACTIVE ELECTIONS
+    </a>
+
+  </div>
+
+</div>
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    BROADCAST X STADIUM
+  </div>
+
+  <h4>
+    SNY / New York Mets
+  </h4>
+
+  <p>
+    Helped develop and pitch a new visual direction spanning
+    broadcast and stadium graphics, including presenting the
+    redesign directly to Mets owner Fred Wilpon.
+  </p>
+
+  <div class="case-study-notes">
+    <div class="case-study-row">
+      <div class="case-study-label">Scope</div>
+      <div class="case-study-copy">Create a unified visual direction that could move between television graphics and the in-stadium fan experience.</div>
+    </div>
+    <div class="case-study-row">
+      <div class="case-study-label">Leadership</div>
+      <div class="case-study-copy">Helped develop the redesign, shape the pitch, and present the creative direction directly to Mets ownership.</div>
+    </div>
+  </div>
+
+  <div class="taglist">
+    <span class="tag">Creative Pitch</span>
+    <span class="tag">Stadium Graphics</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://youtu.be/nL_4DAY7ABU?si=4WhPqzkBP-gzMpJh&amp;t=217s"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW SNY WORK
+    </a>
+
+  </div>
+
+</div>
+
+<div class="story-card">
+
+  <div class="story-kicker">
+    REAL-TIME X REMOTE
+  </div>
+
+  <h4>
+    ESPN Around the Horn × Girraphic
+  </h4>
+
+  <p>
+    Built and installed the graphics and production workflow connecting
+    ESPN's Seaport control room in New York with the host in Washington,
+    D.C. The experience had to feel immediate, reliable, and live.
+  </p>
+
+  <div class="case-study-notes">
+    <div class="case-study-row">
+      <div class="case-study-label">Challenge</div>
+      <div class="case-study-copy">Make a split-location production behave as one immediate live experience despite the host and control room operating from different cities.</div>
+    </div>
+    <div class="case-study-row">
+      <div class="case-study-label">Delivery</div>
+      <div class="case-study-copy">Built and installed the real-time graphics and production workflow linking ESPN's New York control room with the Washington, D.C. host environment.</div>
+    </div>
+  </div>
+
+  <div class="taglist">
+    <span class="tag">Real-Time Graphics</span>
+    <span class="tag">Remote Production</span>
+  </div>
+
+  <div class="work-links">
+
+    <a
+      class="work-button"
+      href="https://youtu.be/NKny5vp_Cz8?si=k2Kk0TSNJEgUvUWi&amp;t=740s"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      VIEW AROUND THE HORN
+    </a>
+
+  </div>
+
+</div>
+
+</div>
+
+<div class="social-art">
+
+<div class="social-art-grid">
+
+<div>
+
+  <div class="eyebrow">
+    Art Practice
+  </div>
+
+  <h3>
+    The art behind the technology.
+  </h3>
+
+</div>
+
+<div>
+
+  <p>
+    My personal and project feeds are a living archive of visual art,
+    3D experiments, characters, food culture, and creative exploration.
+    The creative practice came first. Technology expanded the palette.
+  </p>
+
+  <div class="social-buttons">
+
+    <a
+      class="social-button"
+      href="https://www.instagram.com/damonversaggi/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @damonversaggi
+    </a>
+
+    <a
+      class="social-button"
+      href="https://www.instagram.com/scrappymeals/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @scrappymeals
+    </a>
+
+    <a
+      class="social-button"
+      href="https://www.instagram.com/fridgiesmalls/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @fridgiesmalls
+    </a>
+
+    <a
+      class="social-button"
+      href="https://www.instagram.com/thescrapsintheback/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @thescrapsintheback
+    </a>
+
+    <a
+      class="social-button"
+      href="https://www.instagram.com/unknownsdreamscont/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @unknownsdreamscont
+    </a>
+
+  </div>
+
+</div>
+
+</div>
+</div>
+
+<div class="origin-strip">
+
+  <strong>
+    Where it started.
+  </strong>
+
+  <div>
+
+    <p>
+      My college thesis, <strong>The Nightlight</strong>,
+      won Best Production Value, earned a $1,000 award,
+      received festival recognition, and led directly to my
+      first professional job. The technology keeps changing.
+      The job does not: find the idea, understand the medium,
+      and make something people want to experience.
+    </p>
+
+    <div class="work-links">
+
+      <a
+        class="work-button"
+        href="https://www.youtube.com/watch?v=Uh0C-Amharo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        VIEW THE NIGHTLIGHT
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+</section>
+
+<section id="industries">
+
+<div class="wrap">
+
+<div class="section-head">
+
+  <div class="eyebrow">
+    Operating Range
+  </div>
+
+  <div class="section-title">
+    Industries, audiences, and environments.
+  </div>
+
+</div>
+
+<div class="industries">
+
+<div class="industry">
+  <h4>Live Sports Broadcast</h4>
+  <span>ESPN, NBA, MLB, YES Network, SNY</span>
+</div>
+
+<div class="industry">
+  <h4>News & Elections</h4>
+  <span>CNN, CBS, MSNBC, Tribune, PIX11, WGN</span>
+</div>
+
+<div class="industry">
+  <h4>AI Products & Storytelling</h4>
+  <span>Fridgie Smalls, FRIDGIE x SCRAPS*</span>
+</div>
+
+<div class="industry">
+  <h4>XR, Web3 & Interactive Art</h4>
+  <span>The Metacheese, FRIDA001, SwivelMeta, Outernet</span>
+</div>
+
+<div class="industry">
+  <h4>Experiential & Hybrid Events</h4>
+  <span>Scrappyhour, The Metacheese, New Year's Rockin' Eve</span>
+</div>
+
+<div class="industry">
+  <h4>Launches, Platforms & Systems</h4>
+  <span>Fox Business Network, CBS HD, Vizrt, real-time control rooms</span>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section>
+
+<div class="wrap">
+
+<div class="quote-block">
+
+  <div class="avatar">
+    DV
+  </div>
+
+  <div>
+
+    <blockquote>
+      "I don't start with the technology. I start with what
+      I want someone to feel, do, or discover, then use the
+      medium that makes that experience possible."
+    </blockquote>
+
+    <div class="quote-name">
+      DAMON VERSAGGI — CREATIVE DIRECTION + TECHNOLOGY
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+</section>
+
+<section id="approach">
+
+<div class="wrap">
+
+<div class="section-head">
+
+  <div class="eyebrow">
+    Connected Process
+  </div>
+
+  <div class="section-title">
+    How I work.
+  </div>
+
+</div>
+
+<div class="process">
+
+<div class="step">
+
+  <div class="step-num">
+    01
+  </div>
+
+  <h4>
+    Discovery & Concept
+  </h4>
+
+  <p>
+    Start with the audience, desired feeling or behavior,
+    business goal, and possibilities of the medium.
+  </p>
+
+  <hr>
+
+</div>
+
+<div class="step">
+
+  <div class="step-num">
+    02
+  </div>
+
+  <h4>
+    Prototype & Test
+  </h4>
+
+  <p>
+    Move the idea quickly into something people can see,
+    touch, test, and react to.
+  </p>
+
+  <hr>
+
+</div>
+
+<div class="step">
+
+  <div class="step-num">
+    03
+  </div>
+
+  <h4>
+    Production & Build
+  </h4>
+
+  <p>
+    Bring creative and engineering together early enough
+    that technology expands the idea rather than constraining it.
+  </p>
+
+  <hr>
+
+</div>
+
+<div class="step">
+
+  <div class="step-num">
+    04
+  </div>
+
+  <h4>
+    Launch & Iterate
+  </h4>
+
+  <p>
+    Stay close through launch, watch how the experience behaves
+    in the real world, and improve it.
+  </p>
+
+  <hr>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section id="experience">
+
+<div class="wrap">
+
+<div class="section-head">
+
+  <div class="eyebrow">
+    Track Record
+  </div>
+
+  <div class="section-title">
+    Experience.
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2015 — Present
+  </div>
+
+  <div class="tl-role">
+    Independent Creative Director
+    <span>Damon Versaggi Consulting</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2016 — Present
+  </div>
+
+  <div class="tl-role">
+    Founder / Creative Director
+    <span>Scrappy Meals XR / Fridgie Smalls</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2024 — Present
+  </div>
+
+  <div class="tl-role">
+    VP, Sales & Technology
+    <span>eFundex</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2022
+  </div>
+
+  <div class="tl-role">
+    Creative Technology Consultant
+    <span>SwivelMeta</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2012 — 2015
+  </div>
+
+  <div class="tl-role">
+    Production Manager, Real-Time Systems
+    <span>Tribune Media / PIX11 / WGN</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2008 — 2012
+  </div>
+
+  <div class="tl-role">
+    Creative Systems / Real-Time Graphics Lead
+    <span>SportsNet New York</span>
+  </div>
+
+</div>
+
+<div class="tl-item">
+
+  <div class="tl-date">
+    2004 — 2008
+  </div>
+
+  <div class="tl-role">
+    Solutions Architect
+    <span>Vizrt</span>
+  </div>
+
+</div>
+
+<p style="margin-top:28px;font-size:13px;color:var(--muted)">
+  BFA, Computer Art — School of Visual Arts, New York, NY
+</p>
+
+</div>
+</section>
+
+<footer>
+
+<div class="wrap">
+
+<div class="footer-grid">
+
+<div class="footer-col">
+
+  <h5>
+    Connect
+  </h5>
+
+  <h2>
+    Let's build<br>
+    something.
+  </h2>
+
+</div>
+
+<div class="footer-col">
+
+  <h5>
+    Write Me
+  </h5>
+
+  <a href="mailto:damon@scrappymeals.com">
+    damon@scrappymeals.com
+  </a>
+
+</div>
+
+<div class="footer-col">
+
+  <h5>
+    Find Me
+  </h5>
+
+  <a
+    href="https://linkedin.com/in/damonversaggi"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    LinkedIn
+  </a>
+
+  <br><br>
+
+  <a
+    href="https://scrappymeals.com"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Scrappy Meals
+  </a>
+
+</div>
+
+<div class="footer-col">
+
+  <h5>
+    Based In
+  </h5>
+
+  <p>
+    Brooklyn, NY
+  </p>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+  <span>
+    DAMON VERSAGGI — CREATIVE DIRECTION + TECHNOLOGY + EXPERIENCE
+  </span>
+
+  <span>
+    BROOKLYN, NY
+  </span>
+
+</div>
+
+</div>
+</footer>
+
+
+
+<script>
+(function(){
+  function addReveal(card, headingSelector, label){
+    var heading = card.querySelector(headingSelector);
+    if(!heading || card.querySelector('details.reveal')) return;
+
+    var nodes = [];
+    var node = heading.nextSibling;
+    while(node){
+      var next = node.nextSibling;
+      nodes.push(node);
+      node = next;
+    }
+
+    var details = document.createElement('details');
+    details.className = 'reveal';
+
+    var summary = document.createElement('summary');
+    summary.textContent = label;
+
+    var content = document.createElement('div');
+    content.className = 'reveal-content';
+    nodes.forEach(function(item){ content.appendChild(item); });
+
+    details.appendChild(summary);
+    details.appendChild(content);
+    card.appendChild(details);
+
+    details.addEventListener('toggle',function(){
+      if(!details.open) return;
+      var group = card.parentElement;
+      if(!group) return;
+      group.querySelectorAll('details.reveal[open]').forEach(function(other){
+        if(other !== details) other.open = false;
+      });
+    });
+  }
+
+  function buildReveals(){
+    document.querySelectorAll('.pillar').forEach(function(card){ addReveal(card,'h3','Explore practice'); });
+    document.querySelectorAll('.eco-card').forEach(function(card){ addReveal(card,'h4','Explore project'); });
+    document.querySelectorAll('.story-card').forEach(function(card){ addReveal(card,'h4','View details + work'); });
+  }
+
+  function activeNav(){
+    var links = Array.from(document.querySelectorAll('.navlinks a[href^="#"]'));
+    var targets = links.map(function(link){
+      return document.querySelector(link.getAttribute('href'));
+    }).filter(Boolean);
+
+    if(!('IntersectionObserver' in window)) return;
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        links.forEach(function(link){ link.classList.remove('active'); });
+        var active = links.find(function(link){ return link.getAttribute('href') === '#' + entry.target.id; });
+        if(active) active.classList.add('active');
+      });
+    },{rootMargin:'-25% 0px -65% 0px',threshold:0});
+
+    targets.forEach(function(target){ observer.observe(target); });
+  }
+
+  function init(){ buildReveals(); activeNav(); }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+</script>
+
+</body>
+</html>
