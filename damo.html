@@ -6,7 +6,7 @@
 <title>Damon Versaggi — Creative Direction, Technology & Experience</title>
 <meta name="description" content="Damon Versaggi — creative direction, creative technology, product, immersive experiences, real-time 3D, AI, and interactive storytelling." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800;1,900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -16,12 +16,13 @@
   --ink:#FFFFFF;
   --muted:rgba(255,255,255,.78);
   --muted-dim:rgba(255,255,255,.6);
-  --accent:#D8B55B;
-  --accent-soft:rgba(216,181,91,.18);
+  --accent:#78AED4;
+  --accent-soft:rgba(120,174,212,.18);
   --line:rgba(255,255,255,.30);
   --line-soft:rgba(255,255,255,.20);
   --display:'Poppins',sans-serif;
   --body:'Poppins',sans-serif;
+  --signature:'Barlow Condensed','Arial Narrow',sans-serif;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -92,8 +93,9 @@ nav .wrap{
 }
 
 .logo{
-  font-family:var(--display);
+  font-family:var(--signature);
   font-weight:900;
+  font-style:italic;
   font-size:14px;
   line-height:1.15;
   letter-spacing:.08em;
@@ -106,7 +108,8 @@ nav .wrap{
 .navlinks a{
   margin-left:28px;
   font-size:12px;
-  font-weight:600;
+  font-weight:800;
+  font-style:italic;
   letter-spacing:.08em;
   text-transform:uppercase;
   opacity:.78;
@@ -139,8 +142,10 @@ header.hero{
 }
 
 h1.name{
-  font-family:var(--display);
+  font-family:var(--signature);
   font-weight:900;
+  font-style:italic;
+  letter-spacing:-.045em;
   font-size:clamp(48px,9vw,118px);
   line-height:.94;
   opacity:0;
@@ -355,7 +360,7 @@ section{
 
 .eco-card{
   padding:30px 24px;
-  min-height:210px;
+  min-height:175px;
   transition:
     transform .2s ease,
     background-color .12s ease-out;
@@ -405,7 +410,7 @@ section{
 
 .story-card{
   padding:30px 26px;
-  min-height:250px;
+  min-height:185px;
   transition:
     transform .2s ease,
     background-color .12s ease-out;
@@ -497,6 +502,75 @@ section{
   flex-wrap:wrap;
   gap:8px;
   margin-top:20px;
+}
+
+details.reveal{
+  margin-top:18px;
+  border-top:1px solid var(--line-soft);
+}
+
+details.reveal summary{
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  color:var(--ink);
+  cursor:pointer;
+  list-style:none;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  transition:color .18s ease;
+}
+
+details.reveal summary::-webkit-details-marker{display:none}
+
+details.reveal summary::after{
+  content:"+";
+  color:var(--accent);
+  font-family:var(--display);
+  font-size:22px;
+  font-weight:500;
+  line-height:1;
+  transition:transform .22s ease;
+}
+
+details.reveal[open] summary{
+  color:var(--accent);
+}
+
+details.reveal[open] summary::after{
+  transform:rotate(45deg);
+}
+
+details.reveal summary:hover,
+details.reveal summary:focus-visible{
+  color:var(--accent);
+}
+
+details.reveal summary:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:4px;
+}
+
+.reveal-content{
+  padding:2px 0 22px;
+  animation:revealIn .28s ease both;
+}
+
+@keyframes revealIn{
+  from{opacity:0;transform:translateY(-7px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.reveal-content > :first-child{margin-top:0}
+.reveal-content .work-links{margin-bottom:0}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 
 .work-button{
@@ -733,8 +807,8 @@ footer h2{
 }
 
 ::selection{
-  background:#F2D58A;
-  color:#0A0A0A;
+  background:#78AED4;
+  color:#FFFFFF;
 }
 
 @media(max-width:900px){
@@ -2002,15 +2076,98 @@ footer h2{
 <script>
 (function(){
 
+  function addReveal(card, headingSelector, label){
+
+    var heading = card.querySelector(headingSelector);
+
+    if(!heading || card.querySelector('details.reveal')){
+      return;
+    }
+
+    var nodes = [];
+    var node = heading.nextSibling;
+
+    while(node){
+      var next = node.nextSibling;
+      nodes.push(node);
+      node = next;
+    }
+
+    var details = document.createElement('details');
+    details.className = 'reveal';
+
+    var summary = document.createElement('summary');
+    summary.textContent = label;
+
+    var content = document.createElement('div');
+    content.className = 'reveal-content';
+
+    nodes.forEach(function(item){
+      content.appendChild(item);
+    });
+
+    details.appendChild(summary);
+    details.appendChild(content);
+    card.appendChild(details);
+
+    details.addEventListener('toggle',function(){
+
+      if(!details.open){
+        return;
+      }
+
+      var group = card.parentElement;
+
+      if(!group){
+        return;
+      }
+
+      group.querySelectorAll('details.reveal[open]').forEach(function(other){
+        if(other !== details){
+          other.open = false;
+        }
+      });
+
+    });
+
+  }
+
+  function buildReveals(){
+
+    document.querySelectorAll('.pillar').forEach(function(card){
+      addReveal(card,'h3','Explore practice');
+    });
+
+    document.querySelectorAll('.eco-card').forEach(function(card){
+      addReveal(card,'h4','Explore project');
+    });
+
+    document.querySelectorAll('.story-card').forEach(function(card){
+      addReveal(card,'h4','View details + work');
+    });
+
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded',buildReveals);
+  }
+  else{
+    buildReveals();
+  }
+
+})();
+
+(function(){
+
   /*
     Scroll palette:
-    Black → Graphite Grey → Gold
+    Black → Graphite Grey → Dodger Blue
   */
 
   var stops = [
     '#090909',
     '#4A4D52',
-    '#9A7628'
+    '#102F49'
   ];
 
   function hexToRgb(hex){
@@ -2066,7 +2223,7 @@ footer h2{
 
   var blackEnd = 0;
   var greyEnd = 0;
-  var goldEnd = 0;
+    var blueEnd = 0;
 
   function absoluteTop(el){
 
@@ -2113,13 +2270,13 @@ footer h2{
       greyEnd = blackEnd;
     }
 
-    goldEnd =
+    blueEnd =
       experienceLabel
       ? absoluteTop(experienceLabel) - navHeight
       : greyEnd + window.innerHeight;
 
-    if(goldEnd < greyEnd){
-      goldEnd = greyEnd;
+    if(blueEnd < greyEnd){
+      blueEnd = greyEnd;
     }
 
   }
@@ -2134,7 +2291,7 @@ footer h2{
 
     var black = mainRgb[0];
     var grey = mainRgb[1];
-    var gold = mainRgb[2];
+    var blue = mainRgb[2];
 
     var c;
 
@@ -2164,7 +2321,7 @@ footer h2{
 
       c = mix(
         grey,
-        gold,
+        blue,
         (scrollTop-greyEnd) / FADE_PX
       );
 
@@ -2172,7 +2329,7 @@ footer h2{
 
     else{
 
-      c = gold;
+      c = blue;
 
     }
 
