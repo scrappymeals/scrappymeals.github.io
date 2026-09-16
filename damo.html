@@ -11,11 +11,13 @@
 <style>
 :root{
   --surface:#090909;
-  --surface-deep:#090909;
+  --surface-deep:#111111;
+  --surface-lift:#181818;
   --ink:#FFFFFF;
   --muted:rgba(255,255,255,.78);
   --muted-dim:rgba(255,255,255,.6);
-  --accent:#0B0B0B;
+  --accent:#D8B55B;
+  --accent-soft:rgba(216,181,91,.18);
   --line:rgba(255,255,255,.30);
   --line-soft:rgba(255,255,255,.20);
   --display:'Poppins',sans-serif;
@@ -66,7 +68,7 @@ a{
 
 .eyebrow::before{
   content:"— ";
-  color:var(--ink);
+  color:var(--accent);
 }
 
 nav{
@@ -164,6 +166,48 @@ h1.name{
   animation:fadeUp .8s ease forwards .46s;
 }
 
+.proof-strip{
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
+}
+
+.proof-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.proof-item{
+  min-height:126px;
+  padding:27px 28px;
+  border-right:1px solid var(--line-soft);
+}
+
+.proof-item:last-child{border-right:none}
+
+.proof-kicker{
+  color:var(--accent);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.proof-item strong{
+  display:block;
+  margin-top:9px;
+  font-family:var(--display);
+  font-size:16px;
+  line-height:1.2;
+}
+
+.proof-item span{
+  display:block;
+  margin-top:7px;
+  color:var(--muted);
+  font-size:12.5px;
+  line-height:1.45;
+}
+
 @keyframes fadeUp{
   from{
     opacity:0;
@@ -196,18 +240,19 @@ section{
 .pillars{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:1px;
-  background:var(--line-soft);
-  border:1px solid var(--line-soft);
+  gap:0;
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
 }
 
 .pillar{
-  background:var(--surface);
   padding:40px 32px;
   transition:
     transform .2s ease,
     background-color .12s ease-out;
 }
+
+.pillar + .pillar{border-left:1px solid var(--line-soft)}
 
 .pillar:hover{
   transform:translateY(-3px);
@@ -217,7 +262,8 @@ section{
   font-family:var(--display);
   font-weight:900;
   color:var(--accent);
-  background:var(--ink);
+  background:transparent;
+  border:1px solid var(--accent);
   font-size:14px;
   display:inline-block;
   padding:4px 10px;
@@ -262,7 +308,8 @@ section{
   font-size:13px;
   letter-spacing:.12em;
   color:var(--accent);
-  background:var(--ink);
+  background:transparent;
+  border:1px solid var(--accent);
   display:inline-block;
   padding:4px 10px;
   margin-bottom:18px;
@@ -300,20 +347,21 @@ section{
 .ecosystem-flow{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:1px;
-  background:var(--line-soft);
-  border:1px solid var(--line-soft);
+  gap:0;
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
   margin:34px 0 54px;
 }
 
 .eco-card{
-  background:var(--surface-deep);
   padding:30px 24px;
   min-height:210px;
   transition:
     transform .2s ease,
     background-color .12s ease-out;
 }
+
+.eco-card + .eco-card{border-left:1px solid var(--line-soft)}
 
 .eco-card:hover{
   transform:translateY(-3px);
@@ -350,19 +398,20 @@ section{
 .story-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:1px;
-  background:var(--line-soft);
-  border:1px solid var(--line-soft);
+  gap:0;
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
 }
 
 .story-card{
-  background:var(--surface);
   padding:30px 26px;
   min-height:250px;
   transition:
     transform .2s ease,
     background-color .12s ease-out;
 }
+
+.story-card + .story-card{border-left:1px solid var(--line-soft)}
 
 .story-card:hover{
   transform:translateY(-3px);
@@ -470,14 +519,14 @@ section{
 
 .work-button:hover,
 .work-button:focus-visible{
-  background:var(--ink);
-  color:var(--surface-deep);
-  border-color:var(--ink);
+  background:var(--accent);
+  color:var(--surface);
+  border-color:var(--accent);
   transform:translateY(-1px);
 }
 
 .work-button:focus-visible{
-  outline:2px solid var(--ink);
+  outline:2px solid var(--accent);
   outline-offset:2px;
 }
 
@@ -504,13 +553,12 @@ section{
 .industries{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:1px;
-  background:var(--line-soft);
-  border:1px solid var(--line-soft);
+  gap:0;
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
 }
 
 .industry{
-  background:var(--surface-deep);
   padding:34px 26px;
   min-height:150px;
   display:flex;
@@ -520,6 +568,9 @@ section{
     transform .2s ease,
     background-color .12s ease-out;
 }
+
+.industry:not(:nth-child(3n + 1)){border-left:1px solid var(--line-soft)}
+.industry:nth-child(-n + 3){border-bottom:1px solid var(--line-soft)}
 
 .industry:hover{
   transform:translateY(-3px);
@@ -687,6 +738,12 @@ footer h2{
 }
 
 @media(max-width:900px){
+  .proof-grid{grid-template-columns:1fr 1fr}
+
+  .proof-item:nth-child(2){border-right:none}
+
+  .proof-item:nth-child(-n+2){border-bottom:1px solid var(--line-soft)}
+
   .ecosystem-flow{
     grid-template-columns:1fr 1fr;
   }
@@ -694,6 +751,8 @@ footer h2{
   .story-grid{
     grid-template-columns:1fr 1fr;
   }
+
+  .story-card:nth-child(3){border-left:none;border-top:1px solid var(--line-soft)}
 
   .process{
     grid-template-columns:1fr 1fr;
@@ -714,6 +773,11 @@ footer h2{
     grid-template-columns:1fr 1fr;
   }
 
+  .pillar + .pillar{border-left:none;border-top:1px solid var(--line-soft)}
+
+  .industry{border-left:none!important}
+  .industry:nth-child(-n + 4){border-bottom:1px solid var(--line-soft)}
+
   .footer-grid{
     grid-template-columns:1fr 1fr;
   }
@@ -733,16 +797,30 @@ footer h2{
   .story-grid{
     grid-template-columns:1fr;
   }
+
+  .story-card + .story-card{border-left:none;border-top:1px solid var(--line-soft)}
 }
 
 @media(max-width:540px){
+  .proof-grid{grid-template-columns:1fr}
+
+  .proof-item,
+  .proof-item:nth-child(2){border-right:none;border-bottom:1px solid var(--line-soft)}
+
+  .proof-item:last-child{border-bottom:none}
+
   .ecosystem-flow{
     grid-template-columns:1fr;
   }
 
+  .eco-card + .eco-card{border-left:none;border-top:1px solid var(--line-soft)}
+
   .industries{
     grid-template-columns:1fr;
   }
+
+  .industry{border-bottom:1px solid var(--line-soft)!important}
+  .industry:last-child{border-bottom:none!important}
 
   .process{
     grid-template-columns:1fr;
@@ -804,6 +882,36 @@ footer h2{
 
 </div>
 </header>
+
+<aside class="proof-strip" aria-label="Selected career proof">
+<div class="wrap proof-grid">
+
+  <div class="proof-item">
+    <div class="proof-kicker">Live Event Design</div>
+    <strong>New Year's Rockin' Eve</strong>
+    <span>15 years across graphics, creative direction, and the midnight countdown redesign.</span>
+  </div>
+
+  <div class="proof-item">
+    <div class="proof-kicker">Sports at Scale</div>
+    <strong>NBA Finals + ESPN</strong>
+    <span>Season packages, live game systems, operator training, and high-pressure broadcast execution.</span>
+  </div>
+
+  <div class="proof-item">
+    <div class="proof-kicker">Launch-Critical Systems</div>
+    <strong>Fox Business + CBS HD</strong>
+    <span>Real-time graphics platforms and broadcast launches where craft and reliability were inseparable.</span>
+  </div>
+
+  <div class="proof-item">
+    <div class="proof-kicker">Independent Work</div>
+    <strong>Scrappy Meals XR</strong>
+    <span>Original IP, interactive products, WebXR, AI, and physical-to-digital experiences built from the ground up.</span>
+  </div>
+
+</div>
+</aside>
 
 <section id="do">
 <div class="wrap">
@@ -875,7 +983,7 @@ footer h2{
 
 <div class="section-head">
   <div class="eyebrow">Selected Work</div>
-  <div class="section-title">Creative ideas across mediums.</div>
+  <div class="section-title">Work built to perform in the real world.</div>
 </div>
 
 <div class="spread">
@@ -891,10 +999,10 @@ footer h2{
   </h3>
 
   <p>
-    What began as a sustainable catering company became a connected
-    creative world spanning live cooking experiences, original
-    characters, children's storytelling, WebXR, interactive 3D,
-    AI products, and entertainment.
+    Founder-led creative ecosystem spanning live experiences, original
+    characters, children's storytelling, WebXR, interactive 3D, AI
+    products, and entertainment. One idea, built across every medium
+    needed to make it real.
   </p>
 
   <div class="taglist">
@@ -949,12 +1057,10 @@ footer h2{
   </h3>
 
   <p>
-    Creative cooking classes combined chefs, projection, and audience
-    participation. Scraps the Raccoon grew from a logo into a
-    3D-printed event character and children's book. The Metacheese
-    became a virtual venue for interactive experiences and book readings.
-    Fridgie Smalls turned the mission into an AI product, and
-    FRIDGIE x SCRAPS* continues it as kids entertainment.
+    I built the same core idea into a live-event format, a character
+    property, a virtual world, and a working AI product. The point was
+    never to chase formats. It was to use each one where it created a
+    better experience for people.
   </p>
 
 </div>
@@ -1172,8 +1278,9 @@ footer h2{
 
   <p>
     Creative technology consulting for interactive Web3 experiences
-    connecting digital worlds with Outernet London's large-scale
-    physical and digital environment.
+    connecting digital worlds with Outernet London's large-scale physical
+    and digital environment. The work connected concept, platform,
+    audience participation, and a public-facing destination.
   </p>
 
   <div class="taglist">
@@ -1244,10 +1351,10 @@ footer h2{
   </h4>
 
   <p>
-    Fifteen years on one of television's largest live events,
-    growing from graphics operator to lead graphics and long-term
-    consultant. A 2011 redesign of the midnight countdown became
-    the foundation for the show's countdown treatment that followed.
+    Fifteen years on one of television's largest live events, from
+    graphics operator to lead graphics and long-term consultant. In 2011,
+    I redesigned the midnight countdown treatment that became the visual
+    foundation for the show that followed.
   </p>
 
   <div class="taglist">
@@ -1279,7 +1386,7 @@ footer h2{
   </div>
 
   <div class="section-title">
-    Interaction has never meant just one thing.
+    Real-time work. Real stakes.
   </div>
 
 </div>
@@ -1297,9 +1404,9 @@ footer h2{
   </h4>
 
   <p>
-    Sixteen years helping turn complex live election data
-    into real-time visual experiences presenters could explore
-    and audiences could understand.
+    Sixteen years translating complex live election data into real-time
+    visual experiences presenters could explore and audiences could
+    understand, across major national broadcast environments.
   </p>
 
   <div class="taglist">
@@ -1369,9 +1476,9 @@ footer h2{
   </h4>
 
   <p>
-    Helped build and install the graphics and the workflow
-    connecting ESPN's Seaport production in New York with
-    the host in Washington, D.C.
+    Built and installed the graphics and production workflow connecting
+    ESPN's Seaport control room in New York with the host in Washington,
+    D.C. The experience had to feel immediate, reliable, and live.
   </p>
 
   <div class="taglist">
@@ -1518,11 +1625,11 @@ footer h2{
 <div class="section-head">
 
   <div class="eyebrow">
-    Industries
+    Operating Range
   </div>
 
   <div class="section-title">
-    Industries and environments.
+    Industries, audiences, and environments.
   </div>
 
 </div>
@@ -1555,8 +1662,8 @@ footer h2{
 </div>
 
 <div class="industry">
-  <h4>Enterprise Fintech UX</h4>
-  <span>eFundex</span>
+  <h4>Launches, Platforms & Systems</h4>
+  <span>Fox Business Network, CBS HD, Vizrt, real-time control rooms</span>
 </div>
 
 </div>
