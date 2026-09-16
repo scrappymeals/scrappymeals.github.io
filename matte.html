@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Damon Versaggi — Experiential, Creative Technology & Production</title>
+<meta name="description" content="Damon Versaggi — experiential production, creative technology, real-time 3D, immersive media, live events, interactive storytelling and original IP." />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+
+<style>
+:root{
+  --bg:#f3f3f0;
+  --ink:#171717;
+  --muted:#66645f;
+  --line:#cfcfca;
+  --panel:#fafaf7;
+  --max:1500px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:15px;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.site-shell{max-width:var(--max);margin:0 auto}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:40;
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:36px;
+  align-items:center;
+  min-height:72px;
+  padding:14px 24px;
+  background:rgba(243,243,240,.96);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(10px);
+}
+.brand{
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:-.045em;
+  line-height:.92;
+}
+.clock{
+  font-size:10px;
+  line-height:1.25;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.nav{
+  display:flex;
+  gap:22px;
+  align-items:center;
+  font-size:10px;
+  text-transform:uppercase;
+}
+.nav a:hover{opacity:.5}
+
+.hero{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  min-height:560px;
+  border-bottom:1px solid var(--line);
+}
+.hero-copy{
+  padding:72px 24px 48px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  border-right:1px solid var(--line);
+}
+.hero-kicker,.kicker{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+  color:var(--muted);
+}
+.hero h1{
+  max-width:1000px;
+  margin-top:30px;
+  font-size:clamp(64px,8vw,132px);
+  line-height:.86;
+  letter-spacing:-.065em;
+  font-weight:400;
+  text-transform:uppercase;
+}
+.hero-foot{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:34px;
+  margin-top:56px;
+}
+.hero-foot p{
+  max-width:460px;
+  font-size:15px;
+  line-height:1.5;
+}
+.hero-meta{
+  padding:72px 24px 48px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.hero-role{
+  max-width:520px;
+  font-size:clamp(34px,3.4vw,58px);
+  line-height:.98;
+  letter-spacing:-.045em;
+  font-weight:400;
+  text-transform:uppercase;
+}
+.hero-list{
+  margin-top:56px;
+  border-top:1px solid var(--line);
+}
+.hero-list div{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
+  text-transform:uppercase;
+  font-size:10px;
+}
+
+.section-title{
+  display:grid;
+  grid-template-columns:1fr 420px;
+  gap:40px;
+  align-items:end;
+  padding:52px 24px 22px;
+  border-bottom:1px solid var(--line);
+}
+.section-title h2{
+  font-size:clamp(44px,5.5vw,88px);
+  font-weight:400;
+  letter-spacing:-.055em;
+  line-height:.92;
+  text-transform:uppercase;
+}
+.section-title p{
+  font-size:13px;
+  line-height:1.5;
+  color:var(--muted);
+}
+
+.featured{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--line);
+}
+.feature-card{
+  padding:34px 24px 38px;
+}
+.feature-card + .feature-card{border-left:1px solid var(--line)}
+.feature-label{
+  font-size:10px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.feature-card h3{
+  margin-top:10px;
+  max-width:700px;
+  font-size:clamp(38px,4.3vw,68px);
+  line-height:.94;
+  font-weight:400;
+  letter-spacing:-.05em;
+  text-transform:uppercase;
+}
+.feature-copy{
+  max-width:620px;
+  margin-top:20px;
+  font-size:14px;
+  line-height:1.55;
+  color:var(--muted);
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:18px;
+}
+.tag{
+  display:inline-flex;
+  align-items:center;
+  min-height:22px;
+  padding:2px 10px;
+  border:1px solid #9f9f9a;
+  border-radius:999px;
+  font-size:9px;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.tag.square{border-radius:999px}
+
+.project-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.project{
+  min-width:0;
+  padding:36px 24px 40px;
+  border-bottom:1px solid var(--line);
+}
+.project:nth-child(odd){border-right:1px solid var(--line)}
+.project .kicker{margin-bottom:10px}
+.project h3{
+  max-width:650px;
+  font-size:clamp(32px,3.2vw,52px);
+  line-height:.96;
+  font-weight:400;
+  letter-spacing:-.045em;
+  text-transform:uppercase;
+}
+.project p{
+  max-width:620px;
+  margin-top:16px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.55;
+}
+.project-link{
+  display:inline-flex;
+  margin-top:18px;
+  border-bottom:1px solid var(--ink);
+  padding-bottom:2px;
+  font-size:9px;
+  text-transform:uppercase;
+}
+.project-link:hover{opacity:.5}
+
+.case-panel{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--line);
+}
+.case-intro{
+  min-height:420px;
+  padding:48px 24px;
+  border-right:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.case-intro h3{
+  font-size:clamp(48px,5.7vw,92px);
+  font-weight:400;
+  letter-spacing:-.06em;
+  line-height:.87;
+  text-transform:uppercase;
+}
+.case-intro p{
+  max-width:620px;
+  font-size:15px;
+  line-height:1.55;
+}
+.case-rows{padding:22px 24px}
+.case-row{
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:24px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line);
+}
+.case-row:last-child{border-bottom:none}
+.case-row b{
+  font-size:9px;
+  text-transform:uppercase;
+  font-weight:400;
+  color:var(--muted);
+}
+.case-row p{
+  font-size:14px;
+  line-height:1.5;
+  color:#454541;
+}
+
+.timeline{
+  border-bottom:1px solid var(--line);
+}
+.t-row{
+  display:grid;
+  grid-template-columns:170px 1.2fr 1fr;
+  align-items:center;
+  min-height:72px;
+  border-bottom:1px solid var(--line);
+}
+.t-row:last-child{border-bottom:none}
+.t-cell{padding:16px 24px}
+.t-date{
+  font-size:10px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.t-role{
+  font-size:clamp(18px,1.8vw,28px);
+  letter-spacing:-.03em;
+  text-transform:uppercase;
+}
+.t-org{
+  font-size:11px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.contact{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  min-height:360px;
+  border-bottom:1px solid var(--line);
+}
+.contact-main{
+  padding:48px 24px;
+  border-right:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.contact-main h2{
+  font-size:clamp(58px,8vw,124px);
+  line-height:.82;
+  font-weight:400;
+  letter-spacing:-.07em;
+  text-transform:uppercase;
+}
+.contact-links{display:flex;flex-direction:column}
+.contact-link{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  min-height:54px;
+  padding:0 24px;
+  border-bottom:1px solid var(--line);
+  font-size:10px;
+  text-transform:uppercase;
+}
+.contact-link:hover{background:#e8e8e4}
+
+.footer{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:20px 24px 28px;
+  font-size:9px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+@media(max-width:900px){
+  .topbar{grid-template-columns:1fr auto}
+  .clock{display:none}
+  .hero,.case-panel,.contact{grid-template-columns:1fr}
+  .hero-copy,.case-intro,.contact-main{border-right:none;border-bottom:1px solid var(--line)}
+  .section-title{grid-template-columns:1fr}
+  .featured{grid-template-columns:1fr}
+  .feature-card + .feature-card{border-left:none;border-top:1px solid var(--line)}
+  .project-grid{grid-template-columns:1fr}
+  .project:nth-child(odd){border-right:none}
+  .t-row{grid-template-columns:120px 1fr}
+  .t-org{grid-column:2}
+}
+@media(max-width:620px){
+  body{font-size:14px}
+  .topbar{padding:12px 16px}
+  .brand{font-size:21px}
+  .nav{gap:12px;font-size:9px}
+  .nav a:nth-child(2),.nav a:nth-child(3),.nav a:nth-child(4){display:none}
+  .hero-copy,.hero-meta,.feature-card,.project,.case-intro,.case-rows,.contact-main{padding-left:16px;padding-right:16px}
+  .hero h1{font-size:54px}
+  .hero-foot{grid-template-columns:1fr}
+  .section-title{padding-left:16px;padding-right:16px}
+  .case-row{grid-template-columns:1fr;gap:6px}
+  .t-row{grid-template-columns:1fr}
+  .t-org{grid-column:auto}
+  .t-cell{padding-left:16px;padding-right:16px}
+}
+</style>
+
+</head>
+<body>
+
+<div class="site-shell">
+
+<header class="topbar">
+  <a class="brand" href="#top">DAMON<br>VERSAGGI</a>
+  <div class="clock">
+    <div id="localTime">NEW YORK</div>
+    <div>BROOKLYN, NY</div>
+  </div>
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-col">
+      <a href="#work">Projects</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+    </div>
+    <div class="nav-col">
+      <a href="#approach">Approach</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-kicker">Experiential / Creative Technology / Production</div>
+    <h1>Damon<br>Versaggi</h1>
+    <div class="hero-foot">
+      <p>20+ years building live, immersive, real-time and interactive experiences across sports, broadcast, entertainment, original IP and emerging technology.</p>
+      <p>Brooklyn-based creative and production leader connecting concept, technology, teams and execution.</p>
+    </div>
+  </div>
+
+  <div class="hero-meta">
+    <div class="hero-role">Creative leadership built for the real world.</div>
+    <div class="hero-list">
+      <div><span>01</span><span>Experiential Production</span></div>
+      <div><span>02</span><span>Creative Technology</span></div>
+      <div><span>03</span><span>Real-Time 3D + Live Systems</span></div>
+      <div><span>04</span><span>Immersive + Interactive</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-title">
+    <h2>Selected Projects</h2>
+    <p>A cross-section of live, immersive, broadcast, product and original-IP work. Click a featured project for more context.</p>
+  </div>
+
+  <div class="featured">
+    <article class="feature-card">
+      <div class="feature-label">[ Featured Project ]</div>
+      <h3>New Year's Rockin' Eve</h3>
+      <p class="feature-copy">Long-term live production on one of television’s largest annual events, spanning graphics operation, lead graphics, consulting, real-time systems, and the 2011 midnight countdown redesign.</p>
+      <div class="tags">
+        <span class="tag">Live Production</span>
+        <span class="tag">Broadcast</span>
+        <span class="tag">Real-Time</span>
+      </div>
+      <a class="project-link" href="https://www.youtube.com/watch?v=S_cx6O3HN6s&t=3093s" target="_blank" rel="noopener noreferrer">View project ↗</a>
+    </article>
+
+    <article class="feature-card">
+      <div class="feature-label">[ Featured Project ]</div>
+      <h3>Scrappyhour</h3>
+      <p class="feature-copy">A live participatory food experience combining chefs, projection, audience interaction, hybrid production, and remote participation across Brooklyn and Sweden.</p>
+      <div class="tags">
+        <span class="tag">Experiential</span>
+        <span class="tag">Hybrid Event</span>
+        <span class="tag">Live</span>
+      </div>
+      <a class="project-link" href="https://www.youtube.com/watch?v=I0WRQA-kRBU" target="_blank" rel="noopener noreferrer">View project ↗</a>
+    </article>
+  </div>
+
+  <div class="project-grid">
+
+    <article class="project">
+      <div class="kicker">Immersive / WebXR</div>
+      <h3>The Metacheese</h3>
+      <p>Browser-based immersive world combining interactive 3D, food education, original characters, virtual readings and remote participation.</p>
+      <a class="project-link" href="https://metacheese.scrappymeals.com" target="_blank" rel="noopener noreferrer">Enter Project ↗</a>
+    </article>
+
+    <article class="project">
+      <div class="kicker">Data / Real-Time Storytelling</div>
+      <h3>Interactive Elections</h3>
+      <p>Sixteen years translating complex election data into live visual systems presenters could navigate and audiences could understand immediately.</p>
+      <a class="project-link" href="https://youtu.be/r6bo6aF3r0A?si=2Uc5cBJ6TFRThi93&t=6468s" target="_blank" rel="noopener noreferrer">View Work ↗</a>
+    </article>
+
+    <article class="project">
+      <div class="kicker">Broadcast / Stadium</div>
+      <h3>SNY / New York Mets</h3>
+      <p>Visual direction spanning broadcast and stadium graphics, including creative development and executive presentation to Mets ownership.</p>
+      <a class="project-link" href="https://youtu.be/nL_4DAY7ABU?si=4WhPqzkBP-gzMpJh&t=217s" target="_blank" rel="noopener noreferrer">View Work ↗</a>
+    </article>
+
+    <article class="project">
+      <div class="kicker">Real-Time / Remote Production</div>
+      <h3>ESPN Around the Horn</h3>
+      <p>Built and installed the graphics and production workflow linking ESPN's New York control room with the host environment in Washington, D.C.</p>
+      <a class="project-link" href="https://youtu.be/NKny5vp_Cz8?si=k2Kk0TSNJEgUvUWi&t=740s" target="_blank" rel="noopener noreferrer">View Work ↗</a>
+    </article>
+
+    <article class="project">
+      <div class="kicker">Original IP / Product / XR</div>
+      <h3>Scrappy Meals XR</h3>
+      <p>Founder-led ecosystem spanning live experiences, original characters, children's storytelling, WebXR, interactive 3D and AI products.</p>
+      <a class="project-link" href="https://scrappymeals.com" target="_blank" rel="noopener noreferrer">Visit Project ↗</a>
+    </article>
+
+    <article class="project">
+      <div class="kicker">Film / Origin Story</div>
+      <h3>The Nightlight</h3>
+      <p>College thesis recognized for production value and festival work, establishing the creative foundation that led directly into professional production.</p>
+      <a class="project-link" href="https://www.youtube.com/watch?v=Uh0C-Amharo" target="_blank" rel="noopener noreferrer">View Film ↗</a>
+    </article>
+
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-title">
+    <h2>About</h2>
+    <p>Creative, technical and production leadership are treated as one connected system rather than separate disciplines.</p>
+  </div>
+
+  <div class="case-panel">
+    <div class="case-intro">
+      <h3>Ideas.<br>Systems.<br>Execution.</h3>
+      <p>I work where concept, technology and production meet. The recurring job is the same: understand the audience, define the experience, identify the constraints early, build the right team and make the thing work under real conditions.</p>
+    </div>
+
+    <div class="case-rows">
+      <div class="case-row">
+        <b>Live</b>
+        <p>High-pressure production across sports, broadcast and entertainment where timing, reliability and operational discipline are inseparable from the creative.</p>
+      </div>
+      <div class="case-row">
+        <b>Immersive</b>
+        <p>Spatial, browser-based and connected experiences using WebXR, real-time 3D, interactive media and physical-to-digital storytelling.</p>
+      </div>
+      <div class="case-row">
+        <b>Product</b>
+        <p>Founder-led product development across AI, mobile-first utility, original IP and character-driven entertainment.</p>
+      </div>
+      <div class="case-row">
+        <b>Leadership</b>
+        <p>Creative direction, team leadership, operator training, client presentations, workflow design, technical troubleshooting and production delivery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="section-title">
+    <h2>Approach</h2>
+    <p>A simple operating model for complex work.</p>
+  </div>
+
+  <div class="case-panel">
+    <div class="case-intro">
+      <h3>Make the<br>idea real.</h3>
+      <p>I do not start with technology for its own sake. I start with what the audience should feel, understand or do, then choose the systems and production approach that make that possible.</p>
+    </div>
+    <div class="case-rows">
+      <div class="case-row"><b>01 / Define</b><p>Clarify the audience, business goal, creative intent, constraints and non-negotiables.</p></div>
+      <div class="case-row"><b>02 / Prove</b><p>Prototype early enough to test feasibility, interaction, technical risk and creative direction before scale.</p></div>
+      <div class="case-row"><b>03 / Build</b><p>Align creative, technical and production teams around one integrated execution plan.</p></div>
+      <div class="case-row"><b>04 / Deliver</b><p>Stay close through launch, live execution and iteration so quality survives contact with the real world.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-title">
+    <h2>Experience</h2>
+    <p>Selected roles across independent consulting, original IP, broadcast, real-time systems and technology leadership.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="t-row">
+      <div class="t-cell t-date">2015 — Present</div>
+      <div class="t-cell t-role">Independent Creative Director</div>
+      <div class="t-cell t-org">Damon Versaggi Consulting</div>
+    </div>
+    <div class="t-row">
+      <div class="t-cell t-date">2016 — Present</div>
+      <div class="t-cell t-role">Founder / Creative Director</div>
+      <div class="t-cell t-org">Scrappy Meals XR / Fridgie Smalls</div>
+    </div>
+    <div class="t-row">
+      <div class="t-cell t-date">2024 — Present</div>
+      <div class="t-cell t-role">VP, Sales & Technology</div>
+      <div class="t-cell t-org">eFundex</div>
+    </div>
+    <div class="t-row">
+      <div class="t-cell t-date">2022</div>
+      <div class="t-cell t-role">Creative Technology Consultant</div>
+      <div class="t-cell t-org">SwivelMeta</div>
+    </div>
+    <div class="t-row">
+      <div class="t-cell t-date">2012 — 2015</div>
+      <div class="t-cell t-role">Production Manager, Real-Time Systems</div>
+      <div class="t-cell t-org">Tribune Media / PIX11 / WGN</div>
+    </div>
+    <div class="t-row">
+      <div class="t-cell t-date">2008 — 2012</div>
+      <div class="t-cell t-role">Creative Systems / Real-Time Graphics Lead</div>
+      <div class="t-cell t-org">SportsNet New York</div>
+    </div>
+    <div class="t-row">
+      <div class="t-cell t-date">2004 — 2008</div>
+      <div class="t-cell t-role">Production Manager / Art Director</div>
+      <div class="t-cell t-org">Vizrt</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="contact-main">
+    <div class="kicker">Brooklyn, New York</div>
+    <h2>Let’s build<br>something.</h2>
+  </div>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:damon@scrappymeals.com"><span>Email</span><span>↗</span></a>
+    <a class="contact-link" href="https://linkedin.com/in/damonversaggi" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><span>↗</span></a>
+    <a class="contact-link" href="https://www.instagram.com/damonversaggi/" target="_blank" rel="noopener noreferrer"><span>Instagram</span><span>↗</span></a>
+    <a class="contact-link" href="https://scrappymeals.com" target="_blank" rel="noopener noreferrer"><span>Scrappy Meals</span><span>↗</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <span>Damon Versaggi — Experiential / Creative Technology / Production</span>
+  <span>School of Visual Arts — BFA Computer Art</span>
+</footer>
+
+</div>
+
+<script>
+function updateClock(){
+  const now = new Date();
+  const fmt = new Intl.DateTimeFormat('en-US',{
+    timeZone:'America/New_York',
+    weekday:'short',
+    month:'2-digit',
+    day:'2-digit',
+    year:'2-digit',
+    hour:'2-digit',
+    minute:'2-digit'
+  }).format(now);
+  document.getElementById('localTime').textContent = fmt;
+}
+updateClock();
+setInterval(updateClock,30000);
+</script>
+
+</body>
+</html>
