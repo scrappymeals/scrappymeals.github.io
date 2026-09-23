@@ -45,3 +45,20 @@ body.project-modal-open{overflow:hidden}
 .mobile-project-dialog .overlay-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:20px max(20px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}
 .mobile-project-dialog .full-project{display:block}
 .mobile-project-dialog .overlay-highlights,.mobile-project-dialog .overlay-preview-links,.mobile-project-dialog .overlay-expand{display:none}
+/* Fixed title and description rows keep artwork aligned without excess space. */
+.project:not(.project-expanded)>.card-head{height:158px;flex:0 0 158px;position:relative;display:block}
+.card-head h3{width:100%;background:none;color:inherit;font-size:22px}
+.card-head .project-name{display:block;width:calc(100% - 48px);white-space:nowrap;font-family:'Arial Black',Arial,sans-serif;font-size:32px;font-weight:900;font-style:italic;line-height:40px;background:linear-gradient(110deg,#f3ffff,#bdfff0 48%,#d6bfff);background-clip:text;-webkit-background-clip:text;color:transparent}
+.card-head h3>span{display:block;margin-top:8px;font-size:21px;line-height:1.3;font-weight:400;color:#fff}
+.card-head>.arrow{position:absolute;right:28px;top:27px}
+@media(max-width:1000px){.card-head>.arrow{right:22px;top:23px}.card-head h3>span{font-size:18px}.project:not(.project-expanded)>.card-head{height:160px;flex-basis:160px}}
+@media(max-width:650px){.card-head h3>span{font-size:19px}.project:not(.project-expanded)>.card-head{height:156px;flex-basis:156px}}
+@media(max-width:350px){.card-head h3>span{font-size:17px}}
+/* Readable stacked project copy on phones and tablets. */
+@media(max-width:1024px),(pointer:coarse){
+.card-head h3{display:flex;flex-direction:column;white-space:normal;min-width:0}
+.card-head .project-name{font-size:26px!important;line-height:1.15;white-space:normal;overflow-wrap:normal;min-height:60px}
+.card-head h3>span{display:block;white-space:normal;overflow-wrap:break-word;font-size:18px;line-height:1.35;margin-top:8px}
+.project:not(.project-expanded)>.card-head{height:205px;flex-basis:205px}
+}
+@media(max-width:350px){.card-head .project-name{font-size:23px!important}.card-head h3>span{font-size:17px}}
