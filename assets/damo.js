@@ -11,16 +11,21 @@ $$('.project').forEach((card,i)=>{
  const content=$('.case-content',document.getElementById(`case-${p.source<0?'efundex':p.source}`)).cloneNode(true);const full=document.createElement('div');full.className='full-project';full.append(content);
  const links=document.createElement('div');links.className='overlay-preview-links';$$('.work-links a',content).slice(0,2).forEach(a=>links.append(a.cloneNode(true)));
  const expand=document.createElement('button');expand.className='overlay-expand';expand.textContent='View full project ↗';body.append(h,ul,links,expand,full);panel.append(top,body);card.append(panel);opener.setAttribute('aria-controls',panel.id);opener.setAttribute('aria-expanded','false');
- let timer,suppressed=false;function hide(restore=false){clearTimeout(timer);card.classList.remove('project-expanded');panel.hidden=true;opener.setAttribute('aria-expanded','false');if(active?.panel===panel)active=null;if(restore)opener.focus({preventScroll:true});}
+ let timer,suppressed=false,mobileDialog=null;function hide(restore=false){clearTimeout(timer);if(mobileDialog){mobileDialog.close();card.append(panel);mobileDialog.remove();mobileDialog=null;document.body.classList.remove('project-modal-open');}card.classList.remove('project-expanded');panel.hidden=true;opener.setAttribute('aria-expanded','false');if(active?.panel===panel)active=null;if(restore)opener.focus({preventScroll:true});}
  function reveal(){if(active?.panel===panel)return;if(active)active.hide();panel.hidden=false;opener.setAttribute('aria-expanded','true');active={panel,card,hide};}
- function openFull(){clearTimeout(timer);reveal();card.classList.add('project-expanded');close.focus({preventScroll:true});card.scrollIntoView({block:'start',behavior:'instant'});}
+ function openFull(){clearTimeout(timer);reveal();card.classList.add('project-expanded');
+ if(matchMedia('(max-width:1024px), (pointer:coarse)').matches){
+  if(!mobileDialog){mobileDialog=document.createElement('dialog');mobileDialog.className='mobile-project-dialog project-expanded';mobileDialog.setAttribute('aria-label',`${p.title} project details`);mobileDialog.append(panel);document.body.append(mobileDialog);mobileDialog.addEventListener('cancel',e=>{e.preventDefault();hide(true)});document.body.classList.add('project-modal-open');mobileDialog.showModal();}
+  close.focus({preventScroll:true});
+ }else{close.focus({preventScroll:true});card.scrollIntoView({block:'start',behavior:'instant'});}
+ }
  opener.addEventListener('click',e=>{e.preventDefault();openFull()});panel.addEventListener('click',e=>{if(!e.target.closest('a,.overlay-close')&&!card.classList.contains('project-expanded'))openFull()});close.addEventListener('click',()=>{suppressed=true;hide(true)});
  card.addEventListener('pointerenter',e=>{if(!fine.matches||e.pointerType==='touch'||suppressed||card.classList.contains('project-expanded'))return;timer=setTimeout(reveal,180)});
  card.addEventListener('pointerleave',()=>{clearTimeout(timer);suppressed=false;if(!card.classList.contains('project-expanded')&&!panel.contains(document.activeElement))hide();card.style.removeProperty('--light-x');card.style.removeProperty('--light-y')});
  card.addEventListener('pointermove',e=>{if(!fine.matches||reduced.matches)return;const r=card.getBoundingClientRect();card.style.setProperty('--light-x',`${e.clientX-r.left}px`);card.style.setProperty('--light-y',`${e.clientY-r.top}px`)},{passive:true});
  panel.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();suppressed=true;hide(true)}});panel.addEventListener('focusout',()=>setTimeout(()=>{if(!card.classList.contains('project-expanded')&&!panel.contains(document.activeElement)&&!card.matches(':hover'))hide()},0));
 });
-document.addEventListener('pointerdown',e=>{if(active&&!active.card.contains(e.target))active.hide()});
+document.addEventListener('pointerdown',e=>{if(active&&!active.card.contains(e.target)&&!active.panel.contains(e.target))active.hide()});
 function filter(name){active?.hide();$$('.filter').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===name)));$$('.project').forEach(c=>c.hidden=name!=='All work'&&c.dataset.category!==name);const n=$$('.project:not([hidden])').length;$('.count').textContent=`${n} project${n===1?'':'s'}`;}
 $$('.filter').forEach(b=>b.addEventListener('click',()=>filter(b.dataset.filter)));$('.filters').hidden=false;filter('All work');
 const menu=$('.menu'),nav=$('.navlinks');function closeMenu(){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu +'}menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Close −':'Menu +'});$$('.navlinks a').forEach(a=>a.addEventListener('click',closeMenu));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open')){closeMenu();menu.focus()}});

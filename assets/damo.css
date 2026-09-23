@@ -35,3 +35,13 @@ button,a:not(.brand),summary{font-style:normal}
 
 .nightlight-thumbnail{grid-column:1;grid-row:1}.education-copy{grid-column:2;grid-row:1}
 @media(max-width:650px){.nightlight-thumbnail{grid-column:1;grid-row:1}.education-copy{grid-column:1;grid-row:2}}
+
+/* Touch project details occupy the viewport in either orientation. */
+body.project-modal-open{overflow:hidden}
+.mobile-project-dialog{position:fixed;inset:0;margin:0;width:100%;height:100dvh;max-width:none;max-height:none;padding:0;border:0;border-radius:0;background:#08111f;color:#fff;overflow:hidden}
+.mobile-project-dialog::backdrop{background:#08111f}
+.mobile-project-dialog .project-overlay{position:relative;inset:auto;display:flex;flex-direction:column;width:100%;height:100%;border:0;border-radius:0;background:#08111f;overflow:hidden}
+.mobile-project-dialog .overlay-top{flex:none;padding: max(8px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 8px max(16px,env(safe-area-inset-left))}
+.mobile-project-dialog .overlay-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:20px max(20px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}
+.mobile-project-dialog .full-project{display:block}
+.mobile-project-dialog .overlay-highlights,.mobile-project-dialog .overlay-preview-links,.mobile-project-dialog .overlay-expand{display:none}
