@@ -62,3 +62,8 @@ body.project-modal-open{overflow:hidden}
 .project:not(.project-expanded)>.card-head{height:205px;flex-basis:205px}
 }
 @media(max-width:350px){.card-head .project-name{font-size:23px!important}.card-head h3>span{font-size:17px}}
+
+.brand{display:block;flex-shrink:0;width:285px;max-width:65vw}.brand img{display:block;width:100%;height:auto}@media(max-width:650px){.brand{width:250px}}
+/* Readable globe caption at every screen size. */
+.art-caption{font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;letter-spacing:0;text-align:center;left:8px;right:8px;bottom:-16px;color:#fff}
+@media(max-width:650px){.art-caption{font-size:15px;left:12px;right:12px;bottom:-10px}}
