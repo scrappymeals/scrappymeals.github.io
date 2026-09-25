@@ -2694,6 +2694,225 @@ strong {
   }
 }
 
+
+/* =========================================================
+   EDUCATION + OTHER WORK — FIT PANEL, NO SCROLLBAR
+   Only this résumé slide is affected.
+   ========================================================= */
+
+.band.on .resume-slide.education-other-work{
+  overflow:hidden !important;
+  scrollbar-width:none !important;
+}
+
+.band.on .resume-slide.education-other-work::-webkit-scrollbar{
+  display:none !important;
+}
+
+.band.on .resume-slide.education-other-work > .resume-card{
+  height:100% !important;
+  min-height:0 !important;
+  max-height:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+  overflow:hidden !important;
+  padding-bottom:0 !important;
+}
+
+.band.on .resume-slide.education-other-work > .resume-card > h3{
+  flex:none !important;
+}
+
+.band.on .resume-slide.education-other-work .resume-content{
+  flex:1 1 auto !important;
+  min-height:0 !important;
+  height:auto !important;
+  max-height:none !important;
+  overflow:hidden !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+
+.band.on .resume-slide.education-other-work .thesis-row{
+  flex:1 1 auto !important;
+  min-height:0 !important;
+  height:100% !important;
+  overflow:hidden !important;
+  align-items:stretch !important;
+}
+
+.band.on .resume-slide.education-other-work .thesis-copy{
+  min-height:0 !important;
+  overflow:hidden !important;
+}
+
+.band.on .resume-slide.education-other-work .thesis-media{
+  min-height:0 !important;
+  height:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+  overflow:hidden !important;
+}
+
+.band.on .resume-slide.education-other-work .thesis-photo{
+  flex:1 1 auto !important;
+  min-height:0 !important;
+  height:auto !important;
+  width:100% !important;
+  margin:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+
+.band.on .resume-slide.education-other-work .thesis-photo img{
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  max-height:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  display:block !important;
+}
+
+.band.on .resume-slide.education-other-work .thesis-media .project-links{
+  flex:none !important;
+  width:100% !important;
+  margin-top:8px !important;
+}
+
+/* Desktop: balanced text/image split, image uses the panel instead of overflowing it. */
+@media (min-width:1181px){
+  .band.on .resume-slide.education-other-work .thesis-row{
+    grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr) !important;
+    gap:22px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .sub{
+    margin-bottom:10px !important;
+    font-size:15px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .blk{
+    padding:7px 0 !important;
+    grid-template-columns:140px minmax(0,1fr) !important;
+    gap:4px 14px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .blk span{
+    font-size:13.2px !important;
+    line-height:1.32 !important;
+  }
+}
+
+/* Landscape tablet: retain side-by-side layout, compact enough to stay inside frame. */
+@media (min-width:701px) and (max-width:1180px) and (orientation:landscape){
+  .band.on .resume-slide.education-other-work .thesis-row{
+    grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr) !important;
+    gap:16px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .sub{
+    margin-bottom:8px !important;
+    font-size:14px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .blk{
+    grid-template-columns:125px minmax(0,1fr) !important;
+    padding:5px 0 !important;
+    gap:3px 10px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .blk span{
+    font-size:12.2px !important;
+    line-height:1.25 !important;
+  }
+}
+
+/* Portrait tablet: stack cleanly, with the image constrained to the available space. */
+@media (min-width:701px) and (max-width:1180px) and (orientation:portrait){
+  .band.on .resume-slide.education-other-work .thesis-row{
+    grid-template-columns:1fr !important;
+    grid-template-rows:auto minmax(0,1fr) !important;
+    gap:10px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .sub{
+    margin-bottom:6px !important;
+    font-size:13px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .blk{
+    grid-template-columns:120px minmax(0,1fr) !important;
+    padding:4px 0 !important;
+    gap:2px 9px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .blk span{
+    font-size:11.5px !important;
+    line-height:1.2 !important;
+  }
+}
+
+/* Mobile: no scrollbar; compact text + image + links all remain visible. */
+@media (max-width:700px){
+  .band.on .resume-slide.education-other-work{
+    display:block !important;
+    overflow:hidden !important;
+  }
+
+  .band.on .resume-slide.education-other-work .resume-card{
+    height:100% !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-row{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    grid-template-rows:auto minmax(100px,1fr) !important;
+    gap:7px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .sub{
+    margin:0 0 4px !important;
+    font-size:11px !important;
+    line-height:1.15 !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .blk{
+    grid-template-columns:92px minmax(0,1fr) !important;
+    gap:2px 7px !important;
+    padding:3px 0 !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .blk b{
+    font-size:7.6px !important;
+    letter-spacing:.08em !important;
+    line-height:1.05 !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-copy .blk span{
+    font-size:9.7px !important;
+    line-height:1.12 !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-media{
+    min-height:100px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-media .project-links{
+    margin-top:4px !important;
+    gap:4px !important;
+  }
+
+  .band.on .resume-slide.education-other-work .thesis-media .project-links a{
+    height:28px !important;
+    min-height:28px !important;
+    max-height:28px !important;
+    font-size:9px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2922,7 +3141,10 @@ const mk=(b,bi)=>{
  const story=BAND_STORIES[bi];
  const sl=b.resume?[]:[`<article class="sl"><div class="tx"><h3>${b.l}</h3><div class="overview-copy"><p class="story-lead">${story.intro}</p><p>${story.focus}</p><p class="story-skills">${story.skills}</p></div></div></article>`];
  b.i.forEach(p=>{
-  if(b.resume) sl.push(`<article class="sl resume-slide"><div class="tx resume-card"><h3>${p.t}</h3><div class="resume-content">${p.html}</div></div></article>`);
+  if(b.resume){
+    const resumeClass=p.t==="Education + Other Work" ? " education-other-work" : "";
+    sl.push(`<article class="sl resume-slide${resumeClass}"><div class="tx resume-card"><h3>${p.t}</h3><div class="resume-content">${p.html}</div></div></article>`);
+  }
   else if(p.x) sl.push(`<article class="sl"><div class="tx" style="grid-column:1/-1"><h3>${p.t}</h3><p class="experience-intro">${story.experience}</p><p class="experience-proof">${story.proof}</p>${p.note?`<p class="experience-note">${p.note}</p>`:""}<div class="ex" style="margin-top:8px">${p.e.map(e=>`<div><strong>${e[0]}</strong><small>${e[1]}<br>${e[2]}</small></div>`).join("")}</div></div></article>`);
   else sl.push(`<article class="sl${PROJECT_IMAGES[p.t]?"":" text-only"}${p.t==="Lockheed Martin / Internal Multi-Touch"?" lockheed-project":""}"><div class="tx"><h3>${p.t}</h3><p class="sub">${p.s}</p>${p.b.map(x=>`<div class="blk"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>${PROJECT_IMAGES[p.t]||PROJECT_LINKS[p.t]?`<div class="project-media">${photo(p)}${projectLinks(p)}</div>`:""}</article>`);
  });
