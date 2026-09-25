@@ -507,6 +507,20 @@ header h1,.sl h3,.cs h2{background:linear-gradient(110deg,#f3ffff 5%,#c8fff0 52%
  .band.on .resume-content .grp{grid-template-columns:1fr}
 }
 @media(max-width:1180px){.sl>.tx,.sl>.project-media{zoom:1!important}}
+/* Preserve the approved image crop and bottom-aligned links on tablets. */
+@media(min-width:601px) and (max-width:1180px){
+ .band.on .project-media{display:flex;flex-direction:column;height:auto!important;min-height:0}
+ .band.on .project-media .ph.has-photo{aspect-ratio:auto!important;height:auto!important;min-height:0;flex:1 1 auto;border-radius:18px}
+ .band.on .project-media .ph.has-photo img{object-fit:cover!important}
+ .band.on .project-media .project-links{flex:none;margin-top:8px;margin-bottom:0}
+}
+@media(min-width:901px) and (max-width:1180px){
+ .band.on .project-media:has(.ph){height:calc(100dvh - 164px)!important}
+}
+@media(min-width:601px) and (max-width:900px){
+ .band.on .project-media:has(.ph){height:min(76dvh,760px)!important}
+}
+.project-media .ph.has-photo img[src="assets/webCV_scrappyhour.png"]{object-position:right center!important}
 </style>
 </head>
 <body>
