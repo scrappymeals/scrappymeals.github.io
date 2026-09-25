@@ -1458,6 +1458,15 @@ header h1,.sl h3,.cs h2{
   .band.on .sl.mfit-2{--m-title:20px;--m-sub:10px;--m-body:9.4px;--m-label:7.2px;--m-leading:1.10;--m-image-h:104px}
   .band.on .sl.mfit-3{--m-title:19px;--m-sub:9.6px;--m-body:9px;--m-label:7px;--m-leading:1.08;--m-image-h:96px}
   .band.on .sl.mfit-4{--m-title:18px;--m-sub:9.2px;--m-body:8.6px;--m-label:6.8px;--m-leading:1.06;--m-image-h:88px}
+  .band.on .sl.mfit-5{--m-title:17px;--m-sub:8.8px;--m-body:8.2px;--m-label:6.5px;--m-leading:1.04;--m-image-h:76px}
+  .band.on .sl.mfit-6{--m-title:16px;--m-sub:8.4px;--m-body:7.8px;--m-label:6.2px;--m-leading:1.02;--m-image-h:64px}
+
+  /* Absolute last resort: only applied by the fitter when content still
+     cannot fit at the densest level. Prevents content from being silently
+     clipped; does not add a visible scrollbar under normal conditions. */
+  .band.on .sl.mfit-overflow{
+    overflow-y:auto !important;
+  }
 
   /* Resume slide is not treated like project media. */
   .band.on .resume-slide{
@@ -1960,7 +1969,8 @@ draw();
 <script>
 /* Mobile-only content-aware project fitter. No transforms, no zoom. */
 (function(){
-  const levels=['mfit-1','mfit-2','mfit-3','mfit-4'];
+  const levels=['mfit-1','mfit-2','mfit-3','mfit-4','mfit-5','mfit-6'];
+  const allLevels=[...levels,'mfit-overflow'];
   let raf=0;
 
   function slideFits(sl){
@@ -1968,7 +1978,7 @@ draw();
   }
 
   function fitOne(sl){
-    sl.classList.remove(...levels);
+    sl.classList.remove(...allLevels);
     if(window.innerWidth>700) return;
     if(!sl.closest('.band')?.classList.contains('on')) return;
     if(sl.classList.contains('resume-slide')) return;
@@ -1979,13 +1989,16 @@ draw();
       sl.classList.add(level);
       if(slideFits(sl)) return;
     }
+    /* Content still doesn't fit even at maximum density: never let it be
+       silently clipped. This is a narrow, last-resort fallback only. */
+    sl.classList.add('mfit-overflow');
   }
 
   function fitMobile(){
     cancelAnimationFrame(raf);
     raf=requestAnimationFrame(()=>{
       document.querySelectorAll('.sl').forEach(sl=>{
-        if(window.innerWidth>700) sl.classList.remove(...levels);
+        if(window.innerWidth>700) sl.classList.remove(...allLevels);
         else fitOne(sl);
       });
     });
@@ -1994,8 +2007,13 @@ draw();
   window.addEventListener('resize',fitMobile,{passive:true});
   window.addEventListener('orientationchange',()=>setTimeout(fitMobile,80),{passive:true});
   document.addEventListener('click',()=>setTimeout(fitMobile,0));
+  document.addEventListener('change',e=>{if(e.target.closest('.mobile-project-select'))setTimeout(fitMobile,0)});
   document.fonts?.ready?.then(fitMobile);
   new MutationObserver(()=>fitMobile()).observe(document.body,{subtree:true,attributes:true,attributeFilter:['class']});
+  if(typeof draw==='function'){
+    const priorDraw=draw;
+    draw=function(){priorDraw();fitMobile();};
+  }
   setTimeout(fitMobile,0);
   setTimeout(fitMobile,180);
 })();
