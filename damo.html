@@ -2333,213 +2333,114 @@ strong {
 }
 
 /* =========================
-   MOBILE — UP TO 700px
+   LOCKED READING PANEL — PHONES / PORTRAIT TABLETS
+   Fixed panel and media geometry. Only text size responds to copy length.
    ========================= */
-@media (max-width: 700px) {
-
-  /* PROJECT SLIDES / TYPOGRAPHY */
-  .band.on .blk {
-    grid-template-columns: 1fr;
+@media (max-width: 700px), (min-width: 701px) and (max-width: 1180px) and (orientation: portrait) {
+  .hb { justify-content: flex-end; }
+  #resume-trigger { margin-left: auto; }
+  .band.on {
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    flex: none;
   }
-
-  /* HEADER / RESUME TRIGGER */
-  #resume-trigger {
-    right: auto;
-    margin-left: auto !important;
-    left: auto;
-  }
+  .band.on .vp { flex: 1; min-height: 0; overflow: hidden; }
+  .band.on .trk { height: 100%; }
   .band.on .sl {
+    --reading-size: 16px;
     display: flex !important;
     flex-direction: column;
     align-items: stretch;
-    width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
     min-height: 0;
-    padding: 7px 10px 9px !important;
+    padding: 10px 12px !important;
     gap: 10px !important;
     overflow: visible;
   }
   .band.on .sl > .tx {
-    flex: 0 0 auto;
-    width: 100% !important;
+    flex: 1 1 0;
+    min-height: 0;
     min-width: 0;
-    max-width: none !important;
-    margin: 0 !important;
+    width: 100%;
+    margin: 0;
   }
   .band.on .sl h3 {
-    font-size: var(--m-title,26px) !important;
-    line-height: .98;
-    margin: 0 0 2px !important;
+    font-size: clamp(24px,calc(var(--reading-size) * 1.8),38px) !important;
+    line-height: 1.02;
+    margin: 0 0 4px !important;
   }
   .band.on .sl .sub {
-    font-size: var(--m-sub,13px) !important;
-    line-height: 1.12;
-    margin: 2px 0 5px !important;
+    font-size: calc(var(--reading-size) * .96) !important;
+    line-height: 1.2;
+    margin: 4px 0 8px !important;
   }
   .band.on .sl .blk {
-    width: 100% !important;
-    max-width: none !important;
-    grid-template-columns: 68px minmax(0,1fr);
-    gap: 2px 7px !important;
-    padding: 2px 0 !important;
+    grid-template-columns: 74px minmax(0,1fr);
+    gap: 3px 8px !important;
+    padding: calc(var(--reading-size) * .22) 0 !important;
+    max-width: none;
   }
   .band.on .sl .blk b {
-    font-size: var(--m-label,9.5px) !important;
-    line-height: 1.05 !important;
+    font-size: clamp(8.5px,calc(var(--reading-size) * .66),12px) !important;
+    line-height: 1.15;
     letter-spacing: .10em;
-    padding-top: 1px !important;
+    padding-top: 2px;
   }
-  .band.on .sl .blk span {
-    font-size: var(--m-body,14.5px) !important;
-    line-height: var(--m-leading,1.35) !important;
-    max-width: none !important;
-    width: 100% !important;
-  }
-  .band.on .sl .overview-copy {
-    width: 100% !important;
-    max-width: none !important;
-    font-size: var(--m-body,14.5px) !important;
-    line-height: var(--m-leading,1.35);
-    margin-top: 4px !important;
-  }
+  .band.on .sl .blk span,
+  .band.on .sl .overview-copy,
   .band.on .sl .experience-intro,
   .band.on .sl .experience-proof,
   .band.on .sl .experience-note {
-    width: 100% !important;
-    max-width: none !important;
-    font-size: var(--m-body,14.5px) !important;
-    line-height: var(--m-leading,1.35) !important;
-    margin-top: 4px !important;
+    font-size: var(--reading-size) !important;
+    line-height: 1.3 !important;
+    max-width: none;
   }
   .band.on .sl .overview-copy .story-lead {
-    font-size: calc(var(--m-body,14.5px) + 1.5px) !important;
-    line-height: 1.15 !important;
+    font-size: calc(var(--reading-size) * 1.08) !important;
+    line-height: 1.3;
   }
-
-  /* PROJECT MEDIA / LINKS / IMAGE VIEWER */
   .band.on .sl > .project-media {
-    flex: 0 0 auto;
-    width: 100% !important;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     max-width: none !important;
-    min-width: 0;
     height: auto !important;
     min-height: 0;
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 0;
+    gap: 4px;
     align-self: stretch;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 4px !important;
   }
-  .band.on .project-media .ph,
   .band.on .project-media .ph.has-photo {
-    width: 100% !important;
-    max-width: none !important;
-    min-width: 0;
-    height: var(--m-image-h,clamp(160px,46vw,220px)) !important;
-    min-height: 0 !important;
     flex: none !important;
+    width: 100% !important;
+    height: clamp(110px,18dvh,210px) !important;
+    min-height: 0;
     max-height: none;
-    aspect-ratio: auto;
-    margin: 0 !important;
-    padding: 0 !important;
-    align-self: stretch;
-    box-sizing: border-box;
-    overflow: visible;
+    aspect-ratio: auto !important;
+    margin: 0;
+    padding: 0;
   }
   .band.on .project-media .ph.has-photo img {
-    position: static;
     display: block;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
   .band.on .project-media .project-links {
-    order: 2;
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 4px !important;
     flex: none;
-  }
-  .band.on .project-media .project-links a {
-    max-width: none !important;
+    width: 100%;
     margin: 0 !important;
-    padding: 0 9px !important;
-    font-size: 10px !important;
+    gap: 4px !important;
+  }
+  /* The shared 34px link rule controls every bar, including density changes. */
+  .band.on .project-media .project-links a {
+    font-size: 10px;
     white-space: normal;
     overflow: visible;
   }
-  .band.on .project-media:not(:has(.project-links)) {
-    margin-top: 0 !important;
-  }
-  .band.on .sl.mfit-1 {
-    --m-title: 25px;
-    --m-sub: 12.5px;
-    --m-body: 13px;
-    --m-label: 9px;
-    --m-leading: 1.25;
-    --m-image-h: 140px;
-  }
-  .band.on .sl.mfit-2 {
-    --m-title: 24px;
-    --m-sub: 12px;
-    --m-body: 11.5px;
-    --m-label: 9px;
-    --m-leading: 1.2;
-    --m-image-h: 110px;
-  }
-  .hb {
-    justify-content: flex-end;
-  }
-
-  /* BANDS / NAVIGATION / ACTIVE STATES */
-  .band.on {
-    height: auto;
-    min-height: 0;
-    max-height: none;
-  }
-  /* Only the selected carousel slide contributes to the panel's height. */
-  .band.on .vp {
-    flex: none;
-    min-height: 0;
-    overflow: hidden;
-  }
-  .band.on .trk {
-    height: auto;
-    align-items: flex-start;
-  }
-  .band.on .sl:not(.mobile-current) {
-    height: 0 !important;
-    min-height: 0 !important;
-    padding-block: 0 !important;
-    overflow: hidden;
-    visibility: hidden;
-  }
-  .band.on .sl > .project-media:not(:has(.ph)) {
-    flex: 0 0 auto;
-  }
-  .band.on .sl .ex {
-    gap: 4px;
-    margin-top: 6px !important;
-  }
-  .band.on .sl .ex div {
-    padding: 4px 0;
-  }
-  .band.on .sl .ex strong {
-    font-size: 16px;
-  }
-  .band.on .sl .ex small {
-    font-size: 12px;
-  }
-
-  /* RESUME / THESIS */
   .band.on .resume-slide {
     display: block !important;
     overflow: auto;
@@ -2830,7 +2731,6 @@ function draw(){
  bands.forEach((el,i)=>{
   const n=slideCount(i);
   el.classList.toggle("on",i===active);
-  el.querySelectorAll(".sl").forEach((slide,j) => slide.classList.toggle("mobile-current",j===pos[i]));
   el.querySelector(".trk").style.transform=`translateX(-${pos[i]*100}%)`;
   el.querySelector(".ct").textContent=`${pad(pos[i]+1)} / ${pad(n)}`;
   el.querySelector(".bar i").style.width=`${(pos[i]+1)/n*100}%`;
@@ -2844,7 +2744,7 @@ function draw(){
   });
   if(cur&&i===active)cur.scrollIntoView({block:"nearest"});
  });
- fitProjects();
+ updateProjectLayout();
  drawEffects.forEach(effect => effect());
 }
 function step(i,d){
@@ -2908,7 +2808,10 @@ document.addEventListener("keydown",e=>{
 let fitFrame;
 function fitProjects(){
  cancelAnimationFrame(fitFrame);
- fitFrame=requestAnimationFrame(()=>{
+ fitFrame=requestAnimationFrame(updateProjectLayout);
+}
+function updateProjectLayout(){
+ cancelAnimationFrame(fitFrame);
   document.querySelectorAll('.sl').forEach(sl=>{
    const tx=sl.querySelector('.tx');
    const media=sl.querySelector('.project-media');
@@ -2952,7 +2855,6 @@ function fitProjects(){
    }
   });
   fitMobileProjects();
- });
 }
 const projectLayoutObserver = new ResizeObserver(fitProjects);
 projectLayoutObserver.observe(document.querySelector('.app'));
@@ -3070,28 +2972,28 @@ draw();
 
 
 /* =========================
-   MOBILE DENSITY
+   LOCKED-PANEL TEXT FITTING
    Called by the shared layout scheduler after desktop sizing is reset.
-   Only density classes change; content, dimensions and transforms stay intact.
+   Only the text-size variable changes; panel and media dimensions stay fixed.
    ========================= */
 function fitMobileProjects() {
- const levels = ['mfit-1', 'mfit-2'];
- const phone = matchMedia('(max-width:700px)').matches;
- document.querySelectorAll('.sl').forEach(slide => {
-  slide.classList.remove(...levels);
-  if (!phone || !slide.closest('.band').classList.contains('on') ||
-      !slide.classList.contains('mobile-current') ||
-      slide.classList.contains('resume-slide')) return;
-
-  // Start at readable natural size; tighten only long projects to fit the phone.
-  // Short projects and overviews keep their natural height instead of a blank screen.
-  const band = slide.closest('.band');
-  const budget = window.innerHeight - 12;
-  for (const level of levels) {
-   if (band.getBoundingClientRect().height <= budget) break;
-   slide.classList.add(level);
-  }
- });
+ const locked = matchMedia('(max-width:700px), (min-width:701px) and (max-width:1180px) and (orientation:portrait)').matches;
+ if (!locked) {
+  document.querySelectorAll('.sl').forEach(slide => slide.style.removeProperty('--reading-size'));
+  return;
+ }
+ const slide = bands[active].querySelectorAll('.sl')[pos[active]];
+ if (slide.classList.contains('resume-slide')) return;
+ const text = slide.querySelector('.tx');
+ // Measure the fixed text box; never resize the panel, image or links.
+ let low = 10, high = innerWidth <= 700 ? 24 : 28;
+ for (let step = 0; step < 10; step++) {
+  const size = (low + high) / 2;
+  slide.style.setProperty('--reading-size', size + 'px');
+  if (text.scrollHeight <= text.clientHeight + 1) low = size;
+  else high = size;
+ }
+ slide.style.setProperty('--reading-size', (Math.floor(low * 10) / 10) + 'px');
 }
 </script>
 
