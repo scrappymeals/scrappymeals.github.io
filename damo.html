@@ -472,6 +472,41 @@ header h1,.sl h3,.cs h2{background:linear-gradient(110deg,#f3ffff 5%,#c8fff0 52%
 /* Glass finish for project link bars. */
 .project-links a{background:linear-gradient(180deg,rgba(224,255,255,.14),rgba(165,225,239,.045) 48%,rgba(168,155,223,.10));border:1px solid rgba(202,247,250,.34);box-shadow:inset 0 1px 0 rgba(239,255,255,.28),inset 0 -1px 0 rgba(106,187,201,.10),0 3px 10px rgba(0,0,0,.18);backdrop-filter:blur(14px) saturate(135%);-webkit-backdrop-filter:blur(14px) saturate(135%);transition:background .2s,border-color .2s,box-shadow .2s}
 .project-links a:hover,.project-links a:focus-visible{background:linear-gradient(180deg,rgba(224,255,255,.22),rgba(130,227,229,.09) 48%,rgba(177,163,239,.15));border-color:rgba(204,255,248,.65);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 0 16px rgba(102,237,220,.12),0 4px 12px rgba(0,0,0,.22)}
+/* Tablet reading layout: never shrink type to meet panel height. */
+@media(min-width:601px) and (max-width:1180px){
+ html,body{height:auto;min-height:100%;overflow:auto}
+ html{scroll-snap-type:y proximity;scroll-padding-top:0}
+ .app{height:auto;min-height:100dvh;padding:8px;gap:8px}
+ .band{flex:none;flex-direction:column;scroll-snap-align:start;scroll-margin-top:0}
+ .band.on{height:100dvh;min-height:100dvh;max-height:100dvh;flex:none}
+ .gut{width:100%;flex:none;flex-direction:row;align-items:center;flex-wrap:wrap;gap:8px 16px;padding:10px 16px;border-right:0;border-bottom:1px solid var(--ed)}
+ .gut h2{flex:1;font-size:15px;letter-spacing:.12em}
+ .gut .toc,.gut .bar{display:none}.gut .ctl{margin-left:auto}
+ .band.on .mobile-project-select{display:block;width:100%;min-height:42px;padding:7px 12px;border:1px solid #9affec40;border-radius:7px;background:#11232e;color:#edf8ff;font:500 16px Archivo,system-ui,sans-serif}
+ .band.on .vp{flex:1;min-height:0;overflow:hidden}
+ .band.on .trk{height:100%;min-height:0}
+ .band.on .sl{height:100%;min-height:0;overflow-y:auto;overflow-x:hidden;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);padding:22px;gap:22px;align-content:start;align-items:start}
+ .band.on .sl h3{font-size:34px;line-height:1.08;overflow-wrap:break-word}
+ .band.on .sub{font-size:17px;line-height:1.4}
+ .band.on .blk{grid-template-columns:1fr;gap:6px;padding:12px 0}
+ .band.on .blk b{font-size:11px;line-height:1.4}
+ .band.on .blk span,.resume-content,.resume-content .grp p{font-size:16px;line-height:1.55}
+ .band.on .project-media{display:block;width:100%;max-width:none!important;height:auto!important}
+ .band.on .project-media .ph.has-photo{aspect-ratio:16/9!important;height:auto!important;flex:none}
+ .band.on .project-media .ph.has-photo img{object-fit:contain!important}
+ .band.on .project-links a{height:auto;min-height:48px;font-size:13px;line-height:1.4}
+ .band.on .overview-copy{font-size:19px}.band.on .story-lead{font-size:23px}
+ .band.on .sl:has(.overview-copy),.band.on .sl.text-only,.band.on .resume-slide{grid-template-columns:minmax(0,1fr)}
+ .band:not(.on){min-height:100px;flex:none}.band:not(.on) .sl{grid-template-columns:minmax(0,1fr);padding:10px 16px}
+ .band:not(.on) .sl h3{font-size:20px;line-height:1.2}
+ .project-image-view img{position:static;max-height:100%;align-self:center}
+}
+@media(min-width:601px) and (max-width:900px){
+ .band.on .sl{grid-template-columns:minmax(0,1fr)}
+ .band.on .project-media{max-width:620px!important}
+ .band.on .resume-content .grp{grid-template-columns:1fr}
+}
+@media(max-width:1180px){.sl>.tx,.sl>.project-media{zoom:1!important}}
 </style>
 </head>
 <body>
@@ -687,7 +722,7 @@ function fitProjects(){
    if(tx)tx.style.removeProperty('--card-row-padding');
    if(media){media.style.maxWidth='';media.style.height='';}
    if(photo){photo.style.width='';photo.style.height='';photo.style.marginInline='';}
-   if(innerWidth<=800||!sl.closest('.band').classList.contains('on'))return;
+   if(innerWidth<=1180||!sl.closest('.band').classList.contains('on'))return;
    const style=getComputedStyle(sl),available=sl.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);
    if(available<=0||!tx)return;
    const stacked=style.gridTemplateColumns.split(" ").length===1;
@@ -768,7 +803,7 @@ draw();
 })();
 // Phone reading mode: one full-height project, with explicit project selection.
 (()=>{
- const phone=matchMedia('(max-width:600px)');
+ const phone=matchMedia('(max-width:1180px)');
  bands.forEach((band,i)=>{
   const select=document.createElement('select');select.className='mobile-project-select';select.setAttribute('aria-label','Choose project in '+B[i].n);
   const titles=B[i].resume?B[i].i.map(p=>p.t):['Overview',...B[i].i.map(p=>p.t)];
