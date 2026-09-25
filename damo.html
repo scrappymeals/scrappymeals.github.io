@@ -359,7 +359,7 @@ header h1,.sl h3,.cs h2{background:linear-gradient(110deg,#f3ffff 5%,#c8fff0 52%
 
 .overview-copy{max-width:68ch;margin-top:20px;color:#cfdae4;font-size:15px;line-height:1.55}
 .overview-copy p+p{margin-top:12px}.overview-copy .story-lead{font-size:18px;color:#edf8ff;line-height:1.45}
-.story-skills{padding-top:12px;border-top:1px solid var(--ed);color:var(--br);font-size:12px;line-height:1.5}
+.story-skills{text-transform:none;padding-top:12px;border-top:1px solid var(--ed);color:var(--br);font-size:12px;line-height:1.5}
 .experience-intro{max-width:80ch;font-size:16px;line-height:1.5;margin-top:14px;color:#edf8ff}
 .experience-proof{max-width:85ch;font-size:14px;line-height:1.5;margin-top:8px;color:#cfdae4}
 .experience-note{max-width:85ch;font-size:12px;line-height:1.4;margin-top:8px;color:var(--mu)}
@@ -521,12 +521,68 @@ header h1,.sl h3,.cs h2{background:linear-gradient(110deg,#f3ffff 5%,#c8fff0 52%
  .band.on .project-media:has(.ph){height:min(76dvh,760px)!important}
 }
 .project-media .ph.has-photo img[src="assets/webCV_scrappyhour.png"]{object-position:right center!important}
+
+
+/* Softer inactive-tier hierarchy: visible, subdued, and spatially layered. */
+.band:not(.on){
+  opacity:.66;
+  filter:saturate(.58) brightness(.78);
+  background:linear-gradient(125deg,rgba(52,61,70,.76),rgba(29,37,47,.84) 48%,rgba(47,43,61,.76));
+  border-color:rgba(166,198,202,.18);
+  box-shadow:inset 0 1px rgba(255,255,255,.06),0 3px 10px rgba(0,0,0,.18);
+}
+
+/* Tiers above the active section stay subdued but slightly lighter. */
+.band:not(.on):has(~ .band.on){
+  opacity:.66;
+  filter:saturate(.58) brightness(.78);
+}
+
+/* Tiers below the active section sit farther back and are the darkest. */
+.band.on ~ .band:not(.on){
+  opacity:.56;
+  filter:saturate(.46) brightness(.68);
+}
+
+.band:not(.on)::after{
+  background:linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.08) 22%,rgba(0,0,0,.08) 78%,rgba(0,0,0,.24));
+}
+.band:not(.on) .gut{
+  background:linear-gradient(135deg,rgba(31,47,57,.88),rgba(18,27,38,.92));
+  border-color:rgba(154,255,236,.12);
+}
+.band:not(.on) .gut h2,
+.band:not(.on) .sl h3{
+  color:#aeb9c1;
+  -webkit-text-fill-color:#aeb9c1;
+  background:none;
+  filter:none;
+  text-shadow:none;
+}
+.band:not(.on) .sub{
+  color:#82909a;
+  text-shadow:none;
+}
+.band:not(.on):hover{
+  opacity:.74;
+  filter:saturate(.68) brightness(.84);
+  border-color:rgba(154,255,236,.26);
+}
+
+
+.overview-copy,
+.overview-copy p,
+.overview-copy .story-lead,
+.overview-copy .story-skills{
+  text-transform:none!important;
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <header>
-<div><h1>DAMON VERSAGGI</h1><p><strong style="font-weight:500;color:var(--tx);font-size:12px;letter-spacing:.24em">CREATIVE TECHNOLOGY PROBLEM SOLVER</strong> <span class="header-quote">• FOR HIGH-STAKES, CROSS-DISCIPLINARY WORK</span></p></div>
+<div><h1>DAMON VERSAGGI</h1><p><strong style="font-weight:500;color:var(--tx);font-size:12px;letter-spacing:.24em">BUILDER OF COMPLEX CREATIVE + TECHNOLOGY SYSTEMS</strong> <span class="header-quote">• FOR HIGH-STAKES, CROSS-DISCIPLINARY WORK</span></p></div>
 
 <div class="hb"><button id="resume-trigger" aria-expanded="false" aria-controls="resume-band">Résumé</button></div>
 </header>
@@ -539,16 +595,14 @@ const R=(t,s,a)=>({t,s,b:a});
 const B=[
 {n:"AI PRODUCTS",l:"AI PRODUCTS BUILT AROUND REAL USERS, REAL WORKFLOWS AND MEASURABLE PERFORMANCE.",i:[
 R("Fridgie Smalls","A production AI product shaped from concept through launch, scale and optimization.",[["THE PRODUCT", "Designed and launched a mobile-first recipe platform powered by the OpenAI API, combining ingredient-based generation, voice input, substitutions, grocery support and a persistent cookbook experience."], ["MY ROLE", "Founder and product lead, responsible for product strategy, UX, prototyping, technical architecture, deployment, prompt systems and ongoing performance optimization."], ["THE RESULTS", "Launched in February 2024 and scaled to nearly 20,000 users. Reduced input-token usage by 72%, lowered tokens per call by roughly 40%, improved response time by about two seconds and reached roughly 4,000 requests per $1."], ["LEADERSHIP", "Directed designers, developers, freelancers and restaurant partners while also building and leading a 16-person internship cohort with structured briefs, critique and hands-on mentorship."]]),
-R("eFundex","Modernizing a data-heavy lending operation through workflow design, automation and decision-support systems.",[["MY ROLE", "Progressed from Product, Technology & Growth Advisor (2016–Dec 2023) to Vice President, Sales & Technology (Jan 2024–Present), expanding from advisory work into direct operational and technology leadership."], ["THE BUSINESS", "Small-business financial technology operating across lending, sales and customer acquisition. I work across leadership, operations, growth, technology and communications to improve how the business functions."], ["THE BUILD", "Architected an AI-assisted UCC intelligence platform that converts raw public filing exports into structured debtor records, secured-party intelligence, contact files, campaign segments, tracking and audit logs."], ["DECISION SUPPORT", "Developed Lead Heat Score and Stack Depth Score models to prioritize prospects, surface stacking risk and support more targeted outreach and underwriting decisions."]]),
-{x:1,t:"Selected Experience",e:[["Vice President, Sales & Technology","eFundex","Jan 2024–Present"],["Product, Technology & Growth Advisor","eFundex","2016–Dec 2023"],["Founder / Product Lead","Scrappy Meals XR / Fridgie Smalls","2016–Present"]]}]},
+R("eFundex","Modernizing a data-heavy lending operation through workflow design, automation and decision-support systems.",[["MY ROLE", "Progressed from Product, Technology & Growth Advisor (2016–Dec 2023) to Vice President, Sales & Technology (Jan 2024–Present), expanding from advisory work into direct operational and technology leadership."], ["THE BUSINESS", "Small-business financial technology operating across lending, sales and customer acquisition. I work across leadership, operations, growth, technology and communications to improve how the business functions."], ["THE BUILD", "Architected an AI-assisted UCC intelligence platform that converts raw public filing exports into structured debtor records, secured-party intelligence, contact files, campaign segments, tracking and audit logs."], ["DECISION SUPPORT", "Developed Lead Heat Score and Stack Depth Score models to prioritize prospects, surface stacking risk and support more targeted outreach and underwriting decisions."]])]},
 {n:"INTERACTIVE EXPERIENCES",l:"EXPERIENCES THAT CONNECT DIGITAL SYSTEMS, PHYSICAL SPACE, CONTENT AND PARTICIPATION.",i:[
 R("Scrappy Meals XR","An independent platform that evolved from food education into immersive media, interactive products and original IP.",[["THE ORIGIN", "Founded in 2016 as a sustainability-focused food venture, then expanded into food education, experiential programming and technology. Early concepts such as Scrappy Snacks turned unused office-fridge ingredients into participatory food-waste education."], ["THE GROWTH", "Expanded the platform through catering, classes, pop-ups, a PIX11 cooking segment and the children’s book Scraps Food Guide from A–Z. The work led to invitations to testify before New York City Council on food-waste legislation and present the book and tour plans at the United Nations in September 2018."], ["THE PIVOT", "When COVID eliminated the planned March 2020 book tour and in-person programming, I redirected the platform into digital products, building The Metacheese, interactive 3D menus and later AI-powered food experiences."], ["MY ROLE", "Founder, creative director and product lead across brand strategy, original IP, experiential programming, WebXR, interactive 3D and AI product development."], ["MENTORSHIP", "Created and led the Cranfield University × Scrappy Meals XR virtual internship program from 2022–2025, directing master’s-level work through structured briefs, remote collaboration, critique and mentorship."]]),
 R("The Metacheese","A WebXR environment combining spatial storytelling, education, live programming and collaborative production.",[["THE CHALLENGE", "Create a persistent virtual environment where food education, original characters, live programming and remote audiences could operate inside the same experience."], ["THE BUILD", "Built The Metacheese in Mozilla Hubs as a working WebXR environment for interactive 3D content, virtual children’s readings, university collaboration and live programming. The Mozilla Hubs development team also used the space for internal R&D meetings."], ["MY ROLE", "Led concept development, visual language, spatial experience design, world-building and production as founder, creative director and creative technologist."], ["THE EXPERIENCE", "Used the environment as a platform for remote participation, university collaboration, live programming and brand activation."]]),
 R("ScrappyHour Events","A hybrid event format designed to make remote and in-person audiences equally part of the experience.",[["THE CHALLENGE", "Design a format in which live and remote audiences could participate together rather than treating the online audience as a passive feed."], ["THE BUILD", "Combined chefs, live instruction, projection, hybrid demonstrations and audience participation into a single event system, including a Brooklyn × Sweden crossover."], ["MY ROLE", "Designed the event experience and production environment across food, hospitality, content, technology and audience participation."], ["THE RESULT", "Established an early physical-to-digital model for Scrappy Meals that later informed its XR, character and interactive product work."]]),
 R("3D Menus","Using WebAR and photogrammetry to turn the menu into an interactive product experience.",[["THE EXPERIENCE", "Created QR-triggered menus using photogrammetry-scanned dishes, allowing diners to inspect food in 3D and augmented reality before ordering."], ["MY ROLE", "Owned the workflow from food capture and 3D preparation through interaction design, product visualization and AR/WebXR delivery."], ["THE PURPOSE", "Reduce the distance between physical dining and digital product visualization through a simple browser-based QR interaction."]]),
 R("SwivelMeta / Outernet","Interactive concept development for a large-scale public media environment.",[["MY ROLE", "Creative Technology Consultant for SwivelMeta, 2022."], ["THE SETTING", "Outernet London, a large-scale public media environment combining immersive screens, physical presence and digital participation."], ["THE WORK", "Developed interactive concepts connecting digital participation, platform capabilities and audience experience across virtual and physical environments."]]),
-R("Strevi, Italy","Artist Residency · October 2024",[["THE SELECTION","Selected for a competitive artist residency in Strevi, Italy, on the strength of my Scrappy Meals and XR work."],["IMMERSIVE WORK","Built an immersive interpretation of a Mother Cabrini statue through digital 3D, spatial storytelling and audience interaction."],["COMMUNITY","Represented Scrappy Meals and cooked for a communal house of roughly 7–12 residents and guests, fusing food, hospitality and creative practice."]]),
-{x:1,t:"Selected Experience",e:[["Founder / Creative Director","Scrappy Meals XR","2016–Present"],["Creative Technology Consultant","SwivelMeta","2022"],["Independent Creative Director","Damon Versaggi Consulting","Ongoing"]]}]},
+R("Strevi, Italy","Artist Residency · October 2024",[["THE SELECTION","Selected for a competitive artist residency in Strevi, Italy, on the strength of my Scrappy Meals and XR work."],["IMMERSIVE WORK","Built an immersive interpretation of a Mother Cabrini statue through digital 3D, spatial storytelling and audience interaction."],["COMMUNITY","Represented Scrappy Meals and cooked for a communal house of roughly 7–12 residents and guests, fusing food, hospitality and creative practice."]])]},
 {n:"REAL-TIME SYSTEMS",l:"REAL-TIME SYSTEMS BUILT FOR LIVE DATA, HARD DEADLINES AND NATIONAL AUDIENCES.",i:[
 R("New Year's Rockin' Eve","Long-term real-time graphics leadership on one of television’s most visible annual live broadcasts.",[["THE SETTING", "Supporting the live national broadcast since 2011, where countdown timing, sponsor integration, graphics reliability and visual clarity must remain synchronized throughout the show."], ["MY ROLE", "Progressed from graphics operator to lead graphics and long-term consultant, combining creative judgment, real-time systems expertise and live execution."], ["THE REDESIGN", "Redesigned the midnight countdown treatment in 2011, establishing a visual direction that informed subsequent versions of the broadcast package."], ["LIVE DELIVERY", "Operated countdown systems, real-time graphics and sponsor-driven updates within a tightly controlled live run-of-show."]]),
 R("Election Systems","Sixteen years designing and operating real-time election graphics under live editorial pressure.",[["THE PERIOD", "2004–2020: sixteen years translating complex election data into real-time visuals across national broadcast."], ["THE CHALLENGE", "Translate fast-changing, high-volume election results into systems presenters could navigate live and viewers could understand immediately."], ["THE WORK", "Built and supported live data pipelines, real-time 3D graphics, interactive maps, race and result displays, presenter workflows and control-room operations across multiple election cycles."], ["THE DELIVERY", "Designed for editorial speed and broadcast reliability, later extending that experience into PIX11 election coverage and ticker workflows."]]),
@@ -556,63 +610,151 @@ R("SNY / New York Mets","Creative systems leadership spanning broadcast design, 
 R("Tribune / PIX11 / WGN","A cross-functional real-time systems role spanning newsroom, production, sales, digital and engineering.",[["THE SITUATION", "Graphics, production and technology requirements routinely crossed departmental boundaries, creating the need for a role that could connect creative, technical and operational teams."], ["MY ROLE", "As Production Manager, Real-Time Systems (2012–2015), owned election graphics, technical workflows, real-time production and control-room operations across multiple internal groups."], ["THE WORK", "Supported news, digital, sales and promotional production while coordinating creative, technical, production and vendor stakeholders under fixed broadcast deadlines."], ["THE DELIVERY", "Translated internal requirements into production-ready systems while balancing brand standards, schedule, reliability and technical constraints."]]),
 R("Vizrt / Network Launches","Client-facing systems architecture for network launches, enterprise adoption and real-time 3D production.",[["MY ROLE", "Solutions Architect, 2004–2008 — client-facing technical lead for real-time 3D implementation, demonstrations, training and enterprise adoption."], ["LAUNCHES", "Delivered the Fox Business and CBS HD launches, connecting graphics platforms to production-ready operator workflows."], ["LEADERSHIP", "Trained close to 1,000 artists, operators and technical users. Managed a five-person remote demonstration and training team serving clients nationwide."], ["CLIENT SCOPE", "Supported CNN, CBS, MSNBC, Fox Business, Bloomberg and The Weather Channel, alongside major sports clients."], ["ENGINEERING", "Handpicked to consult directly with Vizrt engineering in Norway on the next generation of Viz Engine."]]),
 R("ESPN / NBA Live Sports Systems","Lead artist for the biggest stage in basketball: the NBA Finals.",[["MY ROLE", "Lead artist for the biggest stage in basketball — the NBA Finals — with broader ESPN and NBA work spanning season graphics packages, live game systems and broadcast execution."], ["THE SITUATION", "Live sports graphics had to respond to real-time data under game-time pressure — creative delivery, technical implementation and operator readiness all had to land together."], ["THE DELIVERY", "Fused real-time 3D graphics with live data, built production tools and trained operators to run the show live, without a safety net."], ["SPORTS SCOPE", "Vizrt engagements spanned ESPN HD, NBA and MLB initiatives, NFL programming, TV Azteca World Cup coverage and NBA All-Star Weekend virtual graphics."]]),
-R("Around the Horn","One seamless live production spanning New York and Washington, D.C.",[["THE CHALLENGE", "Make a split-location ESPN production feel seamless and rock-solid — Seaport control room in New York, host in Washington, D.C."], ["MY ROLE", "Built and installed the real-time graphics and production workflow connecting both locations."], ["THE DELIVERY", "Linked the control room and host environment into one flawless live production."]]),
-{x:1,t:"Selected Experience",e:[["Production Manager, Real-Time Systems","Tribune Media / PIX11 / WGN","2012–2015"],["Creative Systems / Real-Time Graphics Lead","SportsNet New York","2008–2012"],["Solutions Architect","Vizrt","2004–2008"],["Live Production Involvement","New Year's Rockin' Eve / Dick Clark Productions","Since 2011"]],note:"Every role built around the problem, not the org chart. At Vizrt, SNY and Tribune, the position was shaped around the work and required senior executive approval."}]}
+R("Around the Horn","One seamless live production spanning New York and Washington, D.C.",[["THE CHALLENGE", "Make a split-location ESPN production feel seamless and rock-solid — Seaport control room in New York, host in Washington, D.C."], ["MY ROLE", "Built and installed the real-time graphics and production workflow connecting both locations."], ["THE DELIVERY", "Linked the control room and host environment into one flawless live production."]])]}
 ];
 const C=[
 ["DAMON VERSAGGI",`
-<p style="margin-bottom:4px"><strong>CREATIVE TECHNOLOGY PROBLEM SOLVER | TRANSFORMATION BUILDER | HANDS-ON OPERATOR</strong></p>
-<p style="color:var(--mu);margin-bottom:18px">Brooklyn, NY &nbsp;|&nbsp; <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> &nbsp;|&nbsp; <a href="https://linkedin.com/in/damonversaggi" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; <a href="https://scrappymeals.com" target="_blank" rel="noopener">scrappymeals.com</a></p>
+<p style="margin-bottom:4px"><strong>BUILDER OF COMPLEX CREATIVE + TECHNOLOGY SYSTEMS</strong></p>
+<p style="color:var(--mu);margin-bottom:18px">Brooklyn, NY &nbsp;|&nbsp; <a href="mailto:damon@scrappymeals.com">damon@scrappymeals.com</a> &nbsp;|&nbsp; <a href="https://linkedin.com/in/damonversaggi" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp; <a href="https://scrappymeals.com/damo" target="_blank" rel="noopener">scrappymeals.com/damo</a></p>
 
 <div class="grp">
   <div>
-    <h4>EXECUTIVE PROFILE</h4>
-    <p>Creative technology executive and hands-on builder with nearly two decades across real-time 3D, broadcast, interactive media, AI products and immersive experiences. I specialize in ambiguous, cross-functional work where creative direction, product thinking and technical execution need to operate as one discipline.</p>
+    <h4>PROFILE</h4>
+    <p>Creative technology executive and hands-on builder with nearly two decades of experience across real-time 3D, broadcast, interactive media, AI products and immersive experiences. Best suited to high-stakes, cross-disciplinary work where creative direction, product thinking, technical architecture and execution must operate as one system.</p>
   </div>
   <div>
-    <h4>CORE EXPERTISE</h4>
-    <p>Creative Direction, Creative Technology, Interactive Experience Design, Real-Time 3D, Broadcast Graphics, AI-Assisted Product, XR / WebXR, Experiential Design, Product Prototyping, Creative Systems, Team Leadership.</p>
+    <h4>FOCUS</h4>
+    <p>Creative technology, AI product development, interactive experiences, real-time 3D, broadcast systems, XR / WebXR, experiential design, product prototyping, creative operations and team leadership.</p>
   </div>
 </div>
 
-<div class="bar" style="margin:18px 0 10px"></div>
-<h4 style="font:600 11px Archivo,sans-serif;letter-spacing:.22em;color:var(--br);margin-bottom:6px">EXPERIENCE</h4>
-<ul>
-  <li><strong>Independent Creative Director</strong> · Damon Versaggi Consulting <span style="color:var(--mu)">| 2015–Present</span></li>
-  <li><strong>Founder / Creative Director</strong> · Scrappy Meals XR / Fridgie Smalls <span style="color:var(--mu)">| 2016–Present</span></li>
-  <li><strong>VP, Sales &amp; Technology</strong> · eFundex <span style="color:var(--mu)">| 2024–Present</span></li>
-  <li><strong>Production Manager, Real-Time Systems</strong> · Tribune Media / PIX11 / WGN <span style="color:var(--mu)">| 2012–2015</span></li>
-  <li><strong>Creative Systems / Real-Time Graphics Lead</strong> · SportsNet New York <span style="color:var(--mu)">| 2008–2012</span></li>
-  <li><strong>Solutions Architect</strong> · Vizrt <span style="color:var(--mu)">| 2004–2008</span></li>
-</ul>
-
-<div class="grp" style="margin-top:18px">
-  <div>
-    <h4>SELECTED IMPACT</h4>
-    <p>New Year's Rockin' Eve, NBA Finals + ESPN, Fox Business Network + CBS HD, interactive election systems, SNY / New York Mets, ScrappyHour and AI product development.</p>
-  </div>
-  <div>
-    <h4>EDUCATION</h4>
-    <p>BFA, Computer Art · School of Visual Arts, New York, NY.</p>
-  </div>
-</div>
-
-<a class="dlbtn" style="margin-top:20px" download="Damon_Versaggi_CV.pdf" href="data:application/pdf;base64,${RESUME_B64}">${ic("M12 3v13m0 0l-5-5m5 5l5-5M5 21h14")}DOWNLOAD</a>
+<a class="dlbtn" style="margin-top:20px" download="Damon_Versaggi_CV.pdf" href="data:application/pdf;base64,${RESUME_B64}">${ic("M12 3v13m0 0l-5-5m5 5l5-5M5 21h14")}DOWNLOAD RÉSUMÉ PDF</a>
 `],
-["Thesis + Digital Assets",`<div class="thesis-row"><div class="thesis-copy"><p class="sub">Early work that established the visual, technical and experimental foundation of my practice.</p><div class="blk"><b>THE NIGHTLIGHT</b><span>School of Visual Arts thesis. Won Best Production Value, earned a $1,000 award, received festival recognition, and led directly to a first professional role.</span></div><div class="blk"><b>DIGITAL ASSETS</b><span>Selected digital and experimental work, including FRIDA001: physical installation, digital 3D artwork, NFC and AR combined into one emerging-media art piece.</span></div></div><div class="thesis-media"><figure class="thesis-photo"><img src="assets/webCV_nigtlight.png" alt="The Nightlight animated star character and award artwork" decoding="async"></figure><nav class="project-links" aria-label="Thesis and digital asset links"><a href="https://www.youtube.com/watch?v=Uh0C-Amharo" target="_blank" rel="noopener">WATCH THE THESIS FILM</a><a href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener">VIEW THE DIGITAL ASSETS COLLECTION</a></nav></div></div>`],
-["Clients + Skills & Keywords",`<p>Independent creative direction and creative technology consulting, delivering across broadcast, sports, news, interactive and AI-driven media.</p><div class="grp" style="margin-top:6px"><div><h4>LIVE SPORTS BROADCAST</h4><p>ESPN, NBA, MLB, YES Network, Marquee Network, Amazon Prime, SNY</p></div><div><h4>NEWS &amp; ELECTIONS</h4><p>CNN, CBS, MSNBC, Fox News, Bloomberg, Tribune, PIX11, WGN, News 12 Cablevision</p></div><div><h4>AI PRODUCTS &amp; STORYTELLING</h4><p>Fridgie Smalls</p></div><div><h4>XR / WEB3 / INTERACTIVE ART</h4><p>The Metacheese, SwivelMeta, Outernet</p></div><div><h4>EXPERIENTIAL &amp; HYBRID EVENTS</h4><p>ScrappyHour, New Year's Rockin' Eve</p></div><div><h4>LAUNCHES / PLATFORMS / SYSTEMS</h4><p>Fox Business Network, CBS HD, Verizon FiOS, Vizrt, real-time control rooms</p></div></div><div class="bar" style="margin:18px 0 10px"></div><div class="grp"><div><h4>CREATIVE + LEADERSHIP</h4><p>Creative direction, art direction, creative systems, experience strategy, product thinking, team leadership, mentorship, executive presentations, client communication</p></div><div><h4>REAL-TIME + 3D</h4><p>Real-time 3D, Vizrt / Viz Engine, live data visualization, election graphics, sports production, AR, control-room workflows</p></div><div><h4>INTERACTIVE</h4><p>WebXR, interactive 3D, spatial experience design, prototyping, physical/digital experiences, immersive systems</p></div><div><h4>AI + PRODUCT</h4><p>AI product design, OpenAI / LLM workflows, prompt optimization, AI agents, structured outputs, automation, workflow design</p></div><div><h4>DEVELOPMENT</h4><p>React, TypeScript, JavaScript, Three.js, WebGL, Node.js, JSON, REST APIs, Python, Git, HTML, CSS</p></div></div><p class="note" style="margin-top:14px">Keywords: creative director, creative technologist, interactive experience design, real-time 3D graphics, broadcast graphics, XR, WebXR, immersive media, AI product design, AI-assisted workflows, live production, election graphics, sports broadcast graphics, experience strategy, creative systems, React, TypeScript, JavaScript, Three.js, WebGL, Node.js, JSON, REST APIs, Python, Git.</p>`],
-["Let's Connect","<p>Brooklyn, NYC.</p><ul><li><a href='mailto:damon@scrappymeals.com'>damon@scrappymeals.com</a></li><li><a href='https://linkedin.com/in/damonversaggi'>linkedin.com/in/damonversaggi</a></li><li><a href='https://scrappymeals.com/damo'>scrappymeals.com/damo</a></li></ul>"]
+
+["Experience",`
+<div class="grp">
+  <div>
+    <h4>Damon Versaggi Consulting</h4>
+    <p><strong>Independent Creative Director / Creative Technologist</strong><br><span style="color:var(--mu)">2015–Present</span></p>
+    <p>Creative direction, technical consulting and hands-on delivery across broadcast, sports, interactive experiences, immersive media and AI-driven products.</p>
+  </div>
+
+  <div>
+    <h4>Scrappy Meals XR / Fridgie Smalls</h4>
+    <p><strong>Founder / Product Lead</strong><br><span style="color:var(--mu)">2016–Present</span></p>
+    <p>Built an immersive food-tech platform spanning original IP, WebXR, interactive 3D, live experiences and AI products. Fridgie Smalls scaled to nearly 20,000 users while reducing input-token usage by 72%, cutting tokens per call by roughly 40% and improving response time by about two seconds.</p>
+  </div>
+
+  <div>
+    <h4>eFundex</h4>
+    <p><strong>Vice President, Sales &amp; Technology</strong><br><span style="color:var(--mu)">Jan 2024–Present</span></p>
+    <p><strong>Product, Technology &amp; Growth Advisor</strong><br><span style="color:var(--mu)">2016–Dec 2023</span></p>
+    <p>Lead technology, sales systems and workflow modernization for a data-heavy small-business lending operation, including AI-assisted UCC intelligence, prospect scoring, automation and decision-support tools.</p>
+  </div>
+
+  <div>
+    <h4>Tribune Media / PIX11 / WGN</h4>
+    <p><strong>Production Manager, Real-Time Systems</strong><br><span style="color:var(--mu)">2012–2015</span></p>
+    <p>Owned real-time graphics, election systems, technical workflows and control-room production across news, digital, sales and promotional teams.</p>
+  </div>
+
+  <div>
+    <h4>SportsNet New York</h4>
+    <p><strong>Creative Systems / Real-Time Graphics Lead</strong><br><span style="color:var(--mu)">2008–2012</span></p>
+    <p>Led real-time sports graphics, systems reliability and team development for SNY / New York Mets programming.</p>
+  </div>
+
+  <div>
+    <h4>Vizrt</h4>
+    <p><strong>Solutions Architect</strong><br><span style="color:var(--mu)">2004–2008</span></p>
+    <p>Designed, launched and supported enterprise real-time graphics systems for major broadcast networks. Trained approximately 1,000 artists and operators on Vizrt workflows.</p>
+  </div>
+</div>
+`],
+
+["Selected Impact",`
+<div class="grp">
+  <div>
+    <h4>AI + PRODUCT</h4>
+    <p>Built Fridgie Smalls from concept through production, including UX, OpenAI integration, voice input, prompt architecture, optimization and deployment.</p>
+  </div>
+  <div>
+    <h4>FINTECH SYSTEMS</h4>
+    <p>Architected AI-assisted UCC intelligence and scoring workflows for eFundex, converting raw public filing data into structured sales and decision-support systems.</p>
+  </div>
+  <div>
+    <h4>LIVE BROADCAST</h4>
+    <p>Work spans ESPN, NBA, MLB, SNY, New Year's Rockin' Eve, Fox Business Network, CBS, CNN, MSNBC, PIX11 and WGN.</p>
+  </div>
+  <div>
+    <h4>REAL-TIME DATA</h4>
+    <p>Built and operated live election graphics, sports systems, interactive data displays and mission-critical control-room workflows under fixed broadcast deadlines.</p>
+  </div>
+  <div>
+    <h4>INTERACTIVE + XR</h4>
+    <p>Created WebXR worlds, 3D menus, hybrid live events and interactive experiences connecting physical spaces, digital systems and audience participation.</p>
+  </div>
+  <div>
+    <h4>LEADERSHIP + MENTORSHIP</h4>
+    <p>Led creative and technical teams, managed a 16-person internship cohort and built the Cranfield University × Scrappy Meals XR virtual internship program.</p>
+  </div>
+</div>
+`],
+
+["Capabilities",`
+<div class="grp">
+  <div>
+    <h4>CREATIVE + LEADERSHIP</h4>
+    <p>Creative direction, art direction, experience strategy, product thinking, creative systems, team leadership, mentorship, executive presentations and client communication.</p>
+  </div>
+  <div>
+    <h4>AI + PRODUCT</h4>
+    <p>AI product design, OpenAI / LLM workflows, prompt architecture, structured outputs, AI agents, automation, workflow design and product prototyping.</p>
+  </div>
+  <div>
+    <h4>REAL-TIME + BROADCAST</h4>
+    <p>Real-time 3D, Vizrt / Viz Engine, live data visualization, election graphics, sports production, AR and control-room workflows.</p>
+  </div>
+  <div>
+    <h4>INTERACTIVE + IMMERSIVE</h4>
+    <p>WebXR, interactive 3D, spatial experience design, immersive systems, physical / digital experiences and experiential production.</p>
+  </div>
+  <div>
+    <h4>DEVELOPMENT</h4>
+    <p>React, TypeScript, JavaScript, Three.js, WebGL, Node.js, JSON, REST APIs, Python, Git, HTML and CSS.</p>
+  </div>
+  <div>
+    <h4>PLATFORMS + ENVIRONMENTS</h4>
+    <p>Broadcast control rooms, web applications, immersive installations, live events, mobile-first products and AI-assisted internal tools.</p>
+  </div>
+</div>
+`],
+
+["Education + Early Work",`
+<div class="thesis-row">
+  <div class="thesis-copy">
+    <p class="sub">Foundation in computer art, real-time media and experimental digital work.</p>
+    <div class="blk"><b>EDUCATION</b><span>BFA, Computer Art — School of Visual Arts, New York, NY.</span></div>
+    <div class="blk"><b>THE NIGHTLIGHT</b><span>School of Visual Arts thesis. Won Best Production Value, earned a $1,000 award, received festival recognition and led directly to a first professional role.</span></div>
+    <div class="blk"><b>DIGITAL ASSETS</b><span>Selected experimental work including FRIDA001, combining physical installation, digital 3D artwork, NFC and augmented reality.</span></div>
+  </div>
+  <div class="thesis-media">
+    <figure class="thesis-photo"><img src="assets/webCV_nigtlight.png" alt="The Nightlight animated star character and award artwork" decoding="async"></figure>
+    <nav class="project-links" aria-label="Education and early work links">
+      <a href="https://www.youtube.com/watch?v=Uh0C-Amharo" target="_blank" rel="noopener">Watch the Thesis Film</a>
+      <a href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener">View Digital Assets</a>
+    </nav>
+  </div>
+</div>
+`]
 ];
-const resumeHTML=C[0][1];
-const experienceStart=resumeHTML.indexOf('<div class="bar"');
-const downloadStart=resumeHTML.indexOf('<a class="dlbtn"');
-const downloadHTML=resumeHTML.slice(downloadStart);
-const contactCTA=`<p class="contact-cta"><a href="mailto:damon@scrappymeals.com">SEND ME YOUR HARDEST PROBLEM ↗</a></p>`;
+
 B.push({n:"RÉSUMÉ",resume:true,i:[
- {t:"Profile + Download",html:resumeHTML.slice(0,experienceStart)+downloadHTML+contactCTA},
- {t:"Experience",html:resumeHTML.slice(experienceStart,downloadStart)},
- {t:"Clients + Skills",html:C[2][1]},
- {t:"Thesis + Digital Assets",html:C[1][1]}
+ {t:"Profile",html:C[0][1]},
+ {t:"Experience",html:C[1][1]},
+ {t:"Selected Impact",html:C[2][1]},
+ {t:"Capabilities",html:C[3][1]},
+ {t:"Education + Early Work",html:C[4][1]}
 ]});
 const pos=B.map(()=>0),max=B.map(()=>0),$=s=>document.querySelector(s);
 const slideCount=i=>B[i].i.length+(B[i].resume?0:1);
@@ -622,7 +764,7 @@ const escLink=s=>s.replaceAll("&","&amp;").replaceAll('"',"&quot;").replaceAll("
 const projectLinks=p=>(PROJECT_LINKS[p.t]||[]).length?`<nav class="project-links" aria-label="${escLink(p.t)} links">${PROJECT_LINKS[p.t].map(l=>`<a href="${escLink(l.url)}" target="_blank" rel="noopener noreferrer">${escLink(l.label)} ↗</a>`).join("")}</nav>`:"";
 const PROJECT_IMAGES={"Fridgie Smalls": {"src": "assets/webCV_fridgie.png", "alt": "Fridgie Smalls recipe app on a phone", "fit": "contain"}, "eFundex": {"src": "assets/webCV_eFundex.png", "alt": "eFundex AI and financial technology artwork", "fit": "contain"}, "Scrappy Meals XR": {"src": "assets/webCV_scrappymeals.png", "alt": "Scrappy Meals character artwork: Scraps enjoying a slice of pizza", "fit": "contain"}, "The Metacheese": {"src": "assets/webCV_metacheese.png", "alt": "The Metacheese immersive culinary environment", "fit": "contain"}, "SwivelMeta / Outernet": {"src": "assets/webCV_swivelmeta.png", "alt": "A VR participant at the SwivelMeta and Outernet experience", "fit": "contain"}, "Strevi, Italy": {"src": "assets/webCV_strevi.png", "alt": "Drawing during the Strevi, Italy artist residency", "fit": "contain"}, "New Year's Rockin' Eve": {"src": "assets/webCV_nyre.png", "alt": "New Year’s Rockin’ Eve production monitor", "fit": "contain"}, "Election Systems": {"src": "assets/webCV_elections.png", "alt": "US Senate election graphics artwork", "fit": "contain"}, "ScrappyHour Events": {"src": "assets/webCV_scrappyhour.png", "alt": "ScrappyHour installation with a projected immersive culinary environment", "fit": "contain"}, "SNY / New York Mets": {"src": "assets/webCV_sny.png", "alt": "SNY Mets Hot Stove broadcast graphics", "fit": "contain"}, "3D Menus": {"src": "assets/webCV_3dmenu.png", "alt": "An augmented reality ceviche dish beside a QR-code menu", "fit": "contain"}};
 const photo=(p,k,b)=>{const im=PROJECT_IMAGES[p.t];return im?`<figure class="ph has-photo" role="button" tabindex="0" aria-label="Enlarge ${im.alt}" aria-expanded="false" style="--photo-fit:${im.fit}"><img src="${im.src}" alt="${im.alt}" decoding="async" draggable="false"></figure>`:""};
-const BAND_STORIES=[{"intro": "I work at the intersection of product, creative technology and operations, taking on problems that require both strategic judgment and direct technical execution.", "focus": "The work ranges from designing and scaling an AI consumer product to restructuring data-heavy financial workflows. In both cases, the goal is the same: reduce complexity, improve the system and produce measurable operational value.", "skills": "AI product design · Workflow and system architecture · Turning complexity into clarity", "experience": "My product work combines experience design with the systems behind it: user flows, technical architecture, automation, prompt design, data structure and operational workflow.", "proof": "Fridgie Smalls and eFundex show that approach at two very different scales: a consumer AI experience and an internal financial technology operation."}, {"intro": "My interactive work connects story, technology, physical space and audience participation across experiences that do not fit neatly inside a single medium.", "focus": "The common thread is execution: turning an experience concept into a production system that audiences, collaborators and technology can all support.", "skills": "Creative technology · Immersive spatial storytelling · Creative and technical team leadership", "experience": "I lead interactive work from concept through technical delivery, aligning creative direction, production constraints, platforms, collaborators and audience behavior.", "proof": "Scrappy Meals XR, The Metacheese, Outernet and the Strevi residency demonstrate the range: original IP, spatial media, live participation and public-facing interactive work."}, {"intro": "My real-time systems work was built inside live environments where data changes continuously, deadlines are fixed and the output is immediately public.", "focus": "That work combines systems diagnosis, real-time graphics, data visualization, control-room workflow and team enablement across news, sports and major live events.", "skills": "Live data visualization · Mission-critical real-time graphics · Production under extreme pressure", "experience": "Across broadcast roles, the responsibility was consistent: make complex systems reliable, make changing information legible and give production teams workflows they could trust live.", "proof": "That includes restoring on-air stability at SNY, supporting distributed ESPN production, leading NBA Finals graphics work and training nearly 1,000 artists and operators on Vizrt workflows."}];
+const BAND_STORIES=[{"intro": "I work at the intersection of product, creative technology and operations, taking on problems that require both strategic judgment and direct technical execution.", "focus": "The work ranges from designing and scaling an AI consumer product to restructuring data-heavy financial workflows. In both cases, the goal is the same: reduce complexity, improve the system and produce measurable operational value.", "skills": "AI Product Design · Workflow and System Architecture · Turning Complexity into Clarity", "experience": "My product work combines experience design with the systems behind it: user flows, technical architecture, automation, prompt design, data structure and operational workflow.", "proof": "Fridgie Smalls and eFundex show that approach at two very different scales: a consumer AI experience and an internal financial technology operation."}, {"intro": "My interactive work connects story, technology, physical space and audience participation across experiences that do not fit neatly inside a single medium.", "focus": "The common thread is execution: turning an experience concept into a production system that audiences, collaborators and technology can all support.", "skills": "Creative Technology · Immersive Spatial Storytelling · Creative and Technical Team Leadership", "experience": "I lead interactive work from concept through technical delivery, aligning creative direction, production constraints, platforms, collaborators and audience behavior.", "proof": "Scrappy Meals XR, The Metacheese, Outernet and the Strevi residency demonstrate the range: original IP, spatial media, live participation and public-facing interactive work."}, {"intro": "My real-time systems work was built inside live environments where data changes continuously, deadlines are fixed and the output is immediately public.", "focus": "That work combines systems diagnosis, real-time graphics, data visualization, control-room workflow and team enablement across news, sports and major live events.", "skills": "Live Data Visualization · Mission-Critical Real-Time Graphics · Production Under Extreme Pressure", "experience": "Across broadcast roles, the responsibility was consistent: make complex systems reliable, make changing information legible and give production teams workflows they could trust live.", "proof": "That includes restoring on-air stability at SNY, supporting distributed ESPN production, leading NBA Finals graphics work and training nearly 1,000 artists and operators on Vizrt workflows."}];
 const mk=(b,bi)=>{
  const story=BAND_STORIES[bi];
  const sl=b.resume?[]:[`<article class="sl"><div class="tx"><h3>${b.l}</h3><div class="overview-copy"><p class="story-lead">${story.intro}</p><p>${story.focus}</p><p class="story-skills">${story.skills}</p></div></div></article>`];
@@ -689,7 +831,8 @@ function draw(){
   el.querySelector(".ct").textContent=`${pad(pos[i]+1)} / ${pad(n)}`;
   el.querySelector(".bar i").style.width=`${(pos[i]+1)/n*100}%`;
   el.querySelector(".pv").disabled=pos[i]===0;
-  el.querySelector(".nx").disabled=false;
+  const nextMainBand=B.findIndex((b,idx)=>idx>i&&!b.resume);
+  el.querySelector(".nx").disabled=pos[i]===n-1&&nextMainBand===-1;
   let cur=null;
   el.querySelectorAll(".toc li").forEach((li,idx)=>{
    li.classList.toggle("cur",idx===pos[i]);
@@ -702,8 +845,30 @@ function draw(){
 }
 function step(i,d){
  const n=slideCount(i);
- pos[i]=d>0?(pos[i]+d)%n:Math.max(0,pos[i]+d);
- max[i]=Math.max(max[i],pos[i]);active=i;draw();
+
+ if(d>0){
+  if(pos[i]<n-1){
+   pos[i]+=1;
+   max[i]=Math.max(max[i],pos[i]);
+   active=i;
+   draw();
+   return;
+  }
+
+  // At the end of a main section, advance to the next main section.
+  // Résumé is intentionally excluded and only opens from its header trigger.
+  const nextMainBand=B.findIndex((b,idx)=>idx>i&&!b.resume);
+  if(nextMainBand!==-1){
+   active=nextMainBand;
+   pos[nextMainBand]=0;
+   draw();
+  }
+  return;
+ }
+
+ pos[i]=Math.max(0,pos[i]-1);
+ active=i;
+ draw();
 }
 bands.forEach((el,i)=>{
  el.addEventListener("click",e=>{
