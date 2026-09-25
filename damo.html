@@ -1289,149 +1289,136 @@ header h1,.sl h3,.cs h2{
 
 
 /* =========================================================
-   IMAGE DEPTH — 10% TRANSPARENCY
+   MOBILE FINAL LAYOUT — ONLY <= 700px
+   Project rules:
+   1) text stays at top and fits the available space
+   2) media/link block docks to bottom
+   3) image width exactly equals link-bar width
+   4) no internal project scrollbars
+   5) Resume button stays on right
    ========================================================= */
-.project-media img,
-.thesis-media img{
-  opacity:.90 !important;
-}
-
-/* =========================================================
-   MOBILE REBUILD — ONE CLEAN RULESET ONLY
-   Desktop/tablet are intentionally untouched.
-   ========================================================= */
-@media(max-width:600px){
-  /* Resume stays on the RIGHT on mobile. */
-  .hb{
-    width:100% !important;
-    display:flex !important;
-    justify-content:flex-end !important;
-    align-items:center !important;
-  }
+@media(max-width:700px){
   #resume-trigger{
-    margin-left:auto !important;
-    margin-right:0 !important;
+    right:12px !important;
     left:auto !important;
-    right:auto !important;
   }
 
-  /* Active section occupies one phone viewport. */
-  .band.on{
-    height:100dvh !important;
-    min-height:100dvh !important;
-    max-height:100dvh !important;
-  }
-  .band.on .vp,
-  .band.on .trk{
-    min-height:0 !important;
-    height:100% !important;
-    overflow:hidden !important;
-  }
-
-  /* PROJECT SLIDES: copy on top, media zone fills the remainder. */
-  .band.on .sl:has(> .project-media):not(.resume-slide){
-    display:grid !important;
-    grid-template-columns:minmax(0,1fr) !important;
-    grid-template-rows:auto minmax(0,1fr) !important;
-    align-items:stretch !important;
-    align-content:stretch !important;
-    gap:6px !important;
-    height:100% !important;
-    min-height:0 !important;
-    padding:10px 12px 12px !important;
-    overflow:hidden !important;
-  }
-
-  .band.on .sl:has(> .project-media):not(.resume-slide) > .tx{
-    grid-row:1 !important;
-    width:100% !important;
-    min-width:0 !important;
-    min-height:0 !important;
-    margin:0 !important;
-  }
-
-  /* Compact mobile project typography so the complete card fits. */
-  .band.on .sl:has(> .project-media) h3{
-    font-size:clamp(20px,6.2vw,28px) !important;
-    line-height:.98 !important;
-    margin:0 0 3px !important;
-  }
-  .band.on .sl:has(> .project-media) .sub{
-    font-size:clamp(10px,2.75vw,12px) !important;
-    line-height:1.12 !important;
-    margin:0 0 5px !important;
-  }
-  .band.on .sl:has(> .project-media) .blk{
-    display:grid !important;
-    grid-template-columns:76px minmax(0,1fr) !important;
-    gap:2px 9px !important;
-    padding:3px 0 !important;
-    margin:0 !important;
-  }
-  .band.on .sl:has(> .project-media) .blk b{
-    font-size:8px !important;
-    line-height:1.08 !important;
-    letter-spacing:.11em !important;
-  }
-  .band.on .sl:has(> .project-media) .blk span{
-    font-size:10.6px !important;
-    line-height:1.18 !important;
-  }
-
-  /* MEDIA ZONE: always bottom-docked and always exactly link-bar width. */
-  .band.on .sl:has(> .project-media):not(.resume-slide) > .project-media{
-    grid-row:2 !important;
-    width:100% !important;
-    max-width:none !important;
-    min-width:0 !important;
-    min-height:0 !important;
-    height:100% !important;
-    margin:0 !important;
-    padding:0 !important;
+  .band.on .sl{
     display:flex !important;
     flex-direction:column !important;
-    justify-content:flex-end !important;
     align-items:stretch !important;
-    align-self:stretch !important;
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    padding:7px 10px 9px !important;
     gap:4px !important;
     overflow:hidden !important;
   }
 
+  .band.on .sl > .tx{
+    flex:0 0 auto !important;
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    margin:0 !important;
+  }
 
-  .band.on .project-media:not(:has(.ph.has-photo)){
-    justify-content:flex-end !important;
+  .band.on .sl h3{
+    font-size:var(--m-title,22px) !important;
+    line-height:.98 !important;
+    margin:0 0 2px !important;
+  }
+
+  .band.on .sl .sub{
+    font-size:var(--m-sub,11px) !important;
+    line-height:1.12 !important;
+    margin:2px 0 5px !important;
+  }
+
+  .band.on .sl .blk{
+    width:100% !important;
+    max-width:none !important;
+    grid-template-columns:68px minmax(0,1fr) !important;
+    gap:2px 7px !important;
+    padding:2px 0 !important;
+  }
+
+  .band.on .sl .blk b{
+    font-size:var(--m-label,7.8px) !important;
+    line-height:1.05 !important;
+    letter-spacing:.10em !important;
+    padding-top:1px !important;
+  }
+
+  .band.on .sl .blk span{
+    font-size:var(--m-body,10.1px) !important;
+    line-height:var(--m-leading,1.14) !important;
+    max-width:none !important;
+    width:100% !important;
+  }
+
+  .band.on .sl .overview-copy,
+  .band.on .sl .experience-intro,
+  .band.on .sl .experience-proof,
+  .band.on .sl .experience-note{
+    width:100% !important;
+    max-width:none !important;
+    font-size:var(--m-body,10.1px) !important;
+    line-height:var(--m-leading,1.14) !important;
+    margin-top:4px !important;
+  }
+
+  .band.on .sl .overview-copy .story-lead{
+    font-size:calc(var(--m-body,10.1px) + 1.5px) !important;
+    line-height:1.15 !important;
+  }
+
+  /* Media block owns the bottom of the slide. */
+  .band.on .sl > .project-media{
+    flex:0 0 auto !important;
+    width:100% !important;
+    max-width:none !important;
+    min-width:0 !important;
     height:auto !important;
-    align-self:end !important;
+    min-height:0 !important;
+    margin:auto 0 0 !important;
+    padding:0 !important;
+    align-self:stretch !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-end !important;
+    gap:4px !important;
   }
 
   .band.on .project-media .ph,
   .band.on .project-media .ph.has-photo{
-    flex:1 1 auto !important;
     width:100% !important;
     max-width:none !important;
     min-width:0 !important;
+    height:var(--m-image-h,120px) !important;
     min-height:0 !important;
-    height:auto !important;
-    max-height:none !important;
+    max-height:var(--m-image-h,120px) !important;
+    aspect-ratio:auto !important;
     margin:0 !important;
     padding:0 !important;
-    aspect-ratio:auto !important;
+    align-self:stretch !important;
     box-sizing:border-box !important;
     overflow:hidden !important;
   }
 
   .band.on .project-media .ph.has-photo img{
+    position:static !important;
+    display:block !important;
     width:100% !important;
     height:100% !important;
     max-width:none !important;
-    display:block !important;
     object-fit:cover !important;
     object-position:center !important;
+    opacity:.90 !important;
   }
 
-  /* Link bars are bottom-most, same width as image, consistent size. */
   .band.on .project-media .project-links{
-    flex:0 0 auto !important;
+    order:2 !important;
     width:100% !important;
     max-width:none !important;
     margin:0 !important;
@@ -1441,40 +1428,48 @@ header h1,.sl h3,.cs h2{
     align-items:stretch !important;
     gap:4px !important;
   }
+
   .band.on .project-media .project-links a{
     width:100% !important;
-    height:30px !important;
-    min-height:30px !important;
-    max-height:30px !important;
+    max-width:none !important;
+    height:34px !important;
+    min-height:34px !important;
+    max-height:34px !important;
     margin:0 !important;
-    padding:0 8px !important;
+    padding:0 9px !important;
     box-sizing:border-box !important;
-    font-size:9.5px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-size:10px !important;
     line-height:1 !important;
     white-space:nowrap !important;
-  }
-
-  /* No project-info scrollbars on mobile. */
-  .band.on .sl,
-  .band.on .tx,
-  .band.on .project-media{
-    scrollbar-width:none !important;
-  }
-  .band.on .sl::-webkit-scrollbar,
-  .band.on .tx::-webkit-scrollbar,
-  .band.on .project-media::-webkit-scrollbar{
-    display:none !important;
-  }
-
-  /* Text-only/overview slides also stay contained, without affecting project media rules. */
-  .band.on .sl.text-only,
-  .band.on .sl:has(.overview-copy),
-  .band.on .resume-slide{
     overflow:hidden !important;
-    padding:10px 12px 12px !important;
+    text-overflow:ellipsis !important;
+  }
+
+  /* If there is no link stack, keep the image cleanly bottom-aligned. */
+  .band.on .project-media:not(:has(.project-links)){
+    margin-top:auto !important;
+  }
+
+  /* Per-slide density levels applied by the mobile fitter. */
+  .band.on .sl.mfit-1{--m-title:21px;--m-sub:10.5px;--m-body:9.8px;--m-label:7.5px;--m-leading:1.12;--m-image-h:112px}
+  .band.on .sl.mfit-2{--m-title:20px;--m-sub:10px;--m-body:9.4px;--m-label:7.2px;--m-leading:1.10;--m-image-h:104px}
+  .band.on .sl.mfit-3{--m-title:19px;--m-sub:9.6px;--m-body:9px;--m-label:7px;--m-leading:1.08;--m-image-h:96px}
+  .band.on .sl.mfit-4{--m-title:18px;--m-sub:9.2px;--m-body:8.6px;--m-label:6.8px;--m-leading:1.06;--m-image-h:88px}
+
+  /* Resume slide is not treated like project media. */
+  .band.on .resume-slide{
+    display:block !important;
+    overflow:hidden !important;
   }
 }
 
+</style>
+
+<style>
+.project-media img,.thesis-media img,.thesis-photo img{opacity:.90 !important;}
 </style>
 </head>
 <body>
@@ -1961,5 +1956,50 @@ draw();
 })();
 
 </script>
+
+<script>
+/* Mobile-only content-aware project fitter. No transforms, no zoom. */
+(function(){
+  const levels=['mfit-1','mfit-2','mfit-3','mfit-4'];
+  let raf=0;
+
+  function slideFits(sl){
+    return sl.scrollHeight <= sl.clientHeight + 1;
+  }
+
+  function fitOne(sl){
+    sl.classList.remove(...levels);
+    if(window.innerWidth>700) return;
+    if(!sl.closest('.band')?.classList.contains('on')) return;
+    if(sl.classList.contains('resume-slide')) return;
+
+    /* Try natural mobile density first, then tighten only this slide. */
+    if(slideFits(sl)) return;
+    for(const level of levels){
+      sl.classList.add(level);
+      if(slideFits(sl)) return;
+    }
+  }
+
+  function fitMobile(){
+    cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(()=>{
+      document.querySelectorAll('.sl').forEach(sl=>{
+        if(window.innerWidth>700) sl.classList.remove(...levels);
+        else fitOne(sl);
+      });
+    });
+  }
+
+  window.addEventListener('resize',fitMobile,{passive:true});
+  window.addEventListener('orientationchange',()=>setTimeout(fitMobile,80),{passive:true});
+  document.addEventListener('click',()=>setTimeout(fitMobile,0));
+  document.fonts?.ready?.then(fitMobile);
+  new MutationObserver(()=>fitMobile()).observe(document.body,{subtree:true,attributes:true,attributeFilter:['class']});
+  setTimeout(fitMobile,0);
+  setTimeout(fitMobile,180);
+})();
+</script>
+
 </body>
 </html>
