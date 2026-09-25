@@ -2446,6 +2446,90 @@ strong {
     overflow: auto;
   }
 }
+
+/* =========================
+   LOCKED PROJECT TEXT FIT — DESKTOP + LANDSCAPE TABLET
+   Mobile and portrait-tablet behavior remain untouched.
+   Panel/media/link geometry stays fixed; only --reading-size changes.
+   ========================= */
+@media (min-width: 1181px),
+       (min-width: 701px) and (max-width: 1180px) and (orientation: landscape) {
+
+  .band.on .sl:not(.resume-slide) {
+    --reading-size: 16px;
+    overflow: hidden !important;
+  }
+
+  .band.on .sl:not(.resume-slide) > .tx {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .band.on .sl:not(.resume-slide) h3 {
+    font-size: clamp(20px, calc(var(--reading-size) * 2.25), 42px) !important;
+    line-height: 1.02 !important;
+  }
+
+  .band.on .sl:not(.resume-slide) .sub {
+    font-size: clamp(11px, calc(var(--reading-size) * .98), 18px) !important;
+    line-height: 1.20 !important;
+    margin:
+      calc(var(--reading-size) * .28)
+      0
+      calc(var(--reading-size) * .55) !important;
+  }
+
+  .band.on .sl:not(.resume-slide) .blk {
+    padding: calc(var(--reading-size) * .28) 0 !important;
+  }
+
+  .band.on .sl:not(.resume-slide) .blk b {
+    font-size: clamp(8px, calc(var(--reading-size) * .66), 11px) !important;
+    line-height: 1.12 !important;
+  }
+
+  .band.on .sl:not(.resume-slide) .blk span {
+    font-size: var(--reading-size) !important;
+    line-height: 1.30 !important;
+  }
+
+  .band.on .sl:not(.resume-slide) .overview-copy,
+  .band.on .sl:not(.resume-slide) .experience-intro,
+  .band.on .sl:not(.resume-slide) .experience-proof,
+  .band.on .sl:not(.resume-slide) .experience-note {
+    font-size: var(--reading-size) !important;
+    line-height: 1.36 !important;
+  }
+
+  .band.on .sl:not(.resume-slide) .overview-copy .story-lead {
+    font-size: calc(var(--reading-size) * 1.12) !important;
+    line-height: 1.34 !important;
+  }
+
+  .band.on .sl:not(.resume-slide) .story-skills {
+    font-size: calc(var(--reading-size) * .95) !important;
+    line-height: 1.40 !important;
+  }
+
+  /* The old density classes must never change fixed project geometry. */
+  .band.on .sl.fit-dense .project-links,
+  .band.on .sl.fit-tight .project-links {
+    margin-top: 8px !important;
+    gap: 6px !important;
+  }
+
+  .band.on .sl.fit-dense .project-links a,
+  .band.on .sl.fit-tight .project-links a {
+    width: 100% !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    padding: 0 10px !important;
+    font-size: 11px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2812,49 +2896,144 @@ function fitProjects(){
 }
 function updateProjectLayout(){
  cancelAnimationFrame(fitFrame);
-  document.querySelectorAll('.sl').forEach(sl=>{
-   const tx=sl.querySelector('.tx');
-   const media=sl.querySelector('.project-media');
-   const photo=media?.querySelector('.ph');
 
-   if(media){
-    media.style.height='';
-   }
-   if(photo){
-    photo.style.width='';
-    photo.style.height='';
-   }
+ const mobileOrPortraitTablet = matchMedia(
+  '(max-width:700px), (min-width:701px) and (max-width:1180px) and (orientation:portrait)'
+ ).matches;
 
-   sl.classList.remove('fit-dense','fit-tight');
+ document.querySelectorAll('.sl').forEach(sl=>{
+  const tx=sl.querySelector('.tx');
+  const media=sl.querySelector('.project-media');
+  const photo=media?.querySelector('.ph');
 
-   if(innerWidth<=1180 || !sl.closest('.band')?.classList.contains('on')) return;
+  /* Always clear obsolete desktop density classes. */
+  sl.classList.remove('fit-dense','fit-tight');
 
-   /* Preserve existing image/link column sizing exactly. */
-   if(media && photo){
-    const style=getComputedStyle(sl);
-    const available=sl.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);
-    if(available>0){
-      const links=media.querySelector('.project-links');
-      const linkHeight=links ? links.getBoundingClientRect().height+8 : 0;
-      media.style.height=available+'px';
-      photo.style.width='100%';
-      photo.style.height=Math.max(120,available-linkHeight)+'px';
-    }
+  /*
+    MOBILE + PORTRAIT TABLET:
+    Leave the already-working locked-panel system untouched.
+    fitMobileProjects() below remains the sole text fitter there.
+  */
+  if(mobileOrPortraitTablet){
+   if(tx){
+    tx.style.height='';
+    tx.style.maxHeight='';
    }
+   return;
+  }
 
-   /* Fit text inside the panel without scrollbars or CSS zoom. */
-   if(!tx) return;
-   const availableH=sl.clientHeight-parseFloat(getComputedStyle(sl).paddingTop)-parseFloat(getComputedStyle(sl).paddingBottom);
-   if(tx.scrollHeight>availableH){
-    sl.classList.add('fit-dense');
-    void sl.offsetHeight;
+  /* Reset only desktop / landscape-tablet text fitting residue. */
+  sl.style.removeProperty('--reading-size');
+
+  if(tx){
+   tx.style.height='';
+   tx.style.maxHeight='';
+  }
+
+  if(media){
+   media.style.height='';
+  }
+
+  if(photo){
+   photo.style.width='';
+   photo.style.height='';
+  }
+
+  if(!sl.closest('.band')?.classList.contains('on')) return;
+  if(sl.classList.contains('resume-slide')) return;
+  if(!tx) return;
+
+  /*
+    DESKTOP MEDIA GEOMETRY:
+    Preserve the approved image/link column exactly as before.
+    Text fitting does not alter it.
+  */
+  if(innerWidth>1180 && media && photo){
+   const style=getComputedStyle(sl);
+   const available=
+    sl.clientHeight -
+    parseFloat(style.paddingTop) -
+    parseFloat(style.paddingBottom);
+
+   if(available>0){
+    const links=media.querySelector('.project-links');
+    const linkHeight=
+     links ? links.getBoundingClientRect().height + 8 : 0;
+
+    media.style.height=available+'px';
+    photo.style.width='100%';
+    photo.style.height=Math.max(120,available-linkHeight)+'px';
    }
-   if(tx.scrollHeight>availableH){
-    sl.classList.remove('fit-dense');
-    sl.classList.add('fit-tight');
+  }
+
+  /*
+    LOCK THE AVAILABLE TEXT BOX.
+    Desktop uses the full panel height beside the fixed media column.
+    Landscape tablet subtracts the already-rendered stacked media block.
+  */
+  const slStyle=getComputedStyle(sl);
+
+  let availableTextHeight=
+   sl.clientHeight -
+   parseFloat(slStyle.paddingTop) -
+   parseFloat(slStyle.paddingBottom);
+
+  if(media){
+   const txRect=tx.getBoundingClientRect();
+   const mediaRect=media.getBoundingClientRect();
+
+   const stacked=
+    mediaRect.top > txRect.top + 20;
+
+   if(stacked){
+    const gap=
+     parseFloat(slStyle.rowGap) ||
+     parseFloat(slStyle.gap) ||
+     12;
+
+    availableTextHeight -= mediaRect.height + gap;
    }
-  });
-  fitMobileProjects();
+  }
+
+  availableTextHeight=Math.max(90,availableTextHeight);
+
+  tx.style.height=availableTextHeight+'px';
+  tx.style.maxHeight=availableTextHeight+'px';
+
+  /*
+    DYNAMIC TEXT ONLY:
+    Find the largest reading size that fits the locked text box.
+    No panel, media, link, menu or navigation dimensions are changed.
+  */
+  let low=9.5;
+  let high=innerWidth>1180 ? 18 : 17;
+
+  for(let step=0;step<12;step++){
+   const size=(low+high)/2;
+
+   sl.style.setProperty('--reading-size',size+'px');
+
+   /* Force measurement after the variable update. */
+   void tx.offsetHeight;
+
+   if(tx.scrollHeight<=tx.clientHeight+1){
+    low=size;
+   }else{
+    high=size;
+   }
+  }
+
+  sl.style.setProperty(
+   '--reading-size',
+   (Math.floor(low*10)/10)+'px'
+  );
+ });
+
+ /*
+   Existing mobile/portrait-tablet fitter remains authoritative there.
+   On desktop/landscape tablet it simply clears/returns as designed.
+ */
+ fitMobileProjects();
 }
 const projectLayoutObserver = new ResizeObserver(fitProjects);
 projectLayoutObserver.observe(document.querySelector('.app'));
