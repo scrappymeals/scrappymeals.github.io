@@ -1287,6 +1287,108 @@ header h1,.sl h3,.cs h2{
   text-overflow:ellipsis !important;
 }
 
+
+/* =========================================================
+   MOBILE ONLY — FIT EACH PROJECT INSIDE THE PANEL
+   Desktop/tablet remain unchanged.
+   ========================================================= */
+@media(max-width:700px){
+
+  /* Keep the active project contained inside its panel. */
+  .band.on .sl{
+    overflow:hidden !important;
+    align-items:start !important;
+    gap:8px !important;
+    padding:8px 10px 10px !important;
+  }
+
+  /* Compress project typography/spacing without changing content. */
+  .band.on .sl h3{
+    font-size:clamp(18px,5.7vw,25px) !important;
+    line-height:1 !important;
+    margin-bottom:2px !important;
+  }
+
+  .band.on .sub{
+    font-size:clamp(10px,3vw,12px) !important;
+    line-height:1.16 !important;
+    margin:2px 0 5px !important;
+  }
+
+  .band.on .blk{
+    grid-template-columns:72px minmax(0,1fr) !important;
+    gap:2px 8px !important;
+    padding:2px 0 !important;
+  }
+
+  .band.on .blk b{
+    font-size:8px !important;
+    line-height:1.05 !important;
+    letter-spacing:.11em !important;
+  }
+
+  .band.on .blk span{
+    font-size:10.4px !important;
+    line-height:1.16 !important;
+  }
+
+  /* Media stays visible but becomes compact enough to fit the slide. */
+  .band.on .project-media{
+    gap:4px !important;
+    margin:0 !important;
+    min-height:0 !important;
+  }
+
+  .band.on .project-media .ph{
+    height:min(25vh,180px) !important;
+    min-height:90px !important;
+    max-height:180px !important;
+    object-fit:cover !important;
+  }
+
+  /* Preserve uniform link bars while tightening them for mobile only. */
+  .band.on .project-links{
+    gap:4px !important;
+    margin-top:4px !important;
+  }
+
+  .band.on .project-links a{
+    height:28px !important;
+    min-height:28px !important;
+    max-height:28px !important;
+    padding:0 8px !important;
+    font-size:9px !important;
+  }
+
+  /* Slightly tighter overview/resume copy on mobile. */
+  .band.on .overview-copy,
+  .band.on .resume-slide{
+    font-size:11px !important;
+    line-height:1.2 !important;
+  }
+
+  /* Move the Resume control to the opposite side on mobile only. */
+  .resume-trigger,
+  .resume-btn,
+  #resume-trigger,
+  #resumeBtn,
+  #resumeButton{
+    left:12px !important;
+    right:auto !important;
+  }
+}
+
+
+/* =========================================================
+   IMAGE DEPTH — 10% TRANSPARENCY
+   ========================================================= */
+.project-media img,
+.project-media .ph,
+.thesis-media img,
+.thesis-media .ph{
+  opacity:.90 !important;
+}
+
 </style>
 </head>
 <body>
@@ -1770,6 +1872,57 @@ draw();
     if(!raf) raf=requestAnimationFrame(render);
   };
   window.addEventListener('pointermove',move,{passive:true});
+})();
+
+
+(function(){
+  function fitMobileProjects(){
+    const allSlides=document.querySelectorAll('.sl');
+
+    if(window.innerWidth>700){
+      allSlides.forEach(sl=>{
+        [...sl.children].forEach(el=>{
+          el.style.transform='';
+          el.style.transformOrigin='';
+          el.style.width='';
+        });
+      });
+      return;
+    }
+
+    document.querySelectorAll('.band.on .sl').forEach(sl=>{
+      const children=[...sl.children];
+      if(!children.length) return;
+
+      children.forEach(el=>{
+        el.style.transform='';
+        el.style.transformOrigin='';
+        el.style.width='';
+      });
+
+      const available=sl.clientHeight;
+      const contentBottom=Math.max(...children.map(el=>el.offsetTop+el.offsetHeight),0);
+      if(!available || !contentBottom) return;
+
+      const ratio=Math.min(1,(available-2)/contentBottom);
+      if(ratio<.995){
+        children.forEach(el=>{
+          el.style.transform=`scale(${ratio})`;
+          el.style.transformOrigin='top left';
+          if(el.classList.contains('tx') || el.classList.contains('project-media')){
+            el.style.width=(100/ratio)+'%';
+          }
+        });
+      }
+    });
+  }
+
+  window.addEventListener('resize',fitMobileProjects,{passive:true});
+  setTimeout(fitMobileProjects,0);
+  setTimeout(fitMobileProjects,180);
+
+  const mobileFitObserver=new MutationObserver(()=>setTimeout(fitMobileProjects,0));
+  mobileFitObserver.observe(document.body,{subtree:true,attributes:true,attributeFilter:['class']});
 })();
 
 </script>
