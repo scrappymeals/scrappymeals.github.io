@@ -2382,11 +2382,15 @@ strong {
     max-width: none;
   }
   .band.on .sl .blk b {
-    font-size: clamp(8.5px,calc(var(--reading-size) * .66),12px) !important;
+    min-width: 0;
+    overflow-wrap: normal;
+    word-break: normal;
+    font-size: clamp(8px,calc(var(--reading-size) * .60),9px) !important;
     line-height: 1.15;
     letter-spacing: .10em;
     padding-top: 2px;
   }
+  .band.on .sl .blk span { min-width: 0; overflow-wrap: break-word; }
   .band.on .sl .blk span,
   .band.on .sl .overview-copy,
   .band.on .sl .experience-intro,
@@ -2444,6 +2448,36 @@ strong {
   .band.on .resume-slide {
     display: block !important;
     overflow: auto;
+  }
+  /* Short screens: tighten only text when the normal minimum cannot fit. */
+  .band.on .sl.text-compact h3 {
+    font-size: clamp(20px,calc(var(--reading-size) * 1.8),32px) !important;
+  }
+  .band.on .sl.text-compact .sub {
+    margin: 2px 0 4px !important;
+    line-height: 1.12;
+  }
+  .band.on .sl.text-compact .blk {
+    grid-template-columns: 62px minmax(0,1fr);
+    gap: 2px 6px !important;
+    padding: 1px 0 !important;
+  }
+  .band.on .sl.text-compact .blk b {
+    font-size: 8px !important;
+    line-height: 1.1;
+    letter-spacing: .06em;
+    padding-top: 0;
+  }
+  .band.on .sl.text-compact .blk span {
+    line-height: 1.15 !important;
+  }
+}
+
+/* Mobile focal points: preserve the phone's upper screen and Scraps' face. */
+@media (max-width:700px) {
+  .band.on .project-media img[src="assets/webCV_fridgie.png"],
+  .band.on .project-media img[src="assets/webCV_scrappymeals.png"] {
+    object-position: center top !important;
   }
 }
 
@@ -3316,6 +3350,7 @@ function updateProjectLayout(){
    return;
   }
 
+  sl.classList.remove('text-compact');
   /* Reset only desktop / landscape-tablet text fitting residue. */
   sl.style.removeProperty('--reading-size');
 
@@ -3437,6 +3472,7 @@ bands.forEach(band => {
 });
 window.addEventListener('resize',fitProjects);
 document.fonts.ready.then(fitProjects);
+document.fonts.addEventListener('loadingdone', fitProjects);
 draw();
 /* =========================
    INTERACTION AUDIO
@@ -3558,12 +3594,38 @@ function fitMobileProjects() {
  const slide = bands[active].querySelectorAll('.sl')[pos[active]];
  if (slide.classList.contains('resume-slide')) return;
  const text = slide.querySelector('.tx');
- // Measure the fixed text box; never resize the panel, image or links.
- let low = 10, high = innerWidth <= 700 ? 24 : 28;
- for (let step = 0; step < 10; step++) {
+ slide.classList.remove('text-compact');
+
+ // Check real line boxes, not rounded scrollHeight alone. Reserve room below
+ // the final line and reject horizontal overflow in either label/value column.
+ function fits() {
+  const box = text.getBoundingClientRect();
+  const walker = document.createTreeWalker(text, NodeFilter.SHOW_TEXT);
+  const range = document.createRange();
+  let node;
+  while ((node = walker.nextNode())) {
+   if (!node.textContent.trim()) continue;
+   range.selectNodeContents(node);
+   for (const line of range.getClientRects()) {
+    if (line.bottom > box.bottom - 5 || line.left < box.left - .5 ||
+        line.right > box.right + .5) return false;
+   }
+  }
+  return true;
+ }
+ const minimum = 10;
+ slide.style.setProperty('--reading-size', minimum + 'px');
+ if (!fits()) slide.classList.add('text-compact');
+ let low = minimum, high = innerWidth <= 700 ? 24 : 28;
+ // Extremely short viewports may need a final text-only reduction.
+ while (!fits() && low > 8.5) {
+  low = Math.round((low - .1) * 10) / 10;
+  slide.style.setProperty('--reading-size', low + 'px');
+ }
+ for (let step = 0; step < 12; step++) {
   const size = (low + high) / 2;
   slide.style.setProperty('--reading-size', size + 'px');
-  if (text.scrollHeight <= text.clientHeight + 1) low = size;
+  if (fits()) low = size;
   else high = size;
  }
  slide.style.setProperty('--reading-size', (Math.floor(low * 10) / 10) + 'px');
