@@ -2947,6 +2947,24 @@ strong {
   }
 }
 
+
+/* =========================================================
+   MOBILE ONLY — FRIDGIE SMALLS IMAGE WINDOW
+   Slightly taller image area; nothing else is affected.
+   ========================================================= */
+@media (max-width:700px){
+  .band.on .project-media .ph.has-photo:has(img[src="assets/webCV_fridgie.png"]){
+    height:clamp(135px,21dvh,230px) !important;
+  }
+
+  .band.on .project-media .ph.has-photo:has(img[src="assets/webCV_fridgie.png"]) img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center top !important;
+  }
+}
+
 </style>
 </head>
 <body>
