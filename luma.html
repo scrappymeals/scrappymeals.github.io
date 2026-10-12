@@ -3246,7 +3246,7 @@ const C=[
     <div class="blk"><b>DIGITAL ASSETS</b><span>Selected experimental work including FRIDA001, combining physical installation, digital 3D artwork, NFC and augmented reality.</span></div>
   </div>
   <div class="thesis-media">
-    <figure class="thesis-photo"><img src="assets/webCV_nigtlight.png" alt="The Nightlight animated star character and award artwork" decoding="async"></figure>
+    <figure class="thesis-photo"><img data-src="assets/webCV_nigtlight.png" alt="The Nightlight animated star character and award artwork" decoding="async"></figure>
     <nav class="project-links" aria-label="Education and early work links">
       <a href="https://www.youtube.com/watch?v=Uh0C-Amharo" target="_blank" rel="noopener">Watch the Thesis Film</a>
       <a href="https://opensea.io/collection/damonversaggi" target="_blank" rel="noopener">View Digital Assets</a>
@@ -3274,7 +3274,7 @@ const PROJECT_LINKS={"Fridgie Smalls": [{"label": "TRY FRIDGIE SMALLS · MOBILE 
 const escLink=s=>s.replaceAll("&","&amp;").replaceAll('"',"&quot;").replaceAll("<","&lt;");
 const projectLinks=p=>(PROJECT_LINKS[p.t]||[]).length?`<nav class="project-links" aria-label="${escLink(p.t)} links">${PROJECT_LINKS[p.t].map(l=>`<a href="${escLink(l.url)}" target="_blank" rel="noopener noreferrer">${escLink(l.label)} ↗</a>`).join("")}</nav>`:"";
 const PROJECT_IMAGES={"Fridgie Smalls": {"src": "assets/webCV_fridgie.png", "alt": "Fridgie Smalls recipe app on a phone", "fit": "contain"}, "eFundex": {"src": "assets/webCV_eFundex.png", "alt": "eFundex AI and financial technology artwork", "fit": "contain"}, "Scrappy Meals XR": {"src": "assets/webCV_scrappymeals.png", "alt": "Scrappy Meals character artwork: Scraps enjoying a slice of pizza", "fit": "contain"}, "The Metacheese": {"src": "assets/webCV_metacheese.png", "alt": "The Metacheese immersive culinary environment", "fit": "contain"}, "SwivelMeta / Outernet": {"src": "assets/webCV_swivelmeta.png", "alt": "A VR participant at the SwivelMeta and Outernet experience", "fit": "contain"}, "Strevi, Italy": {"src": "assets/webCV_strevi.png", "alt": "Drawing during the Strevi, Italy artist residency", "fit": "contain"}, "New Year's Rockin' Eve": {"src": "assets/webCV_nyre.png", "alt": "New Year’s Rockin’ Eve production monitor", "fit": "contain"}, "Election Systems": {"src": "assets/webCV_elections.png", "alt": "US Senate election graphics artwork", "fit": "contain"}, "ScrappyHour Events": {"src": "assets/webCV_scrappyhour.png", "alt": "ScrappyHour installation with a projected immersive culinary environment", "fit": "contain"}, "Lockheed Martin / Internal Multi-Touch": {"src": "assets/webCV_lockheedMartin.png", "alt": "Representative Lockheed Martin internal multi-touch real-time operations interface", "fit": "contain"}, "SNY / New York Mets": {"src": "assets/webCV_sny.png", "alt": "SNY Mets Hot Stove broadcast graphics", "fit": "contain"}, "3D Menus": {"src": "assets/webCV_3dmenu.png", "alt": "An augmented reality ceviche dish beside a QR-code menu", "fit": "contain"}};
-const photo=p=>{const im=PROJECT_IMAGES[p.t];return im?`<figure class="ph has-photo" role="button" tabindex="0" aria-label="Enlarge ${im.alt}" aria-expanded="false" style="--photo-fit:${im.fit}"><img src="${im.src}" alt="${im.alt}" decoding="async" draggable="false"></figure>`:""};
+const photo=p=>{const im=PROJECT_IMAGES[p.t];return im?`<figure class="ph has-photo" role="button" tabindex="0" aria-label="Enlarge ${im.alt}" aria-expanded="false" style="--photo-fit:${im.fit}"><img data-src="${im.src}" alt="${im.alt}" decoding="async" draggable="false"></figure>`:""};
 const BAND_STORIES=[{"intro": "I work at the intersection of product, creative technology and operations, taking on problems that require both strategic judgment and direct technical execution.", "focus": "The work ranges from designing and scaling an AI consumer product to restructuring data-heavy financial workflows. In both cases, the goal is the same: reduce complexity, improve the system and produce measurable operational value.", "skills": "AI product design · workflow and system architecture · turning complexity into clarity", "experience": "My product work combines experience design with the systems behind it: user flows, technical architecture, automation, prompt design, data structure and operational workflow.", "proof": "Fridgie Smalls and eFundex show that approach at two very different scales: a consumer AI experience and an internal financial technology operation."}, {"intro": "My interactive work connects story, technology, physical space and audience participation across experiences that do not fit neatly inside a single medium.", "focus": "The common thread is execution: turning an experience concept into a production system that audiences, collaborators and technology can all support.", "skills": "Creative technology · immersive spatial storytelling · creative and technical team leadership", "experience": "I lead interactive work from concept through technical delivery, aligning creative direction, production constraints, platforms, collaborators and audience behavior.", "proof": "Scrappy Meals XR, The Metacheese, Outernet and the Strevi residency demonstrate the range: original IP, spatial media, live participation and public-facing interactive work."}, {"intro": "My real-time systems work was built inside live environments where data changes continuously, deadlines are fixed and the output is immediately public.", "focus": "That work combines systems diagnosis, real-time graphics, data visualization, control-room workflow and team enablement across news, sports and major live events.", "skills": "Live data visualization · mission-critical real-time graphics · production under extreme pressure", "experience": "Across broadcast roles, the responsibility was consistent: make complex systems reliable, make changing information legible and give production teams workflows they could trust live.", "proof": "That includes restoring on-air stability at SNY, supporting distributed ESPN production, leading NBA Finals graphics work and training nearly 1,000 artists and operators on Vizrt workflows."}];
 /* =========================
    MARKUP RENDERING
@@ -3389,7 +3389,22 @@ document.addEventListener('keydown',e=>{
    ========================= */
 const drawEffects = [];
 let active=0;
+
+// Request only the selected slide and its immediate successor.
+function loadVisibleImages(){
+ const slides=bands[active].querySelectorAll('.sl');
+ [pos[active],pos[active]+1].forEach((index,priority)=>{
+  slides[index]?.querySelectorAll('img[data-src]').forEach(img=>{
+   if(img.getAttribute('src')) return;
+   img.fetchPriority=priority===0?'high':'low';
+   img.addEventListener('load',fitProjects,{once:true});
+   img.src=img.dataset.src;
+  });
+ });
+}
+
 function draw(){
+ loadVisibleImages();
  const resumeOpen=active===resumeBandIndex;
  resumeBand.hidden=!resumeOpen;
  resumeTrigger.hidden=resumeOpen;
@@ -3524,6 +3539,7 @@ function updateProjectLayout(){
   }
 
   if(!sl.closest('.band')?.classList.contains('on')) return;
+  if(sl!==bands[active].querySelectorAll('.sl')[pos[active]]) return;
   if(sl.classList.contains('resume-slide') || sl.classList.contains('proof-overview')) return;
   if(!tx) return;
 
